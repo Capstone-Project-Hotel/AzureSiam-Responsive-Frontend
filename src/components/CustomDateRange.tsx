@@ -240,7 +240,7 @@ const StyledDateRangeSmall = styled(DateRange)`
     font-size: 14px !important;
   }
   .cell-day {
-    font-size: 7px !important;
+    font-size: 6px !important;
     top: 75%;
   }
 
