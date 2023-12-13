@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Topbar from '@/components/Topbar'
+import Footer from '@/components/Footer'
 export default function Home() {
   return (
     <main>
@@ -114,6 +115,7 @@ export default function Home() {
       <div className="bg-black h-[100vh]">
         hi
       </div>
+      <Footer />
     </main>
   )
 }
