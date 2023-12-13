@@ -6,7 +6,6 @@ import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import styled from "styled-components";
-import { useRef } from "react";
 import { useMediaQuery } from "react-responsive";
 
 interface CustomDateRangeProps {

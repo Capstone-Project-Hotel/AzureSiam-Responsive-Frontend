@@ -1,11 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import CustomDateRange from "@/components/CustomDateRange";
 import HistoryCard from "@/components/HistoryCard";
 import { addDays } from "date-fns";
 import { useState } from "react";
 import OtherCard from "@/components/OtherCard";
+import dynamic from "next/dynamic";
+
+const CustomDateRange = dynamic(() => import("@/components/CustomDateRange"), {
+  ssr: false,
+});
 
 export default function Home() {
   const [state, setState] = useState<{
