@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 // const { Link } = Anchor;
 
-export default function Topbar() {
+export default function LandingTopbar() {
   const [selectedLanguage, setSelectedLanguage] = useState('EN');
 
   const handleLanguageChange = (language:string) => {
