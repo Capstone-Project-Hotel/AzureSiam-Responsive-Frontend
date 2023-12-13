@@ -191,7 +191,7 @@ const StyledDateRangeLarge = styled(DateRange)`
       font-size: 14px !important;
     }
     .cell-day {
-      font-size: 6px !important;
+      font-size: 5px !important;
       top: 75%;
     }
 
@@ -264,7 +264,7 @@ const StyledDateRangeSmall = styled(DateRange)`
       font-size: 14px !important;
     }
     .cell-day {
-      font-size: 6px !important;
+      font-size: 5px !important;
       top: 75%;
     }
 
