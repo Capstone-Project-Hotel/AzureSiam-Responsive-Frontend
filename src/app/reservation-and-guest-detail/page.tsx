@@ -6,6 +6,7 @@ import { LeftOutlined } from "@ant-design/icons";
 import TextArea from "antd/es/input/TextArea";
 import { Checkbox } from "antd";
 import type { CheckboxChangeEvent } from "antd/es/checkbox";
+import Link from "next/link";
 
 interface Guest {
   firstName: string;
@@ -54,7 +55,7 @@ const emptyPaymentDetail: PaymentDetail = {
 };
 
 const idTypeToid = {
-  id: "Id",
+  id: "National ID",
   passportNumber: "Passport Number",
   drivingLicence: "Driving Licence",
 };
@@ -91,7 +92,7 @@ const ReservationAndGuestDetail: React.FC = () => {
 
   useEffect(() => {
     isDisabledConfirmF(guests, paymentDetail);
-  }, [isCheckedPDPA]);
+  }, [isCheckedPDPA, guests.length]);
 
   const onCheckboxChange = (e: CheckboxChangeEvent) => {
     setIsCheckedPDPA(e.target.checked);
@@ -150,7 +151,9 @@ const ReservationAndGuestDetail: React.FC = () => {
         <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10">
           {/* Back to search result Container */}
           <div className="flex items-center gap-5">
-            <LeftOutlined className="text-[36px] mobile:text-[25px]" />
+            <Link href="/search-result">
+              <LeftOutlined className="text-[36px] mobile:text-[25px]" />
+            </Link>
             <div className="text-h2 mobile:text-h2-mobile">
               Re-select your room for booking
             </div>
@@ -178,6 +181,8 @@ const ReservationAndGuestDetail: React.FC = () => {
                   handleInputChange={handleInputChange}
                   index={index}
                   guest={guest}
+                  guests={guests}
+                  setGuests={setGuests}
                 />
               );
             })}
@@ -269,9 +274,10 @@ const ReservationAndGuestDetail: React.FC = () => {
           </div>
 
           {/* PDPA */}
-          <div className="flex">
+          <div className="flex text-description mobile:text-h3-mobile">
             <Checkbox onChange={onCheckboxChange}>
-              I have read and agree to the terms of the Privacy Policy.
+              I have read and agreed to the Terms & Conditions and Privacy
+              Policy.
             </Checkbox>
           </div>
 
@@ -287,6 +293,18 @@ const ReservationAndGuestDetail: React.FC = () => {
                 placeholder="Special Request"
                 onChange={(e) => setSpecialReq(e.target.value)}
               />
+            </div>
+          </div>
+
+          {/* Special Request Container */}
+          <div>
+            <div className="text-h2 mobile:text-h2-mobile font-bold">
+              Cancellation Policy
+            </div>
+            <div className="w-full text-description mobile:text-h3-mobile">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt a
+              fuga iure temporibus, non commodi quasi maxime! Eum, cupiditate
+              facilis?
             </div>
           </div>
         </div>
@@ -312,12 +330,16 @@ interface GuestDetailInputContainerProps {
   handleInputChange: (index: number, value: string, name: string) => void;
   index: number;
   guest: Guest;
+  guests: Guest[];
+  setGuests: (guests: Guest[]) => void;
 }
 
 const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
   handleInputChange,
   index,
   guest,
+  guests,
+  setGuests,
 }) => {
   const handleChange = (e: any, fieldNames?: any) => {
     if (fieldNames) {
@@ -526,7 +548,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
                 className="w-full"
                 placeholder="Select Zip code"
                 options={[
-                  { value: "id", label: "Id", group: "idType" },
+                  { value: "id", label: "National ID", group: "idType" },
                   {
                     value: "passportNumber",
                     label: "Passport Number",
@@ -545,7 +567,9 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
               <Input
                 className="w-full"
                 placeholder={
-                  guest["idType"] ? (idTypeToid as any)[guest["idType"]] : ""
+                  guest["idType"]
+                    ? (idTypeToid as any)[guest["idType"]]
+                    : "Number"
                 }
                 name="id"
                 value={guest.id}
@@ -555,6 +579,18 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
           </div>
         </div>
       </div>
+
+      {/* Remove Guest */}
+      {index > 0 && (
+        <div
+          className="text-red-700 text-description mobile:text-h3-mobile cursor-pointer"
+          onClick={() =>
+            setGuests([...guests.slice(0, index), ...guests.slice(index + 1)])
+          }
+        >
+          - <span className="underline">Remove Guest</span>
+        </div>
+      )}
 
       {/* HR Line */}
       <hr className="my-2" />
