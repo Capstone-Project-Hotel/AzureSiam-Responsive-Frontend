@@ -371,14 +371,27 @@ const ReservationAndGuestDetail: React.FC = () => {
           </div>
 
           {/* Cancellation Policy Container */}
-          <div>
+          <div className="flex flex-col gap-2">
             <div className="text-h2 mobile:text-h2-mobile font-bold">
               Cancellation Policy
             </div>
             <div className="w-full text-description mobile:text-h3-mobile">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt a
-              fuga iure temporibus, non commodi quasi maxime! Eum, cupiditate
-              facilis?
+              <div>
+                For individual bookings of less than 5 rooms, and bookings not
+                considered a group, the following cancellation policy applies:
+              </div>
+              <br />
+              <div>
+                If cancelled up to 48 hours before arrival no fee will be
+                charged.
+              </div>
+              <div>
+                If cancelled less than 48 hours before arrival, or in case of a
+                no-show, 100% of the first night will be charged.
+              </div>
+              <div>
+                If you are a no-show, 100% of the first night will be charged.
+              </div>
             </div>
           </div>
         </div>
