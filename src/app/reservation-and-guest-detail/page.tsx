@@ -1,12 +1,23 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { DatePicker, DatePickerProps, Input, Select } from "antd";
 import { LeftOutlined } from "@ant-design/icons";
 import TextArea from "antd/es/input/TextArea";
 import { Checkbox } from "antd";
 import type { CheckboxChangeEvent } from "antd/es/checkbox";
 import Link from "next/link";
+import useStore from "@/hooks/useStore";
+import { Country, State, City } from "country-state-city";
+// import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
+import Cleave from "cleave.js/react";
+
+import dynamic from "next/dynamic";
+
+const PhoneInput = dynamic(() => import("react-phone-number-input"), {
+  ssr: false,
+});
 
 interface Guest {
   firstName: string;
@@ -47,24 +58,32 @@ const emptyGuest: Guest = {
   idType: "",
 };
 
-const emptyPaymentDetail: PaymentDetail = {
-  cardHolderName: "",
-  cardNumber: "",
-  expDate: "",
-  cvv: "",
-};
-
 const idTypeToid = {
   id: "National ID",
   passportNumber: "Passport Number",
   drivingLicence: "Driving Licence",
 };
 
+const cardTypeToCardImg = {
+  amex: "https://cdn.discordapp.com/attachments/457166097230069773/1186233714523512852/vinnytsia-ukraine-september-6-2023-600nw-2358048941.webp?ex=6592813c&is=65800c3c&hm=b37ff0d726d6a4b7c5994550407f23d9a6401cfb3fa44696c5425531b322b02d&",
+  visa: "https://swissuplabs.com/wordpress/wp-content/uploads/2016/04/free-icons-visa.png",
+  mastercard:
+    "https://swissuplabs.com/wordpress/wp-content/uploads/2016/04/free-icons-mastercard.png",
+  discover:
+    "https://swissuplabs.com/wordpress/wp-content/uploads/2016/04/free-icons-discover.png",
+};
+
 const ReservationAndGuestDetail: React.FC = () => {
-  const [guests, setGuests] = useState<Guest[]>([emptyGuest]);
-  const [paymentDetail, setPaymentDetail] =
-    useState<PaymentDetail>(emptyPaymentDetail);
-  const [specialReq, setSpecialReq] = useState<string>("");
+  const {
+    guests,
+    setGuests,
+    paymentDetail,
+    setPaymentDetail,
+    specialReq,
+    setSpecialReq,
+    cardType,
+    setCardType,
+  } = useStore();
   const [isCheckedPDPA, setIsCheckedPDPA] = useState<boolean>(false);
   const [isDisabledConfirm, setIsDisabledConfirm] = useState<boolean>(false);
 
@@ -142,6 +161,10 @@ const ReservationAndGuestDetail: React.FC = () => {
     setIsDisabledConfirm(false);
   };
 
+  const onCreditCardTypeChanged = (type: string) => {
+    setCardType(type);
+  };
+
   return (
     // Page Container
     <div className="flex justify-center">
@@ -190,7 +213,7 @@ const ReservationAndGuestDetail: React.FC = () => {
             {/* Add Guest */}
             <div
               className="text-primary text-description mobile:text-h3-mobile cursor-pointer"
-              onClick={() => setGuests((prev) => [...prev, emptyGuest])}
+              onClick={() => setGuests([...guests, emptyGuest])}
             >
               + <span className="underline">Add Guest</span>
             </div>
@@ -199,7 +222,7 @@ const ReservationAndGuestDetail: React.FC = () => {
           {/* Payment Detail Container */}
           <div>
             {/* Payment Detail */}
-            <div className="text-h2 mobile:text-h2-mobile font-bold">
+            <div className="text-h2 mobile:text-h2-mobile font-bold mb-2">
               Payment Detail
             </div>
 
@@ -223,22 +246,71 @@ const ReservationAndGuestDetail: React.FC = () => {
 
                 {/* Card Number */}
                 <div className="w-[343px]">
-                  <div className="text-description mobile:text-h3-mobile flex justify-between">
+                  <div className="text-description mobile:text-h3-mobile flex justify-between items-center">
                     <div>
                       Card Number <span className="text-red-600">*</span>
                     </div>
-                    <div>
+                    <div className="flex">
                       <img
-                        src="https://cdn.discordapp.com/attachments/457166097230069773/1184559691595001906/image.png?ex=658c6a2e&is=6579f52e&hm=1fe26a751193d72c13d0408003a9cf9468825098474d7d257baa3917f77a8af7&"
-                        alt=""
+                        src={cardTypeToCardImg.visa}
+                        alt="cardType"
+                        style={{
+                          height: "17px",
+                          width: "40px",
+                          objectFit: "cover",
+                          filter:
+                            cardType === "visa" ? "none" : "grayscale(100%)",
+                        }}
+                      />
+                      <img
+                        src={cardTypeToCardImg.mastercard}
+                        alt="cardType"
+                        style={{
+                          height: "17px",
+                          width: "40px",
+                          objectFit: "cover",
+                          filter:
+                            cardType === "mastercard"
+                              ? "none"
+                              : "grayscale(100%)",
+                        }}
+                      />
+                      <img
+                        src={cardTypeToCardImg.amex}
+                        alt="cardType"
+                        style={{
+                          height: "17px",
+                          width: "40px",
+                          objectFit: "cover",
+                          filter:
+                            cardType === "amex" ? "none" : "grayscale(100%)",
+                        }}
+                      />
+                      <img
+                        src={cardTypeToCardImg.discover}
+                        alt="cardType"
+                        style={{
+                          height: "17px",
+                          width: "40px",
+                          objectFit: "cover",
+                          filter:
+                            cardType === "discover"
+                              ? "none"
+                              : "grayscale(100%)",
+                        }}
                       />
                     </div>
                   </div>
-                  <Input
-                    className="w-full"
-                    placeholder="Card Number"
+                  <Cleave
+                    placeholder="Enter credit card number"
+                    options={{
+                      creditCard: true,
+                      onCreditCardTypeChanged,
+                    }}
                     name="cardNumber"
+                    value={paymentDetail.cardNumber}
                     onChange={handlePaymentInputChange}
+                    className="ant-input css-dev-only-do-not-override-6j9yrn w-full css-dev-only-do-not-override-6j9yrn"
                   />
                 </div>
               </div>
@@ -266,6 +338,7 @@ const ReservationAndGuestDetail: React.FC = () => {
                     className="w-full"
                     placeholder="CVV"
                     name="cvv"
+                    value={paymentDetail.cvv}
                     onChange={handlePaymentInputChange}
                   />
                 </div>
@@ -292,11 +365,12 @@ const ReservationAndGuestDetail: React.FC = () => {
                 rows={2}
                 placeholder="Special Request"
                 onChange={(e) => setSpecialReq(e.target.value)}
+                value={specialReq}
               />
             </div>
           </div>
 
-          {/* Special Request Container */}
+          {/* Cancellation Policy Container */}
           <div>
             <div className="text-h2 mobile:text-h2-mobile font-bold">
               Cancellation Policy
@@ -318,6 +392,7 @@ const ReservationAndGuestDetail: React.FC = () => {
           >
             Button
           </button>
+          <Link href={"/booking-confirmation"}>Link</Link>
         </div>
       </div>
     </div>
@@ -341,9 +416,29 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
   guests,
   setGuests,
 }) => {
+  const [countryCode, setCountryCode] = useState("");
+  const [city, setCity] = useState<any[]>([]);
+
+  useEffect(() => {
+    const s: any[] = State.getStatesOfCountry(countryCode).map(
+      (country: any) => {
+        return {
+          value: country.name,
+          label: country.name,
+          group: "city",
+        };
+      }
+    );
+    setCity(s);
+  }, [countryCode]);
+  const [value, setValue] = useState();
+
   const handleChange = (e: any, fieldNames?: any) => {
     if (fieldNames) {
       handleInputChange(index, fieldNames.value, fieldNames.group);
+      if (fieldNames.group === "country") {
+        setCountryCode(fieldNames.countryCode);
+      }
     } else {
       handleInputChange(index, e.target.value, e.target.name);
     }
@@ -455,13 +550,25 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
           <div className="text-description mobile:text-h3-mobile">
             Phone Number <span className="text-red-600">*</span>
           </div>
-          <Input
-            className="w-full"
-            placeholder="Phone Number"
-            name="phoneNumber"
-            value={guest.phoneNumber}
-            onChange={handleChange}
-          />
+          <div className="flex">
+            <PhoneInput
+              international
+              countryCallingCodeEditable={false}
+              name="phoneNumber"
+              value={guest.phoneNumber}
+              onChange={(value) => {
+                if (value) handleInputChange(index, value, "phoneNumber");
+              }}
+              className="ant-input css-dev-only-do-not-override-6j9yrn w-full css-dev-only-do-not-override-6j9yrn"
+            />
+            {/* <Input
+              className="w-full h-[32px]"
+              placeholder="Phone Number"
+              name="phoneNumber"
+              value={guest.phoneNumber}
+              onChange={handleChange}
+            /> */}
+          </div>
         </div>
       </div>
 
@@ -475,10 +582,14 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
           <Select
             className="w-full"
             placeholder="Select Country"
-            options={[
-              { value: "thai", label: "Thai", group: "country" },
-              { value: "england", label: "England", group: "country" },
-            ]}
+            options={Country.getAllCountries().map((country: any) => {
+              return {
+                value: country.name,
+                countryCode: country.isoCode,
+                label: country.name,
+                group: "country",
+              };
+            })}
             onChange={handleChange}
           />
         </div>
@@ -491,10 +602,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
           <Select
             className="w-full"
             placeholder="Select City"
-            options={[
-              { value: "male", label: "Male", group: "city" },
-              { value: "female", label: "Female", group: "city" },
-            ]}
+            options={city}
             onChange={handleChange}
           />
         </div>
@@ -504,13 +612,20 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
           <div className="text-description mobile:text-h3-mobile">
             Zip code <span className="text-red-600">*</span>
           </div>
-          <Select
+          {/* <Select
             className="w-full"
             placeholder="Select Zip code"
             options={[
               { value: "male", label: "Male", group: "zipCode" },
               { value: "female", label: "Female", group: "zipCode" },
             ]}
+            onChange={handleChange}
+          /> */}
+          <Input
+            className="w-full"
+            placeholder="Zip code"
+            name="zipCode"
+            value={guest.zipCode}
             onChange={handleChange}
           />
         </div>
@@ -546,7 +661,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
             <div className="w-[212px]">
               <Select
                 className="w-full"
-                placeholder="Select Zip code"
+                placeholder="Select"
                 options={[
                   { value: "id", label: "National ID", group: "idType" },
                   {

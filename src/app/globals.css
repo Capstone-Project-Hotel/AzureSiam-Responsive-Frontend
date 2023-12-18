@@ -28,3 +28,11 @@ body {
     )
     rgb(var(--background-start-rgb)); */
 }
+
+.ant-input.PhoneInput {
+  display: flex;
+}
+
+.PhoneInputInput:focus {
+  outline: none;
+}

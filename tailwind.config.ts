@@ -35,7 +35,7 @@ const config: Config = {
         "description-mobile": "4px",
       },
       screens: {
-        mobile: { max: "393px" },
+        mobile: { max: "394px" },
       },
     },
   },
