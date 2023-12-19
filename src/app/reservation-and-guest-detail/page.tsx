@@ -14,6 +14,10 @@ import "react-phone-number-input/style.css";
 import Cleave from "cleave.js/react";
 
 import dynamic from "next/dynamic";
+import Topbar from "@/components/Topbar";
+import SummaryCard from "@/components/SummaryCard";
+import Footer from "@/components/Footer";
+
 
 const PhoneInput = dynamic(() => import("react-phone-number-input"), {
   ssr: false,
@@ -167,7 +171,11 @@ const ReservationAndGuestDetail: React.FC = () => {
 
   return (
     // Page Container
-    <div className="flex justify-center">
+    <div>
+      <div className="z-30 fixed top-0">
+      <Topbar/>
+      </div>
+    <div className="flex justify-start mt-20">
       {/* Main Container */}
       <div className="w-[1440px] mobile:w-[330px] flex flex-wrap justify-center gap-10 py-10">
         {/* Left Container */}
@@ -397,17 +405,18 @@ const ReservationAndGuestDetail: React.FC = () => {
         </div>
 
         {/* Right Container */}
-        <div className="w-[509px] mobile:w-[330px]">
-          summary box
-          <button
+        <div className="w-[509px] mobile:w-[330px] fixed right-[200px] top-[150px]">
+          <SummaryCard page="reservation-and-guest-detail"/>
+          {/* <button
             onClick={() => alert(isDisabledConfirm || !isCheckedPDPA)}
             disabled={isDisabledConfirm || !isCheckedPDPA}
           >
             Button
-          </button>
-          <Link href={"/booking-confirmation"}>Link</Link>
+          </button> */}
         </div>
       </div>
+    </div>
+<Footer/>
     </div>
   );
 };

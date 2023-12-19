@@ -4,7 +4,7 @@ import React from "react";
 import useStore from "@/hooks/useStore";
 import { gu } from "date-fns/locale";
 import { redirect } from "next/navigation";
-
+import SummaryCard from "@/components/SummaryCard";
 interface Guest {
   firstName: string;
   middleName: string;
@@ -45,7 +45,7 @@ const BookingConfirmation: React.FC = () => {
 
   return (
     // Page Container
-    <div className="flex justify-center">
+    <div className="flex justify-start">
       {/* Main Container */}
       <div className="w-[1440px] mobile:w-[330px] flex flex-wrap justify-center gap-10 py-10">
         {/* Left Container */}
@@ -136,10 +136,10 @@ const BookingConfirmation: React.FC = () => {
 
         {/* Right Container */}
         <div className="w-[509px] mobile:w-[330px]">
-          summary box
-          <button>Button</button>
+          <SummaryCard page="summary-booking-detail"/>
         </div>
       </div>
+
     </div>
   );
 };
