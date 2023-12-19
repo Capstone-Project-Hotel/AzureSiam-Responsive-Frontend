@@ -12,6 +12,8 @@ import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Topbar from "@/components/Topbar";
+import Footer from "@/components/Footer";
 
 const { Meta } = Card;
 
@@ -54,7 +56,11 @@ const Home = () => {
 
   return (
     // Page Container
-    <div className="flex justify-center p-0 m-0">
+    <div>
+      <div className="z-50 fixed top-0">
+        <Topbar />
+      </div>
+    <div className="flex justify-center p-0 m-0 mt-[86px]">
       {/* Main Container */}
       <div className="w-[1440px] mobile:w-full flex flex-col gap-20 mobile:gap-10 items-center pb-20">
         {/* Hotel Name Container */}
@@ -250,6 +256,10 @@ const Home = () => {
           </Slider>
         </div>
       </div>
+    </div>
+    <div>
+      <Footer/>
+    </div>
     </div>
   );
 };
