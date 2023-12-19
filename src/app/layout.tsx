@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import StyledComponentsRegistryAntd from "../lib/AntdRegistry";
 import StyledComponentsRegistry from "../lib/ScRegistry";
 
+import { ConfigProvider } from "antd";
+
 // import { Inter } from 'next/font/google'
 // const inter = Inter({ subsets: ['latin'] })
 
@@ -20,9 +22,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <StyledComponentsRegistryAntd>
-          <StyledComponentsRegistry> {children}</StyledComponentsRegistry>
-        </StyledComponentsRegistryAntd>
+        <ConfigProvider
+          theme={{
+            token: {
+              fontFamily: '"Noto Sans Thai",sans-serif',
+            },
+          }}
+        >
+          <StyledComponentsRegistryAntd>
+            <StyledComponentsRegistry> {children}</StyledComponentsRegistry>
+          </StyledComponentsRegistryAntd>
+        </ConfigProvider>
       </body>
     </html>
   );

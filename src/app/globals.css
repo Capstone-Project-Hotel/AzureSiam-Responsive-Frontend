@@ -28,3 +28,25 @@ body {
     )
     rgb(var(--background-start-rgb)); */
 }
+
+.slick-prev:before,
+.slick-next:before {
+  color: black !important;
+}
+
+button,
+[type="button"] {
+  background-color: #2a4d69;
+  @media screen and (max-width: 393px) {
+    font-size: 8px !important;
+    height: 24px;
+  }
+}
+
+.ant-modal-title {
+  font-size: 24px !important;
+  font-weight: bold !important;
+  @media screen and (max-width: 393px) {
+    font-size: 16px !important;
+  }
+}
