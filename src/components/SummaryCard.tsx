@@ -99,11 +99,17 @@ export default function SummaryCard({ page }: { page: string }) {
       <p className="text-center text-h2 font-bold mt-[50px]">THB 2,104.83 Total</p>
 
       <div className="flex justify-center items-center \">
-        <Link href={"/booking-confirmation"}>
+        { page === "summary-booking-detail" ? 
+        (<Link href={"/booking-confirmation"}>
           <Button style={{ background: "#2A4D69", color: "white" }}>
-            Confirm
+              <p>Check Out</p>
           </Button>
-        </Link>
+        </Link>) :
+        (<Link href={"/summary-booking-detail"}>
+          <Button style={{ background: "#2A4D69", color: "white" }}>
+            <p>Confirm</p>
+          </Button>
+        </Link>) }
       </div>
     </div>
   );
