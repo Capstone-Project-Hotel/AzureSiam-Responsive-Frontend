@@ -1,18 +1,23 @@
+"use client"
 import {
   CalendarOutlined,
   UserOutlined,
   PlusCircleFilled,
   MinusCircleFilled,
-  DeleteFilled,
 } from "@ant-design/icons";
+
+
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { InputNumber, Button } from "antd";
 
-export default function SummaryCard() {
+
+export default function SummaryCard({page}:{page:string}) {
+
   return (
-    <div className="border-solid border-[2px] border-gray-200 rounded-md w-[30%] p-5">
+    <div className="border-solid border-[2px] border-gray-200 rounded-md w-[400px] h-[350px] p-5 bg-background">
       <div className="border-b-2">
-        <div className="flex">
-          <CalendarOutlined />
+        <div className="flex mt-[10px]">
+          <CalendarOutlined style={{ fontSize: "30px", marginRight: "10px"}}/>
           <div>
             <p className="text-h5 font-medium">
               Sun, 19 Nov 23 – Tue, 21 Nov 23
@@ -21,7 +26,7 @@ export default function SummaryCard() {
           </div>
         </div>
         <div className="flex">
-          <UserOutlined />
+          <UserOutlined style={{ fontSize: "30px", marginRight: "10px"}}/>
           <p className="text-h5 font-medium">2 adults</p>
         </div>
       </div>
@@ -29,17 +34,17 @@ export default function SummaryCard() {
         <p className="text-body text-slate-400">Edit room(s)</p>
         <div className="flex justify-between">
           <div className="flex">
-            <p className="text-h5 font-bold">Standard Studio Room</p>
-            <DeleteFilled />
+            <p className="text-h5 font-bold">Standard Room</p>
+            <DeleteForeverIcon />
           </div>
           <div>
             <MinusCircleFilled />
-            <InputNumber defaultValue={1}/>
+            <InputNumber defaultValue={1} />
             <PlusCircleFilled />
           </div>
         </div>
         <div className="flex justify-between">
-          <p className="text-body">Standard Studio Room 1 room(s)</p>
+          <p className="text-body">Standard Room 1 room(s)</p>
           <p className="text-body text-slate-400">THB 1,500.00</p>
         </div>
       </div>
@@ -59,8 +64,9 @@ export default function SummaryCard() {
     </div>
       <p className="text-center text-h2 font-bold">THB 1,765.50 Total</p>  
 
-      <div className="flex justify-center items-center">
-      <Button>Book</Button>
+      <div className="flex justify-center items-center \">
+      <Button style={{ background: "#2A4D69", color: "white" }}>
+        Book</Button>
       </div>
       
     </div>
