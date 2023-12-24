@@ -1,5 +1,5 @@
 "use client";
-import Image from 'next/image'
+
 import React, { useEffect, useMemo, useState } from "react";
 import { DatePicker, DatePickerProps, Input, Select } from "antd";
 import { LeftOutlined } from "@ant-design/icons";
@@ -172,7 +172,7 @@ const ReservationAndGuestDetail: React.FC = () => {
   return (
     // Page Container
     <div>
-      <div className="z-50 fixed top-0">
+      <div className="z-30 fixed top-0">
       <Topbar/>
       </div>
     <div className="flex justify-start mt-20">
@@ -194,8 +194,6 @@ const ReservationAndGuestDetail: React.FC = () => {
           <div>
             <div className="text-h2 mobile:text-h2-mobile font-bold">
               Additional Services
-            </div>
-            <div className="flex">
             </div>
           </div>
 
@@ -320,7 +318,7 @@ const ReservationAndGuestDetail: React.FC = () => {
                     name="cardNumber"
                     value={paymentDetail.cardNumber}
                     onChange={handlePaymentInputChange}
-                    className="ant-input css-dev-only-do-not-override-6j9yrn w-full css-dev-only-do-not-override-6j9yrn"
+                    className="ant-input css-dev-only-do-not-override-6j9yrn w-full css-dev-only-do-not-override-6j9yrn border-2 rounded"
                   />
                 </div>
               </div>
@@ -583,7 +581,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
               onChange={(value) => {
                 if (value) handleInputChange(index, value, "phoneNumber");
               }}
-              className="ant-input css-dev-only-do-not-override-6j9yrn w-full css-dev-only-do-not-override-6j9yrn"
+              className="ant-input css-dev-only-do-not-override-6j9yrn w-full css-dev-only-do-not-override-6j9yrn border-2 rounded"
             />
             {/* <Input
               className="w-full h-[32px]"

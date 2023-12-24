@@ -14,6 +14,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Topbar from "@/components/Topbar";
 import Footer from "@/components/Footer";
+import LandingTopbar from "@/components/LandingTopbar";
 
 const { Meta } = Card;
 
@@ -58,7 +59,7 @@ const Home = () => {
     // Page Container
     <div>
       <div className="z-50 fixed top-0">
-        <Topbar />
+        <LandingTopbar />
       </div>
     <div className="flex justify-center p-0 m-0 mt-[86px]">
       {/* Main Container */}
@@ -258,7 +259,7 @@ const Home = () => {
       </div>
     </div>
     <div>
-      <Footer/>
+      {/* <Footer/> */}
     </div>
     </div>
   );
