@@ -58,3 +58,17 @@ button,
     font-size: 16px !important;
   }
 }
+
+li {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.ant-drawer-title {
+  font-size: 24px !important;
+  padding-left: 1rem;
+  @media screen and (max-width: 393px) {
+    font-size: 20px !important;
+  }
+}

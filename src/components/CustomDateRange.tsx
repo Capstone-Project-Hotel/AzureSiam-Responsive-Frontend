@@ -9,13 +9,13 @@ import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
 
 interface CustomDateRangeProps {
-  disabledDates: Date[];
+  disabledDates?: Date[];
   size?: string;
   onDatesChange: (dates: any) => void;
 }
 
 const CustomDateRange: React.FC<CustomDateRangeProps> = ({
-  disabledDates,
+  disabledDates = [],
   size = "large",
   onDatesChange,
 }) => {
@@ -32,6 +32,10 @@ const CustomDateRange: React.FC<CustomDateRangeProps> = ({
   const isMobile = useMediaQuery({ query: "(max-width: 393px)" });
 
   const customDayContent = (day: any) => {
+    const disabledDatesFormat = disabledDates.map((d) => {
+      return format(d, "dd/MM/yyyy");
+    });
+
     return (
       <div>
         <span
@@ -42,7 +46,10 @@ const CustomDateRange: React.FC<CustomDateRangeProps> = ({
             transform: "translate(-50%, -50%)",
           }}
         >
-          THB 100
+          {!disabledDatesFormat.includes(format(day, "dd/MM/yyyy")) &&
+            (day.getTime() >= new Date().getTime() ||
+              format(day, "dd/MM/yyyy") == format(new Date(), "dd/MM/yyyy")) &&
+            "THB 1250"}
         </span>
         <span>{format(day, "d")}</span>
       </div>
@@ -228,7 +235,7 @@ const StyledDateRangeSmall = styled(DateRange)`
 
   /* Change Height of Day Box */
   .rdrDay {
-    height: 50px !important;
+    height: 65px !important;
   }
 
   /* Change Font Size of DateRange */
@@ -239,14 +246,14 @@ const StyledDateRangeSmall = styled(DateRange)`
     font-size: 14px !important;
   }
   .cell-day {
-    font-size: 6px !important;
+    font-size: 8px !important;
     top: 75%;
   }
 
   /* Change Width of DateRange */
   .rdrDateRangeWrapper,
   .rdrMonth {
-    width: 400px !important;
+    width: 540px !important;
   }
 
   @media screen and (max-width: 393px) {

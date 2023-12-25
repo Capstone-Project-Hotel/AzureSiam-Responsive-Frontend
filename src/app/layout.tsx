@@ -26,6 +26,7 @@ export default function RootLayout({
           theme={{
             token: {
               fontFamily: '"Noto Sans Thai",sans-serif',
+              colorPrimary: "#2A4D69",
             },
           }}
         >

@@ -1,5 +1,6 @@
+import Styles from "@/app/examples/styles/page";
 import { Button, Card, Modal } from "antd";
-import { useState } from "react";
+import React, { Children, useState } from "react";
 import styled from "styled-components";
 
 const { Meta } = Card;
@@ -8,17 +9,27 @@ interface OthercardProps {
   src: string;
   title: string;
   description: string;
+  hoverable?: boolean;
+  onButtonClick?: () => void;
 }
 
-const Othercard: React.FC<OthercardProps> = ({ src, title, description }) => {
+const Othercard: React.FC<React.PropsWithChildren<OthercardProps>> = ({
+  src,
+  title,
+  description,
+  hoverable = false,
+  children,
+  onButtonClick = () => {},
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
-    setIsModalOpen(true);
+    if (hoverable) setIsModalOpen(true);
   };
 
   const handleOk = () => {
     setIsModalOpen(false);
+    onButtonClick();
   };
 
   const handleCancel = () => {
@@ -28,14 +39,15 @@ const Othercard: React.FC<OthercardProps> = ({ src, title, description }) => {
   return (
     <>
       <StyledCard
-        hoverable
+        style={hoverable ? { cursor: "pointer" } : {}}
+        hoverable={hoverable ? true : false}
         onClick={showModal}
         cover={<img width={400} height={300} alt="example" src={src} />}
       >
         <Meta title={title} description={description} />
       </StyledCard>
       <Modal
-        title="Standard Room"
+        title={title}
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -45,20 +57,8 @@ const Othercard: React.FC<OthercardProps> = ({ src, title, description }) => {
           </Button>,
         ]}
       >
-        <div className="text-body mobile:text-h5-mobile">
-          Escape to tranquility in our Standard Rooms at Azuresiam Hotel and
-          Spa, where modern comfort meets timeless charm. Revel in plush
-          bedding, cityscape views, and sleek bathrooms with premium amenities.
-          Stay connected with complimentary Wi-Fi and a dedicated workspace.
-          Indulge in the convenience of in-room dining, enjoying delectable
-          meals at your leisure. Our attentive staff ensures a seamless stay,
-          and as a guest, you have exclusive access to our spa and wellness
-          facilities. Book your stay for a perfect blend of elegance and
-          relaxation at Azuresiam Hotel and Spa, where every moment is an
-          invitation to tranquility.
-        </div>
-        <div>
-          <img src="" alt="" />
+        <div className="text-body mobile:text-h5-mobile flex flex-col gap-4">
+          {children}
         </div>
       </Modal>
     </>
@@ -71,7 +71,6 @@ const StyledCard = styled(Card)`
   border: 1px solid #f0f0f0;
   border-radius: 2px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
   img {
     border-radius: 2px !important;
   }
