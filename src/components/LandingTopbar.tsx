@@ -29,7 +29,6 @@ export default function LandingTopbar() {
 
   const handleBookNowClick = () => {
     console.log('Book Now clicked');
-    // Implement Book Now logic
   };
 
   return (
