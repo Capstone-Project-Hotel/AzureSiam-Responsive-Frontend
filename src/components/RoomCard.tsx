@@ -25,7 +25,7 @@ export default function RoomCard( information: {roomName: string, maxGuest: numb
       </p>
       <div className="flex flex-row ml-[2vw] mb-[2vw]">
         {/* mock image */}
-        <img src={information.roomImage} alt="room" className="h-[200px]" />
+        <img src={information.roomImage} alt="room" className="h-[15vw]" />
         {/* room description */}
         <text className="text-[16px] font-sans ml-[2vw] mr-[2vw]">
           Maximum guest: {information.maxGuest} <br />
