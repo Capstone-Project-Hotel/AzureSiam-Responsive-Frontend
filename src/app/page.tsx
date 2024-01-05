@@ -253,7 +253,7 @@ const Home = () => {
                         <KitchenIcon fontSize={isMobile ? "small" : "medium"} />
                         Mini Fridge
                       </li>
-                      <li>
+                      <li className="flex gap-4">
                         <div>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -343,7 +343,7 @@ const Home = () => {
                         <KitchenIcon fontSize={isMobile ? "small" : "medium"} />{" "}
                         Compact Fridge
                       </li>
-                      <li className="flex items-center gap-2">
+                      <li className="flex gap-4">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="20"
@@ -432,7 +432,7 @@ const Home = () => {
                         <KitchenIcon fontSize={isMobile ? "small" : "medium"} />
                         Mini Fridge
                       </li>
-                      <li>
+                      <li className="flex gap-4">
                         <div>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -522,7 +522,7 @@ const Home = () => {
                         <KitchenIcon fontSize={isMobile ? "small" : "medium"} />
                         Mini Fridge
                       </li>
-                      <li>
+                      <li className="flex gap-4">
                         <div>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -612,7 +612,7 @@ const Home = () => {
                         <KitchenIcon fontSize={isMobile ? "small" : "medium"} />
                         Mini Fridge
                       </li>
-                      <li>
+                      <li className="flex gap-4">
                         <div>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
