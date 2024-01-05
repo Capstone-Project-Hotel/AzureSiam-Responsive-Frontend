@@ -4,6 +4,8 @@ import Footer from '@/components/Footer'
 import { PhoneOutlined, MailOutlined } from '@ant-design/icons'
 
 export default function Home() {
+  const iconStyle = { color: '#2A4D69' };
+
   return (
     <main>
       <Topbar/>
@@ -19,13 +21,13 @@ export default function Home() {
         </p>
         <div className='flex flex-row items-center justify-center w-[100vw] mt-[1vw]'>
           <div className='flex flex-row items-center mr-[2vw]'>
-            <PhoneOutlined />
+            <PhoneOutlined style={iconStyle} />
             <div className='ml-[1vw]'>
               090-999-9999
             </div>
           </div>
           <div className='flex flex-row items-center'>
-            <MailOutlined />
+            <MailOutlined style={iconStyle} />
             <div className='ml-[1vw]'>
               azuresiam@hotelservice.com
             </div>
@@ -37,5 +39,5 @@ export default function Home() {
       </div>
       <Footer />
     </main>
-  )
+  );
 }
