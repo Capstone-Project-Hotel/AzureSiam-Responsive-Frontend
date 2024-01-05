@@ -168,7 +168,7 @@ const Home = () => {
                   placeholder="eg. promo001"
                   size="small"
                   style={{ width: "150px" }}
-                  onChange={(value: any) => setCodePromo(value)}
+                  onChange={(e: any) => setCodePromo(e.target.value)}
                 />
               </div>
             </div>
@@ -177,7 +177,7 @@ const Home = () => {
           {/* Book Button */}
           <div className="flex justify-center">
             <Link
-              href={`/search-result?startDate=${format(
+              href={`/search-result/startDate=${format(
                 startDate,
                 "yyyy-MM-dd"
               )}&endDate=${format(
