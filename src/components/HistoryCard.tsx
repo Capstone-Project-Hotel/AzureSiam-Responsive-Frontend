@@ -40,7 +40,7 @@ const StyledCard = styled(Card)`
     font-size: 14px;
   }
 
-  @media screen and (max-width: 393px) {
+  @media screen and (max-width: 394px) {
     max-width: 330px;
     height: 303px;
 
