@@ -3,10 +3,10 @@
 import Image from "next/image";
 import HistoryCard from "@/components/HistoryCard";
 import { addDays, format } from "date-fns";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import OtherCard from "@/components/OtherCard";
 import dynamic from "next/dynamic";
-import { Card, Carousel, Input } from "antd";
+import { Card, Carousel, Input, Select } from "antd";
 import styled from "styled-components";
 import {
   CalendarOutlined,
@@ -56,7 +56,24 @@ const ContentStyle = styled.div<{ src: string }>`
   }
 `;
 
-const Home = () => {
+import { languages } from "../i18n/settings";
+import { useTranslation } from "../i18n/client";
+import { useRouter } from "next/navigation";
+
+const Home = ({ params: { lng } }: { params: { lng: any } }) => {
+  const { t } = useTranslation(lng);
+  const router = useRouter();
+  const options = languages
+    .filter((l: any) => lng !== l)
+    .map((l: any, index: any) => {
+      return { value: l, label: l };
+    });
+
+  const handleChange = (value: string) => {
+    const currentPath = window.location.pathname;
+    router.push(`/${value}/${currentPath.slice(4)}`);
+  };
+
   const settings = {
     dots: true,
     infinite: false,
@@ -97,6 +114,17 @@ const Home = () => {
     // Page Container
     <div>
       <div className="z-50 fixed top-0">{/* <LandingTopbar /> */}</div>
+
+      {/* i18n */}
+      <div className="flex justify-center p-5 gap-5 items-center">
+        <h1>{t("title")}</h1>
+        <Select
+          defaultValue={lng}
+          style={{ width: 120 }}
+          options={options}
+          onChange={handleChange}
+        />
+      </div>
 
       {/* Drawer */}
       <Drawer
@@ -206,17 +234,17 @@ const Home = () => {
           >
             <div className="text-white">
               <div className="text-h1 mobile:text-h1-mobile font-bold">
-                AzureSiam Hotel and Spa
+                {t("hotel")}
               </div>
               <div className="text-h2 mobile:text-h2-mobile">
-                Make your holiday memorable
+                {t("hotel_description")}
               </div>
             </div>
           </div>
 
           {/* History Container */}
           <div className="w-full flex justify-center">
-            <HistoryCard />
+            <HistoryCard t={t} />
           </div>
 
           {/* Room Type Container */}

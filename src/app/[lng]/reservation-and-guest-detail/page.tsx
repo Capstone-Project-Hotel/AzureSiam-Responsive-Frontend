@@ -18,7 +18,6 @@ import Topbar from "@/components/Topbar";
 import SummaryCard from "@/components/SummaryCard";
 import Footer from "@/components/Footer";
 
-
 const PhoneInput = dynamic(() => import("react-phone-number-input"), {
   ssr: false,
 });
@@ -173,250 +172,250 @@ const ReservationAndGuestDetail: React.FC = () => {
     // Page Container
     <div>
       <div className="z-30 fixed top-0">
-      <Topbar/>
+        <Topbar />
       </div>
-    <div className="flex justify-start mt-20">
-      {/* Main Container */}
-      <div className="w-[1440px] mobile:w-[330px] flex flex-wrap justify-center gap-10 py-10">
-        {/* Left Container */}
-        <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10">
-          {/* Back to search result Container */}
-          <div className="flex items-center gap-5">
-            <Link href="/search-result">
-              <LeftOutlined className="text-[36px] mobile:text-[25px]" />
-            </Link>
-            <div className="text-h2 mobile:text-h2-mobile">
-              Re-select your room for booking
-            </div>
-          </div>
-
-          {/* Additional Services Container */}
-          <div>
-            <div className="text-h2 mobile:text-h2-mobile font-bold">
-              Additional Services
-            </div>
-          </div>
-
-          {/* Guest Detail Container */}
-          <div>
-            {/* Guest Detail */}
-            <div className="text-h2 mobile:text-h2-mobile font-bold">
-              Guest Detail
+      <div className="flex justify-start mt-20">
+        {/* Main Container */}
+        <div className="w-[1440px] mobile:w-[330px] flex flex-wrap justify-center gap-10 py-10">
+          {/* Left Container */}
+          <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10">
+            {/* Back to search result Container */}
+            <div className="flex items-center gap-5">
+              <Link href="/search-result">
+                <LeftOutlined className="text-[36px] mobile:text-[25px]" />
+              </Link>
+              <div className="text-h2 mobile:text-h2-mobile">
+                Re-select your room for booking
+              </div>
             </div>
 
-            {/* Guest Detail - Input Container */}
-            {guests.map((guest, index) => {
-              return (
-                <GuestDetailInputContainer
-                  key={index}
-                  handleInputChange={handleInputChange}
-                  index={index}
-                  guest={guest}
-                  guests={guests}
-                  setGuests={setGuests}
+            {/* Additional Services Container */}
+            <div>
+              <div className="text-h2 mobile:text-h2-mobile font-bold">
+                Additional Services
+              </div>
+            </div>
+
+            {/* Guest Detail Container */}
+            <div>
+              {/* Guest Detail */}
+              <div className="text-h2 mobile:text-h2-mobile font-bold">
+                Guest Detail
+              </div>
+
+              {/* Guest Detail - Input Container */}
+              {guests.map((guest, index) => {
+                return (
+                  <GuestDetailInputContainer
+                    key={index}
+                    handleInputChange={handleInputChange}
+                    index={index}
+                    guest={guest}
+                    guests={guests}
+                    setGuests={setGuests}
+                  />
+                );
+              })}
+
+              {/* Add Guest */}
+              <div
+                className="text-primary text-description mobile:text-h3-mobile cursor-pointer"
+                onClick={() => setGuests([...guests, emptyGuest])}
+              >
+                + <span className="underline">Add Guest</span>
+              </div>
+            </div>
+
+            {/* Payment Detail Container */}
+            <div>
+              {/* Payment Detail */}
+              <div className="text-h2 mobile:text-h2-mobile font-bold mb-2">
+                Payment Detail
+              </div>
+
+              {/* Payment Detail - Input Container */}
+              <div className="flex flex-col gap-2">
+                {/* Row 1 */}
+                <div className="flex flex-wrap justify-between gap-2">
+                  {/* Card Holder Name */}
+                  <div className="w-[343px]">
+                    <div className="text-description mobile:text-h3-mobile">
+                      Card Holder Name <span className="text-red-600">*</span>
+                    </div>
+                    <Input
+                      className="w-full"
+                      placeholder="Card Holder Name"
+                      name="cardHolderName"
+                      value={paymentDetail.cardHolderName}
+                      onChange={handlePaymentInputChange}
+                    />
+                  </div>
+
+                  {/* Card Number */}
+                  <div className="w-[343px]">
+                    <div className="text-description mobile:text-h3-mobile flex justify-between items-center">
+                      <div>
+                        Card Number <span className="text-red-600">*</span>
+                      </div>
+                      <div className="flex">
+                        <img
+                          src={cardTypeToCardImg.visa}
+                          alt="cardType"
+                          style={{
+                            height: "17px",
+                            width: "40px",
+                            objectFit: "cover",
+                            filter:
+                              cardType === "visa" ? "none" : "grayscale(100%)",
+                          }}
+                        />
+                        <img
+                          src={cardTypeToCardImg.mastercard}
+                          alt="cardType"
+                          style={{
+                            height: "17px",
+                            width: "40px",
+                            objectFit: "cover",
+                            filter:
+                              cardType === "mastercard"
+                                ? "none"
+                                : "grayscale(100%)",
+                          }}
+                        />
+                        <img
+                          src={cardTypeToCardImg.amex}
+                          alt="cardType"
+                          style={{
+                            height: "17px",
+                            width: "40px",
+                            objectFit: "cover",
+                            filter:
+                              cardType === "amex" ? "none" : "grayscale(100%)",
+                          }}
+                        />
+                        <img
+                          src={cardTypeToCardImg.discover}
+                          alt="cardType"
+                          style={{
+                            height: "17px",
+                            width: "40px",
+                            objectFit: "cover",
+                            filter:
+                              cardType === "discover"
+                                ? "none"
+                                : "grayscale(100%)",
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <Cleave
+                      placeholder="Enter credit card number"
+                      options={{
+                        creditCard: true,
+                        onCreditCardTypeChanged,
+                      }}
+                      name="cardNumber"
+                      value={paymentDetail.cardNumber}
+                      onChange={handlePaymentInputChange}
+                      className="ant-input css-dev-only-do-not-override-6j9yrn w-full css-dev-only-do-not-override-6j9yrn border-2 rounded"
+                    />
+                  </div>
+                </div>
+
+                {/* Row 2 */}
+                <div className="flex flex-wrap justify-between gap-2">
+                  {/* Exp Date */}
+                  <div className="w-[343px]">
+                    <div className="text-description mobile:text-h3-mobile">
+                      Exp Date <span className="text-red-600">*</span>
+                    </div>
+                    <DatePicker
+                      className="w-full"
+                      placeholder="Select Exp Date"
+                      onChange={handleExpDateChange}
+                    />
+                  </div>
+
+                  {/* CVV */}
+                  <div className="w-[343px]">
+                    <div className="text-description mobile:text-h3-mobile">
+                      CVV <span className="text-red-600">*</span>
+                    </div>
+                    <Input
+                      className="w-full"
+                      placeholder="CVV"
+                      name="cvv"
+                      value={paymentDetail.cvv}
+                      onChange={handlePaymentInputChange}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* PDPA */}
+            <div className="flex text-description mobile:text-h3-mobile">
+              <Checkbox onChange={onCheckboxChange}>
+                I have read and agreed to the Terms & Conditions and Privacy
+                Policy.
+              </Checkbox>
+            </div>
+
+            {/* Special Request Container */}
+            <div>
+              <div className="text-h2 mobile:text-h2-mobile font-bold">
+                Special Request
+              </div>
+              <div className="w-full">
+                <TextArea
+                  className="w-full"
+                  rows={2}
+                  placeholder="Special Request"
+                  onChange={(e) => setSpecialReq(e.target.value)}
+                  value={specialReq}
                 />
-              );
-            })}
-
-            {/* Add Guest */}
-            <div
-              className="text-primary text-description mobile:text-h3-mobile cursor-pointer"
-              onClick={() => setGuests([...guests, emptyGuest])}
-            >
-              + <span className="underline">Add Guest</span>
-            </div>
-          </div>
-
-          {/* Payment Detail Container */}
-          <div>
-            {/* Payment Detail */}
-            <div className="text-h2 mobile:text-h2-mobile font-bold mb-2">
-              Payment Detail
+              </div>
             </div>
 
-            {/* Payment Detail - Input Container */}
+            {/* Cancellation Policy Container */}
             <div className="flex flex-col gap-2">
-              {/* Row 1 */}
-              <div className="flex flex-wrap justify-between gap-2">
-                {/* Card Holder Name */}
-                <div className="w-[343px]">
-                  <div className="text-description mobile:text-h3-mobile">
-                    Card Holder Name <span className="text-red-600">*</span>
-                  </div>
-                  <Input
-                    className="w-full"
-                    placeholder="Card Holder Name"
-                    name="cardHolderName"
-                    value={paymentDetail.cardHolderName}
-                    onChange={handlePaymentInputChange}
-                  />
-                </div>
-
-                {/* Card Number */}
-                <div className="w-[343px]">
-                  <div className="text-description mobile:text-h3-mobile flex justify-between items-center">
-                    <div>
-                      Card Number <span className="text-red-600">*</span>
-                    </div>
-                    <div className="flex">
-                      <img
-                        src={cardTypeToCardImg.visa}
-                        alt="cardType"
-                        style={{
-                          height: "17px",
-                          width: "40px",
-                          objectFit: "cover",
-                          filter:
-                            cardType === "visa" ? "none" : "grayscale(100%)",
-                        }}
-                      />
-                      <img
-                        src={cardTypeToCardImg.mastercard}
-                        alt="cardType"
-                        style={{
-                          height: "17px",
-                          width: "40px",
-                          objectFit: "cover",
-                          filter:
-                            cardType === "mastercard"
-                              ? "none"
-                              : "grayscale(100%)",
-                        }}
-                      />
-                      <img
-                        src={cardTypeToCardImg.amex}
-                        alt="cardType"
-                        style={{
-                          height: "17px",
-                          width: "40px",
-                          objectFit: "cover",
-                          filter:
-                            cardType === "amex" ? "none" : "grayscale(100%)",
-                        }}
-                      />
-                      <img
-                        src={cardTypeToCardImg.discover}
-                        alt="cardType"
-                        style={{
-                          height: "17px",
-                          width: "40px",
-                          objectFit: "cover",
-                          filter:
-                            cardType === "discover"
-                              ? "none"
-                              : "grayscale(100%)",
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <Cleave
-                    placeholder="Enter credit card number"
-                    options={{
-                      creditCard: true,
-                      onCreditCardTypeChanged,
-                    }}
-                    name="cardNumber"
-                    value={paymentDetail.cardNumber}
-                    onChange={handlePaymentInputChange}
-                    className="ant-input css-dev-only-do-not-override-6j9yrn w-full css-dev-only-do-not-override-6j9yrn border-2 rounded"
-                  />
-                </div>
+              <div className="text-h2 mobile:text-h2-mobile font-bold">
+                Cancellation Policy
               </div>
-
-              {/* Row 2 */}
-              <div className="flex flex-wrap justify-between gap-2">
-                {/* Exp Date */}
-                <div className="w-[343px]">
-                  <div className="text-description mobile:text-h3-mobile">
-                    Exp Date <span className="text-red-600">*</span>
-                  </div>
-                  <DatePicker
-                    className="w-full"
-                    placeholder="Select Exp Date"
-                    onChange={handleExpDateChange}
-                  />
+              <div className="w-full text-description mobile:text-h3-mobile">
+                <div>
+                  For individual bookings of less than 5 rooms, and bookings not
+                  considered a group, the following cancellation policy applies:
                 </div>
-
-                {/* CVV */}
-                <div className="w-[343px]">
-                  <div className="text-description mobile:text-h3-mobile">
-                    CVV <span className="text-red-600">*</span>
-                  </div>
-                  <Input
-                    className="w-full"
-                    placeholder="CVV"
-                    name="cvv"
-                    value={paymentDetail.cvv}
-                    onChange={handlePaymentInputChange}
-                  />
+                <br />
+                <div>
+                  If cancelled up to 48 hours before arrival no fee will be
+                  charged.
+                </div>
+                <div>
+                  If cancelled less than 48 hours before arrival, or in case of
+                  a no-show, 100% of the first night will be charged.
+                </div>
+                <div>
+                  If you are a no-show, 100% of the first night will be charged.
                 </div>
               </div>
             </div>
           </div>
 
-          {/* PDPA */}
-          <div className="flex text-description mobile:text-h3-mobile">
-            <Checkbox onChange={onCheckboxChange}>
-              I have read and agreed to the Terms & Conditions and Privacy
-              Policy.
-            </Checkbox>
-          </div>
-
-          {/* Special Request Container */}
-          <div>
-            <div className="text-h2 mobile:text-h2-mobile font-bold">
-              Special Request
-            </div>
-            <div className="w-full">
-              <TextArea
-                className="w-full"
-                rows={2}
-                placeholder="Special Request"
-                onChange={(e) => setSpecialReq(e.target.value)}
-                value={specialReq}
-              />
-            </div>
-          </div>
-
-          {/* Cancellation Policy Container */}
-          <div className="flex flex-col gap-2">
-            <div className="text-h2 mobile:text-h2-mobile font-bold">
-              Cancellation Policy
-            </div>
-            <div className="w-full text-description mobile:text-h3-mobile">
-              <div>
-                For individual bookings of less than 5 rooms, and bookings not
-                considered a group, the following cancellation policy applies:
-              </div>
-              <br />
-              <div>
-                If cancelled up to 48 hours before arrival no fee will be
-                charged.
-              </div>
-              <div>
-                If cancelled less than 48 hours before arrival, or in case of a
-                no-show, 100% of the first night will be charged.
-              </div>
-              <div>
-                If you are a no-show, 100% of the first night will be charged.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Right Container */}
-        <div className="w-[509px] mobile:w-[330px] fixed right-[200px] top-[150px]">
-          <SummaryCard page="reservation-and-guest-detail"/>
-          {/* <button
+          {/* Right Container */}
+          <div className="w-[509px] mobile:w-[330px] fixed right-[200px] top-[150px]">
+            <SummaryCard page="reservation-and-guest-detail" />
+            {/* <button
             onClick={() => alert(isDisabledConfirm || !isCheckedPDPA)}
             disabled={isDisabledConfirm || !isCheckedPDPA}
           >
             Button
           </button> */}
+          </div>
         </div>
       </div>
-    </div>
-<Footer/>
+      <Footer />
     </div>
   );
 };

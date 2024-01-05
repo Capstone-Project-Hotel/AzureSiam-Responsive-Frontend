@@ -1,9 +1,11 @@
 import { Card } from "antd";
 import styled from "styled-components";
 
+import { useTranslation } from "@/app/i18n/client";
+
 const { Meta } = Card;
 
-const HistoryCard = () => {
+const HistoryCard = ({ t }: { t: any }) => {
   return (
     <StyledCard
       cover={
@@ -16,7 +18,7 @@ const HistoryCard = () => {
       }
     >
       <Meta
-        title="AzureSiam Hotel and Spa"
+        title={t("hotel")}
         description="AzureSiam Hotel, a city oasis, seamlessly blends modern luxury with timeless allure. Panoramic city views, rooftop dining, and a spa offer a sophisticated escape. In Chiang Mai, KhamHom unveils a newly renovated River Wing, a historic milestone in its 147-year legacy."
       />
     </StyledCard>
