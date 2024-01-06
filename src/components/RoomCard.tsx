@@ -20,22 +20,22 @@ export default function RoomCard( information: {roomName: string, maxGuest: numb
       `}
       style={{ backgroundColor: '#E7EFF6', color: 'black' }}
     >
-      <p className="text-[20px] font-sans font-bold m-[2vw] w-[100vw]">
+      <p className="text-h4 font-sans font-bold m-[2vw] w-[100vw] mobile:text-h4-mobile">
         {information.roomName}
       </p>
       <div className="flex flex-row ml-[2vw] mb-[2vw]">
         {/* mock image */}
         <img src={information.roomImage} alt="room" className="h-[15vw]" />
         {/* room description */}
-        <text className="text-[16px] font-sans ml-[2vw] mr-[2vw]">
-          Maximum guest: {information.maxGuest} <br />
-          Size: {information.roomSize} m2 <br />
-          Bed type: {information.bedType} <br />
-          Amenities: {information.roomAmenities.map((n) => ' • ' + n)} <br />
+        <text className="text-h5 font-sans ml-[2vw] mr-[2vw]  mobile:text-h5-mobile">
+          Maximum guest: {information.maxGuest} <br/>
+          Size: {information.roomSize} m2 <br/>
+          Bed type: {information.bedType} <br/>
+          Amenities: {information.roomAmenities.map((n) => ' • ' + n)} <br/>
           {isExpanded && (
             <div className='mt-[1vw]'>
               {/* More detailed information */}
-              <text className="text-[16px] font-sans ml-[2vw] mr-[2vw]">
+              <text className="text-h5 font-sans ml-[2vw] mr-[2vw]  mobile:text-h5-mobile">
                 {information.roomDetail}
               </text>
             </div>
@@ -45,7 +45,7 @@ export default function RoomCard( information: {roomName: string, maxGuest: numb
             {isExpanded ? 'Show Less' : 'Show More'}
           </button>
           <Divider />
-          <text className="text-[16px] font-sans mr-[2vw]">
+          <text className="text-h5 font-sans mr-[2vw]  mobile:text-h5-mobile">
             Price: {information.roomPrice} THB
           </text>
           <Button
