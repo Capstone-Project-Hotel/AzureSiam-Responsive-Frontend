@@ -322,7 +322,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
           {/* Room Type Container */}
           <div className="w-full px-[80px] mobile:px-[25px]">
             <div className="text-h1 mobile:text-h2-mobile font-bold">
-              Room Type
+              {t("room_type")}
             </div>
 
             <Slider {...settings}>
@@ -330,15 +330,11 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
               <OtherCard
                 onButtonClick={showDrawer}
                 hoverable={true}
-                title="Standard Room"
-                description="Standard rooms offer cost-effective comfort with a bed, private bathroom, and essential furniture for solo or couple travelers."
+                title={t("std_title")}
+                description={t("std_description")}
                 src="https://cdn.discordapp.com/attachments/457166097230069773/1186386766119305258/cover.jpg?ex=65930fc7&is=65809ac7&hm=81597f4a64012d760e9c97c217db3cae2617d4f37183b609a89429cc3562fd42&"
               >
-                <div>
-                  Standard rooms offer cost-effective comfort with a bed,
-                  private bathroom, and essential furniture for solo or couple
-                  travelers.
-                </div>
+                <div>{t("std_description")}</div>
                 <div>
                   <div className="font-bold mb-1">Amenities</div>
                   <div>
@@ -421,14 +417,11 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
               <OtherCard
                 onButtonClick={showDrawer}
                 hoverable={true}
-                title="Deluxe Room"
-                description="Deluxe rooms provide extra space, enhanced furnishings, and luxury amenities for heightened comfort and relaxation."
+                title={t("dlx_title")}
+                description={t("dlx_description")}
                 src="https://cdn.discordapp.com/attachments/457166097230069773/1186387436901781634/cover_1.jpg?ex=65931066&is=65809b66&hm=f75c101fa0d7768bac471cc46a3c94a94b5a1737567af3c91951c95abfc4ec9b&"
               >
-                <div>
-                  Deluxe rooms provide extra space, enhanced furnishings, and
-                  luxury amenities for heightened comfort and relaxation.
-                </div>
+                <div>{t("dlx_description")}</div>
                 <div>
                   <div className="font-bold mb-1">Facilities</div>
                   <div>
@@ -509,15 +502,11 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
               <OtherCard
                 onButtonClick={showDrawer}
                 hoverable={true}
-                title="Family Room"
-                description="Family rooms, designed for convenience, offer extra sleeping space with bunk beds or pull-out sofas for comfortable family stays."
+                title={t("fml_title")}
+                description={t("fml_description")}
                 src="https://cdn.discordapp.com/attachments/457166097230069773/1186387586516791326/cover_2.jpg?ex=6593108a&is=65809b8a&hm=44468b0913ab9e438ce166d2c49366e3833e42e84669ffff7b38eb770aac7c1c&"
               >
-                <div>
-                  Family rooms, designed for convenience, offer extra sleeping
-                  space with bunk beds or pull-out sofas for comfortable family
-                  stays.
-                </div>
+                <div>{t("fml_description")}</div>
                 <div>
                   <div className="font-bold mb-1">Facilities</div>
                   <div>
@@ -600,14 +589,11 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
               <OtherCard
                 onButtonClick={showDrawer}
                 hoverable={true}
-                title="Executive Suite Room"
-                description="Executive Suites, luxurious and spacious, elevate comfort for business travelers and VIPs with privacy and stunning views."
+                title={t("exs_title")}
+                description={t("exs_description")}
                 src="https://cdn.discordapp.com/attachments/457166097230069773/1188826023228354650/image_40_1_1.jpg?ex=659bef83&is=65897a83&hm=6582bd0a8cc86db4a4146b452e6d4b139146174c8c42818f174afa5fbd7e6bc0&"
               >
-                <div>
-                  Executive Suites, luxurious and spacious, elevate comfort for
-                  business travelers and VIPs with privacy and stunning views.
-                </div>
+                <div>{t("exs_description")}</div>
                 <div>
                   <div className="font-bold mb-1">Facilities</div>
                   <div>
@@ -690,14 +676,11 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
               <OtherCard
                 onButtonClick={showDrawer}
                 hoverable={true}
-                title="Junior Suite Room"
-                description="Spacious, well-appointed rooms provide extra comfort for business and leisure travelers seeking luxury and amenities."
+                title={t("jns_title")}
+                description={t("jns_description")}
                 src="https://cdn.discordapp.com/attachments/457166097230069773/1188826464708218920/image_41.jpg?ex=659befec&is=65897aec&hm=5a3d092015cc24fcd079f85b33341c508f33152ec6ea2e2c7b2c5796e4839e6a&"
               >
-                <div>
-                  Spacious, well-appointed rooms provide extra comfort for
-                  business and leisure travelers seeking luxury and amenities.
-                </div>
+                <div>{t("jns_description")}</div>
                 <div>
                   <div className="font-bold mb-1">Facilities</div>
                   <div>
@@ -790,10 +773,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                 />
               }
             >
-              <Meta
-                title="TranquilHaven Spa"
-                description="AzureSiam Spa: A holistic haven for mind, body, and soul. Our skilled therapists offer tailored treatments for ultimate relaxation. Enjoy state-of-the-art facilities, hydrotherapy, and a stylish lounge with herbal teas. Your oasis of comfort at AzureSiam Spa."
-              />
+              <Meta title={t("spa_title")} description={t("spa_description")} />
             </StyledCard>
           </div>
 
@@ -807,33 +787,30 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                 />
               }
             >
-              <Meta
-                title="Indoor Gym"
-                description="Elevate your stay with our state-of-the-art indoor gym facility. Whether you're a fitness enthusiast or looking to maintain your workout routine while traveling, our hotel provides a well-equipped gym for your convenience. Enjoy a range of cardio and strength training equipment in a comfortable and accessible space, ensuring you stay active and energized during your stay. With our commitment to your well-being, you can make the most of your time at the hotel by staying fit and healthy in our modern indoor gym."
-              />
+              <Meta title={t("gym_title")} description={t("gym_description")} />
             </StyledCard>
           </div>
 
           {/* Promotions Container */}
           <div id="con" className="w-full px-[80px] mobile:px-[25px]">
             <div className="text-h1 mobile:text-h2-mobile font-bold">
-              Promotions
+              {t("promotions")}
             </div>
 
             <Slider {...settings}>
               <OtherCard
-                title="50% Sale"
-                description="Indulge in luxury for 50% less! Limited-time offer for stylish stays, elevate your travel without breaking the bank."
+                title={t("fifty_title")}
+                description={t("fifty_description")}
                 src="https://cdn.discordapp.com/attachments/457166097230069773/1186562459033686056/image_14.jpg?ex=6593b367&is=65813e67&hm=7c031f253b7dfe592350d4690bb6d92951b739eb2871256db8fc2479304db7a0&"
               />
               <OtherCard
-                title="Monday Sale"
-                description="Transform Mondays with exclusive hotel discounts for a premium stay, perfect for business or leisure."
+                title={t("monday_title")}
+                description={t("monday_description")}
                 src="https://cdn.discordapp.com/attachments/457166097230069773/1186562459331477626/cover_3.jpg?ex=6593b367&is=65813e67&hm=4585291084bf482c14175380a43ab8d406802a060167473d38bab221b79a71e0&"
               />
               <OtherCard
-                title="Friday Sale"
-                description="Start your weekend right with Friday Sale—exclusive discounts for a perfect blend of comfort and savings."
+                title={t("friday_title")}
+                description={t("friday_description")}
                 src="https://cdn.discordapp.com/attachments/457166097230069773/1186562459604090920/cover_4.jpg?ex=6593b367&is=65813e67&hm=069041e55fe6d46f3a85f69c7600a40a3334b8feac9e86b19cd7068bb9a0e284&"
               />
             </Slider>
@@ -842,23 +819,23 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
           {/* Activity Schedule   Container */}
           <div id="con" className="w-full px-[80px] mobile:px-[25px]">
             <div className="text-h1 mobile:text-h2-mobile font-bold">
-              Activity Schedule
+              {t("activity_schedule")}
             </div>
 
             <Slider {...settings}>
               <OtherCard
-                title="Swimming Pool"
-                description="Versatile pool activities—from leisurely swims to family fun and workouts—offer refreshing relaxation and social enjoyment."
+                title={t("swim_title")}
+                description={t("swim_description")}
                 src="https://cdn.discordapp.com/attachments/457166097230069773/1186562753062785054/cover_5.jpg?ex=6593b3ad&is=65813ead&hm=5c9c2e3e9039f4b15c27f8ddd0f5fb7b5f45a8cc3b2f0c81cfc52c6cd0490c7a&"
               />
               <OtherCard
-                title="Meditation"
-                description="Meditation fosters mindfulness, reduces stress, and enhances well-being—essential for daily life challenges and mental clarity."
+                title={t("medi_title")}
+                description={t("medi_description")}
                 src="https://cdn.discordapp.com/attachments/457166097230069773/1186562753389936750/cover_6.jpg?ex=6593b3ad&is=65813ead&hm=a9c5cb9631e12ed98d51d1f96c0bcfc87c18ea3642d48c742b35fe2ef32d94d4&"
               />
               <OtherCard
-                title="Rock Climbing"
-                description="Rock climbing merges physical challenge with mental focus, creating a moving meditation for unique mindfulness."
+                title={t("rock_title")}
+                description={t("rock_description")}
                 src="https://cdn.discordapp.com/attachments/457166097230069773/1186562753759039508/cover_7.jpg?ex=6593b3ad&is=65813ead&hm=5633be70c54972883cda392c9079e407c231622e3d304fc2f56c15bc3cf8dcaf&"
               />
             </Slider>
@@ -867,7 +844,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
           {/* Gallery Container */}
           <div className="w-full px-[80px] mobile:px-[25px]">
             <div className="text-h1 mobile:text-h2-mobile font-bold mb-5">
-              Gallery
+              {t("gallery")}
             </div>
             <div className="w-[1060px] mobile:w-[330px] mx-auto">
               <Carousel dotPosition="right" autoplay>
@@ -890,23 +867,23 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
           {/* Nearby Attraction Container */}
           <div id="con" className="w-full px-[80px] mobile:px-[25px]">
             <div className="text-h1 mobile:text-h2-mobile font-bold">
-              Nearby Attraction
+              {t("nearby_attraction")}
             </div>
 
             <Slider {...settings}>
               <OtherCard
-                title="Siam Paragon"
-                description="Siam Paragon features specialty stores, dining, a multiplex, Sea Life Bangkok, art gallery, opera hall, bowling, and karaoke."
+                title={t("siam_title")}
+                description={t("siam_description")}
                 src="https://cdn.discordapp.com/attachments/457166097230069773/1186563062191357963/cover_8.jpg?ex=6593b3f7&is=65813ef7&hm=e26fe4168c65d44ce4ba29ab2c2e1711997210e092255fa87d811a2a819743bf&"
               />
               <OtherCard
-                title="Samyan Mitrtown"
-                description="Bangkok's Samyan Mitrtown is a ฿9 billion mixed-use complex, including a mall, office tower, residences, and hotel."
+                title={t("samyan_title")}
+                description={t("samyan_description")}
                 src="https://cdn.discordapp.com/attachments/457166097230069773/1186563062510137374/cover_9.jpg?ex=6593b3f7&is=65813ef7&hm=37e1d1821914e1abaeb65fff72f7ee8777f76d4849725bc19bcd1c35d1c499e8&"
               />
               <OtherCard
-                title="Central World"
-                description="CentralWorld, Bangkok, ranks ninth globally, featuring a shopping mall, hotel, and office tower with extensive space."
+                title={t("central_title")}
+                description={t("central_description")}
                 src="https://cdn.discordapp.com/attachments/457166097230069773/1186563062765994074/cover_10.jpg?ex=6593b3f7&is=65813ef7&hm=f5f92e930efdb887607c71c735b500194e2c94122db327962c261c387538292b&"
               />
             </Slider>

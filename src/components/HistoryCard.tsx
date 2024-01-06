@@ -17,10 +17,7 @@ const HistoryCard = ({ t }: { t: any }) => {
         />
       }
     >
-      <Meta
-        title={t("hotel")}
-        description="AzureSiam Hotel, a city oasis, seamlessly blends modern luxury with timeless allure. Panoramic city views, rooftop dining, and a spa offer a sophisticated escape. In Chiang Mai, KhamHom unveils a newly renovated River Wing, a historic milestone in its 147-year legacy."
-      />
+      <Meta title={t("history_title")} description={t("history_description")} />
     </StyledCard>
   );
 };
