@@ -46,11 +46,13 @@ export default function Topbar() {
   );
 
   return (
-    <div className="sticky top-0 flex flex-row h-[10vh] w-[100vw] px-[4.16vw] items-center" style={{ backgroundColor: '#2A4D69', color: 'white' }}>
-      <BlockOutlined style={{ fontSize: '8vh', color: 'white' }} />
+    <div className="sticky top-0 flex flex-row h-[10vh] w-[100vw] px-[4.16vw] items-center justify-between" style={{ backgroundColor: '#2A4D69', color: 'white' }}>
+      <div className='flex flex-row items-center'>
+        <BlockOutlined style={{ fontSize: '5vw', color: 'white' }} />
+        <Link href="/" className="text-h2 font-sans mobile:text-h2-mobile">AzureSiam</Link>
+      </div>
       <div className="flex flex-row items-center">
-        <Link href="/" className="text-[30px] font-sans">AzureSiam</Link>
-        <div className="flex flex-row pl-[59.5vw]">
+        <div className="flex flex-row">
             <Dropdown overlay={languageMenu} placement="bottomLeft" arrow>
                 <Button style={{ backgroundColor: 'white' }}>
                     {selectedLanguage === 'EN' ? 'English' : 'ไทย'} <DownOutlined />
