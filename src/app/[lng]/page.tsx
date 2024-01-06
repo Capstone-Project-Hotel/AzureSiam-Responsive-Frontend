@@ -3,7 +3,7 @@
 import Image from "next/image";
 import HistoryCard from "@/components/HistoryCard";
 import { addDays, format } from "date-fns";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import OtherCard from "@/components/OtherCard";
 import dynamic from "next/dynamic";
 import { Card, Carousel, Input, Select } from "antd";
@@ -59,19 +59,75 @@ const ContentStyle = styled.div<{ src: string }>`
 import { languages } from "../i18n/settings";
 import { useTranslation } from "../i18n/client";
 import { useRouter } from "next/navigation";
+import useStore from "@/hooks/useStore";
+
+import axios from "axios";
 
 const Home = ({ params: { lng } }: { params: { lng: any } }) => {
+  // i18n
   const { t } = useTranslation(lng);
   const router = useRouter();
   const options = languages
     .filter((l: any) => lng !== l)
-    .map((l: any, index: any) => {
+    .map((l: any) => {
       return { value: l, label: l };
     });
-
-  const handleChange = (value: string) => {
+  const handleIntlChange = (value: string) => {
     const currentPath = window.location.pathname;
     router.push(`/${value}/${currentPath.slice(4)}`);
+  };
+
+  // Exchange Rate
+  const { exchangeRate, setExchangeRate, currency, setCurrency } = useStore();
+  const listquotes = [
+    "SGD",
+    "MYR",
+    "EUR",
+    "USD",
+    "AUD",
+    "JPY",
+    "CNH",
+    "HKD",
+    "CAD",
+    "INR",
+    "DKK",
+    "GBP",
+    "RUB",
+    "NZD",
+    "MXN",
+    "IDR",
+    "TWD",
+    "THB",
+    "VND",
+  ].map((l: any) => {
+    return { value: l, label: l };
+  });
+  const handleExChange = async (value: string) => {
+    try {
+      if (value && value !== "THB") {
+        const response = await axios.get(
+          "https://currency-exchange.p.rapidapi.com/exchange",
+          {
+            params: {
+              from: "THB",
+              to: value,
+            },
+            headers: {
+              "X-RapidAPI-Key":
+                "32978adf6emsh766e865f3b81f21p11aafajsnb354410acc8c",
+              "X-RapidAPI-Host": "currency-exchange.p.rapidapi.com",
+            },
+          }
+        );
+        setCurrency(value);
+        setExchangeRate(response.data);
+      } else {
+        setCurrency("THB");
+        setExchangeRate(1);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const settings = {
@@ -122,8 +178,22 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
           defaultValue={lng}
           style={{ width: 120 }}
           options={options}
-          onChange={handleChange}
+          onChange={handleIntlChange}
         />
+      </div>
+
+      {/* Exchange Rate */}
+      <div className="flex justify-center p-5 gap-5 items-center">
+        <div>currency : {currency}</div>
+        <div>exchange-rate : {exchangeRate}</div>
+        <div>
+          <Select
+            defaultValue={currency}
+            style={{ width: 120 }}
+            options={listquotes}
+            onChange={handleExChange}
+          />
+        </div>
       </div>
 
       {/* Drawer */}
@@ -218,7 +288,9 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
           </div>
         </div>
       </Drawer>
-      <Button onClick={showDrawer}>Open</Button>
+      <div className="flex justify-center p-5 gap-5 items-center">
+        <Button onClick={showDrawer}>Open</Button>
+      </div>
 
       <div className="flex justify-center p-0 m-0 mt-[86px]">
         {/* Main Container */}

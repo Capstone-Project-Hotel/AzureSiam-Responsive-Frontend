@@ -51,10 +51,14 @@ interface Store {
   paymentDetail: PaymentDetail;
   specialReq: string;
   cardType: string;
+  exchangeRate: number;
+  currency: string;
   setGuests: (guests: Guest[]) => void;
   setPaymentDetail: (paymentDetail: PaymentDetail) => void;
   setSpecialReq: (specialReq: string) => void;
   setCardType: (cardType: string) => void;
+  setExchangeRate: (exchangeRate: number) => void;
+  setCurrency: (currency: string) => void;
 }
 
 const useStore = create<Store>((set) => ({
@@ -62,10 +66,14 @@ const useStore = create<Store>((set) => ({
   paymentDetail: emptyPaymentDetail,
   specialReq: "",
   cardType: "",
+  exchangeRate: 1,
+  currency: "THB",
   setGuests: (guests: Guest[]) => set({ guests }),
   setPaymentDetail: (paymentDetail: PaymentDetail) => set({ paymentDetail }),
   setSpecialReq: (specialReq: string) => set({ specialReq }),
   setCardType: (cardType: string) => set({ cardType }),
+  setExchangeRate: (exchangeRate: number) => set({ exchangeRate }),
+  setCurrency: (currency: string) => set({ currency }),
 }));
 
 export default useStore;

@@ -23,6 +23,7 @@
     "accept-language": "^3.0.18",
     "antd": "^5.12.1",
     "autoprefixer": "10.4.16",
+    "axios": "^1.6.5",
     "cleave.js": "^1.6.0",
     "country-state-city": "^3.2.1",
     "date-fns": "^2.30.0",
