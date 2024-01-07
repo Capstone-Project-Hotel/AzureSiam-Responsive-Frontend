@@ -892,7 +892,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
         </div>
       </div>
       <div>
-        <Footer />
+        <Footer t={t}/>
       </div>
     </div>
   );
