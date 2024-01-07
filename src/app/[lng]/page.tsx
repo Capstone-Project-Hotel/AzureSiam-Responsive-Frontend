@@ -56,79 +56,10 @@ const ContentStyle = styled.div<{ src: string }>`
   }
 `;
 
-import { languages } from "../i18n/settings";
 import { useTranslation } from "../i18n/client";
-import { useRouter } from "next/navigation";
-import useStore from "@/hooks/useStore";
-
-import axios from "axios";
 
 const Home = ({ params: { lng } }: { params: { lng: any } }) => {
-  // i18n
   const { t } = useTranslation(lng);
-  const router = useRouter();
-  const options = languages
-    .filter((l: any) => lng !== l)
-    .map((l: any) => {
-      return { value: l, label: l == "th" ? "Thai" : "English" };
-    });
-  const handleIntlChange = (value: string) => {
-    const currentPath = window.location.pathname;
-    router.push(`/${value}/${currentPath.slice(4)}`);
-  };
-
-  // Exchange Rate
-  const { exchangeRate, setExchangeRate, currency, setCurrency } = useStore();
-  const listquotes = [
-    "SGD",
-    "MYR",
-    "EUR",
-    "USD",
-    "AUD",
-    "JPY",
-    "CNH",
-    "HKD",
-    "CAD",
-    "INR",
-    "DKK",
-    "GBP",
-    "RUB",
-    "NZD",
-    "MXN",
-    "IDR",
-    "TWD",
-    "THB",
-    "VND",
-  ].map((l: any) => {
-    return { value: l, label: l };
-  });
-  const handleExChange = async (value: string) => {
-    try {
-      if (value && value !== "THB") {
-        const response = await axios.get(
-          "https://currency-exchange.p.rapidapi.com/exchange",
-          {
-            params: {
-              from: "THB",
-              to: value,
-            },
-            headers: {
-              "X-RapidAPI-Key":
-                "32978adf6emsh766e865f3b81f21p11aafajsnb354410acc8c",
-              "X-RapidAPI-Host": "currency-exchange.p.rapidapi.com",
-            },
-          }
-        );
-        setCurrency(value);
-        setExchangeRate(response.data);
-      } else {
-        setCurrency("THB");
-        setExchangeRate(1);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   const settings = {
     dots: true,
@@ -172,14 +103,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
       <div className="z-50 fixed top-0">{/* <LandingTopbar /> */}</div>
 
       {/* Top Bar */}
-      <LandingTopbar
-        lng={lng == "th" ? "Thai" : "English"}
-        options={options}
-        handleIntlChange={handleIntlChange}
-        currency={currency}
-        listquotes={listquotes}
-        handleExChange={handleExChange}
-      />
+      <LandingTopbar lng={lng} />
 
       {/* Drawer */}
       <Drawer

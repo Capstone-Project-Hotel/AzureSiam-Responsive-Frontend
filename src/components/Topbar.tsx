@@ -4,6 +4,10 @@ import { BlockOutlined } from "@ant-design/icons";
 import { Menu, Dropdown, Button, Select } from "antd";
 import DownOutlined from "@ant-design/icons/DownOutlined";
 import Link from "next/link";
+import { languages } from "@/app/i18n/settings";
+import { useRouter } from "next/navigation";
+import useStore from "@/hooks/useStore";
+import axios from "axios";
 
 interface TopbarProps {
   lng: string;
@@ -14,14 +18,72 @@ interface TopbarProps {
   handleExChange: (value: string) => void;
 }
 
-export default function Topbar({
-  lng,
-  options,
-  handleIntlChange,
-  currency,
-  listquotes,
-  handleExChange,
-}: TopbarProps) {
+export default function Topbar({ lng }: { lng: any }) {
+  // i18n
+  const router = useRouter();
+  const options = languages
+    .filter((l: any) => lng !== l)
+    .map((l: any) => {
+      return { value: l, label: l == "th" ? "Thai" : "English" };
+    });
+  const handleIntlChange = (value: string) => {
+    const currentPath = window.location.pathname;
+    router.push(`/${value}/${currentPath.slice(4)}`);
+  };
+
+  // Exchange Rate
+  const { exchangeRate, setExchangeRate, currency, setCurrency } = useStore();
+  const listquotes = [
+    "SGD",
+    "MYR",
+    "EUR",
+    "USD",
+    "AUD",
+    "JPY",
+    "CNH",
+    "HKD",
+    "CAD",
+    "INR",
+    "DKK",
+    "GBP",
+    "RUB",
+    "NZD",
+    "MXN",
+    "IDR",
+    "TWD",
+    "THB",
+    "VND",
+  ].map((l: any) => {
+    return { value: l, label: l };
+  });
+  const handleExChange = async (value: string) => {
+    try {
+      if (value && value !== "THB") {
+        const response = await axios.get(
+          "https://currency-exchange.p.rapidapi.com/exchange",
+          {
+            params: {
+              from: "THB",
+              to: value,
+            },
+            headers: {
+              "X-RapidAPI-Key":
+                "32978adf6emsh766e865f3b81f21p11aafajsnb354410acc8c",
+              "X-RapidAPI-Host": "currency-exchange.p.rapidapi.com",
+            },
+          }
+        );
+        setCurrency(value);
+        setExchangeRate(response.data);
+      } else {
+        setCurrency("THB");
+        setExchangeRate(1);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const [selectedLanguage, setSelectedLanguage] = useState("EN");
   const [selectedCurrency, setSelectedCurrency] = useState("THB");
 
@@ -49,9 +111,9 @@ export default function Topbar({
         </Link>
       </div>
       <div className="flex flex-row items-center">
-        <div className="flex flex-row">
+        <div className="flex flex-row gap-4">
           <Select
-            defaultValue={lng}
+            defaultValue={lng == "th" ? "Thai" : "English"}
             options={options}
             onChange={handleIntlChange}
             style={{ width: "100px" }}
