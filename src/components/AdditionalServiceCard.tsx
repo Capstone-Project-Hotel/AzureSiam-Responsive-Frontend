@@ -15,7 +15,7 @@ export default function AdditionalServiceCard() {
         <div className='flex flex-col w-[16vw] h-auto outline outline-1 outline-gray-450'>
             <img src={"https://via.placeholder.com/240x150"} className="w-full" />
             <div className='flex flex-col w-full h-auto p-[1vw]'>
-                <p className='text-h5 mobile:text-h4-mobile'>
+                <p className='text-h5 mobile:text-h5-mobile'>
                     Transportation [ Package ]
                 </p>
                 <p className='text-description'>
@@ -23,7 +23,7 @@ export default function AdditionalServiceCard() {
                     <span className="mobile:hidden">1 Meal / Day / Person</span>
                 </p>
                 <div className='flex flex-row w-full items-center justify-between'>
-                    <p className='text-body mobile:text-h5-mobile'>
+                    <p className='text-body mobile:text-body-mobile'>
                         THB 200
                     </p>
                     <Button
