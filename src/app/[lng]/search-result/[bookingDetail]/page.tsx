@@ -100,7 +100,7 @@ export default function SearchResultPage() {
         />
       </div>
       <p>{bookingDetail.standardRoomNumber}</p>
-      <div className="w-[509px] mobile:w-[330px] fixed right-[200px] top-[400px]">
+      <div className="w-[509px] mobile:w-[330px] fixed mobile:right-0 right-[200px] top-[400px]">
         <SummaryCard
           page="search-result"
           startDate={startDate}

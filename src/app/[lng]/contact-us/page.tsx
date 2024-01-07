@@ -3,9 +3,11 @@ import Topbar from '@/components/Topbar'
 import Footer from '@/components/Footer'
 import { PhoneOutlined, MailOutlined } from '@ant-design/icons'
 
-export default function Home() {
+import { useTranslation } from "../../i18n";
+export default  async function Home({ params: { lng } }: { params: { lng: any } }) {
   const iconStyle = { color: '#2A4D69' };
-
+  
+  const { t } = await  useTranslation(lng);
   return (
     <main>
       <Topbar/>

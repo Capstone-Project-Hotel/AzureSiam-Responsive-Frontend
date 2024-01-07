@@ -198,7 +198,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
 
       {/* Drawer */}
       <Drawer
-        title="Booking Detail"
+        title={t("booking_detail")}
         placement="right"
         onClose={onClose}
         open={open}
@@ -221,6 +221,8 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
             />
           </div>
 
+          
+
           {/* Select Date */}
           <div className="flex justify-center gap-4">
             <CalendarOutlined />
@@ -231,11 +233,11 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
 
           {/* Guest */}
           <div>
-            <div className="mb-2 text-primary">Guest</div>
+            <div className="mb-2 text-primary">{t("guest")}</div>
             <hr />
             <div className="flex">
               <div className="flex w-1/2 justify-between items-center p-4 gap-2">
-                <div> Adults</div>
+                <div>{t("adults")}</div>
                 <InputNumber
                   min={1}
                   max={99}
@@ -244,7 +246,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                 />
               </div>
               <div className="flex w-1/2 justify-between items-center p-4 gap-2">
-                <div>Childrens</div>
+                <div>{t("childrens")}</div>
                 <InputNumber
                   min={0}
                   max={99}
@@ -258,9 +260,9 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
 
           {/* Promo Code */}
           <div className="flex flex-col gap-2">
-            <div className="text-primary">Have a code?</div>
+            <div className="text-primary">{t("have_code")}</div>
             <div className="flex">
-              <div className="w-[150px]">Code Promotion</div>
+              <div className="w-[150px]">{t("code")}</div>
               <div>
                 <Input
                   placeholder="eg. promo001"
@@ -283,7 +285,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                 "yyyy-MM-dd"
               )}&adults=${adults}&childrens=${childrens}&codePromo=${codePromo}`}
             >
-              <Button type="primary">Book Now</Button>
+              <Button type="primary">{t("book_now")}</Button>
             </Link>
           </div>
         </div>
@@ -328,6 +330,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
             <Slider {...settings}>
               {/* Standard Room */}
               <OtherCard
+                t={t}
                 onButtonClick={showDrawer}
                 hoverable={true}
                 title={t("std_title")}
@@ -336,7 +339,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
               >
                 <div>{t("std_description")}</div>
                 <div>
-                  <div className="font-bold mb-1">Amenities</div>
+                  <div className="font-bold mb-1">{t("amenities")}</div>
                   <div>
                     <ul className="leading-8">
                       <li>
@@ -415,6 +418,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
 
               {/* Deluxe Room */}
               <OtherCard
+                t={t}
                 onButtonClick={showDrawer}
                 hoverable={true}
                 title={t("dlx_title")}
@@ -423,7 +427,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
               >
                 <div>{t("dlx_description")}</div>
                 <div>
-                  <div className="font-bold mb-1">Facilities</div>
+                  <div className="font-bold mb-1">{t("amenities")}</div>
                   <div>
                     <ul className="leading-8">
                       <li>
@@ -500,6 +504,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
 
               {/* Family Room */}
               <OtherCard
+                t={t}
                 onButtonClick={showDrawer}
                 hoverable={true}
                 title={t("fml_title")}
@@ -508,7 +513,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
               >
                 <div>{t("fml_description")}</div>
                 <div>
-                  <div className="font-bold mb-1">Facilities</div>
+                  <div className="font-bold mb-1">{t("amenities")}</div>
                   <div>
                     <ul className="leading-8">
                       <li>
@@ -587,6 +592,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
 
               {/* Executive Suite Room */}
               <OtherCard
+                t={t}
                 onButtonClick={showDrawer}
                 hoverable={true}
                 title={t("exs_title")}
@@ -595,7 +601,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
               >
                 <div>{t("exs_description")}</div>
                 <div>
-                  <div className="font-bold mb-1">Facilities</div>
+                  <div className="font-bold mb-1">{t("amenities")}</div>
                   <div>
                     <ul className="leading-8">
                       <li>
@@ -674,6 +680,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
 
               {/* Junior Suite Room */}
               <OtherCard
+                t={t}
                 onButtonClick={showDrawer}
                 hoverable={true}
                 title={t("jns_title")}
@@ -682,7 +689,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
               >
                 <div>{t("jns_description")}</div>
                 <div>
-                  <div className="font-bold mb-1">Facilities</div>
+                  <div className="font-bold mb-1">{t("amenities")}</div>
                   <div>
                     <ul className="leading-8">
                       <li>
@@ -799,16 +806,19 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
 
             <Slider {...settings}>
               <OtherCard
+                t={t}
                 title={t("fifty_title")}
                 description={t("fifty_description")}
                 src="https://cdn.discordapp.com/attachments/457166097230069773/1186562459033686056/image_14.jpg?ex=6593b367&is=65813e67&hm=7c031f253b7dfe592350d4690bb6d92951b739eb2871256db8fc2479304db7a0&"
               />
               <OtherCard
+                t={t}
                 title={t("monday_title")}
                 description={t("monday_description")}
                 src="https://cdn.discordapp.com/attachments/457166097230069773/1186562459331477626/cover_3.jpg?ex=6593b367&is=65813e67&hm=4585291084bf482c14175380a43ab8d406802a060167473d38bab221b79a71e0&"
               />
               <OtherCard
+                t={t}
                 title={t("friday_title")}
                 description={t("friday_description")}
                 src="https://cdn.discordapp.com/attachments/457166097230069773/1186562459604090920/cover_4.jpg?ex=6593b367&is=65813e67&hm=069041e55fe6d46f3a85f69c7600a40a3334b8feac9e86b19cd7068bb9a0e284&"
@@ -824,16 +834,19 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
 
             <Slider {...settings}>
               <OtherCard
+                t={t}
                 title={t("swim_title")}
                 description={t("swim_description")}
                 src="https://cdn.discordapp.com/attachments/457166097230069773/1186562753062785054/cover_5.jpg?ex=6593b3ad&is=65813ead&hm=5c9c2e3e9039f4b15c27f8ddd0f5fb7b5f45a8cc3b2f0c81cfc52c6cd0490c7a&"
               />
               <OtherCard
+                t={t}
                 title={t("medi_title")}
                 description={t("medi_description")}
                 src="https://cdn.discordapp.com/attachments/457166097230069773/1186562753389936750/cover_6.jpg?ex=6593b3ad&is=65813ead&hm=a9c5cb9631e12ed98d51d1f96c0bcfc87c18ea3642d48c742b35fe2ef32d94d4&"
               />
               <OtherCard
+                t={t}
                 title={t("rock_title")}
                 description={t("rock_description")}
                 src="https://cdn.discordapp.com/attachments/457166097230069773/1186562753759039508/cover_7.jpg?ex=6593b3ad&is=65813ead&hm=5633be70c54972883cda392c9079e407c231622e3d304fc2f56c15bc3cf8dcaf&"
@@ -872,16 +885,19 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
 
             <Slider {...settings}>
               <OtherCard
+                t={t}
                 title={t("siam_title")}
                 description={t("siam_description")}
                 src="https://cdn.discordapp.com/attachments/457166097230069773/1186563062191357963/cover_8.jpg?ex=6593b3f7&is=65813ef7&hm=e26fe4168c65d44ce4ba29ab2c2e1711997210e092255fa87d811a2a819743bf&"
               />
               <OtherCard
+                t={t}
                 title={t("samyan_title")}
                 description={t("samyan_description")}
                 src="https://cdn.discordapp.com/attachments/457166097230069773/1186563062510137374/cover_9.jpg?ex=6593b3f7&is=65813ef7&hm=37e1d1821914e1abaeb65fff72f7ee8777f76d4849725bc19bcd1c35d1c499e8&"
               />
               <OtherCard
+                t={t}
                 title={t("central_title")}
                 description={t("central_description")}
                 src="https://cdn.discordapp.com/attachments/457166097230069773/1186563062765994074/cover_10.jpg?ex=6593b3f7&is=65813ef7&hm=f5f92e930efdb887607c71c735b500194e2c94122db327962c261c387538292b&"
@@ -890,7 +906,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
           </div>
         </div>
       </div>
-      <div>{/* <Footer/> */}</div>
+      <div><Footer/></div>
     </div>
   );
 };
