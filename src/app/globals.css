@@ -48,7 +48,6 @@ body {
   background-color: #2a4d69;
   @media screen and (max-width: 394px) {;
     font-size: 8px !important;
-    max-width: 48px !important;
     height: 20px !important;
     padding-left: 5px !important;
     padding-right: 5px !important;

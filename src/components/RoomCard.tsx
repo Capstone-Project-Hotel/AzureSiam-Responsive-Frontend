@@ -50,7 +50,6 @@ export default function RoomCard( information: {roomName: string, maxGuest: numb
           </text>
           <Button
             type="primary"
-            size='small'
             className='float-right'
             onClick={handleBookNowClick}
           >
