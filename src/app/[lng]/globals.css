@@ -42,19 +42,20 @@ body {
   color: black !important;
 }
 
+.ant-btn-primary,
 button,
 [type="button"] {
   background-color: #2a4d69;
-  @media screen and (max-width: 393px) {
+  @media screen and (max-width: 394px) {
     font-size: 8px !important;
-    height: 24px;
+    height: 24px !important;
   }
 }
 
 .ant-modal-title {
   font-size: 24px !important;
   font-weight: bold !important;
-  @media screen and (max-width: 393px) {
+  @media screen and (max-width: 394px) {
     font-size: 16px !important;
   }
 }
@@ -67,8 +68,8 @@ li {
 
 .ant-drawer-title {
   font-size: 24px !important;
-  padding-left: 1rem;
-  @media screen and (max-width: 393px) {
+  padding-left: 1rem !important;
+  @media screen and (max-width: 394px) {
     font-size: 20px !important;
   }
 }
