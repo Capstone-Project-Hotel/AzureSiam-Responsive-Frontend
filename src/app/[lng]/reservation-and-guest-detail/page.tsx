@@ -78,6 +78,8 @@ const cardTypeToCardImg = {
 
 const ReservationAndGuestDetail: React.FC = () => {
   const {
+    bookingDetail,
+    setBookingDetail,
     guests,
     setGuests,
     paymentDetail,
@@ -405,13 +407,14 @@ const ReservationAndGuestDetail: React.FC = () => {
 
           {/* Right Container */}
           <div className="w-[509px] mobile:w-[330px] fixed right-[200px] top-[150px]">
-            {/* <SummaryCard page="reservation-and-guest-detail" /> */}
-            {/* <button
-            onClick={() => alert(isDisabledConfirm || !isCheckedPDPA)}
-            disabled={isDisabledConfirm || !isCheckedPDPA}
-          >
-            Button
-          </button> */}
+          <SummaryCard
+          page="search-result"
+          startDate={bookingDetail.startDate}
+          endDate={bookingDetail.endDate}
+          adults={bookingDetail.adultNumber}
+          childrens={bookingDetail.childrenNumber}
+          codePromo={bookingDetail.codePromotion}
+        />
           </div>
         </div>
       </div>
@@ -730,6 +733,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
 
       {/* HR Line */}
       <hr className="my-2" />
+
     </div>
   );
 };

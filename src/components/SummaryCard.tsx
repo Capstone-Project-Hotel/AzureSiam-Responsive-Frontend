@@ -157,7 +157,7 @@ export default function SummaryCard({
             </Button>
           </Link>
         ) : (
-          <Link href={"/summary-booking-detail"}>
+          <Link href={"/reservation-and-guest-detail"}>
             <Button style={{ background: "#2A4D69", color: "white" }}>
               <p>Confirm</p>
             </Button>
