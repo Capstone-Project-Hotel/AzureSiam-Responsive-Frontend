@@ -19,6 +19,7 @@ interface LandingTopbarProps {
   scrollToActivity: () => void;
   scrollToGallery: () => void;
   scrollToNearby: () => void;
+  onBookNow: () => void;
 }
 
 export default function LandingTopbar({
@@ -29,6 +30,7 @@ export default function LandingTopbar({
   scrollToActivity,
   scrollToGallery,
   scrollToNearby,
+  onBookNow,
 }: LandingTopbarProps) {
   // i18n
   const router = useRouter();
@@ -115,8 +117,9 @@ export default function LandingTopbar({
   );
 
   const handleBookNowClick = () => {
-    console.log("Book Now clicked");
+    // console.log("Book Now clicked");
     // Implement Book Now logic
+    onBookNow();
   };
 
   return (
@@ -130,7 +133,7 @@ export default function LandingTopbar({
           AzureSiam
         </Link>
       </div>
-      <div className="flex flex-row flex-wrap items-center justify-start gap-20">
+      <div className="flex flex-row flex-wrap items-start gap-x-8 gap-y-1 mobile:flex-col">
         <div
           className="text-h5 font-sans mobile:text-h5-mobile cursor-pointer"
           onClick={scrollToRoom}
@@ -181,13 +184,14 @@ export default function LandingTopbar({
             </Anchor>
         </div> */}
       </div>
-      <div className="flex flex-row items-center gap-4">
+      <div className="flex flex-row items-center gap-x-4 gap-y-2 flex-wrap mobile:flex-col">
         <Select
           defaultValue={lng == "th" ? "ไทย" : "English"}
           options={options}
           onChange={handleIntlChange}
           style={{ width: "100px" }}
         />
+
         <Select
           defaultValue={currency}
           options={listquotes}

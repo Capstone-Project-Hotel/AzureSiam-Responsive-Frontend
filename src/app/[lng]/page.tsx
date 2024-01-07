@@ -172,6 +172,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
           scrollToActivity={scrollToActivity}
           scrollToGallery={scrollToGallery}
           scrollToNearby={scrollToNearby}
+          onBookNow={showDrawer}
         />
       </div>
 
@@ -271,7 +272,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
         <Button onClick={showDrawer}>Open</Button>
       </div>
 
-      <div className="flex justify-center p-0 m-0 mt-[86px]">
+      <div className="flex justify-center p-0 m-0 mt-[20px]">
         {/* Main Container */}
         <div className="w-[1440px] mobile:w-full flex flex-col gap-10 mobile:gap-10 items-center pb-20">
           {/* Hotel Name Container */}
