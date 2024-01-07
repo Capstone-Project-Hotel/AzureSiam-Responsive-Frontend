@@ -79,12 +79,12 @@ const cardTypeToCardImg = {
 };
 
 interface ReservationAndGuestDetailProps {
-  params: { lng: any};
-} 
+  params: { lng: any };
+}
 
 const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
-  params: { lng }
-})  => {
+  params: { lng },
+}) => {
   const { t } = useTranslation(lng);
   const {
     guests,
@@ -181,7 +181,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
     // Page Container
     <div>
       <div className="z-30 fixed top-0">
-        <Topbar lng={ lng } />
+        <Topbar lng={lng} />
       </div>
       <div className="flex justify-start mt-20">
         {/* Main Container */}
@@ -340,7 +340,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
                       name="cardNumber"
                       value={paymentDetail.cardNumber}
                       onChange={handlePaymentInputChange}
-                      className="ant-input css-dev-only-do-not-override-6j9yrn w-full css-dev-only-do-not-override-6j9yrn border-2 rounded"
+                      className="ant-input css-dev-only-do-not-override-19hk5md w-full css-dev-only-do-not-override-19hk5md"
                     />
                   </div>
                 </div>
@@ -438,7 +438,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
           </div>
         </div>
       </div>
-      <Footer t={t } />
+      <Footer t={t} />
     </div>
   );
 };
@@ -603,7 +603,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
               onChange={(value) => {
                 if (value) handleInputChange(index, value, "phoneNumber");
               }}
-              className="ant-input css-dev-only-do-not-override-6j9yrn w-full css-dev-only-do-not-override-6j9yrn"
+              className="ant-input css-dev-only-do-not-override-19hk5md w-full css-dev-only-do-not-override-19hk5md"
             />
             {/* <Input
               className="w-full h-[32px]"
