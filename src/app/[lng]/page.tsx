@@ -109,10 +109,9 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
   return (
     // Page Container
     <div>
-      <div className="z-50 fixed top-0">{/* <LandingTopbar /> */}</div>
-
-      {/* Top Bar */}
-      <LandingTopbar lng={lng} scrollToRoom={scrollToRoom} />
+      <div className="z-50 fixed top-0">
+        <LandingTopbar lng={lng} scrollToRoom={scrollToRoom} />
+      </div>
 
       {/* Drawer */}
       <Drawer
@@ -823,7 +822,9 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
           </div>
         </div>
       </div>
-      <div>{/* <Footer/> */}</div>
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 };
