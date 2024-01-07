@@ -26,7 +26,7 @@ export default function LandingTopbar({ lng }: { lng: any }) {
   const options = languages
     .filter((l: any) => lng !== l)
     .map((l: any) => {
-      return { value: l, label: l == "th" ? "Thai" : "English" };
+      return { value: l, label: l == "th" ? "ไทย" : "English" };
     });
   const handleIntlChange = (value: string) => {
     const currentPath = window.location.pathname;
@@ -152,7 +152,7 @@ export default function LandingTopbar({ lng }: { lng: any }) {
       </div>
       <div className="flex flex-row items-center gap-4">
         <Select
-          defaultValue={lng == "th" ? "Thai" : "English"}
+          defaultValue={lng == "th" ? "ไทย" : "English"}
           options={options}
           onChange={handleIntlChange}
           style={{ width: "100px" }}
