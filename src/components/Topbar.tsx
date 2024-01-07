@@ -37,17 +37,6 @@ export default function Topbar({
     console.log("Currency changed to", currency);
   };
 
-  const currencyMenu = (
-    <Menu style={{ backgroundColor: "white" }}>
-      <Menu.Item key="THB" onClick={() => handleCurrencyChange("THB")}>
-        <span style={{ fontSize: "14px" }}>THB</span>
-      </Menu.Item>
-      <Menu.Item key="USD" onClick={() => handleCurrencyChange("USD")}>
-        <span style={{ fontSize: "14px" }}>USD</span>
-      </Menu.Item>
-    </Menu>
-  );
-
   return (
     <div
       className="sticky top-0 flex flex-row h-[10vh] w-[100vw] px-[4.16vw] items-center justify-between"
