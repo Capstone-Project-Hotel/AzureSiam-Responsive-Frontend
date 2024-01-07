@@ -20,6 +20,7 @@ interface LandingTopbarProps {
   scrollToGallery: () => void;
   scrollToNearby: () => void;
   onBookNow: () => void;
+  t: any;
 }
 
 export default function LandingTopbar({
@@ -31,6 +32,7 @@ export default function LandingTopbar({
   scrollToGallery,
   scrollToNearby,
   onBookNow,
+  t,
 }: LandingTopbarProps) {
   // i18n
   const router = useRouter();
@@ -135,40 +137,40 @@ export default function LandingTopbar({
       </div>
       <div className="flex flex-row flex-wrap items-start gap-x-8 gap-y-1 mobile:flex-col">
         <div
-          className="text-h5 font-sans mobile:text-h5-mobile cursor-pointer"
+          className="text-h5 mobile:text-h5-mobile cursor-pointer"
           onClick={scrollToRoom}
         >
-          Room Type
+          {t("room_type")}
         </div>
         <div
-          className="text-h5 font-sans mobile:text-h5-mobile cursor-pointer"
+          className="text-h5 mobile:text-h5-mobile cursor-pointer"
           onClick={scrollToFacilities}
         >
-          Facilities
+          {t("facilities")}
         </div>
         <div
-          className="text-h5 font-sans mobile:text-h5-mobile cursor-pointer"
+          className="text-h5 mobile:text-h5-mobile cursor-pointer"
           onClick={scrollToPromotions}
         >
-          Promotions
+          {t("promotions")}
         </div>
         <div
-          className="text-h5 font-sans mobile:text-h5-mobile cursor-pointer"
+          className="text-h5 mobile:text-h5-mobile cursor-pointer"
           onClick={scrollToActivity}
         >
-          Activity Schedule
+          {t("activity_schedule")}
         </div>
         <div
-          className="text-h5 font-sans mobile:text-h5-mobile cursor-pointer"
+          className="text-h5 mobile:text-h5-mobile cursor-pointer"
           onClick={scrollToGallery}
         >
-          Gallery
+          {t("gallery")}
         </div>
         <div
-          className="text-h5 font-sans mobile:text-h5-mobile cursor-pointer"
+          className="text-h5 mobile:text-h5-mobile cursor-pointer"
           onClick={scrollToNearby}
         >
-          Nearby Attraction
+          {t("nearby_attraction")}
         </div>
         {/* TODO: anchor hilight remove */}
         {/* <div className="flex flex-row items-center">
@@ -206,7 +208,7 @@ export default function LandingTopbar({
           }}
           onClick={handleBookNowClick}
         >
-          Book Now
+          {t("book_now")}
         </Button>
       </div>
     </div>

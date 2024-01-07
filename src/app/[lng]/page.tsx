@@ -173,6 +173,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
           scrollToGallery={scrollToGallery}
           scrollToNearby={scrollToNearby}
           onBookNow={showDrawer}
+          t={t}
         />
       </div>
 
