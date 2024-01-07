@@ -29,7 +29,9 @@ export default function AdditionalServiceCard( information: {serviceName: string
                         {/* THB 200 */}
                     </p>
                     <Button
-                        style={{ backgroundColor: 'white', borderRadius: '8px' }}
+                        type="primary"
+                        size='small'
+                        // style={{ backgroundColor: 'white', borderRadius: '8px' }}
                         onClick={handleBookNowClick}
                     >
                         {isAdded ? 'Remove' : 'Add'}

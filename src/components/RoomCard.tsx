@@ -49,8 +49,9 @@ export default function RoomCard( information: {roomName: string, maxGuest: numb
             Price: {information.roomPrice} THB
           </text>
           <Button
+            type="primary"
+            size='small'
             className='float-right'
-            style={{ marginLeft: '3.125vw', backgroundColor: 'white', borderRadius: '8px' }}
             onClick={handleBookNowClick}
           >
             Book Now
