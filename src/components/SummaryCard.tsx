@@ -194,7 +194,7 @@ export default function SummaryCard({
       </p>
 
       <div className="flex justify-center items-center \">
-        {page === "summary-booking-detail" ? (
+        {page === "search-result" ? (
           <Link href={"/reservation-and-guest-detail"}>
             <Button style={{ background: "#2A4D69", color: "white" }}>
               <p>Check Out</p>
