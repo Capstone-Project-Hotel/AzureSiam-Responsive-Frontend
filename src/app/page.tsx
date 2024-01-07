@@ -3,6 +3,7 @@ import LandingTopbar from '@/components/LandingTopbar'
 import Topbar from '@/components/Topbar'
 import Footer from '@/components/Footer'
 import RoomCard from '@/components/RoomCard'
+import AdditionalServiceCard from '@/components/AdditionalServiceCard'
 import { mock } from 'node:test'
 
 const mockRoomInformation ={
@@ -51,6 +52,9 @@ export default function Home() {
           </a>
         </div>
       </div> */}
+      <div>
+        <AdditionalServiceCard/>
+      </div>
 
       
 

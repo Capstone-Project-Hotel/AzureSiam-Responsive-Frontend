@@ -37,7 +37,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="flex flex-row mt-[2vw] items-center justify-center">
+        <div className="flex flex-row mt-[1.5vw] items-center justify-center">
           <img src={"https://via.placeholder.com/800x300"} alt="Google Map Mock" className="w-[55vw] h-[19vw]" />
         </div>
       </div>
