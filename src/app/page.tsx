@@ -53,7 +53,9 @@ export default function Home() {
         </div>
       </div> */}
       <div>
-        <AdditionalServiceCard/>
+        <AdditionalServiceCard 
+        serviceName="Transportation [Package]" unit="1 Meal / Day / Person" price={200}
+        />
       </div>
 
       
