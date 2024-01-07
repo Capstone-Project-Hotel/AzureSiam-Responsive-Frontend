@@ -17,6 +17,7 @@ import dynamic from "next/dynamic";
 import Topbar from "@/components/Topbar";
 import SummaryCard from "@/components/SummaryCard";
 import Footer from "@/components/Footer";
+import AdditionalServiceCard from "@/components/AdditionalServiceCard";
 
 const PhoneInput = dynamic(() => import("react-phone-number-input"), {
   ssr: false,
@@ -196,6 +197,18 @@ const ReservationAndGuestDetail: React.FC = () => {
               <div className="text-h2 mobile:text-h2-mobile font-bold">
                 Additional Services
               </div>
+              <AdditionalServiceCard
+                serviceName="Transportation [Package]"
+                unit="1 Meal / Day / Person"
+                price={200}
+                serviceImage="https://via.placeholder.com/240x150"
+              />
+              <AdditionalServiceCard
+                serviceName="Transportation [Package]"
+                unit="1 Meal / Day / Person"
+                price={200}
+                serviceImage="https://via.placeholder.com/240x150"
+              />
             </div>
 
             {/* Guest Detail Container */}

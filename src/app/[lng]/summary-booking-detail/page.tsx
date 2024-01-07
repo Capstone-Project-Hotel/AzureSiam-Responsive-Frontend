@@ -67,7 +67,7 @@ const BookingConfirmation: React.FC = () => {
     // Page Container
     <div>
       <div className="z-50 fixed top-0">
-        <Topbar />
+        <Topbar lng={undefined} />
       </div>
       <div className="flex justify-center mt-20">
         {/* Main Container */}

@@ -29,7 +29,7 @@ export default function RoomCard(information: {
       ...bookingDetail,
       [`${roomType}RoomNumber`]: 1,
     };
-
+// disable
     console.log(updatedBookingDetail)
   
     // Set the updated bookingDetail
@@ -75,11 +75,7 @@ export default function RoomCard(information: {
           </text>
           <Button
             className="float-right"
-            style={{
-              marginLeft: "3.125vw",
-              backgroundColor: "white",
-              borderRadius: "8px",
-            }}
+  type="primary"
             onClick={() => handleBookNowClick(information.roomType)}
           >
             Book Now

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import HistoryCard from "@/components/HistoryCard";
 import { addDays, format } from "date-fns";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import OtherCard from "@/components/OtherCard";
 import dynamic from "next/dynamic";
 import { Card, Carousel, Input, Select } from "antd";
@@ -56,79 +56,10 @@ const ContentStyle = styled.div<{ src: string }>`
   }
 `;
 
-import { languages } from "../i18n/settings";
 import { useTranslation } from "../i18n/client";
-import { useRouter } from "next/navigation";
-import useStore from "@/hooks/useStore";
-
-import axios from "axios";
 
 const Home = ({ params: { lng } }: { params: { lng: any } }) => {
-  // i18n
   const { t } = useTranslation(lng);
-  const router = useRouter();
-  const options = languages
-    .filter((l: any) => lng !== l)
-    .map((l: any) => {
-      return { value: l, label: l };
-    });
-  const handleIntlChange = (value: string) => {
-    const currentPath = window.location.pathname;
-    router.push(`/${value}/${currentPath.slice(4)}`);
-  };
-
-  // Exchange Rate
-  const { exchangeRate, setExchangeRate, currency, setCurrency } = useStore();
-  const listquotes = [
-    "SGD",
-    "MYR",
-    "EUR",
-    "USD",
-    "AUD",
-    "JPY",
-    "CNH",
-    "HKD",
-    "CAD",
-    "INR",
-    "DKK",
-    "GBP",
-    "RUB",
-    "NZD",
-    "MXN",
-    "IDR",
-    "TWD",
-    "THB",
-    "VND",
-  ].map((l: any) => {
-    return { value: l, label: l };
-  });
-  const handleExChange = async (value: string) => {
-    try {
-      if (value && value !== "THB") {
-        const response = await axios.get(
-          "https://currency-exchange.p.rapidapi.com/exchange",
-          {
-            params: {
-              from: "THB",
-              to: value,
-            },
-            headers: {
-              "X-RapidAPI-Key":
-                "32978adf6emsh766e865f3b81f21p11aafajsnb354410acc8c",
-              "X-RapidAPI-Host": "currency-exchange.p.rapidapi.com",
-            },
-          }
-        );
-        setCurrency(value);
-        setExchangeRate(response.data);
-      } else {
-        setCurrency("THB");
-        setExchangeRate(1);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   const settings = {
     dots: true,
@@ -166,38 +97,87 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
     setOpen(false);
   };
 
+  const roomRef = useRef<null | HTMLDivElement>(null);
+  const scrollToRoom = () => {
+    const barHeight = "91px";
+    if (roomRef.current) roomRef.current.style.scrollMargin = barHeight;
+    roomRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  };
+  const facilitiesRef = useRef<null | HTMLDivElement>(null);
+  const scrollToFacilities = () => {
+    const barHeight = "91px";
+    if (facilitiesRef.current)
+      facilitiesRef.current.style.scrollMargin = barHeight;
+    facilitiesRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  };
+  const promotionsRef = useRef<null | HTMLDivElement>(null);
+  const scrollToPromotions = () => {
+    const barHeight = "91px";
+    if (promotionsRef.current)
+      promotionsRef.current.style.scrollMargin = barHeight;
+    promotionsRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  };
+  const activityRef = useRef<null | HTMLDivElement>(null);
+  const scrollToActivity = () => {
+    const barHeight = "91px";
+    if (activityRef.current) activityRef.current.style.scrollMargin = barHeight;
+    activityRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  };
+  const galleryRef = useRef<null | HTMLDivElement>(null);
+  const scrollToGallery = () => {
+    const barHeight = "91px";
+    if (galleryRef.current) galleryRef.current.style.scrollMargin = barHeight;
+    galleryRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  };
+  const nearbyRef = useRef<null | HTMLDivElement>(null);
+  const scrollToNearby = () => {
+    const barHeight = "91px";
+    if (nearbyRef.current) nearbyRef.current.style.scrollMargin = barHeight;
+    nearbyRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  };
+
   return (
     // Page Container
     <div>
-      <div className="z-50 fixed top-0">{/* <LandingTopbar /> */}</div>
-
-      {/* i18n */}
-      <div className="flex justify-center p-5 gap-5 items-center">
-        <h1>{t("title")}</h1>
-        <Select
-          defaultValue={lng}
-          style={{ width: 120 }}
-          options={options}
-          onChange={handleIntlChange}
+      <div className="z-50 fixed top-0">
+        <LandingTopbar
+          lng={lng}
+          scrollToRoom={scrollToRoom}
+          scrollToFacilities={scrollToFacilities}
+          scrollToPromotions={scrollToPromotions}
+          scrollToActivity={scrollToActivity}
+          scrollToGallery={scrollToGallery}
+          scrollToNearby={scrollToNearby}
         />
-      </div>
-
-      {/* Exchange Rate */}
-      <div className="flex justify-center p-5 gap-5 items-center">
-        <div>currency : {currency}</div>
-        <div>exchange-rate : {exchangeRate}</div>
-        <div>
-          <Select
-            defaultValue={currency}
-            style={{ width: 120 }}
-            options={listquotes}
-            onChange={handleExChange}
-          />
-        </div>
       </div>
 
       {/* Drawer */}
       <Drawer
+        title={t("booking_detail")}
         title={t("booking_detail")}
         placement="right"
         onClose={onClose}
@@ -296,7 +276,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
 
       <div className="flex justify-center p-0 m-0 mt-[86px]">
         {/* Main Container */}
-        <div className="w-[1440px] mobile:w-full flex flex-col gap-20 mobile:gap-10 items-center pb-20">
+        <div className="w-[1440px] mobile:w-full flex flex-col gap-10 mobile:gap-10 items-center pb-20">
           {/* Hotel Name Container */}
           <div
             style={{
@@ -322,6 +302,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
           </div>
 
           {/* Room Type Container */}
+          <span ref={roomRef} />
           <div className="w-full px-[80px] mobile:px-[25px]">
             <div className="text-h1 mobile:text-h2-mobile font-bold">
               {t("room_type")}
@@ -427,6 +408,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
               >
                 <div>{t("dlx_description")}</div>
                 <div>
+                  <div className="font-bold mb-1">{t("amenities")}</div>
                   <div className="font-bold mb-1">{t("amenities")}</div>
                   <div>
                     <ul className="leading-8">
@@ -769,6 +751,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
           </div>
 
           {/* Spa Container */}
+          <div ref={facilitiesRef} />
           <div className="w-full">
             <StyledCard
               className="border-r-0"
@@ -799,6 +782,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
           </div>
 
           {/* Promotions Container */}
+          <div ref={promotionsRef} />
           <div id="con" className="w-full px-[80px] mobile:px-[25px]">
             <div className="text-h1 mobile:text-h2-mobile font-bold">
               {t("promotions")}
@@ -827,6 +811,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
           </div>
 
           {/* Activity Schedule   Container */}
+          <div ref={activityRef} />
           <div id="con" className="w-full px-[80px] mobile:px-[25px]">
             <div className="text-h1 mobile:text-h2-mobile font-bold">
               {t("activity_schedule")}
@@ -855,6 +840,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
           </div>
 
           {/* Gallery Container */}
+          <div ref={galleryRef} />
           <div className="w-full px-[80px] mobile:px-[25px]">
             <div className="text-h1 mobile:text-h2-mobile font-bold mb-5">
               {t("gallery")}
@@ -878,6 +864,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
           </div>
 
           {/* Nearby Attraction Container */}
+          <div ref={nearbyRef} />
           <div id="con" className="w-full px-[80px] mobile:px-[25px]">
             <div className="text-h1 mobile:text-h2-mobile font-bold">
               {t("nearby_attraction")}
