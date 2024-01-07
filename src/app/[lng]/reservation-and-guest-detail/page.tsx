@@ -408,7 +408,7 @@ const ReservationAndGuestDetail: React.FC = () => {
           {/* Right Container */}
           <div className="w-[509px] mobile:w-[330px] fixed right-[200px] top-[150px]">
           <SummaryCard
-          page="search-result"
+          page="reservation-and-guest-detail"
           startDate={bookingDetail.startDate}
           endDate={bookingDetail.endDate}
           adults={bookingDetail.adultNumber}

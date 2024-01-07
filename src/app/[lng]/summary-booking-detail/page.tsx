@@ -169,7 +169,7 @@ const BookingConfirmation: React.FC = () => {
           {/* Right Container */}
           <div className="w-[509px] mobile:w-[330px]">
           <SummaryCard
-          page="search-result"
+          page="summary-booking-detail"
           startDate={bookingDetail.startDate}
           endDate={bookingDetail.endDate}
           adults={bookingDetail.adultNumber}

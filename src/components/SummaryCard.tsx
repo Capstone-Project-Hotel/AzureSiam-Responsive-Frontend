@@ -45,11 +45,10 @@ export default function SummaryCard({
   const dayDuration = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
 
   // calculate price here
-  
-  const subTotal = 2000*bookingDetail.standardRoomNumber
-  const serviceCharge = subTotal/10;
-  const taxesAndFees = (subTotal/100)*7
 
+  const subTotal = 2000 * bookingDetail.standardRoomNumber;
+  const serviceCharge = subTotal / 10;
+  const taxesAndFees = (subTotal / 100) * 7;
 
   return (
     <div className="border-solid border-[2px] border-gray-200 rounded-md w-[400px] h-[450px] p-5 bg-background">
@@ -79,22 +78,22 @@ export default function SummaryCard({
         {page === "search-result" ? (
           <div className="">
             <p className="text-body text-slate-400">Edit room(s)</p>
-      
 
-                {bookingDetail.standardRoomNumber !== 0 ? (
-                  <div className="flex justify-between">
-                    <p className="text-h5 font-bold">Standard Room</p>
-                    <div>
-                      <MinusCircleFilled />
-                      <InputNumber defaultValue={bookingDetail.standardRoomNumber} />
-                      <PlusCircleFilled />
-                    </div>
-                  </div>
-                ) : null}
-                {/* <p className="text-h5 font-bold">Standard Room</p> */}
-                {/* <DeleteForeverIcon /> */}
-      
-          
+            {bookingDetail.standardRoomNumber !== 0 ? (
+              <div className="flex justify-between">
+                <p className="text-h5 font-bold">Standard Room</p>
+                <div>
+                  <MinusCircleFilled />
+                  <InputNumber
+                    defaultValue={bookingDetail.standardRoomNumber}
+                  />
+                  <PlusCircleFilled />
+                </div>
+              </div>
+            ) : null}
+            {/* <p className="text-h5 font-bold">Standard Room</p> */}
+            {/* <DeleteForeverIcon /> */}
+
             <div className="flex justify-between">
               {}
               <p className="text-body">Standard Room 1 room(s)</p>
@@ -146,7 +145,7 @@ export default function SummaryCard({
         <p className="text-body text-slate-400">THB {taxesAndFees}</p>
       </div>
       <p className="text-center text-h2 font-bold mt-[50px]">
-        THB {subTotal+serviceCharge+taxesAndFees} Total
+        THB {subTotal + serviceCharge + taxesAndFees} Total
       </p>
 
       <div className="flex justify-center items-center \">
@@ -154,6 +153,12 @@ export default function SummaryCard({
           <Link href={"/booking-confirmation"}>
             <Button style={{ background: "#2A4D69", color: "white" }}>
               <p>Check Out</p>
+            </Button>
+          </Link>
+        ) : page === "reservation-and-guest-detail" ? (
+          <Link href={"/summary-booking-detail"}>
+            <Button style={{ background: "#2A4D69", color: "white" }}>
+              <p>Confirm</p>
             </Button>
           </Link>
         ) : (
