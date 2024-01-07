@@ -22,14 +22,13 @@ export default async function Home({
           className="text-h1 mt-[1vw] mb-[1vw] w-[100vw] mobile:text-h1-mobile"
           style={{ color: "#2A4D69" }}
         >
-          Contact Us
+          {t("contact_us_label")}
         </p>
         <p className="text-h3 mb-[1vw] w-[100vw] mobile:text-h3-mobile">
-          AzureSiam Hotel
+          {t("hotel")}
         </p>
         <p className="text-h4 w-[100vw] mobile:text-h4-mobile">
-          37/13 Soi Leabklongprapa, Cheangwattana Rd, Pakkred Laksi, Don Muang /
-          Impact, Bangkok, Thailand 11120
+          {t("hotel_address")}
         </p>
         <div className="flex flex-row items-center justify-center w-[100vw] mt-[1vw]">
           <div className="flex flex-row items-center mr-[2vw]">
