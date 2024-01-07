@@ -12,6 +12,7 @@ dayjs().format();
 
 import useStore from "@/hooks/useStore";
 import { useEffect, useState } from "react";
+import { useTranslation } from "@/app/i18n/client";
 
 const mockRoomInformation = {
   roomName: "Standard Room",
@@ -31,7 +32,8 @@ const mockRoomInformation = {
     "Unwind in a room that balances simplicity with functionality. Our Standard Studio Rooms are equipped with all the essentials for a comfortable stay, including a plush bed that promises a restful night's sleep. The sleek furnishings and efficient layout maximize space, providing a relaxing environment for you to recharge after a day of exploration or work.",
 };
 
-export default function SearchResultPage() {
+export default function SearchResultPage({ params: { lng } }: { params: { lng: any } })  {
+  const { t } = useTranslation(lng);
   const params = useParams();
 
   const { bookingDetail, setBookingDetail } = useStore();
@@ -88,7 +90,7 @@ export default function SearchResultPage() {
   return (
     <div>
       <div className="z-50 fixed top-0">
-        <Topbar />
+        <Topbar lng={undefined} />
       </div>
       <div className="mt-[10vh]">
         <Filter
@@ -170,7 +172,7 @@ export default function SearchResultPage() {
       </div>
 
       <div className="mt-[600px]">
-        <Footer />
+        <Footer t={ t } />
       </div>
     </div>
   );

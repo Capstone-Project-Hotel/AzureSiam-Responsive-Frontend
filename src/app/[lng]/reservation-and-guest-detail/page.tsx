@@ -18,6 +18,7 @@ import Topbar from "@/components/Topbar";
 import SummaryCard from "@/components/SummaryCard";
 import Footer from "@/components/Footer";
 import AdditionalServiceCard from "@/components/AdditionalServiceCard";
+import { useTranslation } from "@/app/i18n/client";
 
 const PhoneInput = dynamic(() => import("react-phone-number-input"), {
   ssr: false,
@@ -77,7 +78,14 @@ const cardTypeToCardImg = {
     "https://swissuplabs.com/wordpress/wp-content/uploads/2016/04/free-icons-discover.png",
 };
 
-const ReservationAndGuestDetail: React.FC = () => {
+interface ReservationAndGuestDetailProps {
+  params: { lng: any};
+} 
+
+const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
+  params: { lng }
+})  => {
+  const { t } = useTranslation(lng);
   const {
     guests,
     setGuests,
@@ -173,7 +181,7 @@ const ReservationAndGuestDetail: React.FC = () => {
     // Page Container
     <div>
       <div className="z-30 fixed top-0">
-        <Topbar />
+        <Topbar lng={ lng } />
       </div>
       <div className="flex justify-start mt-20">
         {/* Main Container */}
@@ -195,18 +203,20 @@ const ReservationAndGuestDetail: React.FC = () => {
               <div className="text-h2 mobile:text-h2-mobile font-bold">
                 Additional Services
               </div>
-              <AdditionalServiceCard
-                serviceName="Transportation [Package]"
-                unit="1 Meal / Day / Person"
-                price={200}
-                serviceImage="https://via.placeholder.com/240x150"
-              />
-              <AdditionalServiceCard
-                serviceName="Transportation [Package]"
-                unit="1 Meal / Day / Person"
-                price={200}
-                serviceImage="https://via.placeholder.com/240x150"
-              />
+              <div className="flex gap-5">
+                <AdditionalServiceCard
+                  serviceName="Transportation [Package]"
+                  unit="1 Meal / Day / Person"
+                  price={200}
+                  serviceImage="https://via.placeholder.com/240x150"
+                />
+                <AdditionalServiceCard
+                  serviceName="Transportation [Package]"
+                  unit="1 Meal / Day / Person"
+                  price={200}
+                  serviceImage="https://via.placeholder.com/240x150"
+                />
+              </div>
             </div>
 
             {/* Guest Detail Container */}
@@ -428,7 +438,7 @@ const ReservationAndGuestDetail: React.FC = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer t={t } />
     </div>
   );
 };
@@ -593,7 +603,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
               onChange={(value) => {
                 if (value) handleInputChange(index, value, "phoneNumber");
               }}
-              className="ant-input css-dev-only-do-not-override-6j9yrn w-full css-dev-only-do-not-override-6j9yrn border-2 rounded"
+              className="ant-input css-dev-only-do-not-override-6j9yrn w-full css-dev-only-do-not-override-6j9yrn"
             />
             {/* <Input
               className="w-full h-[32px]"
