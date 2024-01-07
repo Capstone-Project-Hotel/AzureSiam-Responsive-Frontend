@@ -58,16 +58,18 @@ export default function SearchResultPage() {
 
   useEffect(() => {
     const updatedBookingDetail: BookingDetail = {
-      startDate: startDate,
-      endDate: endDate,
-      adultNumber: parseInt(adults),
-      childrenNumber: parseInt(childrens),
-      codePromotion: codePromo,
-      standardRoomNumber: 0,
-      deluxeRoomNumber: 0,
-      familyRoomNumber: 0,
-      executiveRoomNumber: 0,
-      juniorRoomNumber: 0,
+        startDate: startDate,
+        endDate: endDate,
+        adultNumber: parseInt(adults),
+        childrenNumber: parseInt(childrens),
+        codePromotion: codePromo,
+        standardRoomNumber: 0,
+        deluxeRoomNumber: 0,
+        familyRoomNumber: 0,
+        executiveRoomNumber: 0,
+        juniorRoomNumber: 0,
+        packageOne: false,
+        packageTwo: false,
     };
     setBookingDetail(updatedBookingDetail);
 

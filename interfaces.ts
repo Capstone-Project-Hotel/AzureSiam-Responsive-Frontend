@@ -32,4 +32,6 @@ interface Guest {
     familyRoomNumber: number;
     executiveRoomNumber: number;
     juniorRoomNumber: number;
+    packageOne: boolean;
+    packageTwo: boolean
   }
