@@ -52,6 +52,14 @@ button,
   }
 }
 
+.ant-btn-primary {
+  background-color: #2a4d69;
+  @media screen and (max-width: 394px) {
+    font-size: 8px !important;
+    height: 24px !important;
+  }
+}
+
 .ant-modal-title {
   font-size: 24px !important;
   font-weight: bold !important;

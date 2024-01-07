@@ -405,7 +405,7 @@ const ReservationAndGuestDetail: React.FC = () => {
 
           {/* Right Container */}
           <div className="w-[509px] mobile:w-[330px] fixed right-[200px] top-[150px]">
-            <SummaryCard page="reservation-and-guest-detail" />
+            {/* <SummaryCard page="reservation-and-guest-detail" /> */}
             {/* <button
             onClick={() => alert(isDisabledConfirm || !isCheckedPDPA)}
             disabled={isDisabledConfirm || !isCheckedPDPA}
