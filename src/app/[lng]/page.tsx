@@ -70,7 +70,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
   const options = languages
     .filter((l: any) => lng !== l)
     .map((l: any) => {
-      return { value: l, label: l };
+      return { value: l, label: l == "th" ? "Thai" : "English" };
     });
   const handleIntlChange = (value: string) => {
     const currentPath = window.location.pathname;
@@ -171,30 +171,15 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
     <div>
       <div className="z-50 fixed top-0">{/* <LandingTopbar /> */}</div>
 
-      {/* i18n */}
-      <div className="flex justify-center p-5 gap-5 items-center">
-        <h1>{t("title")}</h1>
-        <Select
-          defaultValue={lng}
-          style={{ width: 120 }}
-          options={options}
-          onChange={handleIntlChange}
-        />
-      </div>
-
-      {/* Exchange Rate */}
-      <div className="flex justify-center p-5 gap-5 items-center">
-        <div>currency : {currency}</div>
-        <div>exchange-rate : {exchangeRate}</div>
-        <div>
-          <Select
-            defaultValue={currency}
-            style={{ width: 120 }}
-            options={listquotes}
-            onChange={handleExChange}
-          />
-        </div>
-      </div>
+      {/* Top Bar */}
+      <Topbar
+        lng={lng == "th" ? "Thai" : "English"}
+        options={options}
+        handleIntlChange={handleIntlChange}
+        currency={currency}
+        listquotes={listquotes}
+        handleExChange={handleExChange}
+      />
 
       {/* Drawer */}
       <Drawer
