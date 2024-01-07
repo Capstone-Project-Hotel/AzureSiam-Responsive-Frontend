@@ -54,7 +54,7 @@ export default function Home() {
       </div> */}
       <div>
         <AdditionalServiceCard 
-        serviceName="Transportation [Package]" unit="1 Meal / Day / Person" price={200}
+        serviceName="Transportation [Package]" unit="1 Meal / Day / Person" price={200} serviceImage="https://via.placeholder.com/240x150"
         />
       </div>
 

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Button } from 'antd';
 
-export default function AdditionalServiceCard( information: {serviceName: string, unit: string, price: number}) {
+export default function AdditionalServiceCard( information: {serviceName: string, unit: string, price: number, serviceImage: string}) {
     const [isAdded, setIsAdded] = useState(false);
 
     const handleBookNowClick = () => {
@@ -13,7 +13,7 @@ export default function AdditionalServiceCard( information: {serviceName: string
 
     return (
         <div className='flex flex-col w-[16vw] h-auto outline outline-1 outline-gray-450'>
-            <img src={"https://via.placeholder.com/240x150"} className="w-full" />
+            <img src={information.serviceImage} className="w-full" />
             <div className='flex flex-col w-full h-auto p-[1vw]'>
                 <p className='text-h5 mobile:text-h5-mobile'>
                     {information.serviceName}
@@ -31,7 +31,6 @@ export default function AdditionalServiceCard( information: {serviceName: string
                     <Button
                         type="primary"
                         size='small'
-                        // style={{ backgroundColor: 'white', borderRadius: '8px' }}
                         onClick={handleBookNowClick}
                     >
                         {isAdded ? 'Remove' : 'Add'}
