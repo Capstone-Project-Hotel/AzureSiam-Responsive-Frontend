@@ -3,7 +3,7 @@
 import Image from "next/image";
 import HistoryCard from "@/components/HistoryCard";
 import { addDays, format } from "date-fns";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import OtherCard from "@/components/OtherCard";
 import dynamic from "next/dynamic";
 import { Card, Carousel, Input, Select } from "antd";
@@ -97,13 +97,22 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
     setOpen(false);
   };
 
+  const roomRef = useRef<null | HTMLDivElement>(null);
+  const scrollToRoom = () => {
+    roomRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  };
+
   return (
     // Page Container
     <div>
       <div className="z-50 fixed top-0">{/* <LandingTopbar /> */}</div>
 
       {/* Top Bar */}
-      <LandingTopbar lng={lng} />
+      <LandingTopbar lng={lng} scrollToRoom={scrollToRoom} />
 
       {/* Drawer */}
       <Drawer
@@ -229,6 +238,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
           </div>
 
           {/* Room Type Container */}
+          <div ref={roomRef} />
           <div className="w-full px-[80px] mobile:px-[25px]">
             <div className="text-h1 mobile:text-h2-mobile font-bold">
               {t("room_type")}

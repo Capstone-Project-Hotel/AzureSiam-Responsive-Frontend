@@ -12,15 +12,14 @@ import axios from "axios";
 // const { Link } = Anchor;
 
 interface LandingTopbarProps {
-  lng: string;
-  options: any[];
-  handleIntlChange: (value: string) => void;
-  currency: string;
-  listquotes: any[];
-  handleExChange: (value: string) => void;
+  lng: any;
+  scrollToRoom: () => void;
 }
 
-export default function LandingTopbar({ lng }: { lng: any }) {
+export default function LandingTopbar({
+  lng,
+  scrollToRoom,
+}: LandingTopbarProps) {
   // i18n
   const router = useRouter();
   const options = languages
@@ -122,7 +121,12 @@ export default function LandingTopbar({ lng }: { lng: any }) {
         </Link>
       </div>
       <div className="flex flex-row  flex-wrap items-center">
-        <p className="text-h5 ml-[5vw] font-sans mobile:text-h5-mobile">Room</p>
+        <p
+          className="text-h5 ml-[5vw] font-sans mobile:text-h5-mobile"
+          onClick={scrollToRoom}
+        >
+          Room
+        </p>
         <p className="text-h5 ml-[5vw] font-sans mobile:text-h5-mobile">
           Facilities & Services
         </p>
