@@ -14,11 +14,21 @@ import axios from "axios";
 interface LandingTopbarProps {
   lng: any;
   scrollToRoom: () => void;
+  scrollToFacilities: () => void;
+  scrollToPromotions: () => void;
+  scrollToActivity: () => void;
+  scrollToGallery: () => void;
+  scrollToNearby: () => void;
 }
 
 export default function LandingTopbar({
   lng,
   scrollToRoom,
+  scrollToFacilities,
+  scrollToPromotions,
+  scrollToActivity,
+  scrollToGallery,
+  scrollToNearby,
 }: LandingTopbarProps) {
   // i18n
   const router = useRouter();
@@ -120,26 +130,43 @@ export default function LandingTopbar({
           AzureSiam
         </Link>
       </div>
-      <div className="flex flex-row  flex-wrap items-center">
-        <p
-          className="text-h5 ml-[5vw] font-sans mobile:text-h5-mobile"
+      <div className="flex flex-row flex-wrap items-center justify-start gap-20">
+        <div
+          className="text-h5 font-sans mobile:text-h5-mobile cursor-pointer"
           onClick={scrollToRoom}
         >
-          Room
-        </p>
-        <p className="text-h5 ml-[5vw] font-sans mobile:text-h5-mobile">
-          Facilities & Services
-        </p>
-        <p className="text-h5 ml-[5vw] font-sans mobile:text-h5-mobile">
-          Activities
-        </p>
-        <p className="text-h5 ml-[5vw] font-sans mobile:text-h5-mobile">
+          Room Type
+        </div>
+        <div
+          className="text-h5 font-sans mobile:text-h5-mobile cursor-pointer"
+          onClick={scrollToFacilities}
+        >
+          Facilities
+        </div>
+        <div
+          className="text-h5 font-sans mobile:text-h5-mobile cursor-pointer"
+          onClick={scrollToPromotions}
+        >
+          Promotions
+        </div>
+        <div
+          className="text-h5 font-sans mobile:text-h5-mobile cursor-pointer"
+          onClick={scrollToActivity}
+        >
+          Activity Schedule
+        </div>
+        <div
+          className="text-h5 font-sans mobile:text-h5-mobile cursor-pointer"
+          onClick={scrollToGallery}
+        >
           Gallery
-        </p>
-        <p className="text-h5 ml-[5vw] font-sans mobile:text-h5-mobile">
-          Promotion
-        </p>
-
+        </div>
+        <div
+          className="text-h5 font-sans mobile:text-h5-mobile cursor-pointer"
+          onClick={scrollToNearby}
+        >
+          Nearby Attraction
+        </div>
         {/* TODO: anchor hilight remove */}
         {/* <div className="flex flex-row items-center">
             <Anchor 

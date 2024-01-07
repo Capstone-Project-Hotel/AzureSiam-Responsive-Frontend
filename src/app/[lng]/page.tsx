@@ -99,7 +99,61 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
 
   const roomRef = useRef<null | HTMLDivElement>(null);
   const scrollToRoom = () => {
+    const barHeight = "91px";
+    if (roomRef.current) roomRef.current.style.scrollMargin = barHeight;
     roomRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  };
+  const facilitiesRef = useRef<null | HTMLDivElement>(null);
+  const scrollToFacilities = () => {
+    const barHeight = "91px";
+    if (facilitiesRef.current)
+      facilitiesRef.current.style.scrollMargin = barHeight;
+    facilitiesRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  };
+  const promotionsRef = useRef<null | HTMLDivElement>(null);
+  const scrollToPromotions = () => {
+    const barHeight = "91px";
+    if (promotionsRef.current)
+      promotionsRef.current.style.scrollMargin = barHeight;
+    promotionsRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  };
+  const activityRef = useRef<null | HTMLDivElement>(null);
+  const scrollToActivity = () => {
+    const barHeight = "91px";
+    if (activityRef.current) activityRef.current.style.scrollMargin = barHeight;
+    activityRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  };
+  const galleryRef = useRef<null | HTMLDivElement>(null);
+  const scrollToGallery = () => {
+    const barHeight = "91px";
+    if (galleryRef.current) galleryRef.current.style.scrollMargin = barHeight;
+    galleryRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  };
+  const nearbyRef = useRef<null | HTMLDivElement>(null);
+  const scrollToNearby = () => {
+    const barHeight = "91px";
+    if (nearbyRef.current) nearbyRef.current.style.scrollMargin = barHeight;
+    nearbyRef.current?.scrollIntoView({
       behavior: "smooth",
       block: "start",
       inline: "nearest",
@@ -110,7 +164,15 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
     // Page Container
     <div>
       <div className="z-50 fixed top-0">
-        <LandingTopbar lng={lng} scrollToRoom={scrollToRoom} />
+        <LandingTopbar
+          lng={lng}
+          scrollToRoom={scrollToRoom}
+          scrollToFacilities={scrollToFacilities}
+          scrollToPromotions={scrollToPromotions}
+          scrollToActivity={scrollToActivity}
+          scrollToGallery={scrollToGallery}
+          scrollToNearby={scrollToNearby}
+        />
       </div>
 
       {/* Drawer */}
@@ -211,7 +273,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
 
       <div className="flex justify-center p-0 m-0 mt-[86px]">
         {/* Main Container */}
-        <div className="w-[1440px] mobile:w-full flex flex-col gap-20 mobile:gap-10 items-center pb-20">
+        <div className="w-[1440px] mobile:w-full flex flex-col gap-10 mobile:gap-10 items-center pb-20">
           {/* Hotel Name Container */}
           <div
             style={{
@@ -237,7 +299,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
           </div>
 
           {/* Room Type Container */}
-          <div ref={roomRef} />
+          <span ref={roomRef} />
           <div className="w-full px-[80px] mobile:px-[25px]">
             <div className="text-h1 mobile:text-h2-mobile font-bold">
               {t("room_type")}
@@ -685,6 +747,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
           </div>
 
           {/* Spa Container */}
+          <div ref={facilitiesRef} />
           <div className="w-full">
             <StyledCard
               className="border-r-0"
@@ -715,6 +778,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
           </div>
 
           {/* Promotions Container */}
+          <div ref={promotionsRef} />
           <div id="con" className="w-full px-[80px] mobile:px-[25px]">
             <div className="text-h1 mobile:text-h2-mobile font-bold">
               {t("promotions")}
@@ -743,6 +807,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
           </div>
 
           {/* Activity Schedule   Container */}
+          <div ref={activityRef} />
           <div id="con" className="w-full px-[80px] mobile:px-[25px]">
             <div className="text-h1 mobile:text-h2-mobile font-bold">
               {t("activity_schedule")}
@@ -771,6 +836,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
           </div>
 
           {/* Gallery Container */}
+          <div ref={galleryRef} />
           <div className="w-full px-[80px] mobile:px-[25px]">
             <div className="text-h1 mobile:text-h2-mobile font-bold mb-5">
               {t("gallery")}
@@ -794,6 +860,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
           </div>
 
           {/* Nearby Attraction Container */}
+          <div ref={nearbyRef} />
           <div id="con" className="w-full px-[80px] mobile:px-[25px]">
             <div className="text-h1 mobile:text-h2-mobile font-bold">
               {t("nearby_attraction")}
