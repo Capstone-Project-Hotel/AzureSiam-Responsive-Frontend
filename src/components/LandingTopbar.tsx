@@ -37,7 +37,7 @@ export default function LandingTopbar() {
         <BlockOutlined style={{ fontSize: '5vw', color: 'white' }} />
         <Link href="/" className="text-h2 font-sans mobile:text-h2-mobile">AzureSiam</Link>
       </div>
-      <div className="flex flex-row items-center">
+      <div className="flex flex-row  flex-wrap items-center">
         <p className="text-h5 ml-[5vw] font-sans mobile:text-h5-mobile">Room</p>
         <p className="text-h5 ml-[5vw] font-sans mobile:text-h5-mobile">Facilities & Services</p>
         <p className="text-h5 ml-[5vw] font-sans mobile:text-h5-mobile">Activities</p>
