@@ -178,7 +178,6 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
       {/* Drawer */}
       <Drawer
         title={t("booking_detail")}
-        title={t("booking_detail")}
         placement="right"
         onClose={onClose}
         open={open}

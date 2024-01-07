@@ -13,12 +13,12 @@ dayjs().format();
 import useStore from "@/hooks/useStore";
 import { useEffect, useState } from "react";
 
-const mockRoomInformation = {
+const mockStandardRoomInformation = {
   roomName: "Standard Room",
-  maxGuest: 2,
-  bedType: "King",
-  roomSize: 30,
-  roomPrice: 2000,
+  maxGuest: 1,
+  bedType: "Single Bed",
+  roomSize: 12,
+  roomPrice: 1500,
   roomImage: "https://via.placeholder.com/300",
   roomAmenities: [
     "TV",
@@ -31,6 +31,25 @@ const mockRoomInformation = {
     "Unwind in a room that balances simplicity with functionality. Our Standard Studio Rooms are equipped with all the essentials for a comfortable stay, including a plush bed that promises a restful night's sleep. The sleek furnishings and efficient layout maximize space, providing a relaxing environment for you to recharge after a day of exploration or work.",
 };
 
+const mockDeluxeRoomInformation = {
+  roomName: "Deluxe Room",
+  maxGuest: 2,
+  bedType: "Double Bed",
+  roomSize: 30,
+  roomPrice: 1800,
+  roomImage: "https://via.placeholder.com/300",
+  roomAmenities: [
+    "TV",
+    "Air Conditioner",
+    "Refrigerator",
+    "Hair Dryer",
+    "Water Heater",
+  ],
+  roomDetail:
+    "Unwind in a room that balances simplicity with functionality. Our Standard Studio Rooms are equipped with all the essentials for a comfortable stay, including a plush bed that promises a restful night's sleep. The sleek furnishings and efficient layout maximize space, providing a relaxing environment for you to recharge after a day of exploration or work.",
+};
+
+const mockRoomInformation = [mockStandardRoomInformation,mockDeluxeRoomInformation]
 export default function SearchResultPage() {
   const params = useParams();
 
@@ -83,12 +102,18 @@ export default function SearchResultPage() {
   console.log(dayjs(bookingDetail.startDate, "YYYY-MM-DD"));
   console.log(bookingDetail.adultNumber);
 
+  let reducedRate = 1 
+
+  if (codePromo==="valid001") {
+     reducedRate = 0.8
+  }
+
   // console.log(adults)
 
   return (
     <div>
       <div className="z-50 fixed top-0">
-        <Topbar />
+        <Topbar lng={undefined} />
       </div>
       <div className="mt-[10vh]">
         <Filter
@@ -113,11 +138,44 @@ export default function SearchResultPage() {
 
       <div className="flex flex-col space-y-10 mt-10 ml-10">
         <RoomCard
+          roomName={mockRoomInformation[0].roomName}
+          maxGuest={mockRoomInformation[0].maxGuest}
+          bedType={mockRoomInformation[0].bedType}
+          roomSize={mockRoomInformation[0].roomSize}
+          roomPrice={mockRoomInformation[0].roomPrice*reducedRate}
+          roomImage={mockRoomInformation[0].roomImage}
+          roomAmenities={mockRoomInformation[0].roomAmenities}
+          roomDetail={mockRoomInformation[0].roomDetail}
+          roomType={"standard"}
+        />
+        <RoomCard
+          roomName={mockRoomInformation[1].roomName}
+          maxGuest={mockRoomInformation[1].maxGuest}
+          bedType={mockRoomInformation[1].bedType}
+          roomSize={mockRoomInformation[1].roomSize}
+          roomPrice={mockRoomInformation[1].roomPrice*reducedRate}
+          roomImage={mockRoomInformation[1].roomImage}
+          roomAmenities={mockRoomInformation[1].roomAmenities}
+          roomDetail={mockRoomInformation[1].roomDetail}
+          roomType={"deluxe"}
+        />
+        {/* <RoomCard
           roomName={mockRoomInformation.roomName}
           maxGuest={mockRoomInformation.maxGuest}
           bedType={mockRoomInformation.bedType}
           roomSize={mockRoomInformation.roomSize}
-          roomPrice={mockRoomInformation.roomPrice}
+          roomPrice={mockRoomInformation.roomPrice*reducedRate}
+          roomImage={mockRoomInformation.roomImage}
+          roomAmenities={mockRoomInformation.roomAmenities}
+          roomDetail={mockRoomInformation.roomDetail}
+          roomType={"standard"}
+        />
+        <RoomCard
+          roomName={mockRoomInformation.roomName}
+          maxGuest={mockRoomInformation.maxGuest}
+          bedType={mockRoomInformation.bedType}
+          roomSize={mockRoomInformation.roomSize}
+          roomPrice={mockRoomInformation.roomPrice*reducedRate}
           roomImage={mockRoomInformation.roomImage}
           roomAmenities={mockRoomInformation.roomAmenities}
           roomDetail={mockRoomInformation.roomDetail}
@@ -133,40 +191,7 @@ export default function SearchResultPage() {
           roomAmenities={mockRoomInformation.roomAmenities}
           roomDetail={mockRoomInformation.roomDetail}
           roomType={"standard"}
-        />
-        <RoomCard
-          roomName={mockRoomInformation.roomName}
-          maxGuest={mockRoomInformation.maxGuest}
-          bedType={mockRoomInformation.bedType}
-          roomSize={mockRoomInformation.roomSize}
-          roomPrice={mockRoomInformation.roomPrice}
-          roomImage={mockRoomInformation.roomImage}
-          roomAmenities={mockRoomInformation.roomAmenities}
-          roomDetail={mockRoomInformation.roomDetail}
-          roomType={"standard"}
-        />
-        <RoomCard
-          roomName={mockRoomInformation.roomName}
-          maxGuest={mockRoomInformation.maxGuest}
-          bedType={mockRoomInformation.bedType}
-          roomSize={mockRoomInformation.roomSize}
-          roomPrice={mockRoomInformation.roomPrice}
-          roomImage={mockRoomInformation.roomImage}
-          roomAmenities={mockRoomInformation.roomAmenities}
-          roomDetail={mockRoomInformation.roomDetail}
-          roomType={"standard"}
-        />
-        <RoomCard
-          roomName={mockRoomInformation.roomName}
-          maxGuest={mockRoomInformation.maxGuest}
-          bedType={mockRoomInformation.bedType}
-          roomSize={mockRoomInformation.roomSize}
-          roomPrice={mockRoomInformation.roomPrice}
-          roomImage={mockRoomInformation.roomImage}
-          roomAmenities={mockRoomInformation.roomAmenities}
-          roomDetail={mockRoomInformation.roomDetail}
-          roomType={"standard"}
-        />
+        /> */}
       </div>
 
       <div className="mt-[600px]">

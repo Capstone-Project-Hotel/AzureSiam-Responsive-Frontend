@@ -12,8 +12,6 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { InputNumber, Button } from "antd";
 import Link from "next/link";
 
-import { useState } from "react";
-
 export default function SummaryCard({
   page,
   startDate,
@@ -46,9 +44,15 @@ export default function SummaryCard({
 
   // calculate price here
 
-  const subTotal = 2000 * bookingDetail.standardRoomNumber;
-  const serviceCharge = subTotal / 10;
-  const taxesAndFees = (subTotal / 100) * 7;
+  let reducedRate = 1;
+
+  if (codePromo === "valid001") {
+    reducedRate = 0.8;
+  }
+
+  const subTotal = 2000 * bookingDetail.standardRoomNumber * reducedRate;
+  const serviceCharge = (subTotal / 10) * reducedRate;
+  const taxesAndFees = (subTotal / 100) * 7 * reducedRate;
 
   return (
     <div className="border-solid border-[2px] border-gray-200 rounded-md w-[400px] h-[450px] p-5 bg-background">
@@ -80,34 +84,52 @@ export default function SummaryCard({
             <p className="text-body text-slate-400">Edit room(s)</p>
 
             {bookingDetail.standardRoomNumber !== 0 ? (
-              <div className="flex justify-between">
-                <p className="text-h5 font-bold">Standard Room</p>
-                <div>
-                  <MinusCircleFilled />
-                  <InputNumber
-                    defaultValue={bookingDetail.standardRoomNumber}
-                  />
-                  <PlusCircleFilled />
+              <div>
+                <div className="flex justify-between">
+                  <p className="text-h5 font-bold">Standard Room</p>
+                  <div>
+                    <MinusCircleFilled onClick={() => {
+                      let updatedStandardRoomNumber = bookingDetail.standardRoomNumber;
+                      if (bookingDetail.standardRoomNumber > 0) {
+                        updatedStandardRoomNumber -= 1;
+                      }
+                          const updatedBookingDetail = {
+                            ...bookingDetail,
+                            standardRoomNumber: updatedStandardRoomNumber,
+                          };
+                          setBookingDetail(updatedBookingDetail)
+                      }}/>
+                    <InputNumber
+                      value={bookingDetail.standardRoomNumber} 
+                    />
+                    <PlusCircleFilled onClick={() => {
+                      const updatedStandardRoomNumber = bookingDetail.standardRoomNumber+1
+                          const updatedBookingDetail = {
+                            ...bookingDetail,
+                            standardRoomNumber: updatedStandardRoomNumber,
+                          };
+                          setBookingDetail(updatedBookingDetail)
+                      }}/>
+                  </div>
+                </div>
+                <div className="flex justify-between">
+                  <p className="text-body">
+                    Standard Room {bookingDetail.standardRoomNumber} room(s)
+                  </p>
+                  <p className="text-body text-slate-400">
+                    THB{" "}
+                    {new Intl.NumberFormat("th-TH", {
+                      style: "currency",
+                      currency: "THB",
+                    }).format(
+                      bookingDetail.standardRoomNumber * 2000 * reducedRate
+                    )}
+                  </p>
                 </div>
               </div>
             ) : null}
-            {/* <p className="text-h5 font-bold">Standard Room</p> */}
-            {/* <DeleteForeverIcon /> */}
-
-            <div className="flex justify-between">
-              {}
-              <p className="text-body">Standard Room 1 room(s)</p>
-              <p className="text-body text-slate-400">THB {subTotal}</p>
-            </div>
           </div>
-        ) : (
-          <div className="my-2">
-            <div className="flex justify-between">
-              <p className="text-body">Standard Room 1 room(s)</p>
-              <p className="text-body text-slate-400">THB {subTotal}</p>
-            </div>
-          </div>
-        )}
+        ) : null}
         <div className="border-t-2">
           {/* edit additional service() */}
           {page === "reservation-and-guest-detail" ? (
@@ -133,19 +155,42 @@ export default function SummaryCard({
       </div>
       <div className="flex justify-between">
         <p className="text-body text-slate-400">Sub total</p>
-        <p className="text-body text-slate-400">THB {subTotal}</p>
+        <p className="text-body text-slate-400">
+          THB{" "}
+          {new Intl.NumberFormat("th-TH", {
+            style: "currency",
+            currency: "THB",
+          }).format(subTotal)}
+        </p>
       </div>
 
       <div className="flex justify-between">
         <p className="text-body text-slate-400">Service charge (10%)</p>
-        <p className="text-body text-slate-400">THB {serviceCharge}</p>
+        <p className="text-body text-slate-400">
+          THB{" "}
+          {new Intl.NumberFormat("th-TH", {
+            style: "currency",
+            currency: "THB",
+          }).format(serviceCharge)}
+        </p>
       </div>
       <div className="flex justify-between">
         <p className="text-body text-slate-400">Taxes + fees (7%) </p>
-        <p className="text-body text-slate-400">THB {taxesAndFees}</p>
+        <p className="text-body text-slate-400">
+          THB{" "}
+          {new Intl.NumberFormat("th-TH", {
+            style: "currency",
+            currency: "THB",
+          }).format(taxesAndFees)}
+        </p>
       </div>
       <p className="text-center text-h2 font-bold mt-[50px]">
-        THB {subTotal + serviceCharge + taxesAndFees} Total
+        THB{" "}
+        {new Intl.NumberFormat("th-TH", {
+          style: "currency",
+          currency: "THB",
+        }).format(subTotal + serviceCharge + taxesAndFees)}{" "}
+        Total
       </p>
 
       <div className="flex justify-center items-center \">
@@ -163,7 +208,12 @@ export default function SummaryCard({
           </Link>
         ) : (
           <Link href={"/reservation-and-guest-detail"}>
-            <Button style={{ background: "#2A4D69", color: "white" }}>
+            <Button
+              style={{ background: "#2A4D69", color: "white" }}
+              disabled={
+                bookingDetail.standardRoomNumber < bookingDetail.adultNumber
+              }
+            >
               <p>Confirm</p>
             </Button>
           </Link>

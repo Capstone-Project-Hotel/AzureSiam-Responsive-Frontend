@@ -175,7 +175,7 @@ const ReservationAndGuestDetail: React.FC = () => {
     // Page Container
     <div>
       <div className="z-30 fixed top-0">
-        <Topbar />
+        <Topbar lng={undefined} />
       </div>
       <div className="flex justify-start mt-20">
         {/* Main Container */}
@@ -197,18 +197,20 @@ const ReservationAndGuestDetail: React.FC = () => {
               <div className="text-h2 mobile:text-h2-mobile font-bold">
                 Additional Services
               </div>
-              <AdditionalServiceCard
-                serviceName="Transportation [Package]"
-                unit="1 Meal / Day / Person"
-                price={200}
-                serviceImage="https://via.placeholder.com/240x150"
-              />
-              <AdditionalServiceCard
-                serviceName="Transportation [Package]"
-                unit="1 Meal / Day / Person"
-                price={200}
-                serviceImage="https://via.placeholder.com/240x150"
-              />
+              <div className="flex">
+                <AdditionalServiceCard
+                  serviceName="Transportation [Package]"
+                  unit="1 Meal / Day / Person"
+                  price={200}
+                  serviceImage="https://via.placeholder.com/240x150"
+                />
+                <AdditionalServiceCard
+                  serviceName="Transportation [Package]"
+                  unit="1 Meal / Day / Person"
+                  price={200}
+                  serviceImage="https://via.placeholder.com/240x150"
+                />
+              </div>
             </div>
 
             {/* Guest Detail Container */}
@@ -332,7 +334,7 @@ const ReservationAndGuestDetail: React.FC = () => {
                       name="cardNumber"
                       value={paymentDetail.cardNumber}
                       onChange={handlePaymentInputChange}
-                      className="ant-input css-dev-only-do-not-override-6j9yrn w-full css-dev-only-do-not-override-6j9yrn border-2 rounded"
+                      className="ant-input css-dev-only-do-not-override-6j9yrn w-full css-dev-only-do-not-override-6j9yrn"
                     />
                   </div>
                 </div>
@@ -596,7 +598,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
               onChange={(value) => {
                 if (value) handleInputChange(index, value, "phoneNumber");
               }}
-              className="ant-input css-dev-only-do-not-override-6j9yrn w-full css-dev-only-do-not-override-6j9yrn border-2 rounded"
+              className="ant-input css-dev-only-do-not-override-6j9yrn w-full css-dev-only-do-not-override-6j9yrn"
             />
             {/* <Input
               className="w-full h-[32px]"
