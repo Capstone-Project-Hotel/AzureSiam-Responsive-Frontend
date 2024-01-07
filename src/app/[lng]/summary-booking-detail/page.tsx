@@ -157,7 +157,7 @@ const BookingConfirmation: React.FC = () => {
 
           {/* Right Container */}
           <div className="w-[509px] mobile:w-[330px]">
-            <SummaryCard page="summary-booking-detail" />
+            {/* <SummaryCard page="summary-booking-detail" /> */}
           </div>
         </div>
       </div>
