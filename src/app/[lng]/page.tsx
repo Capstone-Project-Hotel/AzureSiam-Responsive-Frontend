@@ -172,7 +172,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
       <div className="z-50 fixed top-0">{/* <LandingTopbar /> */}</div>
 
       {/* Top Bar */}
-      <Topbar
+      <LandingTopbar
         lng={lng == "th" ? "Thai" : "English"}
         options={options}
         handleIntlChange={handleIntlChange}

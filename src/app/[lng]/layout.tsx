@@ -40,7 +40,7 @@ export default function RootLayout({
           }}
         >
           <StyledComponentsRegistryAntd>
-            <StyledComponentsRegistry> {children}</StyledComponentsRegistry>
+            <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
           </StyledComponentsRegistryAntd>
         </ConfigProvider>
       </body>
