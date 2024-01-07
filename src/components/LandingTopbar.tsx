@@ -33,15 +33,17 @@ export default function LandingTopbar() {
   };
 
   return (
-    <div className="sticky top-0 flex flex-row h-[10vh] w-[100vw] px-[4.16vw] items-center" style={{ backgroundColor: '#2A4D69', color: 'white' }}>
-      <BlockOutlined style={{ fontSize: '8vh', color: 'white' }} />
+    <div className="sticky top-0 flex flex-row h-[10vh] w-[100vw] px-[4.16vw] items-center justify-between" style={{ backgroundColor: '#2A4D69', color: 'white' }}>
       <div className="flex flex-row items-center">
-        <Link href="/" className="text-[30px] font-sans">AzureSiam</Link>
-        <p className="text-[16px] ml-[9.375vw] font-sans">Room</p>
-        <p className="text-[16px] ml-[5vw] font-sans">Facilities & Services</p>
-        <p className="text-[16px] ml-[5vw] font-sans">Activities</p>
-        <p className="text-[16px] ml-[5vw] font-sans">Gallery</p>
-        <p className="text-[16px] ml-[5vw] font-sans">Promotion</p>
+        <BlockOutlined style={{ fontSize: '5vw', color: 'white' }} />
+        <Link href="/" className="text-h2 font-sans mobile:text-h2-mobile">AzureSiam</Link>
+      </div>
+      <div className="flex flex-row  flex-wrap items-center">
+        <p className="text-h5 ml-[5vw] font-sans mobile:text-h5-mobile">Room</p>
+        <p className="text-h5 ml-[5vw] font-sans mobile:text-h5-mobile">Facilities & Services</p>
+        <p className="text-h5 ml-[5vw] font-sans mobile:text-h5-mobile">Activities</p>
+        <p className="text-h5 ml-[5vw] font-sans mobile:text-h5-mobile">Gallery</p>
+        <p className="text-h5 ml-[5vw] font-sans mobile:text-h5-mobile">Promotion</p>
 
         {/* TODO: anchor hilight remove */}
         {/* <div className="flex flex-row items-center">
@@ -56,7 +58,8 @@ export default function LandingTopbar() {
                 <Link href="#promotion" title={<span style={{ color: 'white', fontSize: '16px' }}>Promotion</span>} />
             </Anchor>
         </div> */}
-        
+      </div>
+      <div className="flex flex-row items-center">
         <Dropdown overlay={languageMenu} placement="bottomLeft" arrow>
           <Button style={{ marginLeft: '6.25vw', backgroundColor: 'white' }}>
             {selectedLanguage === 'EN' ? 'English' : 'ไทย'} <DownOutlined />
