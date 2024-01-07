@@ -10,6 +10,7 @@ interface OthercardProps {
   title: string;
   description: string;
   hoverable?: boolean;
+  t: any;
   onButtonClick?: () => void;
 }
 
@@ -19,6 +20,7 @@ const Othercard: React.FC<React.PropsWithChildren<OthercardProps>> = ({
   description,
   hoverable = false,
   children,
+  t,
   onButtonClick = () => {},
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -53,7 +55,7 @@ const Othercard: React.FC<React.PropsWithChildren<OthercardProps>> = ({
         onCancel={handleCancel}
         footer={[
           <Button key="submit" type="primary" onClick={handleOk}>
-            Book Now
+            {t("book_now")}
           </Button>,
         ]}
       >
