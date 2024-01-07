@@ -29,7 +29,7 @@ const CustomDateRange: React.FC<CustomDateRangeProps> = ({
   const [maxDate, setMaxDate] = useState<Date>(addDays(new Date(), 999999));
   const [myDisabledDates, setMyDisabledDates] = useState<Date[]>(disabledDates);
   const [isEnd, setIsEnd] = useState<boolean>(false);
-  const isMobile = useMediaQuery({ query: "(max-width: 393px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 394px)" });
 
   const customDayContent = (day: any) => {
     const disabledDatesFormat = disabledDates.map((d) => {
@@ -183,7 +183,7 @@ const StyledDateRangeLarge = styled(DateRange)`
     width: 700px !important;
   }
 
-  @media screen and (max-width: 393px) {
+  @media screen and (max-width: 394px) {
     /* Change Height of Day Box */
     .rdrDay {
       height: 55px !important;
@@ -256,7 +256,7 @@ const StyledDateRangeSmall = styled(DateRange)`
     width: 540px !important;
   }
 
-  @media screen and (max-width: 393px) {
+  @media screen and (max-width: 394px) {
     /* Change Height of Day Box */
     .rdrDay {
       height: 55px !important;
