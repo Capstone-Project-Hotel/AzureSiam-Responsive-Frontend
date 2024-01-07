@@ -46,7 +46,18 @@ const additionalServiceCardExample = {
 };
 
 const BookingConfirmation: React.FC = () => {
-  const { guests, paymentDetail, specialReq, cardType } = useStore();
+  const {
+    bookingDetail,
+    setBookingDetail,
+    guests,
+    setGuests,
+    paymentDetail,
+    setPaymentDetail,
+    specialReq,
+    setSpecialReq,
+    cardType,
+    setCardType,
+  } = useStore();
 
   if (guests[0].firstName === "") {
     redirect("/");
@@ -157,7 +168,14 @@ const BookingConfirmation: React.FC = () => {
 
           {/* Right Container */}
           <div className="w-[509px] mobile:w-[330px]">
-            <SummaryCard page="summary-booking-detail" />
+          <SummaryCard
+          page="search-result"
+          startDate={bookingDetail.startDate}
+          endDate={bookingDetail.endDate}
+          adults={bookingDetail.adultNumber}
+          childrens={bookingDetail.childrenNumber}
+          codePromo={bookingDetail.codePromotion}
+        />
           </div>
         </div>
       </div>
