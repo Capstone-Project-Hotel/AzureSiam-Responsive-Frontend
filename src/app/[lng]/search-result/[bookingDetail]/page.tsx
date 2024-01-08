@@ -30,6 +30,7 @@ const mockStandardRoomInformation = {
   ],
   roomDetail:
     "Unwind in a room that balances simplicity with functionality. Our Standard Studio Rooms are equipped with all the essentials for a comfortable stay, including a plush bed that promises a restful night's sleep. The sleek furnishings and efficient layout maximize space, providing a relaxing environment for you to recharge after a day of exploration or work.",
+  roomType: "standard",
 };
 
 const mockDeluxeRoomInformation = {
@@ -48,9 +49,39 @@ const mockDeluxeRoomInformation = {
   ],
   roomDetail:
     "Unwind in a room that balances simplicity with functionality. Our Standard Studio Rooms are equipped with all the essentials for a comfortable stay, including a plush bed that promises a restful night's sleep. The sleek furnishings and efficient layout maximize space, providing a relaxing environment for you to recharge after a day of exploration or work.",
+  roomType: "deluxe",
 };
 
-export default function SearchResultPage({ params: { lng } }: { params: { lng: any } })  {
+const mockFamilyRoomInformation = {
+  roomName: "Family Room",
+  maxGuest: 4,
+  bedType: "Double Bed",
+  roomSize: 30,
+  roomPrice: 1800,
+  roomImage: "https://via.placeholder.com/300",
+  roomAmenities: [
+    "TV",
+    "Air Conditioner",
+    "Refrigerator",
+    "Hair Dryer",
+    "Water Heater",
+  ],
+  roomDetail:
+    "Unwind in a room that balances simplicity with functionality. Our Standard Studio Rooms are equipped with all the essentials for a comfortable stay, including a plush bed that promises a restful night's sleep. The sleek furnishings and efficient layout maximize space, providing a relaxing environment for you to recharge after a day of exploration or work.",
+  roomType: "family",
+};
+
+const mockRoomInformation = [
+  mockStandardRoomInformation,
+  mockDeluxeRoomInformation,
+  mockFamilyRoomInformation,
+];
+
+export default function SearchResultPage({
+  params: { lng },
+}: {
+  params: { lng: any };
+}) {
   const { t } = useTranslation(lng);
   const params = useParams();
 
@@ -78,18 +109,18 @@ export default function SearchResultPage({ params: { lng } }: { params: { lng: a
 
   useEffect(() => {
     const updatedBookingDetail: BookingDetail = {
-        startDate: startDate,
-        endDate: endDate,
-        adultNumber: parseInt(adults),
-        childrenNumber: parseInt(childrens),
-        codePromotion: codePromo,
-        standardRoomNumber: 0,
-        deluxeRoomNumber: 0,
-        familyRoomNumber: 0,
-        executiveRoomNumber: 0,
-        juniorRoomNumber: 0,
-        packageOne: false,
-        packageTwo: false,
+      startDate: startDate,
+      endDate: endDate,
+      adultNumber: parseInt(adults),
+      childrenNumber: parseInt(childrens),
+      codePromotion: codePromo,
+      standardRoomNumber: 0,
+      deluxeRoomNumber: 0,
+      familyRoomNumber: 0,
+      executiveRoomNumber: 0,
+      juniorRoomNumber: 0,
+      packageOne: false,
+      packageTwo: false,
     };
     setBookingDetail(updatedBookingDetail);
 
@@ -103,100 +134,51 @@ export default function SearchResultPage({ params: { lng } }: { params: { lng: a
   console.log(dayjs(bookingDetail.startDate, "YYYY-MM-DD"));
   console.log(bookingDetail.adultNumber);
 
-  let reducedRate = 1 
+  let reducedRate = 1;
 
-  if (codePromo==="valid001") {
-     reducedRate = 0.8
+  if (codePromo === "valid001") {
+    reducedRate = 0.8;
   }
-
-  // console.log(adults)
 
   return (
     <div>
       <div className="z-50 fixed top-0">
-        <Topbar lng={undefined} />
+        <Topbar lng={lng} />
       </div>
       <div className="mt-[10vh]">
-        <Filter
-          startDate={startDate}
-          endDate={endDate}
-          adults={parseInt(adults)}
-          childrens={parseInt(childrens)}
-          codePromo={codePromo}
-        />
+        <Filter />
       </div>
-      <p>{bookingDetail.standardRoomNumber}</p>
-      <div className="w-[509px] mobile:w-[330px] fixed mobile:right-0 right-[200px] top-[400px]">
+
+      <div className="w-[509px] mobile:w-[330px] fixed mobile:right-0 right-[0px] top-[360px]">
         <SummaryCard
           page="search-result"
-          startDate={startDate}
-          endDate={endDate}
-          adults={parseInt(adults)}
-          childrens={parseInt(childrens)}
-          codePromo={codePromo}
+          // startDate={startDate}
+          // endDate={endDate}
+          // adults={parseInt(adults)}
+          // childrens={parseInt(childrens)}
+          // codePromo={codePromo}
         />
       </div>
 
       <div className="flex flex-col space-y-10 mt-10 ml-10">
-        <RoomCard
-          roomName={mockRoomInformation[0].roomName}
-          maxGuest={mockRoomInformation[0].maxGuest}
-          bedType={mockRoomInformation[0].bedType}
-          roomSize={mockRoomInformation[0].roomSize}
-          roomPrice={mockRoomInformation[0].roomPrice*reducedRate}
-          roomImage={mockRoomInformation[0].roomImage}
-          roomAmenities={mockRoomInformation[0].roomAmenities}
-          roomDetail={mockRoomInformation[0].roomDetail}
-          roomType={"standard"}
-        />
-        <RoomCard
-          roomName={mockRoomInformation[1].roomName}
-          maxGuest={mockRoomInformation[1].maxGuest}
-          bedType={mockRoomInformation[1].bedType}
-          roomSize={mockRoomInformation[1].roomSize}
-          roomPrice={mockRoomInformation[1].roomPrice*reducedRate}
-          roomImage={mockRoomInformation[1].roomImage}
-          roomAmenities={mockRoomInformation[1].roomAmenities}
-          roomDetail={mockRoomInformation[1].roomDetail}
-          roomType={"deluxe"}
-        />
-        {/* <RoomCard
-          roomName={mockRoomInformation.roomName}
-          maxGuest={mockRoomInformation.maxGuest}
-          bedType={mockRoomInformation.bedType}
-          roomSize={mockRoomInformation.roomSize}
-          roomPrice={mockRoomInformation.roomPrice*reducedRate}
-          roomImage={mockRoomInformation.roomImage}
-          roomAmenities={mockRoomInformation.roomAmenities}
-          roomDetail={mockRoomInformation.roomDetail}
-          roomType={"standard"}
-        />
-        <RoomCard
-          roomName={mockRoomInformation.roomName}
-          maxGuest={mockRoomInformation.maxGuest}
-          bedType={mockRoomInformation.bedType}
-          roomSize={mockRoomInformation.roomSize}
-          roomPrice={mockRoomInformation.roomPrice*reducedRate}
-          roomImage={mockRoomInformation.roomImage}
-          roomAmenities={mockRoomInformation.roomAmenities}
-          roomDetail={mockRoomInformation.roomDetail}
-          roomType={"standard"}
-        />
-        <RoomCard
-          roomName={mockRoomInformation.roomName}
-          maxGuest={mockRoomInformation.maxGuest}
-          bedType={mockRoomInformation.bedType}
-          roomSize={mockRoomInformation.roomSize}
-          roomPrice={mockRoomInformation.roomPrice}
-          roomImage={mockRoomInformation.roomImage}
-          roomAmenities={mockRoomInformation.roomAmenities}
-          roomDetail={mockRoomInformation.roomDetail}
-          roomType={"standard"}
-        /> */}
+        {mockRoomInformation.map((room, index) => (
+          <RoomCard
+            key={index}
+            roomName={room.roomName}
+            maxGuest={room.maxGuest}
+            bedType={room.bedType}
+            roomSize={room.roomSize}
+            roomPrice={room.roomPrice * reducedRate}
+            roomImage={room.roomImage}
+            roomAmenities={room.roomAmenities}
+            roomDetail={room.roomDetail}
+            roomType={room.roomType}
+          />
+        ))}
       </div>
 
       <div className="mt-[600px]">
-        <Footer t={ t } />
+        <Footer t={t} />
       </div>
     </div>
   );
