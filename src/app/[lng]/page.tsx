@@ -37,6 +37,9 @@ import AirIcon from "@mui/icons-material/Air";
 import WifiIcon from "@mui/icons-material/Wifi";
 import DeskIcon from "@mui/icons-material/Desk";
 import SatelliteAltIcon from "@mui/icons-material/SatelliteAlt";
+import BalconyIcon from "@mui/icons-material/Balcony";
+import ChairIcon from "@mui/icons-material/Chair";
+import DinnerDiningIcon from "@mui/icons-material/DinnerDining";
 
 const { Meta } = Card;
 
@@ -326,11 +329,11 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                         <SmokeFreeIcon
                           fontSize={isMobile ? "small" : "medium"}
                         />
-                        Non-smoking
+                        {t("non_smoking")}
                       </li>
                       <li>
                         <KitchenIcon fontSize={isMobile ? "small" : "medium"} />
-                        Mini Fridge
+                        {t("mini_fridge")}
                       </li>
                       <li className="flex gap-4">
                         <div>
@@ -346,33 +349,33 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                             />
                           </svg>
                         </div>
-                        Hairdryer
+                        {t("hairdryer")}
                       </li>
                       <li>
                         <TvIcon fontSize={isMobile ? "small" : "medium"} />
-                        Television
+                        {t("television")}
                       </li>
                       <li>
-                        <AirIcon fontSize={isMobile ? "small" : "medium"} /> Air
-                        conditioned
+                        <AirIcon fontSize={isMobile ? "small" : "medium"} />
+                        {t("air_conditioned")}
                       </li>
                       <li>
                         <WifiIcon fontSize={isMobile ? "small" : "medium"} />
-                        Wireless Internet
+                        {t("wireless_internet")}
                       </li>
                       <li>
                         <DeskIcon fontSize={isMobile ? "small" : "medium"} />
-                        Desk
+                        {t("desk")}
                       </li>
                       <li>
                         <BathtubIcon fontSize={isMobile ? "small" : "medium"} />
-                        Bath
+                        {t("bath")}
                       </li>
                       <li>
                         <SatelliteAltIcon
                           fontSize={isMobile ? "small" : "medium"}
                         />
-                        Cable/Satellite TV
+                        {t("cable")}
                       </li>
                     </ul>
                   </div>
@@ -414,11 +417,11 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                         <SmokeFreeIcon
                           fontSize={isMobile ? "small" : "medium"}
                         />
-                        Non-smoking
+                        {t("non_smoking")}
                       </li>
                       <li>
-                        <KitchenIcon fontSize={isMobile ? "small" : "medium"} />{" "}
-                        Compact Fridge
+                        <KitchenIcon fontSize={isMobile ? "small" : "medium"} />
+                        {t("mini_fridge")}
                       </li>
                       <li className="flex gap-4">
                         <svg
@@ -432,33 +435,37 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                             d="M22 9a4.32 4.32 0 0 1-2.22-.55A3.4 3.4 0 0 0 18 8V7a4.32 4.32 0 0 1 2.22.55A3.4 3.4 0 0 0 22 8m0-2a3.4 3.4 0 0 1-1.78-.45A4.32 4.32 0 0 0 18 5v1a3.4 3.4 0 0 1 1.78.45A4.32 4.32 0 0 0 22 7m0 3a3.4 3.4 0 0 1-1.78-.45A4.32 4.32 0 0 0 18 9v1a3.4 3.4 0 0 1 1.78.45A4.32 4.32 0 0 0 22 11m-12 1.73A70.39 70.39 0 0 0 17 11V4s-6.5-2-9.5-2a5.5 5.5 0 0 0-1.38 10.82L7 19h1a3 3 0 0 0 1.46 2.33A3.15 3.15 0 0 1 11 24h1a4.12 4.12 0 0 0-1.91-3.45C9.39 20 9 19.63 9 19h1m-2.5-9A2.5 2.5 0 1 1 10 7.5A2.5 2.5 0 0 1 7.5 10"
                           />
                         </svg>
-                        Hairdryer
+                        {t("hairdryer")}
                       </li>
                       <li>
                         <TvIcon fontSize={isMobile ? "small" : "medium"} />
-                        Television
+                        {t("television")}
                       </li>
                       <li>
-                        <AirIcon fontSize={isMobile ? "small" : "medium"} /> Air
-                        conditioned
+                        <AirIcon fontSize={isMobile ? "small" : "medium"} />
+                        {t("air_conditioned")}
                       </li>
                       <li>
                         <WifiIcon fontSize={isMobile ? "small" : "medium"} />
-                        Wireless Internet
+                        {t("wireless_internet")}
                       </li>
                       <li>
                         <DeskIcon fontSize={isMobile ? "small" : "medium"} />
-                        Desk
+                        {t("desk")}
                       </li>
                       <li>
                         <BathtubIcon fontSize={isMobile ? "small" : "medium"} />
-                        Private Bathroom with Basic Toiletries
+                        {t("private_bath")}
                       </li>
                       <li>
                         <SatelliteAltIcon
                           fontSize={isMobile ? "small" : "medium"}
                         />
-                        Cable/Satellite TV
+                        {t("cable")}
+                      </li>
+                      <li>
+                        <BalconyIcon fontSize={isMobile ? "small" : "medium"} />
+                        {t("balcony")}
                       </li>
                     </ul>
                   </div>
@@ -500,11 +507,11 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                         <SmokeFreeIcon
                           fontSize={isMobile ? "small" : "medium"}
                         />
-                        Non-smoking
+                        {t("non_smoking")}
                       </li>
                       <li>
                         <KitchenIcon fontSize={isMobile ? "small" : "medium"} />
-                        Mini Fridge
+                        {t("compact_fridge")}
                       </li>
                       <li className="flex gap-4">
                         <div>
@@ -520,33 +527,37 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                             />
                           </svg>
                         </div>
-                        Hairdryer
+                        {t("hairdryer")}
                       </li>
                       <li>
                         <TvIcon fontSize={isMobile ? "small" : "medium"} />
-                        Television
+                        {t("television")}
                       </li>
                       <li>
-                        <AirIcon fontSize={isMobile ? "small" : "medium"} /> Air
-                        conditioned
+                        <AirIcon fontSize={isMobile ? "small" : "medium"} />
+                        {t("air_conditioned")}
                       </li>
                       <li>
                         <WifiIcon fontSize={isMobile ? "small" : "medium"} />
-                        Wireless Internet
+                        {t("wireless_internet")}
                       </li>
                       <li>
                         <DeskIcon fontSize={isMobile ? "small" : "medium"} />
-                        Desk
+                        {t("desk")}
                       </li>
                       <li>
                         <BathtubIcon fontSize={isMobile ? "small" : "medium"} />
-                        Bath
+                        {t("bath")}
                       </li>
                       <li>
                         <SatelliteAltIcon
                           fontSize={isMobile ? "small" : "medium"}
                         />
-                        Cable/Satellite TV
+                        {t("cable")}
+                      </li>
+                      <li>
+                        <BalconyIcon fontSize={isMobile ? "small" : "medium"} />
+                        {t("balcony")}
                       </li>
                     </ul>
                   </div>
@@ -564,94 +575,6 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                   />
                   <img
                     src="https://1.bp.blogspot.com/-QC4aWXP3BJw/VNnTWYJ9LgI/AAAAAAAAg9A/9S6vPwcsaOQ/s1600/1.jpg"
-                    alt=""
-                    className="w-[150px] aspect-[3/2] mobile:w-[80px]"
-                  />
-                </div>
-              </OtherCard>
-
-              {/* Executive Suite Room */}
-              <OtherCard
-                t={t}
-                onButtonClick={showDrawer}
-                hoverable={true}
-                title={t("exs_title")}
-                description={t("exs_description")}
-                src="https://cdn.discordapp.com/attachments/457166097230069773/1188826023228354650/image_40_1_1.jpg?ex=659bef83&is=65897a83&hm=6582bd0a8cc86db4a4146b452e6d4b139146174c8c42818f174afa5fbd7e6bc0&"
-              >
-                <div>{t("exs_description")}</div>
-                <div>
-                  <div className="font-bold mb-1">{t("amenities")}</div>
-                  <div>
-                    <ul className="leading-8">
-                      <li>
-                        <SmokeFreeIcon
-                          fontSize={isMobile ? "small" : "medium"}
-                        />
-                        Non-smoking
-                      </li>
-                      <li>
-                        <KitchenIcon fontSize={isMobile ? "small" : "medium"} />
-                        Mini Fridge
-                      </li>
-                      <li className="flex gap-4">
-                        <div>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="20"
-                            height="20"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              fill="currentColor"
-                              d="M22 9a4.32 4.32 0 0 1-2.22-.55A3.4 3.4 0 0 0 18 8V7a4.32 4.32 0 0 1 2.22.55A3.4 3.4 0 0 0 22 8m0-2a3.4 3.4 0 0 1-1.78-.45A4.32 4.32 0 0 0 18 5v1a3.4 3.4 0 0 1 1.78.45A4.32 4.32 0 0 0 22 7m0 3a3.4 3.4 0 0 1-1.78-.45A4.32 4.32 0 0 0 18 9v1a3.4 3.4 0 0 1 1.78.45A4.32 4.32 0 0 0 22 11m-12 1.73A70.39 70.39 0 0 0 17 11V4s-6.5-2-9.5-2a5.5 5.5 0 0 0-1.38 10.82L7 19h1a3 3 0 0 0 1.46 2.33A3.15 3.15 0 0 1 11 24h1a4.12 4.12 0 0 0-1.91-3.45C9.39 20 9 19.63 9 19h1m-2.5-9A2.5 2.5 0 1 1 10 7.5A2.5 2.5 0 0 1 7.5 10"
-                            />
-                          </svg>
-                        </div>
-                        Hairdryer
-                      </li>
-                      <li>
-                        <TvIcon fontSize={isMobile ? "small" : "medium"} />
-                        Television
-                      </li>
-                      <li>
-                        <AirIcon fontSize={isMobile ? "small" : "medium"} /> Air
-                        conditioned
-                      </li>
-                      <li>
-                        <WifiIcon fontSize={isMobile ? "small" : "medium"} />
-                        Wireless Internet
-                      </li>
-                      <li>
-                        <DeskIcon fontSize={isMobile ? "small" : "medium"} />
-                        Desk
-                      </li>
-                      <li>
-                        <BathtubIcon fontSize={isMobile ? "small" : "medium"} />
-                        Bath
-                      </li>
-                      <li>
-                        <SatelliteAltIcon
-                          fontSize={isMobile ? "small" : "medium"}
-                        />
-                        Cable/Satellite TV
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="flex gap-2 flex-wrap">
-                  <img
-                    src="https://cdn.discordapp.com/attachments/457166097230069773/1188826023228354650/image_40_1_1.jpg?ex=659bef83&is=65897a83&hm=6582bd0a8cc86db4a4146b452e6d4b139146174c8c42818f174afa5fbd7e6bc0&"
-                    alt=""
-                    className="w-[150px] aspect-[3/2] mobile:w-[80px]"
-                  />
-                  <img
-                    src="https://cdn.discordapp.com/attachments/457166097230069773/1188856157427732520/image.png?ex=659c0b93&is=65899693&hm=290cf980bb47675679c8531bcec71e3925e2462e8057f3fd744fb8eb1ed403bf&"
-                    alt=""
-                    className="w-[150px] aspect-[3/2] mobile:w-[80px]"
-                  />
-                  <img
-                    src="https://discoveryprimeademo.hotelpropeller.com/files/2017/02/Executive_Suite_2.jpg"
                     alt=""
                     className="w-[150px] aspect-[3/2] mobile:w-[80px]"
                   />
@@ -676,11 +599,11 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                         <SmokeFreeIcon
                           fontSize={isMobile ? "small" : "medium"}
                         />
-                        Non-smoking
+                        {t("non_smoking")}
                       </li>
                       <li>
                         <KitchenIcon fontSize={isMobile ? "small" : "medium"} />
-                        Mini Fridge
+                        {t("mini_fridge")}
                       </li>
                       <li className="flex gap-4">
                         <div>
@@ -696,33 +619,47 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                             />
                           </svg>
                         </div>
-                        Hairdryer
+                        {t("hairdryer")}
                       </li>
                       <li>
                         <TvIcon fontSize={isMobile ? "small" : "medium"} />
-                        Television
+                        {t("television")}
                       </li>
                       <li>
-                        <AirIcon fontSize={isMobile ? "small" : "medium"} /> Air
-                        conditioned
+                        <AirIcon fontSize={isMobile ? "small" : "medium"} />
+                        {t("air_conditioned")}
                       </li>
                       <li>
                         <WifiIcon fontSize={isMobile ? "small" : "medium"} />
-                        Wireless Internet
+                        {t("wireless_internet")}
                       </li>
                       <li>
                         <DeskIcon fontSize={isMobile ? "small" : "medium"} />
-                        Desk
+                        {t("desk")}
                       </li>
                       <li>
                         <BathtubIcon fontSize={isMobile ? "small" : "medium"} />
-                        Bath
+                        {t("jacuzzi")}
                       </li>
                       <li>
                         <SatelliteAltIcon
                           fontSize={isMobile ? "small" : "medium"}
                         />
-                        Cable/Satellite TV
+                        {t("cable")}
+                      </li>
+                      <li>
+                        <BalconyIcon fontSize={isMobile ? "small" : "medium"} />
+                        {t("balcony")}
+                      </li>
+                      <li>
+                        <ChairIcon fontSize={isMobile ? "small" : "medium"} />
+                        {t("parlor")}
+                      </li>
+                      <li>
+                        <DinnerDiningIcon
+                          fontSize={isMobile ? "small" : "medium"}
+                        />
+                        {t("dinner")}
                       </li>
                     </ul>
                   </div>
@@ -740,6 +677,108 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                   />
                   <img
                     src="https://d2e5ushqwiltxm.cloudfront.net/wp-content/uploads/sites/219/2020/03/31105553/26.jpg"
+                    alt=""
+                    className="w-[150px] aspect-[3/2] mobile:w-[80px]"
+                  />
+                </div>
+              </OtherCard>
+
+              {/* Executive Suite Room */}
+              <OtherCard
+                t={t}
+                onButtonClick={showDrawer}
+                hoverable={true}
+                title={t("exs_title")}
+                description={t("exs_description")}
+                src="https://cdn.discordapp.com/attachments/457166097230069773/1188826023228354650/image_40_1_1.jpg?ex=659bef83&is=65897a83&hm=6582bd0a8cc86db4a4146b452e6d4b139146174c8c42818f174afa5fbd7e6bc0&"
+              >
+                <div>{t("exs_description")}</div>
+                <div>
+                  <div className="font-bold mb-1">{t("amenities")}</div>
+                  <div>
+                    <ul className="leading-8">
+                      <li>
+                        <SmokeFreeIcon
+                          fontSize={isMobile ? "small" : "medium"}
+                        />
+                        {t("non_smoking")}
+                      </li>
+                      <li>
+                        <KitchenIcon fontSize={isMobile ? "small" : "medium"} />
+                        {t("mini_fridge")}
+                      </li>
+                      <li className="flex gap-4">
+                        <div>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              fill="currentColor"
+                              d="M22 9a4.32 4.32 0 0 1-2.22-.55A3.4 3.4 0 0 0 18 8V7a4.32 4.32 0 0 1 2.22.55A3.4 3.4 0 0 0 22 8m0-2a3.4 3.4 0 0 1-1.78-.45A4.32 4.32 0 0 0 18 5v1a3.4 3.4 0 0 1 1.78.45A4.32 4.32 0 0 0 22 7m0 3a3.4 3.4 0 0 1-1.78-.45A4.32 4.32 0 0 0 18 9v1a3.4 3.4 0 0 1 1.78.45A4.32 4.32 0 0 0 22 11m-12 1.73A70.39 70.39 0 0 0 17 11V4s-6.5-2-9.5-2a5.5 5.5 0 0 0-1.38 10.82L7 19h1a3 3 0 0 0 1.46 2.33A3.15 3.15 0 0 1 11 24h1a4.12 4.12 0 0 0-1.91-3.45C9.39 20 9 19.63 9 19h1m-2.5-9A2.5 2.5 0 1 1 10 7.5A2.5 2.5 0 0 1 7.5 10"
+                            />
+                          </svg>
+                        </div>
+                        {t("hairdryer")}
+                      </li>
+                      <li>
+                        <TvIcon fontSize={isMobile ? "small" : "medium"} />
+                        {t("television")}
+                      </li>
+                      <li>
+                        <AirIcon fontSize={isMobile ? "small" : "medium"} />
+                        {t("air_conditioned")}
+                      </li>
+                      <li>
+                        <WifiIcon fontSize={isMobile ? "small" : "medium"} />
+                        {t("wireless_internet")}
+                      </li>
+                      <li>
+                        <DeskIcon fontSize={isMobile ? "small" : "medium"} />
+                        {t("desk")}
+                      </li>
+                      <li>
+                        <BathtubIcon fontSize={isMobile ? "small" : "medium"} />
+                        {t("jacuzzi")}
+                      </li>
+                      <li>
+                        <SatelliteAltIcon
+                          fontSize={isMobile ? "small" : "medium"}
+                        />
+                        {t("cable")}
+                      </li>
+                      <li>
+                        <BalconyIcon fontSize={isMobile ? "small" : "medium"} />
+                        {t("balcony")}
+                      </li>
+                      <li>
+                        <ChairIcon fontSize={isMobile ? "small" : "medium"} />
+                        {t("parlor")}
+                      </li>
+                      <li>
+                        <DinnerDiningIcon
+                          fontSize={isMobile ? "small" : "medium"}
+                        />
+                        {t("dinner")}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="flex gap-2 flex-wrap">
+                  <img
+                    src="https://cdn.discordapp.com/attachments/457166097230069773/1188826023228354650/image_40_1_1.jpg?ex=659bef83&is=65897a83&hm=6582bd0a8cc86db4a4146b452e6d4b139146174c8c42818f174afa5fbd7e6bc0&"
+                    alt=""
+                    className="w-[150px] aspect-[3/2] mobile:w-[80px]"
+                  />
+                  <img
+                    src="https://cdn.discordapp.com/attachments/457166097230069773/1188856157427732520/image.png?ex=659c0b93&is=65899693&hm=290cf980bb47675679c8531bcec71e3925e2462e8057f3fd744fb8eb1ed403bf&"
+                    alt=""
+                    className="w-[150px] aspect-[3/2] mobile:w-[80px]"
+                  />
+                  <img
+                    src="https://discoveryprimeademo.hotelpropeller.com/files/2017/02/Executive_Suite_2.jpg"
                     alt=""
                     className="w-[150px] aspect-[3/2] mobile:w-[80px]"
                   />
@@ -892,7 +931,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
         </div>
       </div>
       <div>
-        <Footer t={t}/>
+        <Footer t={t} />
       </div>
     </div>
   );

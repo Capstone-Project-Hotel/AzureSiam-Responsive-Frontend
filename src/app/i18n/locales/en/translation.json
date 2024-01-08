@@ -51,5 +51,20 @@
   "amenities": "Amenities",
   "contact_us_label": "Contact Us",
   "hotel_address": "37/13 Soi Leabklongprapa, Cheangwattana Rd, Pakkred Laksi, Don Muang/Impact, Bangkok, Thailand 11120",
-  "facilities": "Facilities"
+  "facilities": "Facilities",
+  "non_smoking": "Non-smoking",
+  "mini_fridge": "Mini Fridge",
+  "compact_fridge": "Compact Fridge",
+  "hairdryer": "Hairdryer",
+  "television": "Television",
+  "air_conditioned": "Air conditioned",
+  "wireless_internet": "Wireless Internet",
+  "desk": "Desk",
+  "bath": "Bath",
+  "private_bath": "Private Bathroom with Basic Toiletries",
+  "jacuzzi": "Jacuzzi",
+  "cable": "Cable/Satellite TV",
+  "balcony": "Balcony",
+  "parlor": "Parlor",
+  "dinner": "Dinner plan"
 }
