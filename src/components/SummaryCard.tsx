@@ -6,26 +6,27 @@ import {
   MinusCircleFilled,
 } from "@ant-design/icons";
 
+import "primeicons/primeicons.css";
 import useStore from "@/hooks/useStore";
 
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+// import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { InputNumber, Button } from "antd";
 import Link from "next/link";
 
 export default function SummaryCard({
   page,
-  startDate,
-  endDate,
-  adults,
-  childrens,
-  codePromo,
-}: {
+}: // startDate,
+// endDate,
+// adults,
+// childrens,
+// codePromo,
+{
   page: string;
-  startDate: string;
-  endDate: string;
-  adults: number;
-  childrens: number;
-  codePromo: string;
+  // startDate: string;
+  // endDate: string;
+  // adults: number;
+  // childrens: number;
+  // codePromo: string;
 }) {
   // const [ standardRoomNumber , setStandardRoomNumber ] = useState(0)
   // const [ deluxeRoomNumber, setDeluxeRoomNumber ] = useState(0)
@@ -46,7 +47,7 @@ export default function SummaryCard({
 
   let reducedRate = 1;
 
-  if (codePromo === "valid001") {
+  if (bookingDetail.codePromotion === "valid001") {
     reducedRate = 0.8;
   }
 
@@ -62,7 +63,7 @@ export default function SummaryCard({
           <div>
             <p className="text-h5 font-medium">
               {/* Sun, 19 Nov 23 – Tue, 21 Nov 23 */}
-              {startDate} - {endDate}
+              {bookingDetail.startDate} - {bookingDetail.endDate}
             </p>
             <p className="text-body text-slate-400">
               {/* 2 nights */}
@@ -73,7 +74,8 @@ export default function SummaryCard({
         <div className="flex">
           <UserOutlined style={{ fontSize: "30px", marginRight: "10px" }} />
           <p className="text-h5 font-medium">
-            {adults} adult(s) {childrens} children
+            {bookingDetail.adultNumber} adult(s) {bookingDetail.childrenNumber}{" "}
+            children
           </p>
         </div>
       </div>
@@ -88,30 +90,47 @@ export default function SummaryCard({
                 <div className="flex justify-between">
                   <p className="text-h5 font-bold">Standard Room</p>
                   <div>
-                    <MinusCircleFilled onClick={() => {
-                      let updatedStandardRoomNumber = bookingDetail.standardRoomNumber;
-                      if (bookingDetail.standardRoomNumber > 0) {
-                        updatedStandardRoomNumber -= 1;
-                      }
-                          const updatedBookingDetail = {
-                            ...bookingDetail,
-                            standardRoomNumber: updatedStandardRoomNumber,
-                          };
-                          setBookingDetail(updatedBookingDetail)
-                      }}/>
-                    <InputNumber
-                      value={bookingDetail.standardRoomNumber} 
+                    <MinusCircleFilled
+                      onClick={() => {
+                        let updatedStandardRoomNumber =
+                          bookingDetail.standardRoomNumber;
+                        if (bookingDetail.standardRoomNumber > 1) {
+                          updatedStandardRoomNumber -= 1;
+                        }
+                        const updatedBookingDetail = {
+                          ...bookingDetail,
+                          standardRoomNumber: updatedStandardRoomNumber,
+                        };
+                        setBookingDetail(updatedBookingDetail);
+                      }}
                     />
-                    <PlusCircleFilled onClick={() => {
-                      const updatedStandardRoomNumber = bookingDetail.standardRoomNumber+1
-                          const updatedBookingDetail = {
-                            ...bookingDetail,
-                            standardRoomNumber: updatedStandardRoomNumber,
-                          };
-                          setBookingDetail(updatedBookingDetail)
-                      }}/>
+                    <InputNumber value={bookingDetail.standardRoomNumber} />
+                    <PlusCircleFilled
+                      onClick={() => {
+                        const updatedStandardRoomNumber =
+                          bookingDetail.standardRoomNumber + 1;
+                        const updatedBookingDetail = {
+                          ...bookingDetail,
+                          standardRoomNumber: updatedStandardRoomNumber,
+                        };
+                        setBookingDetail(updatedBookingDetail);
+                      }}
+                    />
                   </div>
                 </div>
+                <button
+                  className="flex"
+                  onClick={() => {
+                    const updatedBookingDetail = {
+                      ...bookingDetail,
+                      standardRoomNumber: 0,
+                    };
+                    setBookingDetail(updatedBookingDetail);
+                  }}
+                >
+                  <i className="pi pi-trash text-gray-400"></i>
+                  <p className="text-gray-400">remove</p>
+                </button>
                 <div className="flex justify-between">
                   <p className="text-body">
                     Standard Room {bookingDetail.standardRoomNumber} room(s)
@@ -122,7 +141,7 @@ export default function SummaryCard({
                       style: "currency",
                       currency: "THB",
                     }).format(
-                      bookingDetail.standardRoomNumber * 2000 * reducedRate
+                      bookingDetail.standardRoomNumber * 1500 * reducedRate
                     )}
                   </p>
                 </div>
@@ -130,28 +149,32 @@ export default function SummaryCard({
             ) : null}
           </div>
         ) : null}
-        <div className="border-t-2">
-          {/* edit additional service() */}
-          {page === "reservation-and-guest-detail" ? (
+        {/* edit additional service() */}
+        {page === "reservation-and-guest-detail" ? (
+          <div className="border-t-2">
             <div className="my-2">
               <p className="text-body text-slate-400">
                 Edit Additional Service(s)
               </p>
-              <div className="flex justify-between">
-                <div className="flex">
-                  <p className="text-h5">Transportation [ Package 1 ]</p>
-                  {/* <DeleteForeverIcon/> */}
+              {bookingDetail.packageOne ? (
+                <div>
+                  <div className="flex justify-between">
+                    <div className="flex">
+                      <p className="text-h5">Transportation [ Package 1 ]</p>
+                      {/* <DeleteForeverIcon/> */}
+                    </div>
+                  </div>
+                  <div className="flex justify-between">
+                    <p className="text-body">Transportation [ Package 1 ]</p>
+                    <p className="text-body text-slate-400">THB 299.00</p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex justify-between">
-                <p className="text-body">Transportation [ Package 1 ]</p>
-                <p className="text-body text-slate-400">THB 299.00</p>
-              </div>
+              ) : null}
             </div>
-          ) : (
-            <div></div>
-          )}
-        </div>
+          </div>
+        ) : (
+          <div></div>
+        )}
       </div>
       <div className="flex justify-between">
         <p className="text-body text-slate-400">Sub total</p>
@@ -196,19 +219,12 @@ export default function SummaryCard({
       <div className="flex justify-center items-center \">
         {page === "search-result" ? (
           <Link href={"/reservation-and-guest-detail"}>
-            <Button style={{ background: "#2A4D69", color: "white" }}>
-              <p>Check Out</p>
-            </Button>
-          </Link>
-        ) : page === "reservation-and-guest-detail" ? (
-          <Link href={"/summary-booking-detail"}>
-            <Button style={{ background: "#2A4D69", color: "white" }}>
-              <p>Confirm</p>
-            </Button>
-          </Link>
-        ) : (
-          <Link href={"/reservation-and-guest-detail"}>
             <Button
+              className={` ${
+                bookingDetail.standardRoomNumber < bookingDetail.adultNumber
+                  ? "opacity-50 cursor-not-allowed"
+                  : ""
+              }`}
               style={{ background: "#2A4D69", color: "white" }}
               disabled={
                 bookingDetail.standardRoomNumber < bookingDetail.adultNumber
@@ -217,7 +233,27 @@ export default function SummaryCard({
               <p>Confirm</p>
             </Button>
           </Link>
-        )}
+        ) : page === "reservation-and-guest-detail" ? (
+          <Link href={"/summary-booking-detail"}>
+            <Button
+              className={` ${
+                !bookingDetail.packageOne ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+              style={{ background: "#2A4D69", color: "white" }}
+              disabled={
+                bookingDetail.standardRoomNumber < bookingDetail.adultNumber
+              }
+            >
+              <p>Confirm</p>
+            </Button>
+          </Link>
+        ) : page === "summary-booking-detail" ? (
+          <Link href={"/booking-confirmation"}>
+            <Button style={{ background: "#2A4D69", color: "white" }}>
+              <p>Check Out</p>
+            </Button>
+          </Link>
+        ) : null}
       </div>
     </div>
   );

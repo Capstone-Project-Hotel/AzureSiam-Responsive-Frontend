@@ -1,21 +1,28 @@
 "use client";
+import useStore from "@/hooks/useStore";
 import { Checkbox, Select, DatePicker, InputNumber, Input } from "antd";
-import type { CheckboxValueType } from "antd/es/checkbox/Group";
-import dayjs from 'dayjs';
-dayjs().format()
 
-export default function Filter({
-  startDate,
-  endDate,
-  adults,
-  childrens,
-  codePromo,
-}: {
-  startDate: string;
-  endDate: string;
-  adults: number;
-  childrens: number;
-  codePromo: string;
+type RangeValue = Parameters<
+  NonNullable<React.ComponentProps<typeof DatePicker.RangePicker>["onChange"]>
+>[0];
+import type { CheckboxValueType } from "antd/es/checkbox/Group";
+import { format } from "date-fns";
+import dayjs, { Dayjs } from "dayjs";
+import Link from "next/link";
+import { ChangeEvent, useState } from "react";
+dayjs().format();
+
+export default function Filter({}: // startDate,
+// endDate,
+// adults,
+// childrens,
+// codePromo,
+{
+  // startDate: string;
+  // endDate: string;
+  // adults: number;
+  // childrens: number;
+  // codePromo: string;
 }) {
   const { RangePicker } = DatePicker;
   const CheckboxGroup = Checkbox.Group;
@@ -36,20 +43,89 @@ export default function Filter({
     { label: "Balcony", value: "balcony" },
   ];
 
+  const { bookingDetail, setBookingDetail } = useStore();
+  const [changedBooking, setChangedBooking] = useState(false);
 
   return (
     <div className="w-full flex-row bg-secondary pt-3 pb-3">
       <div className="my-[20px] ml-10">
         <p className="text-white text-h3  font-bold">Booking Detail</p>
         <div className="flex justify-around">
-          <RangePicker defaultValue={[dayjs(startDate, "YYYY-MM-DD"),dayjs(endDate, "YYYY-MM-DD")]} style={{zIndex: 0}}/>
+          <RangePicker
+            value={[
+              dayjs(bookingDetail.startDate, "YYYY-MM-DD"),
+              dayjs(bookingDetail.endDate, "YYYY-MM-DD"),
+            ]}
+            style={{ zIndex: 0 }}
+            // onChange={(values: RangeValue<Dayjs>, formatString: [string, string]) => {
+            //   if (values && values[0] && values[1]) {
+            //       const [startDate, endDate] = values.map((date: Dayjs) =>
+            //           date.format("YYYY-MM-DD")
+            //       );
+
+            //       const updatedBookingDetail = {
+            //           ...bookingDetail,
+            //           startDate,
+            //           endDate,
+            //       };
+
+            //       setBookingDetail(updatedBookingDetail);
+            //   }
+            // }}
+            onChange={(RangePicker, dateStrings: [string, string]) => {
+              const [startDate, endDate] = dateStrings;
+
+              if (startDate === "" && endDate === "") {
+                console.log("clear value");
+              } else {
+                const updatedBookingDetail = {
+                  ...bookingDetail,
+                  startDate,
+                  endDate,
+                };
+                setBookingDetail(updatedBookingDetail);
+              }
+            }}
+          />
           <div className="flex">
             <p className="ml-2 mr-2 text-white text-h4 font-bold">Adult</p>
-            <InputNumber defaultValue={adults} />
+            <InputNumber
+              value={bookingDetail.adultNumber}
+              onChange={(e: number | null) => {
+                if (e != null) {
+                  const updatedAdultNumber = e; // Access the value correctly
+
+                  const updatedBookingDetail = {
+                    ...bookingDetail,
+                    adultNumber: updatedAdultNumber,
+                  };
+
+                  // console.log(updatedAdultNumber);
+
+                  setBookingDetail(updatedBookingDetail);
+                }
+              }}
+            />
           </div>
           <div className="flex">
             <p className="ml-2 mr-2 text-white text-h4 font-bold">Childern</p>
-            <InputNumber defaultValue={childrens} />
+            <InputNumber
+              value={bookingDetail.childrenNumber}
+              onChange={(e: number | null) => {
+                if (e != null) {
+                  const updatedChidrenNumber = e; // Access the value correctly
+
+                  const updatedBookingDetail = {
+                    ...bookingDetail,
+                    childrenNumber: updatedChidrenNumber,
+                  };
+
+                  setBookingDetail(updatedBookingDetail);
+
+                  // console.log(bookingDetail.adultNumber);
+                }
+              }}
+            />
           </div>
           <div className="flex">
             <p className="ml-2 mr-2 text-white text-h4 font-bold">
@@ -58,9 +134,30 @@ export default function Filter({
             <Input
               placeholder="example"
               style={{ width: 200 }}
-              value={codePromo}
+              value={bookingDetail.codePromotion}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                const updatedCodePromotion = e.target.value; // Access the value correctly
+
+                const updatedBookingDetail = {
+                  ...bookingDetail,
+                  codePromotion: updatedCodePromotion,
+                };
+
+                setBookingDetail(updatedBookingDetail);
+              }}
             />
+            {bookingDetail.codePromotion === "valid001" ? (
+              <div className="flex">
+                <i className="pi pi-check text-green-500 text-2xl"></i>
+                <p>Discount 20%</p>
+              </div>
+            ) : null}
           </div>
+          <Link
+            href={`/search-result/startDate=${bookingDetail.startDate}&endDate=${bookingDetail.endDate}&adults=${bookingDetail.adultNumber}&childrens=${bookingDetail.childrenNumber}&codePromo=${bookingDetail.codePromotion}`}
+          >
+            <button>Change Booking Detail</button>
+          </Link>
         </div>
       </div>
       <div className="flex justify-between ml-10 mr-10 my-2">
@@ -88,14 +185,7 @@ export default function Filter({
           <p className="text-white text-h3  font-bold">Room Feature</p>
           <div className="grid grid-cols-3 gap-2">
             <Checkbox>
-              {" "}
               <p className="text-white text-h5">City View</p>
-            </Checkbox>
-            <Checkbox>
-              <p className="text-white text-h5">Adaptable Bathroom</p>
-            </Checkbox>
-            <Checkbox>
-              <p className="text-white text-h5">Luggage Storage</p>
             </Checkbox>
             <Checkbox>
               <p className="text-white text-h5">Jacuzzi</p>

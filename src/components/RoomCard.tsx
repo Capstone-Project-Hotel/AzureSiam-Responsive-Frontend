@@ -23,18 +23,19 @@ export default function RoomCard(information: {
   };
 
   const handleBookNowClick = (roomType: string) => {
-  
+
     // Create the updatedBookingDetail object with the new room number
     const updatedBookingDetail = {
       ...bookingDetail,
       [`${roomType}RoomNumber`]: 1,
     };
-// disable
+    // disable
     console.log(updatedBookingDetail)
-  
+
     // Set the updated bookingDetail
     setBookingDetail(updatedBookingDetail);
   };
+
   return (
     <div
       className={`flex flex-col w-[58vw] rounded-lg outline outline-1 outline-gray-450 
@@ -49,10 +50,10 @@ export default function RoomCard(information: {
         <img src={information.roomImage} alt="room" className="h-[15vw]" />
         {/* room description */}
         <text className="text-h5 font-sans ml-[2vw] mr-[2vw]  mobile:text-h5-mobile">
-          Maximum guest: {information.maxGuest} <br/>
-          Size: {information.roomSize} m2 <br/>
-          Bed type: {information.bedType} <br/>
-          Amenities: {information.roomAmenities.map((n) => ' • ' + n)} <br/>
+          Maximum guest: {information.maxGuest} <br />
+          Size: {information.roomSize} m2 <br />
+          Bed type: {information.bedType} <br />
+          Amenities: {information.roomAmenities.map((n) => ' • ' + n)} <br />
           {isExpanded && (
             <div className="mt-[1vw]">
               {/* More detailed information */}
@@ -75,7 +76,7 @@ export default function RoomCard(information: {
           </text>
           <Button
             className="float-right"
-  type="primary"
+            type="primary"
             onClick={() => handleBookNowClick(information.roomType)}
           >
             Book Now
