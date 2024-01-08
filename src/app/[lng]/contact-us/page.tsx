@@ -34,7 +34,7 @@ export default async function Home({
           <div className="flex flex-row items-center mr-[2vw]">
             <PhoneOutlined style={iconStyle} />
             <div className="ml-[1vw]">
-              <p className="text-h4 mobile:text-h4-mobile">090-999-9999</p>
+              <p className="text-h4 mobile:text-h4-mobile">{t("hotel_phone")}</p>
             </div>
           </div>
           <div className="flex flex-row items-center">
