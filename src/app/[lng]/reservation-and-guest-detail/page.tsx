@@ -19,6 +19,7 @@ import SummaryCard from "@/components/SummaryCard";
 import Footer from "@/components/Footer";
 import AdditionalServiceCard from "@/components/AdditionalServiceCard";
 import { useTranslation } from "@/app/i18n/client";
+import { useRouter } from "next/navigation";
 
 const PhoneInput = dynamic(() => import("react-phone-number-input"), {
   ssr: false,
@@ -100,6 +101,12 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
   } = useStore();
   const [isCheckedPDPA, setIsCheckedPDPA] = useState<boolean>(false);
   const [isDisabledConfirm, setIsDisabledConfirm] = useState<boolean>(false);
+
+  const router = useRouter();
+
+  const handleReselect = () => {
+    router.back();
+  };
 
   const handleInputChange = (index: number, value: string, name: string) => {
     const updatedGuests = [...guests];
@@ -192,9 +199,10 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
           <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10">
             {/* Back to search result Container */}
             <div className="flex items-center gap-5">
-              <Link href="/search-result">
+              <button onClick={handleReselect}>
                 <LeftOutlined className="text-[36px] mobile:text-[25px]" />
-              </Link>
+              </button>
+
               <div className="text-h2 mobile:text-h2-mobile">
                 Re-select your room for booking
               </div>
@@ -430,14 +438,14 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
 
           {/* Right Container */}
           <div className="w-[509px] mobile:w-[330px] fixed right-[200px] top-[150px]">
-          <SummaryCard
-          page="reservation-and-guest-detail"
-          startDate={bookingDetail.startDate}
-          endDate={bookingDetail.endDate}
-          adults={bookingDetail.adultNumber}
-          childrens={bookingDetail.childrenNumber}
-          codePromo={bookingDetail.codePromotion}
-        />
+            <SummaryCard
+              page="reservation-and-guest-detail"
+              // startDate={bookingDetail.startDate}
+              // endDate={bookingDetail.endDate}
+              // adults={bookingDetail.adultNumber}
+              // childrens={bookingDetail.childrenNumber}
+              // codePromo={bookingDetail.codePromotion}
+            />
           </div>
         </div>
       </div>
@@ -756,7 +764,6 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
 
       {/* HR Line */}
       <hr className="my-2" />
-
     </div>
   );
 };
