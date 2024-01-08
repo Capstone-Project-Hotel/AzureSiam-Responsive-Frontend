@@ -9,6 +9,7 @@ import Topbar from "@/components/Topbar";
 import Footer from "@/components/Footer";
 import { LeftOutlined } from "@ant-design/icons";
 import Link from "next/link";
+import { useTranslation } from "@/app/i18n/client";
 interface Guest {
   firstName: string;
   middleName: string;
@@ -45,19 +46,15 @@ const additionalServiceCardExample = {
   two: "https://cdn.discordapp.com/attachments/1145653185059495958/1186614215696470036/image.png?ex=6593e39b&is=65816e9b&hm=e1fb456b3182b9f712fa3c75d390b632e784a389159deae8bc1da9cf78781755&",
 };
 
-const BookingConfirmation: React.FC = () => {
-  const {
-    bookingDetail,
-    setBookingDetail,
-    guests,
-    setGuests,
-    paymentDetail,
-    setPaymentDetail,
-    specialReq,
-    setSpecialReq,
-    cardType,
-    setCardType,
-  } = useStore();
+interface ReservationAndGuestDetailProps {
+  params: { lng: any };
+}
+
+const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
+  params: { lng },
+}) => {
+  const { t } = useTranslation(lng);
+  const { guests, paymentDetail, specialReq, cardType } = useStore();
 
   if (guests[0].firstName === "") {
     redirect("/");
@@ -167,20 +164,13 @@ const BookingConfirmation: React.FC = () => {
           </div>
 
           {/* Right Container */}
-          <div className="w-[509px] mobile:w-[330px]">
-          <SummaryCard
-          page="summary-booking-detail"
-          startDate={bookingDetail.startDate}
-          endDate={bookingDetail.endDate}
-          adults={bookingDetail.adultNumber}
-          childrens={bookingDetail.childrenNumber}
-          codePromo={bookingDetail.codePromotion}
-        />
+          <div className="w-[509px] mobile:w-[330px] fixed right-[200px] top-[150px]">
+            <SummaryCard page="summary-booking-detail" />
           </div>
         </div>
       </div>
       <div className="mt-[10px]">
-        <Footer />
+        <Footer t={t} />
       </div>
     </div>
   );

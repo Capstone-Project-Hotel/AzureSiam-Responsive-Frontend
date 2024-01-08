@@ -5,6 +5,8 @@ import useStore from "@/hooks/useStore";
 import { gu } from "date-fns/locale";
 import { redirect } from "next/navigation";
 import SummaryCard from "@/components/SummaryCard";
+import Topbar from "@/components/Topbar";
+import { useTranslation } from "@/app/i18n/client";
 interface Guest {
   firstName: string;
   middleName: string;
@@ -36,8 +38,14 @@ const cardTypeToCardImg = {
     "https://swissuplabs.com/wordpress/wp-content/uploads/2016/04/free-icons-discover.png",
 };
 
-const BookingConfirmation: React.FC = () => {
+interface ReservationAndGuestDetailProps {
+  params: { lng: any };
+}
 
+const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
+  params: { lng },
+}) => {
+  const { t } = useTranslation(lng);
   const {
     bookingDetail,
     setBookingDetail,
@@ -58,105 +66,99 @@ const BookingConfirmation: React.FC = () => {
 
   return (
     // Page Container
-    <div className="flex justify-start">
-      {/* Main Container */}
-      <div className="w-[1440px] mobile:w-[330px] flex flex-wrap justify-center gap-10 py-10">
-        {/* Left Container */}
-        <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10">
-          {/* Guest Detail Container */}
-          <div>
-            {/* Guest Detail */}
-            <div className="text-h2 mobile:text-h2-mobile font-bold text-primary">
-              Guest Detail
+    <div>
+      <div className="z-30 fixed top-0">
+        <Topbar lng={lng} />
+      </div>
+      <div className="flex justify-start mt-[128px]">
+        {/* Main Container */}
+        <div className="w-[1440px] mobile:w-[330px] flex flex-wrap justify-center gap-10 py-10">
+          {/* Left Container */}
+          <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10">
+            {/* Guest Detail Container */}
+            <div>
+              <div>Your Booking is successful</div>
+              <div>
+                Booking Id : {Math.floor(100000 + Math.random() * 900000)}
+              </div>
+              {/* Guest Detail */}
+              <div className="text-h2 mobile:text-h2-mobile font-bold text-primary">
+                Guest Detail
+              </div>
+              {/* Guest Detail - Input Container */}
+              {guests.map((guest, index) => {
+                return <GuestDetailInputContainer key={index} guest={guest} />;
+              })}
             </div>
-
-            {/* Guest Detail - Input Container */}
-            {guests.map((guest, index) => {
-              return <GuestDetailInputContainer key={index} guest={guest} />;
-            })}
-          </div>
-
-          {/* Payment Detail Container */}
-          <div>
-            {/* Payment Detail */}
-            <div className="text-h2 mobile:text-h2-mobile font-bold text-primary mb-2">
-              Payment Detail
-            </div>
-
-            {/* Payment Detail - Input Container */}
-            <div className="flex flex-col gap-2">
-              {/* Row 1 */}
-              <div className="flex flex-wrap justify-between gap-2">
-                {/* Card Holder Name */}
-                <div className="w-full">
-                  <div className="text-h5 mobile:text-h4-mobile">
-                    Card Holder Name : {paymentDetail.cardHolderName}
-                  </div>
-                </div>
-
-                {/* Card Number */}
-                <div className="w-full">
-                  <div className="text-description mobile:text-h3-mobile flex gap-2 items-center">
+            {/* Payment Detail Container */}
+            <div>
+              {/* Payment Detail */}
+              <div className="text-h2 mobile:text-h2-mobile font-bold text-primary mb-2">
+                Payment Detail
+              </div>
+              {/* Payment Detail - Input Container */}
+              <div className="flex flex-col gap-2">
+                {/* Row 1 */}
+                <div className="flex flex-wrap justify-between gap-2">
+                  {/* Card Holder Name */}
+                  <div className="w-full">
                     <div className="text-h5 mobile:text-h4-mobile">
-                      Card Number : {paymentDetail.cardNumber}
+                      Card Holder Name : {paymentDetail.cardHolderName}
                     </div>
-                    <div>
-                      {cardType &&
-                      Object.keys(cardTypeToCardImg).includes(cardType) ? (
-                        <img
-                          src={(cardTypeToCardImg as any)[cardType]}
-                          alt="cardType"
-                          style={{ height: "17px" }}
-                        />
-                      ) : null}
+                  </div>
+                  {/* Card Number */}
+                  <div className="w-full">
+                    <div className="text-description mobile:text-h3-mobile flex gap-2 items-center">
+                      <div className="text-h5 mobile:text-h4-mobile">
+                        Card Number : {paymentDetail.cardNumber}
+                      </div>
+                      <div>
+                        {cardType &&
+                        Object.keys(cardTypeToCardImg).includes(cardType) ? (
+                          <img
+                            src={(cardTypeToCardImg as any)[cardType]}
+                            alt="cardType"
+                            style={{ height: "17px" }}
+                          />
+                        ) : null}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* Row 2 */}
+                <div className="flex flex-wrap justify-between gap-2">
+                  {/* Exp Date */}
+                  <div className="w-[343px]">
+                    <div className="text-h5 mobile:text-h4-mobile">
+                      Exp date : {paymentDetail.expDate}
+                    </div>
+                  </div>
+                  {/* CVV */}
+                  <div className="w-[343px]">
+                    <div className="text-h5 mobile:text-h4-mobile">
+                      CVV : {paymentDetail.cvv}
                     </div>
                   </div>
                 </div>
               </div>
-
-              {/* Row 2 */}
-              <div className="flex flex-wrap justify-between gap-2">
-                {/* Exp Date */}
-                <div className="w-[343px]">
-                  <div className="text-h5 mobile:text-h4-mobile">
-                    Exp date : {paymentDetail.expDate}
-                  </div>
-                </div>
-
-                {/* CVV */}
-                <div className="w-[343px]">
-                  <div className="text-h5 mobile:text-h4-mobile">
-                    CVV : {paymentDetail.cvv}
-                  </div>
-                </div>
+            </div>
+            {/* HR Line */}
+            <hr className="my-2" />
+            {/* Special Request Container */}
+            <div>
+              <div className="text-h2 mobile:text-h2-mobile font-bold text-primary">
+                Special Request
+              </div>
+              <div className="w-full text-h5 mobile:text-h4-mobile">
+                {specialReq === "" ? "-" : specialReq}
               </div>
             </div>
           </div>
-
-          {/* HR Line */}
-          <hr className="my-2" />
-
-          {/* Special Request Container */}
-          <div>
-            <div className="text-h2 mobile:text-h2-mobile font-bold text-primary">
-              Special Request
-            </div>
-            <div className="w-full text-h5 mobile:text-h4-mobile">
-              {specialReq === "" ? "-" : specialReq}
-            </div>
+          {/* Right Container */}
+          <div className="w-[509px] mobile:w-[330px] fixed right-[200px] top-[150px]">
+            <SummaryCard page="booking-confirmation" />
+            {/* <button>Back to homepage</button> */}
           </div>
-        </div>
-
-        {/* Right Container */}
-        <div className="w-[509px] mobile:w-[330px]">
-        <SummaryCard
-          page="search-result"
-          startDate={bookingDetail.startDate}
-          endDate={bookingDetail.endDate}
-          adults={bookingDetail.adultNumber}
-          childrens={bookingDetail.childrenNumber}
-          codePromo={bookingDetail.codePromotion}
-        />
         </div>
       </div>
     </div>
