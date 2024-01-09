@@ -126,7 +126,7 @@ export default function LandingTopbar({
 
   return (
     <div
-      className="sticky top-0 flex flex-row h-[10vh] w-[100vw] px-[4.16vw] items-center justify-between"
+      className="sticky top-0 flex flex-row h-[110px] w-full px-[4.16vw] items-center justify-between"
       style={{ backgroundColor: "#2A4D69", color: "white" }}
     >
       <div className="flex flex-row items-center">

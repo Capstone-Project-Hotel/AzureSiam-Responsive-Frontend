@@ -166,7 +166,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
   return (
     // Page Container
     <div>
-      <div className="z-50 fixed top-0">
+      <div className="z-50 fixed top-0 w-full">
         <LandingTopbar
           lng={lng}
           scrollToRoom={scrollToRoom}
@@ -273,7 +273,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
         </div>
       </Drawer>
 
-      <div className="flex justify-center mt-[128px]">
+      <div className="flex justify-center mt-[110px]">
         {/* Main Container */}
         <div className="w-[1440px] mobile:w-full flex flex-col gap-10 mobile:gap-10 items-center pb-20">
           {/* Hotel Name Container */}
@@ -321,7 +321,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                 <div>
                   <div className="font-bold mb-1">{t("amenities")}</div>
                   <div>
-                    <ul className="leading-8">
+                    <ul className="leading-8 mobile:leading-6">
                       <li>
                         <SmokeFreeIcon
                           fontSize={isMobile ? "small" : "medium"}
@@ -408,9 +408,8 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                 <div>{t("dlx_description")}</div>
                 <div>
                   <div className="font-bold mb-1">{t("amenities")}</div>
-                  <div className="font-bold mb-1">{t("amenities")}</div>
                   <div>
-                    <ul className="leading-8">
+                    <ul className="leading-8 mobile:leading-6">
                       <li>
                         <SmokeFreeIcon
                           fontSize={isMobile ? "small" : "medium"}
@@ -500,7 +499,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                 <div>
                   <div className="font-bold mb-1">{t("amenities")}</div>
                   <div>
-                    <ul className="leading-8">
+                    <ul className="leading-8 mobile:leading-6">
                       <li>
                         <SmokeFreeIcon
                           fontSize={isMobile ? "small" : "medium"}
@@ -592,7 +591,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                 <div>
                   <div className="font-bold mb-1">{t("amenities")}</div>
                   <div>
-                    <ul className="leading-8">
+                    <ul className="leading-8 mobile:leading-6">
                       <li>
                         <SmokeFreeIcon
                           fontSize={isMobile ? "small" : "medium"}
@@ -694,7 +693,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                 <div>
                   <div className="font-bold mb-1">{t("amenities")}</div>
                   <div>
-                    <ul className="leading-8">
+                    <ul className="leading-8 mobile:leading-6">
                       <li>
                         <SmokeFreeIcon
                           fontSize={isMobile ? "small" : "medium"}
