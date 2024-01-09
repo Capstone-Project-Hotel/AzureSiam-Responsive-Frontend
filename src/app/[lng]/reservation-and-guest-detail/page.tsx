@@ -20,6 +20,7 @@ import Footer from "@/components/Footer";
 import AdditionalServiceCard from "@/components/AdditionalServiceCard";
 import { useTranslation } from "@/app/i18n/client";
 import { useRouter } from "next/navigation";
+import dayjs from "dayjs";
 
 const PhoneInput = dynamic(() => import("react-phone-number-input"), {
   ssr: false,
@@ -375,6 +376,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
                       className="w-full"
                       placeholder="Select Exp Date"
                       onChange={handleExpDateChange}
+                      value={dayjs(paymentDetail.expDate)}
                     />
                   </div>
 
