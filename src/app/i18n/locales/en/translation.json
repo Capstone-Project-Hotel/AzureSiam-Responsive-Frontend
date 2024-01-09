@@ -67,5 +67,14 @@
   "cable": "Cable/Satellite TV",
   "balcony": "Balcony",
   "parlor": "Parlor",
-  "dinner": "Dinner plan"
+  "dinner": "Dinner plan",
+
+  "reselect_label": "Re-select your room for booking",
+  "additional_label": "Additional Services",
+  "service_name1": "Transportation [Package]",
+  "service_unit1": "1 Time ( Airport - Hotel ) / Day",
+  "service_name2": "Meal Plans [ Package ]",
+  "service_unit2": "1 Meal / Day / Person",
+  "service_name3": "Thai Massage [ Package ]",
+  "service_unit3": "2 Hours / Day / Person"
 }

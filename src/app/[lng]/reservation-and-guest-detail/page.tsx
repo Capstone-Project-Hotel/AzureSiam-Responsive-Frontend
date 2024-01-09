@@ -195,6 +195,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
               </Link>
               <div className="text-h2 mobile:text-h2-mobile">
                 Re-select your room for booking
+                {/* {t("reselect-label")} */}
               </div>
             </div>
 
@@ -202,23 +203,37 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
             <div>
               <div className="text-h2 mobile:text-h2-mobile font-bold">
                 Additional Services
+                {/* {t("additional_label")} */}
               </div>
               <div className="flex gap-5">
                 <AdditionalServiceCard
                   serviceName="Transportation [Package]"
+                  // serviceName="{t("service_name1")}"
                   unit="1 Meal / Day / Person"
+                  // unit="{t("service_unit1")}"
                   price={200}
                   serviceImage="https://via.placeholder.com/240x150"
                 />
                 <AdditionalServiceCard
                   serviceName="Transportation [Package]"
+                  // serviceName="{t("service_name2")}"
                   unit="1 Meal / Day / Person"
+                  // unit="{t("service_unit2")}"
+                  price={200}
+                  serviceImage="https://via.placeholder.com/240x150"
+                />
+                <AdditionalServiceCard
+                  serviceName="Transportation [Package]"
+                  // serviceName="{t("service_name3")}"
+                  unit="1 Meal / Day / Person"
+                  // unit="{t("service_unit3")}"
                   price={200}
                   serviceImage="https://via.placeholder.com/240x150"
                 />
               </div>
             </div>
 
+            
             {/* Guest Detail Container */}
             <div>
               {/* Guest Detail */}
