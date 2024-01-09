@@ -64,11 +64,11 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
     // Page Container
     <div>
       <div className="z-50 fixed top-0">
-        <Topbar lng={undefined} />
+        <Topbar lng={lng} />
       </div>
-      <div className="flex justify-center mt-20">
+      <div className="flex justify-center mt-[140px]">
         {/* Main Container */}
-        <div className="w-[1440px] mobile:w-[330px] flex flex-wrap justify-center gap-10 py-10">
+        <div className="w-[1440px] mobile:w-[330px] flex flex-wrap ml-20 gap-10 py-10">
           {/* Left Container */}
           <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10">
             <div className="flex items-center gap-5">
@@ -164,7 +164,7 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
           </div>
 
           {/* Right Container */}
-          <div className="w-[509px] mobile:w-[330px] fixed right-[200px] top-[150px]">
+          <div className="w-[509px] mobile:w-[330px] absolute mobile:right-0 right-[0px] top-[190px]">
             <SummaryCard page="summary-booking-detail" />
           </div>
         </div>

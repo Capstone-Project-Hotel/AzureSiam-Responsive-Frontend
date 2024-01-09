@@ -7,6 +7,8 @@ import { redirect } from "next/navigation";
 import SummaryCard from "@/components/SummaryCard";
 import Topbar from "@/components/Topbar";
 import { useTranslation } from "@/app/i18n/client";
+import { CheckCircleFilled, CiCircleFilled } from "@ant-design/icons";
+import { green } from "@mui/material/colors";
 interface Guest {
   firstName: string;
   middleName: string;
@@ -70,17 +72,24 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
       <div className="z-30 fixed top-0">
         <Topbar lng={lng} />
       </div>
-      <div className="flex justify-start mt-[128px]">
+      <div className="mt-[150px] text-center">
+        <div className="text-h1 flex flex-row gap-2 justify-center">
+          <CheckCircleFilled style={{ color: "green" }} />
+          <div className="font-bold text-primary">
+            Your Booking is successful
+          </div>
+        </div>
+        <div className="text-h2 font-bold text-primary">
+          Booking Id: {Math.floor(100000 + Math.random() * 900000)}
+        </div>
+      </div>
+      <div className="flex justify-start mt-[15px]">
         {/* Main Container */}
-        <div className="w-[1440px] mobile:w-[330px] flex flex-wrap justify-center gap-10 py-10">
+        <div className="w-[1440px] mobile:w-[330px] flex flex-wrap ml-20 gap-10 py-10">
           {/* Left Container */}
           <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10">
             {/* Guest Detail Container */}
             <div>
-              <div>Your Booking is successful</div>
-              <div>
-                Booking Id : {Math.floor(100000 + Math.random() * 900000)}
-              </div>
               {/* Guest Detail */}
               <div className="text-h2 mobile:text-h2-mobile font-bold text-primary">
                 Guest Detail
@@ -155,9 +164,8 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
             </div>
           </div>
           {/* Right Container */}
-          <div className="w-[509px] mobile:w-[330px] fixed right-[200px] top-[150px]">
+          <div className="w-[509px] mobile:w-[330px] absolute mobile:right-0 right-[0px] top-[300px]">
             <SummaryCard page="booking-confirmation" />
-            {/* <button>Back to homepage</button> */}
           </div>
         </div>
       </div>

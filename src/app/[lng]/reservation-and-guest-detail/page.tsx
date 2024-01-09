@@ -136,6 +136,13 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
 
   const onCheckboxChange = (e: CheckboxChangeEvent) => {
     setIsCheckedPDPA(e.target.checked);
+
+    const updatedBookingDetail = {
+      ...bookingDetail,
+      isCheckedPDPA: e.target.checked,
+    };
+
+    setBookingDetail(updatedBookingDetail);
   };
 
   const isDisabledConfirmF = (aguests: Guest[], payment: PaymentDetail) => {
@@ -192,11 +199,11 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
       <div className="z-30 fixed top-0">
         <Topbar lng={lng} />
       </div>
-      <div className="flex justify-start mt-20">
+      <div className="flex justify-between mt-[100px]">
         {/* Main Container */}
-        <div className="w-[1440px] mobile:w-[330px] flex flex-wrap justify-center gap-10 py-10">
+        <div className="w-[1440px] mobile:w-[330px] flex flex-wrap ml-20 gap-10 py-10">
           {/* Left Container */}
-          <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10">
+          <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10 mt-10">
             {/* Back to search result Container */}
             <div className="flex items-center gap-5">
               <button onClick={handleReselect}>
@@ -215,15 +222,15 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
               </div>
               <div className="flex gap-5">
                 <AdditionalServiceCard
-                  serviceName="Transportation [Package]"
-                  unit="1 Meal / Day / Person"
-                  price={200}
+                  serviceName="Transportation[Package 1]"
+                  unit=""
+                  price={299}
                   serviceImage="https://via.placeholder.com/240x150"
                 />
                 <AdditionalServiceCard
-                  serviceName="Transportation [Package]"
-                  unit="1 Meal / Day / Person"
-                  price={200}
+                  serviceName="Transportation[Package 2]"
+                  unit=""
+                  price={499}
                   serviceImage="https://via.placeholder.com/240x150"
                 />
               </div>
@@ -437,15 +444,8 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
           </div>
 
           {/* Right Container */}
-          <div className="w-[509px] mobile:w-[330px] fixed right-[200px] top-[150px]">
-            <SummaryCard
-              page="reservation-and-guest-detail"
-              // startDate={bookingDetail.startDate}
-              // endDate={bookingDetail.endDate}
-              // adults={bookingDetail.adultNumber}
-              // childrens={bookingDetail.childrenNumber}
-              // codePromo={bookingDetail.codePromotion}
-            />
+          <div className="w-[509px] mobile:w-[330px] absolute mobile:right-0 right-[0px] top-[190px]">
+            <SummaryCard page="reservation-and-guest-detail" />
           </div>
         </div>
       </div>
