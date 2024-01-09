@@ -272,9 +272,6 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
           </div>
         </div>
       </Drawer>
-      <div className="flex justify-center p-5 gap-5 items-center">
-        <Button onClick={showDrawer}>Open</Button>
-      </div>
 
       <div className="flex justify-center p-0 m-0 mt-[20px]">
         {/* Main Container */}
@@ -581,16 +578,16 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                 </div>
               </OtherCard>
 
-              {/* Junior Suite Room */}
+              {/* Suite Room */}
               <OtherCard
                 t={t}
                 onButtonClick={showDrawer}
                 hoverable={true}
-                title={t("jns_title")}
-                description={t("jns_description")}
+                title={t("s_title")}
+                description={t("s_description")}
                 src="https://cdn.discordapp.com/attachments/457166097230069773/1188826464708218920/image_41.jpg?ex=659befec&is=65897aec&hm=5a3d092015cc24fcd079f85b33341c508f33152ec6ea2e2c7b2c5796e4839e6a&"
               >
-                <div>{t("jns_description")}</div>
+                <div>{t("s_description")}</div>
                 <div>
                   <div className="font-bold mb-1">{t("amenities")}</div>
                   <div>
@@ -683,16 +680,16 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                 </div>
               </OtherCard>
 
-              {/* Executive Suite Room */}
+              {/* Executive Room */}
               <OtherCard
                 t={t}
                 onButtonClick={showDrawer}
                 hoverable={true}
-                title={t("exs_title")}
-                description={t("exs_description")}
+                title={t("ex_title")}
+                description={t("ex_description")}
                 src="https://cdn.discordapp.com/attachments/457166097230069773/1188826023228354650/image_40_1_1.jpg?ex=659bef83&is=65897a83&hm=6582bd0a8cc86db4a4146b452e6d4b139146174c8c42818f174afa5fbd7e6bc0&"
               >
-                <div>{t("exs_description")}</div>
+                <div>{t("ex_description")}</div>
                 <div>
                   <div className="font-bold mb-1">{t("amenities")}</div>
                   <div>
