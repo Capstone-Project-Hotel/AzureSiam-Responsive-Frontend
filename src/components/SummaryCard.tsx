@@ -15,6 +15,7 @@ import Link from "next/link";
 
 export default function SummaryCard({
   page,
+  isDisabledConfirm,
 }: // startDate,
 // endDate,
 // adults,
@@ -22,6 +23,7 @@ export default function SummaryCard({
 // codePromo,
 {
   page: string;
+  isDisabledConfirm: boolean;
   // startDate: string;
   // endDate: string;
   // adults: number;
@@ -749,12 +751,12 @@ export default function SummaryCard({
           <Link href={"/summary-booking-detail"}>
             <Button
               className={` ${
-                !bookingDetail.isCheckedPDPA
+                isDisabledConfirm || !bookingDetail.isCheckedPDPA
                   ? "opacity-50 cursor-not-allowed"
                   : ""
               }`}
               style={{ background: "#2A4D69", color: "white" }}
-              disabled={!bookingDetail.isCheckedPDPA}
+              disabled={isDisabledConfirm || !bookingDetail.isCheckedPDPA}
             >
               <p>Confirm</p>
             </Button>

@@ -218,7 +218,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
             {/* Additional Services Container */}
             <div>
               <div className="text-h2 mobile:text-h2-mobile font-bold">
-                Additional Services
+                Additional Services {guests[0].gender}
               </div>
               <div className="flex gap-5">
                 <AdditionalServiceCard
@@ -445,7 +445,10 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
 
           {/* Right Container */}
           <div className="w-[509px] mobile:w-[330px] absolute mobile:right-0 right-[0px] top-[190px]">
-            <SummaryCard page="reservation-and-guest-detail" />
+            <SummaryCard
+              page="reservation-and-guest-detail"
+              isDisabledConfirm={isDisabledConfirm}
+            />
           </div>
         </div>
       </div>
