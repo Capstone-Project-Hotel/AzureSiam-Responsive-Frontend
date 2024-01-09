@@ -9,6 +9,7 @@ import Topbar from "@/components/Topbar";
 import Footer from "@/components/Footer";
 import { LeftOutlined } from "@ant-design/icons";
 import Link from "next/link";
+import { useTranslation } from "@/app/i18n/client";
 interface Guest {
   firstName: string;
   middleName: string;
@@ -45,7 +46,14 @@ const additionalServiceCardExample = {
   two: "https://cdn.discordapp.com/attachments/1145653185059495958/1186614215696470036/image.png?ex=6593e39b&is=65816e9b&hm=e1fb456b3182b9f712fa3c75d390b632e784a389159deae8bc1da9cf78781755&",
 };
 
-const BookingConfirmation: React.FC = () => {
+interface ReservationAndGuestDetailProps {
+  params: { lng: any };
+}
+
+const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
+  params: { lng },
+}) => {
+  const { t } = useTranslation(lng);
   const { guests, paymentDetail, specialReq, cardType } = useStore();
 
   if (guests[0].firstName === "") {
@@ -56,11 +64,11 @@ const BookingConfirmation: React.FC = () => {
     // Page Container
     <div>
       <div className="z-50 fixed top-0">
-        <Topbar />
+        <Topbar lng={lng} />
       </div>
-      <div className="flex justify-center mt-20">
+      <div className="flex justify-center mt-[140px]">
         {/* Main Container */}
-        <div className="w-[1440px] mobile:w-[330px] flex flex-wrap justify-center gap-10 py-10">
+        <div className="w-[1440px] mobile:w-[330px] flex flex-wrap ml-20 gap-10 py-10">
           {/* Left Container */}
           <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10">
             <div className="flex items-center gap-5">
@@ -156,13 +164,13 @@ const BookingConfirmation: React.FC = () => {
           </div>
 
           {/* Right Container */}
-          <div className="w-[509px] mobile:w-[330px]">
-            {/* <SummaryCard page="summary-booking-detail" /> */}
+          <div className="w-[509px] mobile:w-[330px] absolute mobile:right-0 right-[0px] top-[190px]">
+            <SummaryCard page="summary-booking-detail" />
           </div>
         </div>
       </div>
       <div className="mt-[10px]">
-        <Footer />
+        <Footer t={t} />
       </div>
     </div>
   );

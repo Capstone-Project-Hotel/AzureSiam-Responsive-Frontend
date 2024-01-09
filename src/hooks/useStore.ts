@@ -68,10 +68,11 @@ const emptyBookingDetail: BookingDetail = {
   standardRoomNumber: 0,
   deluxeRoomNumber: 0,
   familyRoomNumber: 0,
+  suiteRoomNumber: 0,
   executiveRoomNumber: 0,
-  juniorRoomNumber: 0,
   packageOne: false,
   packageTwo: false,
+  isCheckedPDPA: false,
 }
 
 interface Store {

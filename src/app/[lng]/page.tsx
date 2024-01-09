@@ -273,7 +273,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
         </div>
       </Drawer>
 
-      <div className="flex justify-center p-0 m-0 mt-[20px]">
+      <div className="flex justify-center mt-[128px]">
         {/* Main Container */}
         <div className="w-[1440px] mobile:w-full flex flex-col gap-10 mobile:gap-10 items-center pb-20">
           {/* Hotel Name Container */}
@@ -407,6 +407,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
               >
                 <div>{t("dlx_description")}</div>
                 <div>
+                  <div className="font-bold mb-1">{t("amenities")}</div>
                   <div className="font-bold mb-1">{t("amenities")}</div>
                   <div>
                     <ul className="leading-8">
@@ -905,24 +906,42 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
             </div>
 
             <Slider {...settings}>
-              <OtherCard
-                t={t}
-                title={t("siam_title")}
-                description={t("siam_description")}
-                src="https://cdn.discordapp.com/attachments/457166097230069773/1186563062191357963/cover_8.jpg?ex=6593b3f7&is=65813ef7&hm=e26fe4168c65d44ce4ba29ab2c2e1711997210e092255fa87d811a2a819743bf&"
-              />
-              <OtherCard
-                t={t}
-                title={t("samyan_title")}
-                description={t("samyan_description")}
-                src="https://cdn.discordapp.com/attachments/457166097230069773/1186563062510137374/cover_9.jpg?ex=6593b3f7&is=65813ef7&hm=37e1d1821914e1abaeb65fff72f7ee8777f76d4849725bc19bcd1c35d1c499e8&"
-              />
-              <OtherCard
-                t={t}
-                title={t("central_title")}
-                description={t("central_description")}
-                src="https://cdn.discordapp.com/attachments/457166097230069773/1186563062765994074/cover_10.jpg?ex=6593b3f7&is=65813ef7&hm=f5f92e930efdb887607c71c735b500194e2c94122db327962c261c387538292b&"
-              />
+              <Link
+                href={
+                  "https://www.google.com/maps/place/%E0%B8%AA%E0%B8%A2%E0%B8%B2%E0%B8%A1%E0%B8%9E%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%81%E0%B8%AD%E0%B8%99/@13.7463371,100.5322779,17z/data=!4m10!1m2!2m1!1ssiam+paragon!3m6!1s0x30e29ecde3aee521:0x9f43939a2caf2963!8m2!3d13.7462411!4d100.5347402!15sCgxzaWFtIHBhcmFnb25aDiIMc2lhbSBwYXJhZ29ukgEPc2hvcHBpbmdfY2VudGVy4AEA!16zL20vMDltbWho?entry=ttu"
+                }
+              >
+                <OtherCard
+                  t={t}
+                  title={t("siam_title")}
+                  description={t("siam_description")}
+                  src="https://cdn.discordapp.com/attachments/457166097230069773/1186563062191357963/cover_8.jpg?ex=6593b3f7&is=65813ef7&hm=e26fe4168c65d44ce4ba29ab2c2e1711997210e092255fa87d811a2a819743bf&"
+                />
+              </Link>
+              <Link
+                href={
+                  "https://www.google.com/maps/place/%E0%B8%AA%E0%B8%B2%E0%B8%A1%E0%B8%A2%E0%B9%88%E0%B8%B2%E0%B8%99+%E0%B8%A1%E0%B8%B4%E0%B8%95%E0%B8%A3%E0%B8%97%E0%B8%B2%E0%B8%A7%E0%B8%99%E0%B9%8C/@13.7336159,100.525937,17z/data=!3m1!4b1!4m6!3m5!1s0x30e298d55b6099b5:0xe4f4cc8ef569d83f!8m2!3d13.7336159!4d100.5285119!16s%2Fg%2F11cs1tf084?entry=ttu"
+                }
+              >
+                <OtherCard
+                  t={t}
+                  title={t("samyan_title")}
+                  description={t("samyan_description")}
+                  src="https://cdn.discordapp.com/attachments/457166097230069773/1186563062510137374/cover_9.jpg?ex=6593b3f7&is=65813ef7&hm=37e1d1821914e1abaeb65fff72f7ee8777f76d4849725bc19bcd1c35d1c499e8&"
+                />
+              </Link>
+              <Link
+                href={
+                  "https://www.google.com/maps/place/%E0%B9%80%E0%B8%8B%E0%B9%87%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B8%B1%E0%B8%A5%E0%B9%80%E0%B8%A7%E0%B8%B4%E0%B8%A5%E0%B8%94%E0%B9%8C/@13.7465337,100.5365739,17z/data=!3m1!4b1!4m6!3m5!1s0x30e29ecfc2f455e1:0xc4ad0280d8906604!8m2!3d13.7465337!4d100.5391488!16zL20vMGZuNTdn?entry=ttu"
+                }
+              >
+                <OtherCard
+                  t={t}
+                  title={t("central_title")}
+                  description={t("central_description")}
+                  src="https://cdn.discordapp.com/attachments/457166097230069773/1186563062765994074/cover_10.jpg?ex=6593b3f7&is=65813ef7&hm=f5f92e930efdb887607c71c735b500194e2c94122db327962c261c387538292b&"
+                />
+              </Link>
             </Slider>
           </div>
         </div>

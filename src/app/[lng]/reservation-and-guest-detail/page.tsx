@@ -19,6 +19,7 @@ import SummaryCard from "@/components/SummaryCard";
 import Footer from "@/components/Footer";
 import AdditionalServiceCard from "@/components/AdditionalServiceCard";
 import { useTranslation } from "@/app/i18n/client";
+import { useRouter } from "next/navigation";
 
 const PhoneInput = dynamic(() => import("react-phone-number-input"), {
   ssr: false,
@@ -87,6 +88,8 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
 }) => {
   const { t } = useTranslation(lng);
   const {
+    bookingDetail,
+    setBookingDetail,
     guests,
     setGuests,
     paymentDetail,
@@ -98,6 +101,12 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
   } = useStore();
   const [isCheckedPDPA, setIsCheckedPDPA] = useState<boolean>(false);
   const [isDisabledConfirm, setIsDisabledConfirm] = useState<boolean>(false);
+
+  const router = useRouter();
+
+  const handleReselect = () => {
+    router.back();
+  };
 
   const handleInputChange = (index: number, value: string, name: string) => {
     const updatedGuests = [...guests];
@@ -127,6 +136,13 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
 
   const onCheckboxChange = (e: CheckboxChangeEvent) => {
     setIsCheckedPDPA(e.target.checked);
+
+    const updatedBookingDetail = {
+      ...bookingDetail,
+      isCheckedPDPA: e.target.checked,
+    };
+
+    setBookingDetail(updatedBookingDetail);
   };
 
   const isDisabledConfirmF = (aguests: Guest[], payment: PaymentDetail) => {
@@ -183,16 +199,17 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
       <div className="z-30 fixed top-0">
         <Topbar lng={lng} />
       </div>
-      <div className="flex justify-start mt-20">
+      <div className="flex justify-between mt-[100px]">
         {/* Main Container */}
-        <div className="w-[1440px] mobile:w-[330px] flex flex-wrap justify-center gap-10 py-10">
+        <div className="w-[1440px] mobile:w-[330px] flex flex-wrap ml-20 gap-10 py-10">
           {/* Left Container */}
-          <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10">
+          <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10 mt-10">
             {/* Back to search result Container */}
             <div className="flex items-center gap-5">
-              <Link href="/search-result">
+              <button onClick={handleReselect}>
                 <LeftOutlined className="text-[36px] mobile:text-[25px]" />
-              </Link>
+              </button>
+
               <div className="text-h2 mobile:text-h2-mobile">
                 Re-select your room for booking
                 {/* {t("reselect-label")} */}
@@ -207,33 +224,20 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
               </div>
               <div className="flex gap-5">
                 <AdditionalServiceCard
-                  serviceName="Transportation [Package]"
-                  // serviceName="{t("service_name1")}"
-                  unit="1 Meal / Day / Person"
-                  // unit="{t("service_unit1")}"
-                  price={200}
+                  serviceName="Transportation[Package 1]"
+                  unit=""
+                  price={299}
                   serviceImage="https://via.placeholder.com/240x150"
                 />
                 <AdditionalServiceCard
-                  serviceName="Transportation [Package]"
-                  // serviceName="{t("service_name2")}"
-                  unit="1 Meal / Day / Person"
-                  // unit="{t("service_unit2")}"
-                  price={200}
-                  serviceImage="https://via.placeholder.com/240x150"
-                />
-                <AdditionalServiceCard
-                  serviceName="Transportation [Package]"
-                  // serviceName="{t("service_name3")}"
-                  unit="1 Meal / Day / Person"
-                  // unit="{t("service_unit3")}"
-                  price={200}
+                  serviceName="Transportation[Package 2]"
+                  unit=""
+                  price={499}
                   serviceImage="https://via.placeholder.com/240x150"
                 />
               </div>
             </div>
 
-            
             {/* Guest Detail Container */}
             <div>
               {/* Guest Detail */}
@@ -442,14 +446,11 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
           </div>
 
           {/* Right Container */}
-          <div className="w-[509px] mobile:w-[330px] fixed right-[200px] top-[150px]">
-            {/* <SummaryCard page="reservation-and-guest-detail" /> */}
-            {/* <button
-            onClick={() => alert(isDisabledConfirm || !isCheckedPDPA)}
-            disabled={isDisabledConfirm || !isCheckedPDPA}
-          >
-            Button
-          </button> */}
+          <div className="w-[509px] mobile:w-[330px] absolute mobile:right-0 right-[0px] top-[190px]">
+            <SummaryCard
+              page="reservation-and-guest-detail"
+              isDisabledConfirm={isDisabledConfirm}
+            />
           </div>
         </div>
       </div>

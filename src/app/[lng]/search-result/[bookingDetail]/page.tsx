@@ -14,12 +14,12 @@ import useStore from "@/hooks/useStore";
 import { useEffect, useState } from "react";
 import { useTranslation } from "@/app/i18n/client";
 
-const mockRoomInformation = {
+const mockStandardRoomInformation = {
   roomName: "Standard Room",
-  maxGuest: 2,
-  bedType: "King",
-  roomSize: 30,
-  roomPrice: 2000,
+  maxGuest: 1,
+  bedType: "Single Bed",
+  roomSize: 12,
+  roomPrice: 1500,
   roomImage: "https://via.placeholder.com/300",
   roomAmenities: [
     "TV",
@@ -29,10 +29,108 @@ const mockRoomInformation = {
     "Water Heater",
   ],
   roomDetail:
-    "Unwind in a room that balances simplicity with functionality. Our Standard Studio Rooms are equipped with all the essentials for a comfortable stay, including a plush bed that promises a restful night's sleep. The sleek furnishings and efficient layout maximize space, providing a relaxing environment for you to recharge after a day of exploration or work.",
+    "The room is designed to meet fundamental criteria for comfort, functionality, and aesthetics. This room is equipped with essential amenities necessary for a comfortable stay or specific purposes, ensuring a standardized level of quality. It may feature standard furniture, basic technology, and necessary facilities, making it suitable for a wide range of users or purposes. Whether it's a hotel room, office space, or residential area",
+  roomType: "standard",
 };
 
-export default function SearchResultPage({ params: { lng } }: { params: { lng: any } })  {
+const mockDeluxeRoomInformation = {
+  roomName: "Deluxe Room",
+  maxGuest: 2,
+  bedType: "Double Bed",
+  roomSize: 30,
+  roomPrice: 1800,
+  roomImage: "https://via.placeholder.com/300",
+  roomAmenities: [
+    "TV",
+    "Air Conditioner",
+    "Refrigerator",
+    "Hair Dryer",
+    "Water Heater",
+    "Private Bathroom with Bathtub",
+    "Balcony",
+  ],
+  roomDetail:
+    "An upgraded version of the standard room, the deluxe room offers more space and often features enhanced furnishings, better views, and additional amenities such as a balcony or a seating area. It provides a touch of luxury for guests looking for a bit more comfort.",
+  roomType: "deluxe",
+};
+
+const mockFamilyRoomInformation = {
+  roomName: "Family Room",
+  maxGuest: 4,
+  bedType: "Double Bed",
+  roomSize: 30,
+  roomPrice: 2200,
+  roomImage: "https://via.placeholder.com/300",
+  roomAmenities: [
+    "TV",
+    "Air Conditioner",
+    "Refrigerator",
+    "Hair Dryer",
+    "Water Heater",
+    "Balcony",
+  ],
+  roomDetail:
+    "Specifically designed for families, these rooms often feature extra sleeping space such as bunk beds or a pull-out sofa. Family rooms provide the convenience of staying together in one room while ensuring everyone has a comfortable place to sleep.",
+  roomType: "family",
+};
+
+const mockSuiteRoomInformation = {
+  roomName: "Suite Room",
+  maxGuest: 2,
+  bedType: "Double Bed",
+  roomSize: 30,
+  roomPrice: 2500,
+  roomImage: "https://via.placeholder.com/300",
+  roomAmenities: [
+    "TV",
+    "Air Conditioner",
+    "Refrigerator",
+    "Hair Dryer",
+    "Water Heater",
+    "Balcony",
+    "Jacuzzi",
+    "Dinner Plan",
+  ],
+  roomDetail:
+    "well-appointed and often more spacious accommodation options than standard rooms, designed to offer an enhanced level of comfort for guests seeking a little more space and luxury. It's a popular choice for both business and leisure travelers looking for a comfortable retreat with some additional amenities.",
+  roomType: "suite",
+};
+
+const mockExecutiveRoomInformation = {
+  roomName: "Executive Room",
+  maxGuest: 4,
+  bedType: "King Size Bed",
+  roomSize: 30,
+  roomPrice: 3000,
+  roomImage: "https://via.placeholder.com/300",
+  roomAmenities: [
+    "TV",
+    "Air Conditioner",
+    "Refrigerator",
+    "Hair Dryer",
+    "Water Heater",
+    "Balcony",
+    "Parlor",
+    "Dinner Plan",
+  ],
+  roomDetail:
+    "luxurious and spacious accommodation options designed to cater to the needs of business travelers, VIPs, or guests seeking an elevated level of comfort and amenities. Typically located on higher floors for enhanced privacy and better views, the Executive Suite offers a sophisticated and upscale environment.",
+  roomType: "executive",
+};
+
+const mockRoomInformation = [
+  mockStandardRoomInformation,
+  mockDeluxeRoomInformation,
+  mockFamilyRoomInformation,
+  mockSuiteRoomInformation,
+  mockExecutiveRoomInformation,
+];
+
+export default function SearchResultPage({
+  params: { lng },
+}: {
+  params: { lng: any };
+}) {
   const { t } = useTranslation(lng);
   const params = useParams();
 
@@ -60,18 +158,12 @@ export default function SearchResultPage({ params: { lng } }: { params: { lng: a
 
   useEffect(() => {
     const updatedBookingDetail: BookingDetail = {
-        startDate: startDate,
-        endDate: endDate,
-        adultNumber: parseInt(adults),
-        childrenNumber: parseInt(childrens),
-        codePromotion: codePromo,
-        standardRoomNumber: 0,
-        deluxeRoomNumber: 0,
-        familyRoomNumber: 0,
-        executiveRoomNumber: 0,
-        juniorRoomNumber: 0,
-        packageOne: false,
-        packageTwo: false,
+      ...bookingDetail,
+      startDate: startDate,
+      endDate: endDate,
+      adultNumber: parseInt(adults),
+      childrenNumber: parseInt(childrens),
+      codePromotion: codePromo,
     };
     setBookingDetail(updatedBookingDetail);
 
@@ -85,94 +177,51 @@ export default function SearchResultPage({ params: { lng } }: { params: { lng: a
   console.log(dayjs(bookingDetail.startDate, "YYYY-MM-DD"));
   console.log(bookingDetail.adultNumber);
 
-  // console.log(adults)
+  let reducedRate = 1;
+
+  if (codePromo === "valid001") {
+    reducedRate = 0.8;
+  }
 
   return (
     <div>
       <div className="z-50 fixed top-0">
-        <Topbar lng={undefined} />
+        <Topbar lng={lng} />
       </div>
       <div className="mt-[10vh]">
-        <Filter
-          startDate={startDate}
-          endDate={endDate}
-          adults={parseInt(adults)}
-          childrens={parseInt(childrens)}
-          codePromo={codePromo}
-        />
+        <Filter />
       </div>
-      <p>{bookingDetail.standardRoomNumber}</p>
-      <div className="w-[509px] mobile:w-[330px] fixed right-[200px] top-[400px]">
+
+      <div className="w-[509px] mobile:w-[330px] absolute mobile:right-0 right-[0px] top-[375px]">
         <SummaryCard
           page="search-result"
-          startDate={startDate}
-          endDate={endDate}
-          adults={parseInt(adults)}
-          childrens={parseInt(childrens)}
-          codePromo={codePromo}
+          // startDate={startDate}
+          // endDate={endDate}
+          // adults={parseInt(adults)}
+          // childrens={parseInt(childrens)}
+          // codePromo={codePromo}
         />
       </div>
 
       <div className="flex flex-col space-y-10 mt-10 ml-10">
-        <RoomCard
-          roomName={mockRoomInformation.roomName}
-          maxGuest={mockRoomInformation.maxGuest}
-          bedType={mockRoomInformation.bedType}
-          roomSize={mockRoomInformation.roomSize}
-          roomPrice={mockRoomInformation.roomPrice}
-          roomImage={mockRoomInformation.roomImage}
-          roomAmenities={mockRoomInformation.roomAmenities}
-          roomDetail={mockRoomInformation.roomDetail}
-          roomType={"standard"}
-        />
-        <RoomCard
-          roomName={mockRoomInformation.roomName}
-          maxGuest={mockRoomInformation.maxGuest}
-          bedType={mockRoomInformation.bedType}
-          roomSize={mockRoomInformation.roomSize}
-          roomPrice={mockRoomInformation.roomPrice}
-          roomImage={mockRoomInformation.roomImage}
-          roomAmenities={mockRoomInformation.roomAmenities}
-          roomDetail={mockRoomInformation.roomDetail}
-          roomType={"standard"}
-        />
-        <RoomCard
-          roomName={mockRoomInformation.roomName}
-          maxGuest={mockRoomInformation.maxGuest}
-          bedType={mockRoomInformation.bedType}
-          roomSize={mockRoomInformation.roomSize}
-          roomPrice={mockRoomInformation.roomPrice}
-          roomImage={mockRoomInformation.roomImage}
-          roomAmenities={mockRoomInformation.roomAmenities}
-          roomDetail={mockRoomInformation.roomDetail}
-          roomType={"standard"}
-        />
-        <RoomCard
-          roomName={mockRoomInformation.roomName}
-          maxGuest={mockRoomInformation.maxGuest}
-          bedType={mockRoomInformation.bedType}
-          roomSize={mockRoomInformation.roomSize}
-          roomPrice={mockRoomInformation.roomPrice}
-          roomImage={mockRoomInformation.roomImage}
-          roomAmenities={mockRoomInformation.roomAmenities}
-          roomDetail={mockRoomInformation.roomDetail}
-          roomType={"standard"}
-        />
-        <RoomCard
-          roomName={mockRoomInformation.roomName}
-          maxGuest={mockRoomInformation.maxGuest}
-          bedType={mockRoomInformation.bedType}
-          roomSize={mockRoomInformation.roomSize}
-          roomPrice={mockRoomInformation.roomPrice}
-          roomImage={mockRoomInformation.roomImage}
-          roomAmenities={mockRoomInformation.roomAmenities}
-          roomDetail={mockRoomInformation.roomDetail}
-          roomType={"standard"}
-        />
+        {mockRoomInformation.map((room, index) => (
+          <RoomCard
+            key={index}
+            roomName={room.roomName}
+            maxGuest={room.maxGuest}
+            bedType={room.bedType}
+            roomSize={room.roomSize}
+            roomPrice={room.roomPrice * reducedRate}
+            roomImage={room.roomImage}
+            roomAmenities={room.roomAmenities}
+            roomDetail={room.roomDetail}
+            roomType={room.roomType}
+          />
+        ))}
       </div>
 
       <div className="mt-[600px]">
-        <Footer t={ t } />
+        <Footer t={t} />
       </div>
     </div>
   );
