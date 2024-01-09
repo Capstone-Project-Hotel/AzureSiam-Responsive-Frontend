@@ -31,7 +31,8 @@ interface Guest {
     deluxeRoomNumber: number;
     familyRoomNumber: number;
     executiveRoomNumber: number;
-    juniorRoomNumber: number;
+    suiteRoomNumber: number;
     packageOne: boolean;
-    packageTwo: boolean
+    packageTwo: boolean;
+    isCheckedPDPA: boolean;
   }
