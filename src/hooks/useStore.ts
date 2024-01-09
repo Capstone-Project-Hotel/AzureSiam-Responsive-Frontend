@@ -73,7 +73,7 @@ const emptyBookingDetail: BookingDetail = {
   packageOne: false,
   packageTwo: false,
   isCheckedPDPA: false,
-}
+};
 
 interface Store {
   bookingDetail: BookingDetail;
@@ -100,7 +100,7 @@ const useStore = create<Store>((set) => ({
   cardType: "",
   exchangeRate: 1,
   currency: "THB",
-  setBookingDetail: (bookingDetail: BookingDetail) => set({ bookingDetail}),
+  setBookingDetail: (bookingDetail: BookingDetail) => set({ bookingDetail }),
   setGuests: (guests: Guest[]) => set({ guests }),
   setPaymentDetail: (paymentDetail: PaymentDetail) => set({ paymentDetail }),
   setSpecialReq: (specialReq: string) => set({ specialReq }),

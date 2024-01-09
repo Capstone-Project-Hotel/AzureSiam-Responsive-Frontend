@@ -137,6 +137,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
 
   const onCheckboxChange = (e: CheckboxChangeEvent) => {
     setIsCheckedPDPA(e.target.checked);
+    setBookingDetail({ ...bookingDetail, isCheckedPDPA: e.target.checked });
 
     const updatedBookingDetail = {
       ...bookingDetail,
@@ -200,7 +201,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
       <div className="z-30 fixed top-0">
         <Topbar lng={lng} />
       </div>
-      <div className="flex justify-between mt-[100px]">
+      <div className="flex justify-center mt-[100px]">
         {/* Main Container */}
         <div className="w-[1440px] mobile:w-[330px] flex flex-wrap ml-20 gap-10 py-10">
           {/* Left Container */}
@@ -352,7 +353,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
                       </div>
                     </div>
                     <Cleave
-                      placeholder="Enter credit card number"
+                      placeholder="Card Number"
                       options={{
                         creditCard: true,
                         onCreditCardTypeChanged,
@@ -376,7 +377,11 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
                       className="w-full"
                       placeholder="Select Exp Date"
                       onChange={handleExpDateChange}
-                      value={dayjs(paymentDetail.expDate)}
+                      defaultValue={
+                        paymentDetail.expDate
+                          ? dayjs(paymentDetail.expDate)
+                          : undefined
+                      }
                     />
                   </div>
 
@@ -399,7 +404,10 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
 
             {/* PDPA */}
             <div className="flex text-description mobile:text-h3-mobile">
-              <Checkbox onChange={onCheckboxChange}>
+              <Checkbox
+                onChange={onCheckboxChange}
+                checked={bookingDetail.isCheckedPDPA}
+              >
                 I have read and agreed to the Terms & Conditions and Privacy
                 Policy.
               </Checkbox>
@@ -575,6 +583,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
               { value: "female", label: "Female", group: "gender" },
             ]}
             onChange={handleChange}
+            defaultValue={guest.gender ? guest.gender : undefined}
           />
         </div>
 
@@ -587,6 +596,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
             className="w-full"
             placeholder="Select Birth Date"
             onChange={handleBirthDateChange}
+            defaultValue={guest.birthDate ? dayjs(guest.birthDate) : undefined}
           />
         </div>
       </div>
@@ -622,6 +632,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
                 if (value) handleInputChange(index, value, "phoneNumber");
               }}
               className="ant-input css-dev-only-do-not-override-19hk5md w-full css-dev-only-do-not-override-19hk5md"
+              placeholder="Phone Number"
             />
             {/* <Input
               className="w-full h-[32px]"
@@ -653,6 +664,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
               };
             })}
             onChange={handleChange}
+            defaultValue={guest.country ? guest.country : undefined}
           />
         </div>
 
@@ -666,6 +678,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
             placeholder="Select City"
             options={city}
             onChange={handleChange}
+            defaultValue={guest.city ? guest.city : undefined}
           />
         </div>
 
@@ -738,6 +751,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
                   },
                 ]}
                 onChange={handleChange}
+                defaultValue={guest.idType ? guest.idType : undefined}
               />
             </div>
             <div className="w-[470px]">
