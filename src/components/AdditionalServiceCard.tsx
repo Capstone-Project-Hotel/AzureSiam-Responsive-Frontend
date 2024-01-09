@@ -15,13 +15,23 @@ export default function AdditionalServiceCard(information: {
     setIsAdded(!isAdded);
     if (isAdded) console.log("Removed");
     else console.log("Added");
-    const updatedPackageOne = !bookingDetail.packageOne;
-    const updatedBookingDetail = {
-      ...bookingDetail,
-      packageOne: updatedPackageOne,
-    };
-    setBookingDetail(updatedBookingDetail);
-    console.log(bookingDetail.packageOne);
+
+    if (information.price === 299) {
+      const updatedPackageOne = !bookingDetail.packageOne;
+      const updatedBookingDetail = {
+        ...bookingDetail,
+        packageOne: updatedPackageOne,
+      };
+      setBookingDetail(updatedBookingDetail);
+    } else {
+      const updatedPackageTwo = !bookingDetail.packageTwo;
+      const updatedBookingDetail = {
+        ...bookingDetail,
+        packageTwo: updatedPackageTwo,
+      };
+      setBookingDetail(updatedBookingDetail);
+    }
+    // console.log(bookingDetail.packageOne);
   };
 
   const { bookingDetail, setBookingDetail } = useStore();
@@ -44,7 +54,13 @@ export default function AdditionalServiceCard(information: {
             {/* THB 200 */}
           </p>
           <Button type="primary" size="small" onClick={handleBookNowClick}>
-            {isAdded ? "Remove" : "Add"}
+            {information.price === 299
+              ? bookingDetail.packageOne
+                ? "Remove"
+                : "Add"
+              : bookingDetail.packageTwo
+              ? "Remove"
+              : "Add"}
           </Button>
         </div>
       </div>

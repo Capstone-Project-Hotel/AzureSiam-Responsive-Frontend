@@ -12,6 +12,7 @@ import Link from "next/link";
 import { ChangeEvent, useState } from "react";
 dayjs().format();
 
+import { useRouter } from "next/navigation";
 export default function Filter({}: // startDate,
 // endDate,
 // adults,
@@ -44,7 +45,9 @@ export default function Filter({}: // startDate,
   ];
 
   const { bookingDetail, setBookingDetail } = useStore();
-  const [changedBooking, setChangedBooking] = useState(false);
+  // const [changedBooking, setChangedBooking] = useState(false);
+
+  const router = useRouter();
 
   return (
     <div className="w-full flex-row bg-secondary pt-3 pb-3">
@@ -57,21 +60,6 @@ export default function Filter({}: // startDate,
               dayjs(bookingDetail.endDate, "YYYY-MM-DD"),
             ]}
             style={{ zIndex: 0 }}
-            // onChange={(values: RangeValue<Dayjs>, formatString: [string, string]) => {
-            //   if (values && values[0] && values[1]) {
-            //       const [startDate, endDate] = values.map((date: Dayjs) =>
-            //           date.format("YYYY-MM-DD")
-            //       );
-
-            //       const updatedBookingDetail = {
-            //           ...bookingDetail,
-            //           startDate,
-            //           endDate,
-            //       };
-
-            //       setBookingDetail(updatedBookingDetail);
-            //   }
-            // }}
             onChange={(RangePicker, dateStrings: [string, string]) => {
               const [startDate, endDate] = dateStrings;
 
@@ -84,6 +72,9 @@ export default function Filter({}: // startDate,
                   endDate,
                 };
                 setBookingDetail(updatedBookingDetail);
+                router.replace(
+                  `/search-result/startDate=${startDate}&endDate=${endDate}&adults=${bookingDetail.adultNumber}&childrens=${bookingDetail.childrenNumber}&codePromo=${bookingDetail.codePromotion}`
+                );
               }
             }}
           />
@@ -93,16 +84,18 @@ export default function Filter({}: // startDate,
               value={bookingDetail.adultNumber}
               onChange={(e: number | null) => {
                 if (e != null) {
-                  const updatedAdultNumber = e; // Access the value correctly
-
+                  let updatedAdultNumber = e;
+                  if (updatedAdultNumber < 1) {
+                    updatedAdultNumber = 1;
+                  }
                   const updatedBookingDetail = {
                     ...bookingDetail,
                     adultNumber: updatedAdultNumber,
                   };
-
-                  // console.log(updatedAdultNumber);
-
                   setBookingDetail(updatedBookingDetail);
+                  router.replace(
+                    `/search-result/startDate=${bookingDetail.startDate}&endDate=${bookingDetail.endDate}&adults=${updatedAdultNumber}&childrens=${bookingDetail.childrenNumber}&codePromo=${bookingDetail.codePromotion}`
+                  );
                 }
               }}
             />
@@ -113,7 +106,7 @@ export default function Filter({}: // startDate,
               value={bookingDetail.childrenNumber}
               onChange={(e: number | null) => {
                 if (e != null) {
-                  const updatedChidrenNumber = e; // Access the value correctly
+                  const updatedChidrenNumber = e;
 
                   const updatedBookingDetail = {
                     ...bookingDetail,
@@ -122,7 +115,9 @@ export default function Filter({}: // startDate,
 
                   setBookingDetail(updatedBookingDetail);
 
-                  // console.log(bookingDetail.adultNumber);
+                  router.replace(
+                    `/search-result/startDate=${bookingDetail.startDate}&endDate=${bookingDetail.endDate}&adults=${bookingDetail.adultNumber}&childrens=${updatedChidrenNumber}&codePromo=${bookingDetail.codePromotion}`
+                  );
                 }
               }}
             />
@@ -144,6 +139,9 @@ export default function Filter({}: // startDate,
                 };
 
                 setBookingDetail(updatedBookingDetail);
+                router.replace(
+                  `/search-result/startDate=${bookingDetail.startDate}&endDate=${bookingDetail.endDate}&adults=${bookingDetail.adultNumber}&childrens=${bookingDetail.childrenNumber}&codePromo=${updatedCodePromotion}`
+                );
               }}
             />
             {bookingDetail.codePromotion === "valid001" ? (
@@ -153,11 +151,6 @@ export default function Filter({}: // startDate,
               </div>
             ) : null}
           </div>
-          <Link
-            href={`/search-result/startDate=${bookingDetail.startDate}&endDate=${bookingDetail.endDate}&adults=${bookingDetail.adultNumber}&childrens=${bookingDetail.childrenNumber}&codePromo=${bookingDetail.codePromotion}`}
-          >
-            <button>Change Booking Detail</button>
-          </Link>
         </div>
       </div>
       <div className="flex justify-between ml-10 mr-10 my-2">
@@ -174,10 +167,10 @@ export default function Filter({}: // startDate,
               <p className="text-white text-h5">Family</p>
             </Checkbox>
             <Checkbox>
-              <p className="text-white text-h5">Executive</p>
+              <p className="text-white text-h5">Junior</p>
             </Checkbox>
             <Checkbox>
-              <p className="text-white text-h5">Junior</p>
+              <p className="text-white text-h5">Executive</p>
             </Checkbox>
           </div>
         </div>
@@ -207,16 +200,16 @@ export default function Filter({}: // startDate,
                 label: "Any price is acceptable",
               },
               {
+                value: "Not exceeding THB 1,500",
+                label: "Not exceeding THB 1,500",
+              },
+              {
                 value: "Not exceeding THB 2,000",
                 label: "Not exceeding THB 2,000",
               },
               {
-                value: "Not exceeding THB 3,500",
-                label: "Not exceeding THB 3,500",
-              },
-              {
-                value: "Not exceeding THB 5,000",
-                label: "Not exceeding THB 5,000",
+                value: "Not exceeding THB 2,500",
+                label: "Not exceeding THB 2,500",
               },
             ]}
           />
