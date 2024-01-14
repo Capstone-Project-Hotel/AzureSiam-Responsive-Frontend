@@ -80,7 +80,7 @@ interface Store {
 
 // export default useStore;
 
-const useStore = create(
+const useStore = create<Store>()(
   persist(
     (set) => ({
       bookingDetail: emptyBookingDetail,
@@ -97,10 +97,10 @@ const useStore = create(
       setCardType: (cardType: string) => set({ cardType }),
       setExchangeRate: (exchangeRate: number) => set({ exchangeRate }),
       setCurrency: (currency: string) => set({ currency })}),
-    {
-      name: 'storage', 
-      // storage: createJSONStorage(() => sessionStorage),
-    },
+      {
+        name: "test",
+        skipHydration: true,
+      }
   ),
 )
 

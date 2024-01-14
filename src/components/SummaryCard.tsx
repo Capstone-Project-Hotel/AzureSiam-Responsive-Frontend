@@ -108,38 +108,38 @@ export default function SummaryCard({
         <div className="flex mt-[10px]">
           <CalendarOutlined style={{ fontSize: "30px", marginRight: "10px" }} />
           <div>
-            <p className="text-h5 font-medium mobile:text-h5-mobile">
+            <div className="text-h5 font-medium mobile:text-h5-mobile">
               {/* Sun, 19 Nov 23 – Tue, 21 Nov 23 */}
               {bookingDetail.startDate} - {bookingDetail.endDate}
-            </p>
-            <p className="text-body text-slate-400 mobile:text-h5-mobile">
+            </div>
+            <div className="text-body text-slate-400 mobile:text-h5-mobile">
               {/* 2 nights */}
               {dayDuration} night(s)
-            </p>
+            </div>
           </div>
         </div>
         <div className="flex">
           <UserOutlined style={{ fontSize: "30px", marginRight: "10px" }} />
-          <p className="text-h5 font-medium mobile:text-h5-mobile">
+          <div className="text-h5 font-medium mobile:text-h5-mobile">
             {bookingDetail.adultNumber} adult(s) {bookingDetail.childrenNumber}{" "}
             children
-          </p>
+          </div>
         </div>
       </div>
       {/* <div className="border-b-2"> */}
       {/* edit room */}
       {page === "search-result" ? (
         <div className="border-b-2">
-          <p className="text-body text-slate-400 mobile:text-body-mobile">
+          <div className="text-body text-slate-400 mobile:text-body-mobile">
             Edit room(s)
-          </p>
+          </div>
 
           {bookingDetail.standardRoomNumber !== 0 ? (
             <div>
               <div className="flex justify-between">
-                <p className="text-h5 font-bold mobile:text-h5-mobile">
+                <div className="text-h5 font-bold mobile:text-h5-mobile">
                   Standard Room
-                </p>
+                </div>
                 <RoomNumberInput
                   roomType="Standard"
                   value={bookingDetail.standardRoomNumber}
@@ -162,15 +162,15 @@ export default function SummaryCard({
                 }}
               >
                 <i className="pi pi-trash text-gray-400 mobile:text-[8px]"></i>
-                <p className="text-description text-gray-400 mobile:text-body-mobile">
+                <div className="text-description text-gray-400 mobile:text-body-mobile">
                   remove
-                </p>
+                </div>
               </button>
               <div className="flex justify-between">
-                <p className="text-body mobile:text-body-mobile">
+                <div className="text-body mobile:text-body-mobile">
                   Standard Room {bookingDetail.standardRoomNumber} room(s)
-                </p>
-                <p className="text-body text-slate-400 mobile:text-body-mobile">
+                </div>
+                <div className="text-body text-slate-400 mobile:text-body-mobile">
                   THB{" "}
                   {new Intl.NumberFormat("th-TH", {
                     style: "currency",
@@ -178,16 +178,16 @@ export default function SummaryCard({
                   }).format(
                     bookingDetail.standardRoomNumber * 1500 * reducedRate
                   )}
-                </p>
+                </div>
               </div>
             </div>
           ) : null}
           {bookingDetail.deluxeRoomNumber !== 0 ? (
             <div>
               <div className="flex justify-between">
-                <p className="text-h5 font-bold mobile:text-h5-mobile">
+                <div className="text-h5 font-bold mobile:text-h5-mobile">
                   Deluxe Room
-                </p>
+                </div>
                 <RoomNumberInput
                   roomType="Deluxe"
                   value={bookingDetail.deluxeRoomNumber}
@@ -210,15 +210,15 @@ export default function SummaryCard({
                 }}
               >
                 <i className="pi pi-trash text-gray-400 mobile:text-[8px]"></i>
-                <p className="text-description text-gray-400 mobile:text-body-mobile">
+                <div className="text-description text-gray-400 mobile:text-body-mobile">
                   remove
-                </p>
+                </div>
               </button>
               <div className="flex justify-between">
-                <p className="text-body mobile:text-body-mobile">
+                <div className="text-body mobile:text-body-mobile">
                   Deluxe Room {bookingDetail.deluxeRoomNumber} room(s)
-                </p>
-                <p className="text-body text-slate-400 mobile:text-body-mobile">
+                </div>
+                <div className="text-body text-slate-400 mobile:text-body-mobile">
                   THB{" "}
                   {new Intl.NumberFormat("th-TH", {
                     style: "currency",
@@ -226,14 +226,14 @@ export default function SummaryCard({
                   }).format(
                     bookingDetail.deluxeRoomNumber * 1800 * reducedRate
                   )}
-                </p>
+                </div>
               </div>
             </div>
           ) : null}
           {bookingDetail.familyRoomNumber !== 0 ? (
             <div>
               <div className="flex justify-between">
-                <p className="text-h5 font-bold">Family Room</p>
+                <div className="text-h5 font-bold">Family Room</div>
                 <RoomNumberInput
                   roomType="Family"
                   value={bookingDetail.familyRoomNumber}
@@ -256,13 +256,13 @@ export default function SummaryCard({
                 }}
               >
                 <i className="pi pi-trash text-gray-400"></i>
-                <p className="text-gray-400">remove</p>
+                <div className="text-gray-400">remove</div>
               </button>
               <div className="flex justify-between">
-                <p className="text-body">
+                <div className="text-body">
                   Family Room {bookingDetail.familyRoomNumber} room(s)
-                </p>
-                <p className="text-body text-slate-400">
+                </div>
+                <div className="text-body text-slate-400">
                   THB{" "}
                   {new Intl.NumberFormat("th-TH", {
                     style: "currency",
@@ -270,14 +270,14 @@ export default function SummaryCard({
                   }).format(
                     bookingDetail.familyRoomNumber * 2200 * reducedRate
                   )}
-                </p>
+                </div>
               </div>
             </div>
           ) : null}
           {bookingDetail.suiteRoomNumber !== 0 ? (
             <div>
               <div className="flex justify-between">
-                <p className="text-h5 font-bold">Suite Room</p>
+                <div className="text-h5 font-bold">Suite Room</div>
                 <RoomNumberInput
                   roomType="Suite"
                   value={bookingDetail.suiteRoomNumber}
@@ -300,26 +300,26 @@ export default function SummaryCard({
                 }}
               >
                 <i className="pi pi-trash text-gray-400"></i>
-                <p className="text-gray-400">remove</p>
+                <div className="text-gray-400">remove</div>
               </button>
               <div className="flex justify-between">
-                <p className="text-body">
+                <div className="text-body">
                   Suite Room {bookingDetail.suiteRoomNumber} room(s)
-                </p>
-                <p className="text-body text-slate-400">
+                </div>
+                <div className="text-body text-slate-400">
                   THB
                   {new Intl.NumberFormat("th-TH", {
                     style: "currency",
                     currency: "THB",
                   }).format(bookingDetail.suiteRoomNumber * 2500 * reducedRate)}
-                </p>
+                </div>
               </div>
             </div>
           ) : null}
           {bookingDetail.executiveRoomNumber !== 0 ? (
             <div>
               <div className="flex justify-between">
-                <p className="text-h5 font-bold">Executive Room</p>
+                <div className="text-h5 font-bold">Executive Room</div>
                 <RoomNumberInput
                   roomType="Executive"
                   value={bookingDetail.executiveRoomNumber}
@@ -342,13 +342,13 @@ export default function SummaryCard({
                 }}
               >
                 <i className="pi pi-trash text-gray-400"></i>
-                <p className="text-gray-400">remove</p>
+                <div className="text-gray-400">remove</div>
               </button>
               <div className="flex justify-between">
-                <p className="text-body">
+                <div className="text-body">
                   Executive Room {bookingDetail.executiveRoomNumber} room(s)
-                </p>
-                <p className="text-body text-slate-400">
+                </div>
+                <div className="text-body text-slate-400">
                   THB{" "}
                   {new Intl.NumberFormat("th-TH", {
                     style: "currency",
@@ -356,7 +356,7 @@ export default function SummaryCard({
                   }).format(
                     bookingDetail.executiveRoomNumber * 3000 * reducedRate
                   )}
-                </p>
+                </div>
               </div>
             </div>
           ) : null}
@@ -366,10 +366,10 @@ export default function SummaryCard({
           <div className="border-t-2">
             {bookingDetail.standardRoomNumber !== 0 ? (
               <div className="flex justify-between">
-                <p className="text-body mobile:text-body-mobile">
+                <div className="text-body mobile:text-body-mobile">
                   Standard Room {bookingDetail.standardRoomNumber} room(s)
-                </p>
-                <p className="text-body text-slate-400">
+                </div>
+                <div className="text-body text-slate-400">
                   THB
                   {new Intl.NumberFormat("th-TH", {
                     style: "currency",
@@ -377,15 +377,15 @@ export default function SummaryCard({
                   }).format(
                     bookingDetail.standardRoomNumber * 1500 * reducedRate
                   )}
-                </p>
+                </div>
               </div>
             ) : null}
             {bookingDetail.deluxeRoomNumber !== 0 ? (
               <div className="flex justify-between">
-                <p className="text-body">
+                <div className="text-body">
                   Deluxe Room {bookingDetail.deluxeRoomNumber} room(s)
-                </p>
-                <p className="text-body text-slate-400">
+                </div>
+                <div className="text-body text-slate-400">
                   THB
                   {new Intl.NumberFormat("th-TH", {
                     style: "currency",
@@ -393,15 +393,15 @@ export default function SummaryCard({
                   }).format(
                     bookingDetail.deluxeRoomNumber * 1800 * reducedRate
                   )}
-                </p>
+                </div>
               </div>
             ) : null}
             {bookingDetail.familyRoomNumber !== 0 ? (
               <div className="flex justify-between">
-                <p className="text-body">
+                <div className="text-body">
                   Family Room {bookingDetail.familyRoomNumber} room(s)
-                </p>
-                <p className="text-body text-slate-400">
+                </div>
+                <div className="text-body text-slate-400">
                   THB
                   {new Intl.NumberFormat("th-TH", {
                     style: "currency",
@@ -409,29 +409,29 @@ export default function SummaryCard({
                   }).format(
                     bookingDetail.familyRoomNumber * 2200 * reducedRate
                   )}
-                </p>
+                </div>
               </div>
             ) : null}
             {bookingDetail.suiteRoomNumber !== 0 ? (
               <div className="flex justify-between">
-                <p className="text-body">
+                <div className="text-body">
                   Suite Room {bookingDetail.suiteRoomNumber} room(s)
-                </p>
-                <p className="text-body text-slate-400">
+                </div>
+                <div className="text-body text-slate-400">
                   THB
                   {new Intl.NumberFormat("th-TH", {
                     style: "currency",
                     currency: "THB",
                   }).format(bookingDetail.suiteRoomNumber * 2500 * reducedRate)}
-                </p>
+                </div>
               </div>
             ) : null}
             {bookingDetail.executiveRoomNumber !== 0 ? (
               <div className="flex justify-between">
-                <p className="text-body">
+                <div className="text-body">
                   Executive Room {bookingDetail.executiveRoomNumber} room(s)
-                </p>
-                <p className="text-body text-slate-400">
+                </div>
+                <div className="text-body text-slate-400">
                   THB
                   {new Intl.NumberFormat("th-TH", {
                     style: "currency",
@@ -439,20 +439,22 @@ export default function SummaryCard({
                   }).format(
                     bookingDetail.executiveRoomNumber * 3000 * reducedRate
                   )}
-                </p>
+                </div>
               </div>
             ) : null}
           </div>
           <div className="border-t-2">
             <div className="my-2">
-              <p className="text-body text-slate-400">
+              <div className="text-body text-slate-400">
                 Edit Additional Service(s)
-              </p>
+              </div>
               {bookingDetail.packageOne ? (
                 <div>
                   <div className="flex justify-between">
                     <div className="flex">
-                      <p className="text-h5">Transportation [ Package 1 ]</p>
+                      <div className="text-h5">
+                        Transportation [ Package 1 ]
+                      </div>
                     </div>
                   </div>
                   <button
@@ -466,17 +468,19 @@ export default function SummaryCard({
                     }}
                   >
                     <i className="pi pi-trash text-gray-400"></i>
-                    <p className="text-gray-400">remove</p>
+                    <div className="text-gray-400">remove</div>
                   </button>
                   <div className="flex justify-between">
-                    <p className="text-body">Transportation [ Package 1 ]</p>
-                    <p className="text-body text-slate-400">
+                    <div className="text-body">
+                      Transportation [ Package 1 ]
+                    </div>
+                    <div className="text-body text-slate-400">
                       THB
                       {new Intl.NumberFormat("th-TH", {
                         style: "currency",
                         currency: "THB",
                       }).format(299)}
-                    </p>
+                    </div>
                   </div>
                 </div>
               ) : null}
@@ -484,7 +488,9 @@ export default function SummaryCard({
                 <div>
                   <div className="flex justify-between">
                     <div className="flex">
-                      <p className="text-h5">Transportation [ Package 2 ]</p>
+                      <div className="text-h5">
+                        Transportation [ Package 2 ]
+                      </div>
                       {/* <DeleteForeverIcon/> */}
                     </div>
                   </div>
@@ -499,17 +505,19 @@ export default function SummaryCard({
                     }}
                   >
                     <i className="pi pi-trash text-gray-400"></i>
-                    <p className="text-gray-400">remove</p>
+                    <div className="text-gray-400">remove</div>
                   </button>
                   <div className="flex justify-between">
-                    <p className="text-body">Transportation [ Package 2 ]</p>
-                    <p className="text-body text-slate-400">
+                    <div className="text-body">
+                      Transportation [ Package 2 ]
+                    </div>
+                    <div className="text-body text-slate-400">
                       THB
                       {new Intl.NumberFormat("th-TH", {
                         style: "currency",
                         currency: "THB",
                       }).format(499)}
-                    </p>
+                    </div>
                   </div>
                 </div>
               ) : null}
@@ -522,10 +530,10 @@ export default function SummaryCard({
           <div className="my-1">
             {bookingDetail.standardRoomNumber !== 0 ? (
               <div className="flex justify-between">
-                <p className="text-body">
+                <div className="text-body">
                   Standard Room {bookingDetail.standardRoomNumber} room(s)
-                </p>
-                <p className="text-body text-slate-400">
+                </div>
+                <div className="text-body text-slate-400">
                   THB
                   {new Intl.NumberFormat("th-TH", {
                     style: "currency",
@@ -533,15 +541,15 @@ export default function SummaryCard({
                   }).format(
                     bookingDetail.standardRoomNumber * 1500 * reducedRate
                   )}
-                </p>
+                </div>
               </div>
             ) : null}
             {bookingDetail.deluxeRoomNumber !== 0 ? (
               <div className="flex justify-between">
-                <p className="text-body">
+                <div className="text-body">
                   Deluxe Room {bookingDetail.deluxeRoomNumber} room(s)
-                </p>
-                <p className="text-body text-slate-400">
+                </div>
+                <div className="text-body text-slate-400">
                   THB
                   {new Intl.NumberFormat("th-TH", {
                     style: "currency",
@@ -549,15 +557,15 @@ export default function SummaryCard({
                   }).format(
                     bookingDetail.deluxeRoomNumber * 1800 * reducedRate
                   )}
-                </p>
+                </div>
               </div>
             ) : null}
             {bookingDetail.familyRoomNumber !== 0 ? (
               <div className="flex justify-between">
-                <p className="text-body">
+                <div className="text-body">
                   Family Room {bookingDetail.familyRoomNumber} room(s)
-                </p>
-                <p className="text-body text-slate-400">
+                </div>
+                <div className="text-body text-slate-400">
                   THB
                   {new Intl.NumberFormat("th-TH", {
                     style: "currency",
@@ -565,29 +573,29 @@ export default function SummaryCard({
                   }).format(
                     bookingDetail.familyRoomNumber * 2200 * reducedRate
                   )}
-                </p>
+                </div>
               </div>
             ) : null}
             {bookingDetail.suiteRoomNumber !== 0 ? (
               <div className="flex justify-between">
-                <p className="text-body">
+                <div className="text-body">
                   Suite Room {bookingDetail.suiteRoomNumber} room(s)
-                </p>
-                <p className="text-body text-slate-400">
+                </div>
+                <div className="text-body text-slate-400">
                   THB
                   {new Intl.NumberFormat("th-TH", {
                     style: "currency",
                     currency: "THB",
                   }).format(bookingDetail.suiteRoomNumber * 2500 * reducedRate)}
-                </p>
+                </div>
               </div>
             ) : null}
             {bookingDetail.executiveRoomNumber !== 0 ? (
               <div className="flex justify-between">
-                <p className="text-body">
+                <div className="text-body">
                   Executive Room {bookingDetail.executiveRoomNumber} room(s)
-                </p>
-                <p className="text-body text-slate-400">
+                </div>
+                <div className="text-body text-slate-400">
                   THB
                   {new Intl.NumberFormat("th-TH", {
                     style: "currency",
@@ -595,7 +603,7 @@ export default function SummaryCard({
                   }).format(
                     bookingDetail.executiveRoomNumber * 3000 * reducedRate
                   )}
-                </p>
+                </div>
               </div>
             ) : null}
           </div>
@@ -603,28 +611,28 @@ export default function SummaryCard({
             {bookingDetail.packageOne ? (
               <div>
                 <div className="flex justify-between">
-                  <p className="text-body">Transportation [ Package 1 ]</p>
-                  <p className="text-body text-slate-400">
+                  <div className="text-body">Transportation [ Package 1 ]</div>
+                  <div className="text-body text-slate-400">
                     THB
                     {new Intl.NumberFormat("th-TH", {
                       style: "currency",
                       currency: "THB",
                     }).format(299)}
-                  </p>
+                  </div>
                 </div>
               </div>
             ) : null}
             {bookingDetail.packageTwo ? (
               <div>
                 <div className="flex justify-between">
-                  <p className="text-body">Transportation [ Package 2 ]</p>
-                  <p className="text-body text-slate-400">
+                  <div className="text-body">Transportation [ Package 2 ]</div>
+                  <div className="text-body text-slate-400">
                     THB
                     {new Intl.NumberFormat("th-TH", {
                       style: "currency",
                       currency: "THB",
                     }).format(499)}
-                  </p>
+                  </div>
                 </div>
               </div>
             ) : null}
@@ -633,49 +641,49 @@ export default function SummaryCard({
         </div>
       )}
       <div className="flex justify-between">
-        <p className="text-body text-slate-400 mobile:text-body-mobile">
+        <div className="text-body text-slate-400 mobile:text-body-mobile">
           Sub total
-        </p>
-        <p className="text-body text-slate-400 mobile:text-body-mobile">
+        </div>
+        <div className="text-body text-slate-400 mobile:text-body-mobile">
           THB{" "}
           {new Intl.NumberFormat("th-TH", {
             style: "currency",
             currency: "THB",
           }).format(subTotal)}
-        </p>
+        </div>
       </div>
       <div className="flex justify-between">
-        <p className="text-body text-slate-400 mobile:text-body-mobile">
+        <div className="text-body text-slate-400 mobile:text-body-mobile">
           Service charge (10%)
-        </p>
-        <p className="text-body text-slate-400 mobile:text-body-mobile">
+        </div>
+        <div className="text-body text-slate-400 mobile:text-body-mobile">
           THB{" "}
           {new Intl.NumberFormat("th-TH", {
             style: "currency",
             currency: "THB",
           }).format(serviceCharge)}
-        </p>
+        </div>
       </div>
       <div className="flex justify-between">
-        <p className="text-body text-slate-400 mobile:text-body-mobile">
+        <div className="text-body text-slate-400 mobile:text-body-mobile">
           Taxes + fees (7%)
-        </p>
-        <p className="text-body text-slate-400 mobile:text-body-mobile">
+        </div>
+        <div className="text-body text-slate-400 mobile:text-body-mobile">
           THB{" "}
           {new Intl.NumberFormat("th-TH", {
             style: "currency",
             currency: "THB",
           }).format(taxesAndFees)}
-        </p>
+        </div>
       </div>
-      <p className="text-center text-h2 font-bold mt-[50px] mobile:text-h2-mobile">
+      <div className="text-center text-h2 font-bold mt-[50px] mobile:text-h2-mobile">
         THB
         {new Intl.NumberFormat("th-TH", {
           style: "currency",
           currency: "THB",
         }).format(subTotal + serviceCharge + taxesAndFees)}{" "}
         Total
-      </p>
+      </div>
       <div className="flex justify-center items-center \">
         {page === "search-result" ? (
           <Link href={"/reservation-and-guest-detail"}>
@@ -700,7 +708,7 @@ export default function SummaryCard({
                 bookingDetail.adultNumber + bookingDetail.childrenNumber
               }
             >
-              <p>Confirm</p>
+              <div>Confirm</div>
             </Button>
           </Link>
         ) : page === "reservation-and-guest-detail" ? (
@@ -714,13 +722,13 @@ export default function SummaryCard({
               style={{ background: "#2A4D69", color: "white" }}
               disabled={isDisabledConfirm || !bookingDetail.isCheckedPDPA}
             >
-              <p>Confirm</p>
+              <div>Confirm</div>
             </Button>
           </Link>
         ) : page === "summary-booking-detail" ? (
           <Link href={"/booking-confirmation"}>
             <Button style={{ background: "#2A4D69", color: "white" }}>
-              <p>Check Out</p>
+              <div>Check Out</div>
             </Button>
           </Link>
         ) : null}
