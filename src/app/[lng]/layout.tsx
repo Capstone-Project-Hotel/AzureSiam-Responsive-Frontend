@@ -12,6 +12,8 @@ import { ConfigProvider } from "antd";
 import { dir } from "i18next";
 import { languages } from "../i18n/settings";
 
+import HydrationZustand from "./hydrationZustand";
+
 export async function generateStaticParams() {
   return languages.map((lng) => ({ lng }));
 }
@@ -40,7 +42,9 @@ export default function RootLayout({
           }}
         >
           <StyledComponentsRegistryAntd>
-            <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+            <StyledComponentsRegistry>
+              <HydrationZustand children={children} />
+            </StyledComponentsRegistry>
           </StyledComponentsRegistryAntd>
         </ConfigProvider>
       </body>
