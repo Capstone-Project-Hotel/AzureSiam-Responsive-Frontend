@@ -63,7 +63,7 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
   return (
     // Page Container
     <div>
-      <div className="z-50 fixed top-0">
+      <div className="z-50 w-[100vw] fixed top-0">
         <Topbar lng={lng} />
       </div>
       <div className="flex justify-center mt-[140px]">

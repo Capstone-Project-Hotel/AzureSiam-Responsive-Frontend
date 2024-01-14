@@ -1,11 +1,10 @@
-"use client";
 import { BlockOutlined } from "@ant-design/icons";
 import Link from "next/link";
 
 export default function Footer({ t }: { t: any }) {
   return (
     <div
-      className="flex flex-row w-[100vw] h-[18vh] px-[4.16vw] items-center justify-between"
+      className="flex flex-row w-full h-[18vh] px-[4.16vw] items-center justify-between"
       style={{ backgroundColor: "#2A4D69", color: "white", overflow: "hidden" }}
     >
       <div className="flex flex-row items-center">

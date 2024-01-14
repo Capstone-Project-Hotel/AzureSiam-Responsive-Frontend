@@ -90,3 +90,11 @@ li {
     font-size: 20px !important;
   }
 }
+
+::placeholder {
+  color: rgba(0, 0, 0, 0.25) !important;
+}
+
+.slick-next {
+  right: -15px !important;
+}

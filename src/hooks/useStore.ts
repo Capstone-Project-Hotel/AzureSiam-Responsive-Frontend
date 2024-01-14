@@ -38,7 +38,7 @@ const emptyBookingDetail: BookingDetail = {
   packageOne: false,
   packageTwo: false,
   isCheckedPDPA: false,
-}
+};
 
 interface Store {
   bookingDetail: BookingDetail;
