@@ -198,7 +198,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
   return (
     // Page Container
     <div>
-      <div className="z-30 fixed top-0">
+      <div className="z-30 fixed w-[100vw] top-0">
         <Topbar lng={lng} />
       </div>
       <div className="flex justify-center mt-[100px]">
@@ -227,16 +227,28 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
               <div className="flex gap-5">
                 <AdditionalServiceCard
                   serviceName="Transportation[Package 1]"
+                  // serviceName={t("service_name1")}
                   unit=""
+                  // unit={t("service_unit1")}
                   price={299}
                   serviceImage="https://via.placeholder.com/240x150"
                 />
                 <AdditionalServiceCard
                   serviceName="Transportation[Package 2]"
+                  // serviceName={t("service_name2")}
                   unit=""
+                  // unit={t("service_unit2")}
                   price={499}
                   serviceImage="https://via.placeholder.com/240x150"
                 />
+                {/* <AdditionalServiceCard
+                  serviceName="Transportation[Package 3]"
+                  // serviceName={t("service_name3")}
+                  unit=""
+                  // unit={t("service_unit3")}
+                  price={699}
+                  serviceImage="https://via.placeholder.com/240x150"
+                /> */}
               </div>
             </div>
 

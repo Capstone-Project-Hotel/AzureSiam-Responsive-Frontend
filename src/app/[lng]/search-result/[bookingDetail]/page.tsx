@@ -185,7 +185,7 @@ export default function SearchResultPage({
 
   return (
     <div>
-      <div className="z-50 fixed top-0">
+      <div className="z-50 w-[100vw] fixed top-0">
         <Topbar lng={lng} />
       </div>
       <div className="mt-[10vh]">
