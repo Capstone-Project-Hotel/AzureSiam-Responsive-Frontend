@@ -46,6 +46,7 @@ export default function LandingTopbar({
     router.push(`/${value}/${currentPath.slice(4)}`);
   };
 
+  
   // Exchange Rate
   const { exchangeRate, setExchangeRate, currency, setCurrency } = useStore();
   const listquotes = [
@@ -193,7 +194,6 @@ export default function LandingTopbar({
           onChange={handleIntlChange}
           style={{ width: "100px" }}
         />
-
         <Select
           defaultValue={currency}
           options={listquotes}
