@@ -21,6 +21,7 @@ import AdditionalServiceCard from "@/components/AdditionalServiceCard";
 import { useTranslation } from "@/app/i18n/client";
 import { useRouter } from "next/navigation";
 import dayjs from "dayjs";
+import { t } from "i18next";
 
 const PhoneInput = dynamic(() => import("react-phone-number-input"), {
   ssr: false,
@@ -220,16 +221,16 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
               </button>
 
               <div className="text-h2 mobile:text-h2-mobile">
-                Re-select your room for booking
-                {/* {t("reselect-label")} */}
+                {/* Re-select your room for booking */}
+                {t("reselect_label")}
               </div>
             </div>
 
             {/* Additional Services Container */}
             <div>
               <div className="text-h2 mobile:text-h2-mobile font-bold">
-                Additional Services
-                {/* {t("additional_label")} */}
+                {/* Additional Services */}
+                {t("additional_label")}
               </div>
               <div className="flex gap-5">
                 <AdditionalServiceCard
@@ -263,7 +264,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
             <div>
               {/* Guest Detail */}
               <div className="text-h2 mobile:text-h2-mobile font-bold">
-                Guest Detail
+                {t("guest_detail_label")}
               </div>
 
               {/* Guest Detail - Input Container */}
@@ -285,7 +286,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
                 className="text-primary text-description mobile:text-h3-mobile cursor-pointer"
                 onClick={() => setGuests([...guests, emptyGuest])}
               >
-                + <span className="underline">Add Guest</span>
+                + <span className="underline">{t("add_guest")}</span>
               </div>
             </div>
 
@@ -293,7 +294,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
             <div>
               {/* Payment Detail */}
               <div className="text-h2 mobile:text-h2-mobile font-bold mb-2">
-                Payment Detail
+                {t("payment_label")}
               </div>
 
               {/* Payment Detail - Input Container */}
@@ -303,7 +304,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
                   {/* Card Holder Name */}
                   <div className="w-[343px]">
                     <div className="text-description mobile:text-h3-mobile">
-                      Card Holder Name <span className="text-red-600">*</span>
+                      {t("card_holder")} <span className="text-red-600">*</span>
                     </div>
                     <Input
                       className="w-full"
@@ -318,7 +319,8 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
                   <div className="w-[343px]">
                     <div className="text-description mobile:text-h3-mobile flex justify-between items-center">
                       <div>
-                        Card Number <span className="text-red-600">*</span>
+                        {t("card_number")}
+                        <span className="text-red-600">*</span>
                       </div>
                       <div className="flex">
                         <img
@@ -390,7 +392,8 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
                   {/* Exp Date */}
                   <div className="w-[343px]">
                     <div className="text-description mobile:text-h3-mobile">
-                      Exp Date <span className="text-red-600">*</span>
+                      {t("expiration_date")}{" "}
+                      <span className="text-red-600">*</span>
                     </div>
                     <DatePicker
                       className="w-full"
@@ -407,7 +410,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
                   {/* CVV */}
                   <div className="w-[343px]">
                     <div className="text-description mobile:text-h3-mobile">
-                      CVV <span className="text-red-600">*</span>
+                      {t("CVV")} <span className="text-red-600">*</span>
                     </div>
                     <Input
                       className="w-full"
@@ -427,21 +430,20 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
                 onChange={onCheckboxChange}
                 checked={bookingDetail.isCheckedPDPA}
               >
-                I have read and agreed to the Terms & Conditions and Privacy
-                Policy.
+                {t("terms_condition")}
               </Checkbox>
             </div>
 
             {/* Special Request Container */}
             <div>
               <div className="text-h2 mobile:text-h2-mobile font-bold">
-                Special Request
+                {t("special_request")}
               </div>
               <div className="w-full">
                 <TextArea
                   className="w-full"
                   rows={2}
-                  placeholder="Special Request"
+                  placeholder={t("special_request")}
                   onChange={(e) => setSpecialReq(e.target.value)}
                   value={specialReq}
                 />
@@ -451,25 +453,14 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
             {/* Cancellation Policy Container */}
             <div className="flex flex-col gap-2">
               <div className="text-h2 mobile:text-h2-mobile font-bold">
-                Cancellation Policy
+                {t("cancel_policy")}
               </div>
               <div className="w-full text-description mobile:text-h3-mobile">
-                <div>
-                  For individual bookings of less than 5 rooms, and bookings not
-                  considered a group, the following cancellation policy applies:
-                </div>
+                <div>{t("cancel_policy_description_header")}</div>
                 <br />
-                <div>
-                  If cancelled up to 48 hours before arrival no fee will be
-                  charged.
-                </div>
-                <div>
-                  If cancelled less than 48 hours before arrival, or in case of
-                  a no-show, 100% of the first night will be charged.
-                </div>
-                <div>
-                  If you are a no-show, 100% of the first night will be charged.
-                </div>
+                <div>{t("cancel_policy_description")}</div>
+                <div>{t("cancel_policy_description2")} </div>
+                <div>{t("cancel_policy_description3")}</div>
               </div>
             </div>
           </div>
@@ -539,11 +530,11 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         {/* First Name */}
         <div className="w-[212px]">
           <div className="text-description mobile:text-h3-mobile">
-            First Name <span className="text-red-600">*</span>
+            {t("first_name")} <span className="text-red-600">*</span>
           </div>
           <Input
             className="w-full"
-            placeholder="First Name"
+            placeholder={t("first_name")}
             name="firstName"
             value={guest.firstName}
             onChange={handleChange}
@@ -553,11 +544,11 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         {/* Middle Name */}
         <div className="w-[212px]">
           <div className="text-description mobile:text-h3-mobile">
-            Middle Name
+            {t("middle_name")}
           </div>
           <Input
             className="w-full"
-            placeholder="Middle Name"
+            placeholder={t("middle_name")}
             name="middleName"
             value={guest.middleName}
             onChange={handleChange}
@@ -567,11 +558,11 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         {/* Last Name */}
         <div className="w-[212px]">
           <div className="text-description mobile:text-h3-mobile">
-            Last Name <span className="text-red-600">*</span>
+            {t("last_name")} <span className="text-red-600">*</span>
           </div>
           <Input
             className="w-full"
-            placeholder="Last Name"
+            placeholder={t("last_name")}
             name="lastName"
             value={guest.lastName}
             onChange={handleChange}
@@ -584,7 +575,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         {/* Gender */}
         <div className="w-[343px]">
           <div className="text-description mobile:text-h3-mobile">
-            Gender <span className="text-red-600">*</span>
+            {t("gender")} <span className="text-red-600">*</span>
           </div>
           <Select
             className="w-full"
@@ -601,7 +592,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         {/* Birth Date */}
         <div className="w-[343px]">
           <div className="text-description mobile:text-h3-mobile">
-            Birth Date <span className="text-red-600">*</span>
+            {t("birthdate")} <span className="text-red-600">*</span>
           </div>
           <DatePicker
             className="w-full"
@@ -617,11 +608,11 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         {/* Email */}
         <div className="w-[343px]">
           <div className="text-description mobile:text-h3-mobile">
-            Email <span className="text-red-600">*</span>
+            {t("email")} <span className="text-red-600">*</span>
           </div>
           <Input
             className="w-full"
-            placeholder="Email"
+            placeholder={t("email")}
             name="email"
             value={guest.email}
             onChange={handleChange}
@@ -631,7 +622,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         {/* Phone Number */}
         <div className="w-[343px]">
           <div className="text-description mobile:text-h3-mobile">
-            Phone Number <span className="text-red-600">*</span>
+            {t("phone_number")} <span className="text-red-600">*</span>
           </div>
           <div className="flex">
             <PhoneInput
@@ -643,15 +634,8 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
                 if (value) handleInputChange(index, value, "phoneNumber");
               }}
               className="ant-input css-dev-only-do-not-override-19hk5md w-full css-dev-only-do-not-override-19hk5md"
-              placeholder="Phone Number"
+              placeholder={t("phone_number")}
             />
-            {/* <Input
-              className="w-full h-[32px]"
-              placeholder="Phone Number"
-              name="phoneNumber"
-              value={guest.phoneNumber}
-              onChange={handleChange}
-            /> */}
           </div>
         </div>
       </div>
@@ -661,7 +645,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         {/* Country */}
         <div className="w-[212px]">
           <div className="text-description mobile:text-h3-mobile">
-            Country <span className="text-red-600">*</span>
+            {t("country")} <span className="text-red-600">*</span>
           </div>
           <Select
             className="w-full"
@@ -682,7 +666,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         {/* City */}
         <div className="w-[212px]">
           <div className="text-description mobile:text-h3-mobile">
-            City <span className="text-red-600">*</span>
+            {t("city")} <span className="text-red-600">*</span>
           </div>
           <Select
             className="w-full"
@@ -696,20 +680,11 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         {/* Zip code */}
         <div className="w-[212px]">
           <div className="text-description mobile:text-h3-mobile">
-            Zip code <span className="text-red-600">*</span>
+            {t("zip_code")} <span className="text-red-600">*</span>
           </div>
-          {/* <Select
-            className="w-full"
-            placeholder="Select Zip code"
-            options={[
-              { value: "male", label: "Male", group: "zipCode" },
-              { value: "female", label: "Female", group: "zipCode" },
-            ]}
-            onChange={handleChange}
-          /> */}
           <Input
             className="w-full"
-            placeholder="Zip code"
+            placeholder={t("zip_code")}
             name="zipCode"
             value={guest.zipCode}
             onChange={handleChange}
@@ -722,12 +697,12 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         {/* Address  */}
         <div className="w-full">
           <div className="text-description mobile:text-h3-mobile">
-            Address <span className="text-red-600">*</span>
+            {t("address")} <span className="text-red-600">*</span>
           </div>
           <TextArea
             className="w-full"
             rows={2}
-            placeholder="Address"
+            placeholder={t("address")}
             name="address"
             value={guest.address}
             onChange={handleChange}
@@ -740,8 +715,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         {/* ID , Passport Number , Driving Licence */}
         <div className="w-full">
           <div className="text-description mobile:text-h3-mobile">
-            ID , Passport Number , Driving Licence{" "}
-            <span className="text-red-600">*</span>
+            {t("id_card")} <span className="text-red-600">*</span>
           </div>
           <div className="flex justify-between flex-wrap gap-1">
             <div className="w-[212px]">
@@ -771,7 +745,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
                 placeholder={
                   guest["idType"]
                     ? (idTypeToid as any)[guest["idType"]]
-                    : "Number"
+                    : t("id_card_number")
                 }
                 name="id"
                 value={guest.id}

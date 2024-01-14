@@ -135,7 +135,7 @@ export default function LandingTopbar({
           AzureSiam
         </Link>
       </div>
-      <div className="flex flex-row flex-wrap items-start gap-x-8 gap-y-1 mobile:flex-col">
+      <div className="flex flex-row flex-wrap items-start gap-x-6 gap-y-1 mobile:flex-col">
         <div
           className="text-h5 mobile:text-h5-mobile cursor-pointer"
           onClick={scrollToRoom}
@@ -172,19 +172,6 @@ export default function LandingTopbar({
         >
           {t("nearby_attraction")}
         </div>
-        {/* TODO: anchor hilight remove */}
-        {/* <div className="flex flex-row items-center">
-            <Anchor 
-                direction="horizontal"
-                style={{ marginLeft: '9.375vw' }}
-            >
-                <Link href="#room" title={<span style={{ color: 'white', fontSize: '16px' }}>Room</span>} />
-                <Link href="#facilities" title={<span style={{ color: 'white', fontSize: '16px' }}>Facilities & Services</span>} />
-                <Link href="#activities" title={<span style={{ color: 'white', fontSize: '16px' }}>Activities</span>} />
-                <Link href="#gallery" title={<span style={{ color: 'white', fontSize: '16px' }}>Gallery</span>} />
-                <Link href="#promotion" title={<span style={{ color: 'white', fontSize: '16px' }}>Promotion</span>} />
-            </Anchor>
-        </div> */}
       </div>
       <div className="flex flex-row items-center gap-x-4 gap-y-2 flex-wrap mobile:flex-col">
         <Select

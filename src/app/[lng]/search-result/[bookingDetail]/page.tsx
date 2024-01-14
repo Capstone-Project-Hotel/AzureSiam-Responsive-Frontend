@@ -19,7 +19,7 @@ const mockStandardRoomInformation = {
   maxGuest: 1,
   bedType: "Single Bed",
   roomSize: 12,
-  roomPrice: 1500,
+  roomPrice: 1200,
   roomImage: "https://via.placeholder.com/300",
   roomAmenities: [
     "TV",

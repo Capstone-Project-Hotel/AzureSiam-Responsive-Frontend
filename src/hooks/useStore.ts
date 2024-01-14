@@ -100,7 +100,7 @@ const useStore = create<Store>()(
       {
         name: "test",
         skipHydration: true,
-        storage: createJSONStorage(() => sessionStorage),
+        storage: createJSONStorage(() => localStorage),
       }
   ),
 )

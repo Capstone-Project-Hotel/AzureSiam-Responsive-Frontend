@@ -71,7 +71,8 @@ export default function SummaryCard({
   // childrens: number;
   // codePromo: string;
 }) {
-  const { bookingDetail, setBookingDetail } = useStore();
+  const { bookingDetail, setBookingDetail, exchangeRate, currency } =
+    useStore();
 
   // Calculate the difference in milliseconds
   const startDateFormat = new Date(bookingDetail.startDate);
@@ -90,14 +91,17 @@ export default function SummaryCard({
   }
 
   let subTotal =
-    (1500 * bookingDetail.standardRoomNumber +
+    (1200 * bookingDetail.standardRoomNumber +
       1800 * bookingDetail.deluxeRoomNumber +
       2200 * bookingDetail.familyRoomNumber +
       2500 * bookingDetail.suiteRoomNumber +
       3000 * bookingDetail.executiveRoomNumber) *
-    reducedRate;
-  if (bookingDetail.packageOne === true) subTotal += 299 * reducedRate;
-  if (bookingDetail.packageTwo === true) subTotal += 499 * reducedRate;
+    reducedRate *
+    exchangeRate;
+  if (bookingDetail.packageOne === true)
+    subTotal += 299 * reducedRate * exchangeRate;
+  if (bookingDetail.packageTwo === true)
+    subTotal += 499 * reducedRate * exchangeRate;
 
   const serviceCharge = subTotal / 10;
   const taxesAndFees = (subTotal / 100) * 7;
@@ -171,12 +175,16 @@ export default function SummaryCard({
                   Standard Room {bookingDetail.standardRoomNumber} room(s)
                 </div>
                 <div className="text-body text-slate-400 mobile:text-body-mobile">
-                  THB{" "}
+                  {currency}{" "}
                   {new Intl.NumberFormat("th-TH", {
-                    style: "currency",
-                    currency: "THB",
+                    style: "decimal",
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
                   }).format(
-                    bookingDetail.standardRoomNumber * 1500 * reducedRate
+                    bookingDetail.standardRoomNumber *
+                      1200 *
+                      reducedRate *
+                      exchangeRate
                   )}
                 </div>
               </div>
@@ -219,12 +227,16 @@ export default function SummaryCard({
                   Deluxe Room {bookingDetail.deluxeRoomNumber} room(s)
                 </div>
                 <div className="text-body text-slate-400 mobile:text-body-mobile">
-                  THB{" "}
+                  {currency}{" "}
                   {new Intl.NumberFormat("th-TH", {
-                    style: "currency",
-                    currency: "THB",
+                    style: "decimal",
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
                   }).format(
-                    bookingDetail.deluxeRoomNumber * 1800 * reducedRate
+                    bookingDetail.deluxeRoomNumber *
+                      1800 *
+                      reducedRate *
+                      exchangeRate
                   )}
                 </div>
               </div>
@@ -263,12 +275,16 @@ export default function SummaryCard({
                   Family Room {bookingDetail.familyRoomNumber} room(s)
                 </div>
                 <div className="text-body text-slate-400">
-                  THB{" "}
+                  {currency}{" "}
                   {new Intl.NumberFormat("th-TH", {
-                    style: "currency",
-                    currency: "THB",
+                    style: "decimal",
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
                   }).format(
-                    bookingDetail.familyRoomNumber * 2200 * reducedRate
+                    bookingDetail.familyRoomNumber *
+                      2200 *
+                      reducedRate *
+                      exchangeRate
                   )}
                 </div>
               </div>
@@ -307,11 +323,17 @@ export default function SummaryCard({
                   Suite Room {bookingDetail.suiteRoomNumber} room(s)
                 </div>
                 <div className="text-body text-slate-400">
-                  THB
+                  {currency}{" "}
                   {new Intl.NumberFormat("th-TH", {
-                    style: "currency",
-                    currency: "THB",
-                  }).format(bookingDetail.suiteRoomNumber * 2500 * reducedRate)}
+                    style: "decimal",
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  }).format(
+                    bookingDetail.suiteRoomNumber *
+                      2500 *
+                      reducedRate *
+                      exchangeRate
+                  )}
                 </div>
               </div>
             </div>
@@ -349,12 +371,16 @@ export default function SummaryCard({
                   Executive Room {bookingDetail.executiveRoomNumber} room(s)
                 </div>
                 <div className="text-body text-slate-400">
-                  THB{" "}
+                  {currency}{" "}
                   {new Intl.NumberFormat("th-TH", {
-                    style: "currency",
-                    currency: "THB",
+                    style: "decimal",
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
                   }).format(
-                    bookingDetail.executiveRoomNumber * 3000 * reducedRate
+                    bookingDetail.executiveRoomNumber *
+                      3000 *
+                      reducedRate *
+                      exchangeRate
                   )}
                 </div>
               </div>
@@ -370,12 +396,16 @@ export default function SummaryCard({
                   Standard Room {bookingDetail.standardRoomNumber} room(s)
                 </div>
                 <div className="text-body text-slate-400">
-                  THB
+                  {currency}{" "}
                   {new Intl.NumberFormat("th-TH", {
-                    style: "currency",
-                    currency: "THB",
+                    style: "decimal",
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
                   }).format(
-                    bookingDetail.standardRoomNumber * 1500 * reducedRate
+                    bookingDetail.standardRoomNumber *
+                      1200 *
+                      reducedRate *
+                      exchangeRate
                   )}
                 </div>
               </div>
@@ -386,12 +416,16 @@ export default function SummaryCard({
                   Deluxe Room {bookingDetail.deluxeRoomNumber} room(s)
                 </div>
                 <div className="text-body text-slate-400">
-                  THB
+                  {currency}{" "}
                   {new Intl.NumberFormat("th-TH", {
-                    style: "currency",
-                    currency: "THB",
+                    style: "decimal",
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
                   }).format(
-                    bookingDetail.deluxeRoomNumber * 1800 * reducedRate
+                    bookingDetail.deluxeRoomNumber *
+                      1800 *
+                      reducedRate *
+                      exchangeRate
                   )}
                 </div>
               </div>
@@ -402,12 +436,16 @@ export default function SummaryCard({
                   Family Room {bookingDetail.familyRoomNumber} room(s)
                 </div>
                 <div className="text-body text-slate-400">
-                  THB
+                  {currency}{" "}
                   {new Intl.NumberFormat("th-TH", {
-                    style: "currency",
-                    currency: "THB",
+                    style: "decimal",
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
                   }).format(
-                    bookingDetail.familyRoomNumber * 2200 * reducedRate
+                    bookingDetail.familyRoomNumber *
+                      2200 *
+                      reducedRate *
+                      exchangeRate
                   )}
                 </div>
               </div>
@@ -418,11 +456,17 @@ export default function SummaryCard({
                   Suite Room {bookingDetail.suiteRoomNumber} room(s)
                 </div>
                 <div className="text-body text-slate-400">
-                  THB
+                  {currency}{" "}
                   {new Intl.NumberFormat("th-TH", {
-                    style: "currency",
-                    currency: "THB",
-                  }).format(bookingDetail.suiteRoomNumber * 2500 * reducedRate)}
+                    style: "decimal",
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  }).format(
+                    bookingDetail.suiteRoomNumber *
+                      2500 *
+                      reducedRate *
+                      exchangeRate
+                  )}
                 </div>
               </div>
             ) : null}
@@ -432,12 +476,16 @@ export default function SummaryCard({
                   Executive Room {bookingDetail.executiveRoomNumber} room(s)
                 </div>
                 <div className="text-body text-slate-400">
-                  THB
+                  {currency}{" "}
                   {new Intl.NumberFormat("th-TH", {
-                    style: "currency",
-                    currency: "THB",
+                    style: "decimal",
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
                   }).format(
-                    bookingDetail.executiveRoomNumber * 3000 * reducedRate
+                    bookingDetail.executiveRoomNumber *
+                      3000 *
+                      reducedRate *
+                      exchangeRate
                   )}
                 </div>
               </div>
@@ -475,10 +523,11 @@ export default function SummaryCard({
                       Transportation [ Package 1 ]
                     </div>
                     <div className="text-body text-slate-400">
-                      THB
+                      {currency}{" "}
                       {new Intl.NumberFormat("th-TH", {
-                        style: "currency",
-                        currency: "THB",
+                        style: "decimal",
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
                       }).format(299)}
                     </div>
                   </div>
@@ -512,10 +561,11 @@ export default function SummaryCard({
                       Transportation [ Package 2 ]
                     </div>
                     <div className="text-body text-slate-400">
-                      THB
+                      {currency}{" "}
                       {new Intl.NumberFormat("th-TH", {
-                        style: "currency",
-                        currency: "THB",
+                        style: "decimal",
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
                       }).format(499)}
                     </div>
                   </div>
@@ -534,12 +584,16 @@ export default function SummaryCard({
                   Standard Room {bookingDetail.standardRoomNumber} room(s)
                 </div>
                 <div className="text-body text-slate-400">
-                  THB
+                  {currency}{" "}
                   {new Intl.NumberFormat("th-TH", {
-                    style: "currency",
-                    currency: "THB",
+                    style: "decimal",
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
                   }).format(
-                    bookingDetail.standardRoomNumber * 1500 * reducedRate
+                    bookingDetail.standardRoomNumber *
+                      1200 *
+                      reducedRate *
+                      exchangeRate
                   )}
                 </div>
               </div>
@@ -550,28 +604,36 @@ export default function SummaryCard({
                   Deluxe Room {bookingDetail.deluxeRoomNumber} room(s)
                 </div>
                 <div className="text-body text-slate-400">
-                  THB
+                  {currency}{" "}
                   {new Intl.NumberFormat("th-TH", {
-                    style: "currency",
-                    currency: "THB",
+                    style: "decimal",
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
                   }).format(
-                    bookingDetail.deluxeRoomNumber * 1800 * reducedRate
+                    bookingDetail.deluxeRoomNumber *
+                      1800 *
+                      reducedRate *
+                      exchangeRate
                   )}
                 </div>
               </div>
             ) : null}
             {bookingDetail.familyRoomNumber !== 0 ? (
               <div className="flex justify-between">
-                <div className="text-body">
+                <div className="text-body text-slate-400">
                   Family Room {bookingDetail.familyRoomNumber} room(s)
                 </div>
                 <div className="text-body text-slate-400">
-                  THB
+                  {currency}{" "}
                   {new Intl.NumberFormat("th-TH", {
-                    style: "currency",
-                    currency: "THB",
+                    style: "decimal",
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
                   }).format(
-                    bookingDetail.familyRoomNumber * 2200 * reducedRate
+                    bookingDetail.familyRoomNumber *
+                      2200 *
+                      reducedRate *
+                      exchangeRate
                   )}
                 </div>
               </div>
@@ -582,11 +644,17 @@ export default function SummaryCard({
                   Suite Room {bookingDetail.suiteRoomNumber} room(s)
                 </div>
                 <div className="text-body text-slate-400">
-                  THB
+                  {currency}{" "}
                   {new Intl.NumberFormat("th-TH", {
-                    style: "currency",
-                    currency: "THB",
-                  }).format(bookingDetail.suiteRoomNumber * 2500 * reducedRate)}
+                    style: "decimal",
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  }).format(
+                    bookingDetail.suiteRoomNumber *
+                      2500 *
+                      reducedRate *
+                      exchangeRate
+                  )}
                 </div>
               </div>
             ) : null}
@@ -596,12 +664,16 @@ export default function SummaryCard({
                   Executive Room {bookingDetail.executiveRoomNumber} room(s)
                 </div>
                 <div className="text-body text-slate-400">
-                  THB
+                  {currency}{" "}
                   {new Intl.NumberFormat("th-TH", {
-                    style: "currency",
-                    currency: "THB",
+                    style: "decimal",
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
                   }).format(
-                    bookingDetail.executiveRoomNumber * 3000 * reducedRate
+                    bookingDetail.executiveRoomNumber *
+                      3000 *
+                      reducedRate *
+                      exchangeRate
                   )}
                 </div>
               </div>
@@ -613,10 +685,11 @@ export default function SummaryCard({
                 <div className="flex justify-between">
                   <div className="text-body">Transportation [ Package 1 ]</div>
                   <div className="text-body text-slate-400">
-                    THB
+                    {currency}{" "}
                     {new Intl.NumberFormat("th-TH", {
-                      style: "currency",
-                      currency: "THB",
+                      style: "decimal",
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
                     }).format(299)}
                   </div>
                 </div>
@@ -627,10 +700,11 @@ export default function SummaryCard({
                 <div className="flex justify-between">
                   <div className="text-body">Transportation [ Package 2 ]</div>
                   <div className="text-body text-slate-400">
-                    THB
+                    {currency}{" "}
                     {new Intl.NumberFormat("th-TH", {
-                      style: "currency",
-                      currency: "THB",
+                      style: "decimal",
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
                     }).format(499)}
                   </div>
                 </div>
@@ -645,10 +719,11 @@ export default function SummaryCard({
           Sub total
         </div>
         <div className="text-body text-slate-400 mobile:text-body-mobile">
-          THB{" "}
+          {currency}{" "}
           {new Intl.NumberFormat("th-TH", {
-            style: "currency",
-            currency: "THB",
+            style: "decimal",
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
           }).format(subTotal)}
         </div>
       </div>
@@ -657,10 +732,11 @@ export default function SummaryCard({
           Service charge (10%)
         </div>
         <div className="text-body text-slate-400 mobile:text-body-mobile">
-          THB{" "}
+          {currency}{" "}
           {new Intl.NumberFormat("th-TH", {
-            style: "currency",
-            currency: "THB",
+            style: "decimal",
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
           }).format(serviceCharge)}
         </div>
       </div>
@@ -669,19 +745,21 @@ export default function SummaryCard({
           Taxes + fees (7%)
         </div>
         <div className="text-body text-slate-400 mobile:text-body-mobile">
-          THB{" "}
+          {currency}{" "}
           {new Intl.NumberFormat("th-TH", {
-            style: "currency",
-            currency: "THB",
+            style: "decimal",
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
           }).format(taxesAndFees)}
         </div>
       </div>
       <div className="text-center text-h2 font-bold mt-[50px] mobile:text-h2-mobile">
-        THB
+        {currency}{" "}
         {new Intl.NumberFormat("th-TH", {
-          style: "currency",
-          currency: "THB",
-        }).format(subTotal + serviceCharge + taxesAndFees)}{" "}
+          style: "decimal",
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }).format(subTotal + serviceCharge + taxesAndFees)}
         Total
       </div>
       <div className="flex justify-center items-center \">

@@ -90,12 +90,20 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
             <div>
               {/* Guest Detail */}
               <div className="text-h2 mobile:text-h2-mobile font-bold text-primary">
-                Guest Detail
+                {t("guest_detail_label")}
               </div>
 
               {/* Guest Detail - Input Container */}
               {guests.map((guest, index) => {
-                return <GuestDetailInputContainer key={index} guest={guest} />;
+                return (
+                  <GuestDetailInputContainer
+                    key={index}
+                    guest={guest}
+                    params={{
+                      lng: t,
+                    }}
+                  />
+                );
               })}
             </div>
 
@@ -103,7 +111,7 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
             <div>
               {/* Payment Detail */}
               <div className="text-h2 mobile:text-h2-mobile font-bold text-primary mb-2">
-                Payment Detail
+                {t("payment_label")}
               </div>
 
               {/* Payment Detail - Input Container */}
@@ -113,7 +121,7 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
                   {/* Card Holder Name */}
                   <div className="w-full">
                     <div className="text-h5 mobile:text-h4-mobile">
-                      Card Holder Name : {paymentDetail.cardHolderName}
+                      {t("card_holder")} : {paymentDetail.cardHolderName}
                     </div>
                   </div>
 
@@ -121,7 +129,7 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
                   <div className="w-full">
                     <div className="text-description mobile:text-h3-mobile flex gap-2 items-center">
                       <div className="text-h5 mobile:text-h4-mobile">
-                        Card Number : {paymentDetail.cardNumber}
+                        {t("card_number")} : {paymentDetail.cardNumber}
                       </div>
                       <div>
                         {cardType &&
@@ -142,14 +150,14 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
                   {/* Exp Date */}
                   <div className="w-[343px]">
                     <div className="text-h5 mobile:text-h4-mobile">
-                      Exp date : {paymentDetail.expDate}
+                      {t("expiration_date")} : {paymentDetail.expDate}
                     </div>
                   </div>
 
                   {/* CVV */}
                   <div className="w-[343px]">
                     <div className="text-h5 mobile:text-h4-mobile">
-                      CVV : {paymentDetail.cvv}
+                      {t("cvv")}: {paymentDetail.cvv}
                     </div>
                   </div>
                 </div>
@@ -162,7 +170,7 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
             {/* Special Request Container */}
             <div>
               <div className="text-h2 mobile:text-h2-mobile font-bold text-primary">
-                Special Request
+                {t("special_request")}
               </div>
               <div className="w-full text-h5 mobile:text-h4-mobile">
                 {specialReq === "" ? "-" : specialReq}
@@ -182,11 +190,14 @@ export default BookingConfirmation;
 
 interface GuestDetailInputContainerProps {
   guest: Guest;
+  params: { lng: any };
 }
 
 const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
   guest,
+  params,
 }) => {
+  const { t } = useTranslation(lng);
   return (
     <div className="flex flex-col gap-2 my-2">
       {/* Row 1 */}
@@ -194,14 +205,15 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         {/* First Name */}
         <div className="w-[243px]">
           <div className="text-h5 mobile:text-h4-mobile">
-            First Name : {guest.firstName}
+            {t("first_name")} : {guest.firstName}
           </div>
         </div>
 
         {/* Middle Name */}
         <div className="w-[243px]">
           <div className="text-h5 mobile:text-h4-mobile">
-            Middle Name : {guest.middleName === "" ? "-" : guest.middleName}
+            {t("middle_name")} :{" "}
+            {guest.middleName === "" ? "-" : guest.middleName}
           </div>
         </div>
 

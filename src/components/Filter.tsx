@@ -13,39 +13,27 @@ import { ChangeEvent, useState } from "react";
 dayjs().format();
 
 import { useRouter } from "next/navigation";
-export default function Filter({}: // startDate,
-// endDate,
-// adults,
-// childrens,
-// codePromo,
-{
-  // startDate: string;
-  // endDate: string;
-  // adults: number;
-  // childrens: number;
-  // codePromo: string;
-}) {
+export default function Filter({}: {}) {
   const { RangePicker } = DatePicker;
   const CheckboxGroup = Checkbox.Group;
 
-  const roomTypeOptions = [
-    { label: "Standard", value: "standard" },
-    { label: "Deluxe", value: "deluxe" },
-    { label: "Family", value: "family" },
-    { label: "Executive", value: "executive" },
-    { label: "Junior", value: "junior" },
-  ];
+  // const roomTypeOptions = [
+  //   { label: "Standard", value: "standard" },
+  //   { label: "Deluxe", value: "deluxe" },
+  //   { label: "Family", value: "family" },
+  //   { label: "Executive", value: "executive" },
+  //   { label: "Junior", value: "junior" },
+  // ];
 
-  const roomFeatureOptions = [
-    { label: "City View", value: "city-view" },
-    { label: "Adaptable Bathroom", value: "adaptable-bathroom" },
-    { label: "Luggage Storage", value: "luggage-storage" },
-    { label: "Jacuzzi", value: "jacuzzi" },
-    { label: "Balcony", value: "balcony" },
-  ];
+  // const roomFeatureOptions = [
+  //   { label: "City View", value: "city-view" },
+  //   { label: "Adaptable Bathroom", value: "adaptable-bathroom" },
+  //   { label: "Luggage Storage", value: "luggage-storage" },
+  //   { label: "Jacuzzi", value: "jacuzzi" },
+  //   { label: "Balcony", value: "balcony" },
+  // ];
 
   const { bookingDetail, setBookingDetail } = useStore();
-  // const [changedBooking, setChangedBooking] = useState(false);
 
   const router = useRouter();
 
@@ -139,17 +127,19 @@ export default function Filter({}: // startDate,
               style={{ width: 100 }}
               value={bookingDetail.codePromotion}
               onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                const updatedCodePromotion = e.target.value; // Access the value correctly
+                const updatedCodePromotion = e.target.value;
+                if (updatedCodePromotion.length > 5) {
+                  const updatedBookingDetail = {
+                    ...bookingDetail,
+                    codePromotion: updatedCodePromotion,
+                  };
 
-                const updatedBookingDetail = {
-                  ...bookingDetail,
-                  codePromotion: updatedCodePromotion,
-                };
+                  setBookingDetail(updatedBookingDetail);
 
-                setBookingDetail(updatedBookingDetail);
-                router.replace(
-                  `/search-result/startDate=${bookingDetail.startDate}&endDate=${bookingDetail.endDate}&adults=${bookingDetail.adultNumber}&childrens=${bookingDetail.childrenNumber}&codePromo=${updatedCodePromotion}`
-                );
+                  router.replace(
+                    `/search-result/startDate=${bookingDetail.startDate}&endDate=${bookingDetail.endDate}&adults=${bookingDetail.adultNumber}&childrens=${bookingDetail.childrenNumber}&codePromo=${updatedCodePromotion}`
+                  );
+                }
               }}
             />
             {bookingDetail.codePromotion === "valid001" ? (
