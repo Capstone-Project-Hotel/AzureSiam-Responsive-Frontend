@@ -100,9 +100,8 @@ const useStore = create<Store>()(
       {
         name: "test",
         skipHydration: true,
+        storage: createJSONStorage(() => sessionStorage),
       }
   ),
 )
-
-
 export default useStore;

@@ -157,6 +157,9 @@ export default function SearchResultPage({
   const { startDate, endDate, adults, childrens, codePromo } = paramsObject;
 
   useEffect(() => {
+    useStore.persist.rehydrate();
+  }, []);
+  useEffect(() => {
     const updatedBookingDetail: BookingDetail = {
       ...bookingDetail,
       startDate: startDate,
