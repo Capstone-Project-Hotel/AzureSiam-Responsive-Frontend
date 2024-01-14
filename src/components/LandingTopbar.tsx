@@ -202,7 +202,7 @@ export default function LandingTopbar({
         />
         <Button
           style={{
-            marginLeft: "3.125vw",
+            marginLeft: "0.75vw",
             backgroundColor: "white",
             borderRadius: "8px",
           }}
