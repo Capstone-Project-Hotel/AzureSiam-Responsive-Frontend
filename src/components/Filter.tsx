@@ -52,7 +52,9 @@ export default function Filter({}: // startDate,
   return (
     <div className="w-full flex-row bg-secondary pt-3 pb-3">
       <div className="my-[20px] ml-10">
-        <p className="text-white text-h3  font-bold">Booking Detail</p>
+        <p className="text-white text-h3 font-bold mobile:text-h3-mobile">
+          Booking Detail
+        </p>
         <div className="flex justify-around">
           <RangePicker
             value={[
@@ -79,8 +81,11 @@ export default function Filter({}: // startDate,
             }}
           />
           <div className="flex">
-            <p className="ml-2 mr-2 text-white text-h4 font-bold">Adult</p>
+            <p className="ml-2 mr-2 text-white text-h4 font-bold mobile:text-h4-mobile">
+              Adult
+            </p>
             <InputNumber
+              style={{ width: "50px" }}
               value={bookingDetail.adultNumber}
               onChange={(e: number | null) => {
                 if (e != null) {
@@ -101,8 +106,11 @@ export default function Filter({}: // startDate,
             />
           </div>
           <div className="flex">
-            <p className="ml-2 mr-2 text-white text-h4 font-bold">Childern</p>
+            <p className="ml-2 mr-2 text-white text-h4 font-bold mobile:text-h4-mobile">
+              Childern
+            </p>
             <InputNumber
+              style={{ width: "50px" }}
               value={bookingDetail.childrenNumber}
               onChange={(e: number | null) => {
                 if (e != null) {
@@ -123,12 +131,12 @@ export default function Filter({}: // startDate,
             />
           </div>
           <div className="flex">
-            <p className="ml-2 mr-2 text-white text-h4 font-bold">
+            <p className="ml-2 mr-2 text-white text-h4 font-bold mobile:text-h4-mobile">
               Code Promotion
             </p>
             <Input
               placeholder="example"
-              style={{ width: 200 }}
+              style={{ width: 100 }}
               value={bookingDetail.codePromotion}
               onChange={(e: ChangeEvent<HTMLInputElement>) => {
                 const updatedCodePromotion = e.target.value; // Access the value correctly
@@ -155,42 +163,58 @@ export default function Filter({}: // startDate,
       </div>
       <div className="flex justify-between ml-10 mr-10 my-2">
         <div>
-          <p className="text-white text-h3 font-bold">Room Type</p>
+          <p className="text-white text-h3 font-bold mobile:text-h3-mobile">
+            Room Type
+          </p>
           <div className="grid grid-cols-3 gap-2">
             <Checkbox>
-              <p className="text-white text-h5">Standard</p>
+              <p className="text-white text-h5 mobile:text-h5-mobile">
+                Standard
+              </p>
             </Checkbox>
             <Checkbox>
-              <p className="text-white text-h5">Deluxe</p>
+              <p className="text-white text-h5 mobile:text-h5-mobile">Deluxe</p>
             </Checkbox>
             <Checkbox>
-              <p className="text-white text-h5">Family</p>
+              <p className="text-white text-h5 mobile:text-h5-mobile">Family</p>
             </Checkbox>
             <Checkbox>
-              <p className="text-white text-h5">Junior</p>
+              <p className="text-white text-h5 mobile:text-h5-mobile">Junior</p>
             </Checkbox>
             <Checkbox>
-              <p className="text-white text-h5">Executive</p>
+              <p className="text-white text-h5 mobile:text-h5-mobile">
+                Executive
+              </p>
             </Checkbox>
           </div>
         </div>
         <div>
-          <p className="text-white text-h3  font-bold">Room Feature</p>
+          <p className="text-white text-h3 font-bold mobile:text-h3-mobile">
+            Room Feature
+          </p>
           <div className="grid grid-cols-3 gap-2">
             <Checkbox>
-              <p className="text-white text-h5">City View</p>
+              <p className="text-white text-h5 mobile:text-h5-mobile">
+                City View
+              </p>
             </Checkbox>
             <Checkbox>
-              <p className="text-white text-h5">Jacuzzi</p>
+              <p className="text-white text-h5 mobile:text-h5-mobile">
+                Jacuzzi
+              </p>
             </Checkbox>
             <Checkbox>
-              <p className="text-white text-h5">Balcony</p>
+              <p className="text-white text-h5 mobile:text-h5-mobile">
+                Balcony
+              </p>
             </Checkbox>
           </div>
         </div>
 
         <div>
-          <p className="text-white text-h3  font-bold">Price</p>
+          <p className="text-white text-h3 font-bold mobile:text-h3-mobile">
+            Price
+          </p>
           <Select
             defaultValue="Any price is acceptable"
             style={{ width: 200 }}

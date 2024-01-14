@@ -23,14 +23,13 @@ export default function RoomCard(information: {
   };
 
   const handleBookNowClick = (roomType: string) => {
-
     // Create the updatedBookingDetail object with the new room number
     const updatedBookingDetail = {
       ...bookingDetail,
       [`${roomType}RoomNumber`]: 1,
     };
     // disable
-    console.log(updatedBookingDetail)
+    console.log(updatedBookingDetail);
 
     // Set the updated bookingDetail
     setBookingDetail(updatedBookingDetail);
@@ -53,7 +52,7 @@ export default function RoomCard(information: {
           Maximum guest: {information.maxGuest} <br />
           Size: {information.roomSize} m2 <br />
           Bed type: {information.bedType} <br />
-          Amenities: {information.roomAmenities.map((n) => ' • ' + n)} <br />
+          Amenities: {information.roomAmenities.map((n) => " • " + n)} <br />
           {isExpanded && (
             <div className="mt-[1vw]">
               {/* More detailed information */}
@@ -81,9 +80,6 @@ export default function RoomCard(information: {
           >
             Book Now
           </Button>
-          {/* <Button type="primary">
-            Primary
-          </Button> */}
         </text>
       </div>
     </div>

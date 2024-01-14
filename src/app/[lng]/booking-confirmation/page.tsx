@@ -60,7 +60,6 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
     cardType,
     setCardType,
   } = useStore();
-  // const { guests, paymentDetail, specialReq, cardType } = useStore();
 
   if (guests[0].firstName === "") {
     redirect("/");
@@ -73,19 +72,26 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
         <Topbar lng={lng} />
       </div>
       <div className="mt-[150px] text-center">
-        <div className="text-h1 flex flex-row gap-2 justify-center">
-          <CheckCircleFilled style={{ color: "green" }} />
+        <div className="text-h1 flex flex-row gap-2 justify-center mobile:text-h1-mobile">
+          <CheckCircleFilled
+            style={{ color: "green" }}
+            className="mobile:text-lg"
+          />
           <div className="font-bold text-primary">
             Your Booking is successful
           </div>
         </div>
-        <div className="text-h2 font-bold text-primary">
+        <div className="text-h2 font-bold text-primary mobile:text-h2-mobile">
           Booking Id: {Math.floor(100000 + Math.random() * 900000)}
         </div>
       </div>
       <div className="flex justify-start mt-[15px]">
         {/* Main Container */}
         <div className="w-[1440px] mobile:w-[330px] flex flex-wrap ml-20 gap-10 py-10">
+          {/* Right Container */}
+          <div className="w-[509px] mobile:w-[330px] absolute mobile:right-0 right-[0px] top-[300px] mobile:static">
+            <SummaryCard page="booking-confirmation" isDisabledConfirm={true} />
+          </div>
           {/* Left Container */}
           <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10">
             {/* Guest Detail Container */}
@@ -162,10 +168,6 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
                 {specialReq === "" ? "-" : specialReq}
               </div>
             </div>
-          </div>
-          {/* Right Container */}
-          <div className="w-[509px] mobile:w-[330px] absolute mobile:right-0 right-[0px] top-[300px]">
-            <SummaryCard page="booking-confirmation" />
           </div>
         </div>
       </div>

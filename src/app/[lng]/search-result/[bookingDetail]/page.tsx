@@ -192,15 +192,8 @@ export default function SearchResultPage({
         <Filter />
       </div>
 
-      <div className="w-[509px] mobile:w-[330px] absolute mobile:right-0 right-[0px] top-[375px]">
-        <SummaryCard
-          page="search-result"
-          // startDate={startDate}
-          // endDate={endDate}
-          // adults={parseInt(adults)}
-          // childrens={parseInt(childrens)}
-          // codePromo={codePromo}
-        />
+      <div className="absolute mobile:static right-[0px] top-[375px] mobile:ml-10 mobile:mt-10">
+        {/* <SummaryCard page="search-result" isDisabledConfirm={false} /> */}
       </div>
 
       <div className="flex flex-col space-y-10 mt-10 ml-10">

@@ -1,40 +1,5 @@
 import { create } from "zustand";
-
-// interface Guest {
-//   firstName: string;
-//   middleName: string;
-//   lastName: string;
-//   gender: string;
-//   birthDate: string;
-//   email: string;
-//   phoneNumber: string;
-//   country: string;
-//   city: string;
-//   zipCode: string;
-//   address: string;
-//   id: string;
-//   idType: string;
-// }
-
-// interface PaymentDetail {
-//   cardHolderName: string;
-//   cardNumber: string;
-//   expDate: string;
-//   cvv: string;
-// }
-
-// interface BookingDetail {
-//   startDate: string;
-//   endDate:string;
-//   adultNumber: number;
-//   childrenNumber: number;
-//   codePromotion: string;
-//   standardRoomNumber: number;
-//   deluxeRoomNumber: number;
-//   familyRoomNumber: number;
-//   executiveRoomNumber: number;
-//   juniorRoomNumber: number;
-// }
+import { persist, createJSONStorage } from 'zustand/middleware'
 
 const emptyGuest: Guest = {
   firstName: "",
@@ -92,21 +57,52 @@ interface Store {
   setCurrency: (currency: string) => void;
 }
 
-const useStore = create<Store>((set) => ({
-  bookingDetail: emptyBookingDetail,
-  guests: [emptyGuest],
-  paymentDetail: emptyPaymentDetail,
-  specialReq: "",
-  cardType: "",
-  exchangeRate: 1,
-  currency: "THB",
-  setBookingDetail: (bookingDetail: BookingDetail) => set({ bookingDetail}),
-  setGuests: (guests: Guest[]) => set({ guests }),
-  setPaymentDetail: (paymentDetail: PaymentDetail) => set({ paymentDetail }),
-  setSpecialReq: (specialReq: string) => set({ specialReq }),
-  setCardType: (cardType: string) => set({ cardType }),
-  setExchangeRate: (exchangeRate: number) => set({ exchangeRate }),
-  setCurrency: (currency: string) => set({ currency }),
-}));
+// const useStore = create<Store>(persist((set) => ({
+//   bookingDetail: emptyBookingDetail,
+//   guests: [emptyGuest],
+//   paymentDetail: emptyPaymentDetail,
+//   specialReq: "",
+//   cardType: "",
+//   exchangeRate: 1,
+//   currency: "THB",
+//   setBookingDetail: (bookingDetail: BookingDetail) => set({ bookingDetail}),
+//   setGuests: (guests: Guest[]) => set({ guests }),
+//   setPaymentDetail: (paymentDetail: PaymentDetail) => set({ paymentDetail }),
+//   setSpecialReq: (specialReq: string) => set({ specialReq }),
+//   setCardType: (cardType: string) => set({ cardType }),
+//   setExchangeRate: (exchangeRate: number) => set({ exchangeRate }),
+//   setCurrency: (currency: string) => set({ currency })}),
+//   {
+//     name: 'food-storage',
+//     storage: createJSONStorage(() => sessionStorage),
+//   },
+// ));
+
+// export default useStore;
+
+const useStore = create(
+  persist(
+    (set) => ({
+      bookingDetail: emptyBookingDetail,
+      guests: [emptyGuest],
+      paymentDetail: emptyPaymentDetail,
+      specialReq: "",
+      cardType: "",
+      exchangeRate: 1,
+      currency: "THB",
+      setBookingDetail: (bookingDetail: BookingDetail) => set({ bookingDetail}),
+      setGuests: (guests: Guest[]) => set({ guests }),
+      setPaymentDetail: (paymentDetail: PaymentDetail) => set({ paymentDetail }),
+      setSpecialReq: (specialReq: string) => set({ specialReq }),
+      setCardType: (cardType: string) => set({ cardType }),
+      setExchangeRate: (exchangeRate: number) => set({ exchangeRate }),
+      setCurrency: (currency: string) => set({ currency })}),
+    {
+      name: 'storage', 
+      // storage: createJSONStorage(() => sessionStorage),
+    },
+  ),
+)
+
 
 export default useStore;

@@ -202,6 +202,13 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
       <div className="flex justify-between mt-[100px]">
         {/* Main Container */}
         <div className="w-[1440px] mobile:w-[330px] flex flex-wrap ml-20 gap-10 py-10">
+          {/* Right Container */}
+          <div className="w-[509px] mobile:w-[330px] absolute mobile:right-0 right-[0px] top-[190px] mobile:static">
+            <SummaryCard
+              page="reservation-and-guest-detail"
+              isDisabledConfirm={isDisabledConfirm}
+            />
+          </div>
           {/* Left Container */}
           <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10 mt-10">
             {/* Back to search result Container */}
@@ -443,14 +450,6 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Right Container */}
-          <div className="w-[509px] mobile:w-[330px] absolute mobile:right-0 right-[0px] top-[190px]">
-            <SummaryCard
-              page="reservation-and-guest-detail"
-              isDisabledConfirm={isDisabledConfirm}
-            />
           </div>
         </div>
       </div>

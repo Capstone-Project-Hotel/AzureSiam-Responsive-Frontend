@@ -69,6 +69,13 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
       <div className="flex justify-center mt-[140px]">
         {/* Main Container */}
         <div className="w-[1440px] mobile:w-[330px] flex flex-wrap ml-20 gap-10 py-10">
+          {/* Right Container */}
+          <div className="absolute mobile:right-0 right-[0px] top-[190px] mobile:static">
+            <SummaryCard
+              page="summary-booking-detail"
+              isDisabledConfirm={true}
+            />
+          </div>
           {/* Left Container */}
           <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10">
             <div className="flex items-center gap-5">
@@ -161,11 +168,6 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
                 {specialReq === "" ? "-" : specialReq}
               </div>
             </div>
-          </div>
-
-          {/* Right Container */}
-          <div className="w-[509px] mobile:w-[330px] absolute mobile:right-0 right-[0px] top-[190px]">
-            <SummaryCard page="summary-booking-detail" />
           </div>
         </div>
       </div>
