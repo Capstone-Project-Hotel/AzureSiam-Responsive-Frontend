@@ -129,13 +129,13 @@ export default function LandingTopbar({
       className="sticky top-0 flex flex-row h-[110px] w-full px-[4.16vw] items-center justify-between"
       style={{ backgroundColor: "#2A4D69", color: "white" }}
     >
-      <div className="flex flex-row items-center">
+      <div className="flex flex-row items-center mobile:flex-col">
         <BlockOutlined style={{ fontSize: "5vw", color: "white" }} />
         <Link href="/" className="text-h2 font-sans mobile:text-h2-mobile">
           AzureSiam
         </Link>
       </div>
-      <div className="flex flex-row flex-wrap items-start gap-x-6 gap-y-1 mobile:flex-col">
+      <div className="flex flex-row flex-wrap items-start gap-x-8 gap-y-1 mobile:flex-col ml-[2vw]">
         <div
           className="text-h5 mobile:text-h5-mobile cursor-pointer"
           onClick={scrollToRoom}
@@ -180,16 +180,17 @@ export default function LandingTopbar({
           onChange={handleIntlChange}
           style={{ width: "100px" }}
         />
-
         <Select
           defaultValue={currency}
           options={listquotes}
           onChange={handleExChange}
           style={{ width: "100px" }}
         />
+      </div>
+      <div>
         <Button
           style={{
-            marginLeft: "3.125vw",
+            marginLeft: "0.75vw",
             backgroundColor: "white",
             borderRadius: "8px",
           }}
