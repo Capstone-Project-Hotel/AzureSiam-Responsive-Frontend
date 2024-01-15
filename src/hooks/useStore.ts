@@ -57,29 +57,6 @@ interface Store {
   setCurrency: (currency: string) => void;
 }
 
-// const useStore = create<Store>(persist((set) => ({
-//   bookingDetail: emptyBookingDetail,
-//   guests: [emptyGuest],
-//   paymentDetail: emptyPaymentDetail,
-//   specialReq: "",
-//   cardType: "",
-//   exchangeRate: 1,
-//   currency: "THB",
-//   setBookingDetail: (bookingDetail: BookingDetail) => set({ bookingDetail}),
-//   setGuests: (guests: Guest[]) => set({ guests }),
-//   setPaymentDetail: (paymentDetail: PaymentDetail) => set({ paymentDetail }),
-//   setSpecialReq: (specialReq: string) => set({ specialReq }),
-//   setCardType: (cardType: string) => set({ cardType }),
-//   setExchangeRate: (exchangeRate: number) => set({ exchangeRate }),
-//   setCurrency: (currency: string) => set({ currency })}),
-//   {
-//     name: 'food-storage',
-//     storage: createJSONStorage(() => sessionStorage),
-//   },
-// ));
-
-// export default useStore;
-
 const useStore = create<Store>()(
   persist(
     (set) => ({

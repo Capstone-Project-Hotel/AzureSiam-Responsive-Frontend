@@ -32,7 +32,17 @@ export default function Topbar({ lng }: { lng: any }) {
   };
 
   // Exchange Rate
-  const { exchangeRate, setExchangeRate, currency, setCurrency } = useStore();
+  const {
+    exchangeRate,
+    setExchangeRate,
+    currency,
+    setCurrency,
+    setBookingDetail,
+    setCardType,
+    setGuests,
+    setPaymentDetail,
+    setSpecialReq,
+  } = useStore();
   const listquotes = [
     "SGD",
     "MYR",
@@ -99,6 +109,57 @@ export default function Topbar({ lng }: { lng: any }) {
     console.log("Currency changed to", currency);
   };
 
+  const handleNewBooking = () => {
+    const emptyGuest: Guest = {
+      firstName: "",
+      middleName: "",
+      lastName: "",
+      gender: "",
+      birthDate: "",
+      email: "",
+      phoneNumber: "",
+      country: "",
+      city: "",
+      zipCode: "",
+      address: "",
+      id: "",
+      idType: "",
+    };
+
+    setGuests([emptyGuest]);
+
+    const emptyPaymentDetail: PaymentDetail = {
+      cardHolderName: "",
+      cardNumber: "",
+      expDate: "",
+      cvv: "",
+    };
+
+    setPaymentDetail(emptyPaymentDetail);
+
+    const emptyBookingDetail: BookingDetail = {
+      startDate: "",
+      endDate: "",
+      adultNumber: 0,
+      childrenNumber: 0,
+      codePromotion: "",
+      standardRoomNumber: 0,
+      deluxeRoomNumber: 0,
+      familyRoomNumber: 0,
+      suiteRoomNumber: 0,
+      executiveRoomNumber: 0,
+      packageOne: false,
+      packageTwo: false,
+      isCheckedPDPA: false,
+    };
+
+    setBookingDetail(emptyBookingDetail);
+    setCardType("");
+    setSpecialReq("");
+
+    console.log("new store");
+  };
+
   return (
     <div
       className="sticky top-0 flex flex-row h-[110px] w-full px-[4.16vw] items-center justify-between mobile:h-[50px]"
@@ -106,7 +167,11 @@ export default function Topbar({ lng }: { lng: any }) {
     >
       <div className="flex flex-row items-center">
         <BlockOutlined style={{ fontSize: "5vw", color: "white" }} />
-        <Link href="/" className="text-h2 font-sans mobile:text-h2-mobile">
+        <Link
+          href="/"
+          className="text-h2 mobile:text-h2-mobile"
+          onClick={handleNewBooking}
+        >
           AzureSiam
         </Link>
       </div>
