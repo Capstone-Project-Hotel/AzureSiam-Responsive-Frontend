@@ -96,13 +96,7 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
               {/* Guest Detail - Input Container */}
               {guests.map((guest, index) => {
                 return (
-                  <GuestDetailInputContainer
-                    key={index}
-                    guest={guest}
-                    params={{
-                      lng: t,
-                    }}
-                  />
+                  <GuestDetailInputContainer key={index} guest={guest} t={t} />
                 );
               })}
             </div>
@@ -190,14 +184,13 @@ export default BookingConfirmation;
 
 interface GuestDetailInputContainerProps {
   guest: Guest;
-  params: { lng: any };
+  t: any;
 }
 
 const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
   guest,
-  params,
+  t,
 }) => {
-  const { t } = useTranslation(lng);
   return (
     <div className="flex flex-col gap-2 my-2">
       {/* Row 1 */}

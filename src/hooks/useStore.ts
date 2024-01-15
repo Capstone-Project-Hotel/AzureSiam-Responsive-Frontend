@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist, createJSONStorage } from 'zustand/middleware'
+import { persist, createJSONStorage } from "zustand/middleware";
 
 const emptyGuest: Guest = {
   firstName: "",
@@ -90,18 +90,20 @@ const useStore = create<Store>()(
       cardType: "",
       exchangeRate: 1,
       currency: "THB",
-      setBookingDetail: (bookingDetail: BookingDetail) => set({ bookingDetail}),
+      setBookingDetail: (bookingDetail: BookingDetail) =>
+        set({ bookingDetail }),
       setGuests: (guests: Guest[]) => set({ guests }),
-      setPaymentDetail: (paymentDetail: PaymentDetail) => set({ paymentDetail }),
+      setPaymentDetail: (paymentDetail: PaymentDetail) =>
+        set({ paymentDetail }),
       setSpecialReq: (specialReq: string) => set({ specialReq }),
       setCardType: (cardType: string) => set({ cardType }),
       setExchangeRate: (exchangeRate: number) => set({ exchangeRate }),
-      setCurrency: (currency: string) => set({ currency })}),
-      {
-        name: "test",
-        skipHydration: true,
-        storage: createJSONStorage(() => localStorage),
-      }
-  ),
-)
+      setCurrency: (currency: string) => set({ currency }),
+    }),
+    {
+      name: "store",
+      storage: createJSONStorage(() => sessionStorage),
+    }
+  )
+);
 export default useStore;
