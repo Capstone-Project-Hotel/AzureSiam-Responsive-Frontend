@@ -54,12 +54,13 @@
   "hotel_address": "254 Phayathai RoadPathumwan, Bangkok 10330",
   "hotel_phone": "tel. +66-2414-5688",
   "facilities": "Facilities",
+
   "non_smoking": "Non-smoking",
   "mini_fridge": "Mini Fridge",
   "compact_fridge": "Compact Fridge",
   "hairdryer": "Hairdryer",
   "television": "Television",
-  "air_conditioned": "Air conditioned",
+  "air_conditioner": "Air conditioner",
   "wireless_internet": "Wireless Internet",
   "desk": "Desk",
   "bath": "Bath",
@@ -69,9 +70,23 @@
   "balcony": "Balcony",
   "parlor": "Parlor",
   "dinner": "Dinner plan",
+
   "maximum_guest": "Maximum guest",
   "size": "Size",
   "bed_type": "Bed type",
+
+  "single_bed": "Single Bed",
+  "double_bed": "Double Bed",
+  "twin_bed": "Twin Bed",
+  "queen_bed": "Queen Size Bed",
+  "king_bed": "King Size Bed",
+
+  "standard_room_desc": "The room is designed to meet fundamental criteria for comfort, functionality, and aesthetics. This room is equipped with essential amenities necessary for a comfortable stay or specific purposes, ensuring a standardized level of quality. It may feature standard furniture, basic technology, and necessary facilities, making it suitable for a wide range of users or purposes. Whether it's a hotel room, office space, or residential area",
+  "deluxe_room_desc": "An upgraded version of the standard room, the deluxe room offers more space and often features enhanced furnishings, better views, and additional amenities such as a balcony or a seating area. It provides a touch of luxury for guests looking for a bit more comfort.",
+  "family_room_desc": "Specifically designed for families, these rooms often feature extra sleeping space such as bunk beds or a pull-out sofa. Family rooms provide the convenience of staying together in one room while ensuring everyone has a comfortable place to sleep.",
+  "suite_room_desc": "well-appointed and often more spacious accommodation options than standard rooms, designed to offer an enhanced level of comfort for guests seeking a little more space and luxury. It's a popular choice for both business and leisure travelers looking for a comfortable retreat with some additional amenities.",
+  "executive_room_desc": "luxurious and spacious accommodation options designed to cater to the needs of business travelers, VIPs, or guests seeking an elevated level of comfort and amenities. Typically located on higher floors for enhanced privacy and better views, the Executive Suite offers a sophisticated and upscale environment.",
+
   "show_more": "Show More",
   "show_less": "Show Less",
   "price": "Price",
