@@ -35,4 +35,5 @@ interface Guest {
     packageOne: boolean;
     packageTwo: boolean;
     isCheckedPDPA: boolean;
+    bookingId: string,
   }

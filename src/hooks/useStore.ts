@@ -38,6 +38,7 @@ const emptyBookingDetail: BookingDetail = {
   packageOne: false,
   packageTwo: false,
   isCheckedPDPA: false,
+  bookingId: ""
 };
 
 interface Store {
@@ -67,6 +68,7 @@ const useStore = create<Store>()(
       cardType: "",
       exchangeRate: 1,
       currency: "THB",
+      bookingId: "",
       setBookingDetail: (bookingDetail: BookingDetail) =>
         set({ bookingDetail }),
       setGuests: (guests: Guest[]) => set({ guests }),
