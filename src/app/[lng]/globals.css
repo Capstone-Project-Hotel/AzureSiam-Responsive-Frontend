@@ -56,8 +56,8 @@ body {
   }
 }
 
-.ant-select{
-  background-color: #2a4d69;
+.ant-select {
+  /* background-color: #2a4d69; */
   @media screen and (max-width: 394px) {
     width: 80px !important;
     padding-left: 5px !important;
@@ -67,11 +67,40 @@ body {
   }
 }
 
-.ant-select-selection-item{
+.price-select {
+  @media screen and (max-width: 394px) {
+    width: 150px !important;
+  }
+}
+
+.ant-picker {
+  @media screen and (max-width: 394px) {
+    width: 250px !important;
+  }
+}
+
+.ant-picker-input input {
   @media screen and (max-width: 394px) {
     font-size: 8px !important;
-
+  }
 }
+
+.ant-input-number-input-wrap input {
+  @media screen and (max-width: 394px) {
+    font-size: 8px !important;
+  }
+}
+
+.ant-input {
+  @media screen and (max-width: 394px) {
+    font-size: 8px !important;
+  }
+}
+
+.ant-select-selection-item {
+  @media screen and (max-width: 394px) {
+    font-size: 8px !important;
+  }
 }
 
 .ant-select-item-option-content {
