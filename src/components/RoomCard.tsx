@@ -42,7 +42,7 @@ export default function RoomCard({
       [`${roomType}RoomNumber`]: 1,
     };
     // disable
-    console.log(updatedBookingDetail);
+    // console.log(updatedBookingDetail);
 
     // Set the updated bookingDetail
     setBookingDetail(updatedBookingDetail);

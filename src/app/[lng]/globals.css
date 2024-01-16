@@ -138,3 +138,15 @@ li {
 .slick-next {
   right: -15px !important;
 }
+
+.anticon-calendar svg {
+  @media screen and (max-width: 394px) {
+    font-size: 18px !important;
+  }
+}
+
+.anticon-user svg {
+  @media screen and (max-width: 394px) {
+    font-size: 18px !important;
+  }
+}

@@ -33,7 +33,11 @@ export default function Filter({
   const { RangePicker } = DatePicker;
   const CheckboxGroup = Checkbox.Group;
 
-  const { bookingDetail, setBookingDetail } = useStore();
+  const [typingTimeout, setTypingTimeout] = useState<NodeJS.Timeout | null>(
+    null
+  );
+  const { bookingDetail, setBookingDetail, currency, exchangeRate } =
+    useStore();
 
   const router = useRouter();
 
@@ -127,9 +131,11 @@ export default function Filter({
               placeholder="example"
               style={{ width: 100 }}
               value={bookingDetail.codePromotion}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 const updatedCodePromotion = e.target.value;
-                if (updatedCodePromotion.length > 5) {
+                console.log(updatedCodePromotion.length);
+
+                if (updatedCodePromotion.length <= 8) {
                   const updatedBookingDetail = {
                     ...bookingDetail,
                     codePromotion: updatedCodePromotion,
@@ -140,13 +146,18 @@ export default function Filter({
                   router.replace(
                     `/search-result/startDate=${bookingDetail.startDate}&endDate=${bookingDetail.endDate}&adults=${bookingDetail.adultNumber}&childrens=${bookingDetail.childrenNumber}&codePromo=${updatedCodePromotion}`
                   );
+                } else {
+                  // Prevent the default behavior when character count exceeds
+                  e.preventDefault();
                 }
               }}
             />
             {bookingDetail.codePromotion === "valid001" ? (
               <div className="flex">
-                <i className="pi pi-check text-green-500 text-2xl"></i>
-                <p>Discount 20%</p>
+                <i className="pi pi-check text-green-500 text-2xl mobile:text-sm"></i>
+                <p className="ml-2 mr-2 text-white text-h4 font-bold mobile:text-h4-mobile">
+                  Discount 20%
+                </p>
               </div>
             ) : null}
           </div>
@@ -205,17 +216,17 @@ export default function Filter({
           <div className="grid grid-cols-3 gap-2">
             <Checkbox>
               <p className="text-white text-h5 mobile:text-h5-mobile">
-                City View
+                {t("city_view")}
+              </p>
+            </Checkbox>
+            <Checkbox>
+              <p className="text-white text-h5 mobile:text-h5-mobile">
+                {t("dinner")}
               </p>
             </Checkbox>
             <Checkbox>
               <p className="text-white text-h5 mobile:text-h5-mobile">
                 {t("jacuzzi")}
-              </p>
-            </Checkbox>
-            <Checkbox>
-              <p className="text-white text-h5 mobile:text-h5-mobile">
-                Balcony
               </p>
             </Checkbox>
           </div>
@@ -226,25 +237,40 @@ export default function Filter({
             {t("price")}
           </p>
           <Select
-            defaultValue="Any price is acceptable"
+            defaultValue={t("price_default")}
             style={{ width: 220 }}
             className="price-select"
             options={[
               {
                 value: "Any price is acceptable",
-                label: "Any price is acceptable",
+                label: t("price_default"),
               },
               {
                 value: "Not exceeding THB 1,500",
-                label: "Not exceeding THB 1,500",
+                label:
+                  t("price_not_exceeding") +
+                  " " +
+                  currency +
+                  " " +
+                  (1500 * exchangeRate).toPrecision(4).toString(),
               },
               {
                 value: "Not exceeding THB 2,000",
-                label: "Not exceeding THB 2,000",
+                label:
+                  t("price_not_exceeding") +
+                  " " +
+                  currency +
+                  " " +
+                  (2000 * exchangeRate).toPrecision(4).toString(),
               },
               {
                 value: "Not exceeding THB 2,500",
-                label: "Not exceeding THB 2,500",
+                label:
+                  t("price_not_exceeding") +
+                  " " +
+                  currency +
+                  " " +
+                  (2500 * exchangeRate).toPrecision(4).toString(),
               },
             ]}
           />

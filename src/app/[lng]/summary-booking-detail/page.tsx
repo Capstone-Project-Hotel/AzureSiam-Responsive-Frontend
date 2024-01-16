@@ -26,12 +26,6 @@ interface Guest {
   idType: string;
 }
 
-const idTypeToid = {
-  id: "National ID",
-  passportNumber: "Passport Number",
-  drivingLicence: "Driving Licence",
-};
-
 const cardTypeToCardImg = {
   amex: "https://venturebeat.com/wp-content/uploads/2023/05/blue.jpg?fit=750%2C422&strip=all",
   visa: "https://swissuplabs.com/wordpress/wp-content/uploads/2016/04/free-icons-visa.png",
@@ -192,6 +186,11 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
   guest,
   t,
 }) => {
+  const idTypeToid = {
+    id: t("national_id"),
+    passportNumber: t("passport_number"),
+    drivingLicence: t("driving_licence"),
+  };
   return (
     <div className="flex flex-col gap-2 my-2">
       {/* Row 1 */}
@@ -292,7 +291,8 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         {/* ID , Passport Number , Driving Licence */}
         <div className="w-full">
           <div className="text-h5 mobile:text-h4-mobile">
-            {(idTypeToid as any)[guest["idType"]] || "National ID"} : {guest.id}
+            {(idTypeToid as any)[guest["idType"]] || t("national_id")} :{" "}
+            {guest.id}
           </div>
         </div>
       </div>

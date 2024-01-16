@@ -303,7 +303,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
                     </div>
                     <Input
                       className="w-full"
-                      placeholder="Card Holder Name"
+                      placeholder={t("card_holder")}
                       name="cardHolderName"
                       value={paymentDetail.cardHolderName}
                       onChange={handlePaymentInputChange}
@@ -369,7 +369,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
                       </div>
                     </div>
                     <Cleave
-                      placeholder="Card Number"
+                      placeholder={t("card_number")}
                       options={{
                         creditCard: true,
                         onCreditCardTypeChanged,
@@ -392,7 +392,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
                     </div>
                     <DatePicker
                       className="w-full"
-                      placeholder="Select Exp Date"
+                      placeholder={t("expiration_date_default")}
                       onChange={handleExpDateChange}
                       defaultValue={
                         paymentDetail.expDate
@@ -576,10 +576,10 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
           </div>
           <Select
             className="w-full"
-            placeholder="Select Gender"
+            placeholder={t("gender_default")}
             options={[
-              { value: "male", label: "Male", group: "gender" },
-              { value: "female", label: "Female", group: "gender" },
+              { value: "male", label: t("male"), group: "gender" },
+              { value: "female", label: t("female"), group: "gender" },
             ]}
             onChange={handleChange}
             defaultValue={guest.gender ? guest.gender : undefined}
@@ -593,7 +593,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
           </div>
           <DatePicker
             className="w-full"
-            placeholder="Select Birth Date"
+            placeholder={t("birthdate_default")}
             onChange={handleBirthDateChange}
             defaultValue={guest.birthDate ? dayjs(guest.birthDate) : undefined}
           />
@@ -646,7 +646,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
           </div>
           <Select
             className="w-full"
-            placeholder="Select Country"
+            placeholder={t("country_default")}
             options={Country.getAllCountries().map((country: any) => {
               return {
                 value: country.name,
@@ -667,7 +667,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
           </div>
           <Select
             className="w-full"
-            placeholder="Select City"
+            placeholder={t("city_default")}
             options={city}
             onChange={handleChange}
             defaultValue={guest.city ? guest.city : undefined}
@@ -718,17 +718,17 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
             <div className="w-[212px]">
               <Select
                 className="w-full"
-                placeholder="Select"
+                placeholder={t("select")}
                 options={[
-                  { value: "id", label: "National ID", group: "idType" },
+                  { value: "id", label: t("national_id"), group: "idType" },
                   {
                     value: "passportNumber",
-                    label: "Passport Number",
+                    label: t("passport_number"),
                     group: "idType",
                   },
                   {
                     value: "drivingLicence",
-                    label: "Driving Licence",
+                    label: t("driving_licence"),
                     group: "idType",
                   },
                 ]}

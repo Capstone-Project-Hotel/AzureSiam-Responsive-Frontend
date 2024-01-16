@@ -26,11 +26,11 @@ interface Guest {
   idType: string;
 }
 
-const idTypeToid = {
-  id: "National ID",
-  passportNumber: "Passport Number",
-  drivingLicence: "Driving Licence",
-};
+// const idTypeToid = {
+//   id: "National ID",
+//   passportNumber: "Passport Number",
+//   drivingLicence: "Driving Licence",
+// };
 
 const cardTypeToCardImg = {
   amex: "https://venturebeat.com/wp-content/uploads/2023/05/blue.jpg?fit=750%2C422&strip=all",
@@ -65,8 +65,6 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
   if (guests[0].firstName === "") {
     redirect("/");
   }
-
-  console.log(bookingDetail.bookingId);
 
   if (bookingDetail.bookingId === "") {
     const bookingId = Math.floor(100000 + Math.random() * 900000).toString();
@@ -209,6 +207,11 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
   guest,
   t,
 }) => {
+  const idTypeToid = {
+    id: t("national_id"),
+    passportNumber: t("passport_number"),
+    drivingLicence: t("driving_licence"),
+  };
   return (
     <div className="flex flex-col gap-2 my-2">
       {/* Row 1 */}

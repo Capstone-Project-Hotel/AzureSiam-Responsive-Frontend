@@ -279,7 +279,9 @@ export default function SummaryCard({
           {bookingDetail.familyRoomNumber !== 0 ? (
             <div>
               <div className="flex justify-between">
-                <div className="text-h5 font-bold">{t("fml_title")}</div>
+                <div className="text-h5 font-bold mobile:text-h5-mobile">
+                  {t("fml_title")}
+                </div>
                 <RoomNumberInput
                   roomType="Family"
                   value={bookingDetail.familyRoomNumber}
@@ -301,13 +303,13 @@ export default function SummaryCard({
                   setBookingDetail(updatedBookingDetail);
                 }}
               >
-                <i className="pi pi-trash text-gray-400"></i>
+                <i className="pi pi-trash text-gray-400 mobile:text-[8px]"></i>
                 <div className="text-description text-gray-400 mobile:text-body-mobile">
                   {t("remove")}
                 </div>
               </button>
               <div className="flex justify-between">
-                <div className="text-body">
+                <div className="text-body mobile:text-body-mobile">
                   {t("fml_title")} {bookingDetail.familyRoomNumber} {t("room")}
                 </div>
                 <div className="text-body text-slate-400 mobile:text-body-mobile">
@@ -329,7 +331,9 @@ export default function SummaryCard({
           {bookingDetail.suiteRoomNumber !== 0 ? (
             <div>
               <div className="flex justify-between">
-                <div className="text-h5 font-bold">{t("s_title")}</div>
+                <div className="text-h5 font-bold mobile:text-h5-mobile">
+                  {t("s_title")}
+                </div>
                 <RoomNumberInput
                   roomType="Suite"
                   value={bookingDetail.suiteRoomNumber}
@@ -351,13 +355,13 @@ export default function SummaryCard({
                   setBookingDetail(updatedBookingDetail);
                 }}
               >
-                <i className="pi pi-trash text-gray-400"></i>
+                <i className="pi pi-trash text-gray-400 mobile:text-[8px]"></i>
                 <div className="text-description text-gray-400 mobile:text-body-mobile">
                   {t("remove")}
                 </div>
               </button>
               <div className="flex justify-between">
-                <div className="text-body">
+                <div className="text-body mobile:text-body-mobile">
                   {t("s_title")} {bookingDetail.suiteRoomNumber} {t("room")}
                 </div>
                 <div className="text-body text-slate-400 mobile:text-body-mobile">
@@ -379,7 +383,9 @@ export default function SummaryCard({
           {bookingDetail.executiveRoomNumber !== 0 ? (
             <div>
               <div className="flex justify-between">
-                <div className="text-h5 font-bold">{t("ex_title")}</div>
+                <div className="text-h5 font-bold mobile:text-h5-mobile">
+                  {t("ex_title")}
+                </div>
                 <RoomNumberInput
                   roomType="Executive"
                   value={bookingDetail.executiveRoomNumber}
@@ -401,13 +407,13 @@ export default function SummaryCard({
                   setBookingDetail(updatedBookingDetail);
                 }}
               >
-                <i className="pi pi-trash text-gray-400"></i>
+                <i className="pi pi-trash text-gray-400 mobile:text-[8px]"></i>
                 <div className="text-description text-gray-400 mobile:text-body-mobile">
                   {t("remove")}
                 </div>
               </button>
               <div className="flex justify-between">
-                <div className="text-body">
+                <div className="text-body mobile:text-body-mobile">
                   {t("ex_title")} {bookingDetail.executiveRoomNumber}{" "}
                   {t("room")}
                 </div>
@@ -474,7 +480,7 @@ export default function SummaryCard({
             ) : null}
             {bookingDetail.familyRoomNumber !== 0 ? (
               <div className="flex justify-between">
-                <div className="text-body">
+                <div className="text-body mobile:text-body-mobile">
                   {t("fml_title")} {bookingDetail.familyRoomNumber} {t("room")}
                 </div>
                 <div className="text-body text-slate-400 mobile:text-body-mobile">
@@ -494,7 +500,7 @@ export default function SummaryCard({
             ) : null}
             {bookingDetail.suiteRoomNumber !== 0 ? (
               <div className="flex justify-between">
-                <div className="text-body">
+                <div className="text-body mobile:text-body-mobile">
                   {t("s_title")} {bookingDetail.suiteRoomNumber} {t("room")}
                 </div>
                 <div className="text-body text-slate-400 mobile:text-body-mobile">
@@ -514,7 +520,7 @@ export default function SummaryCard({
             ) : null}
             {bookingDetail.executiveRoomNumber !== 0 ? (
               <div className="flex justify-between">
-                <div className="text-body">
+                <div className="text-body mobile:text-body-mobile">
                   {t("ex_title")} {bookingDetail.executiveRoomNumber}{" "}
                   {t("room")}
                 </div>
@@ -558,7 +564,7 @@ export default function SummaryCard({
                       setBookingDetail(updatedBookingDetail);
                     }}
                   >
-                    <i className="pi pi-trash text-gray-400"></i>
+                    <i className="pi pi-trash text-gray-400 mobile:text-[8px]"></i>
                     <div className="text-description text-gray-400 mobile:text-body-mobile">
                       {t("remove_service")}
                     </div>
@@ -567,7 +573,7 @@ export default function SummaryCard({
                     <div className="text-body mobile:text-body-mobile">
                       {t("service_name1")}
                     </div>
-                    <div className="text-description text-gray-400 mobile:text-body-mobile">
+                    <div className="text-body text-gray-400 mobile:text-body-mobile">
                       {currency}{" "}
                       {new Intl.NumberFormat("th-TH", {
                         style: "decimal",
@@ -597,7 +603,7 @@ export default function SummaryCard({
                       setBookingDetail(updatedBookingDetail);
                     }}
                   >
-                    <i className="pi pi-trash text-gray-400"></i>
+                    <i className="pi pi-trash text-gray-400 mobile:text-[8px]"></i>
                     <div className="text-description text-gray-400 mobile:text-body-mobile">
                       {t("remove_service")}
                     </div>
@@ -606,7 +612,7 @@ export default function SummaryCard({
                     <div className="text-body mobile:text-body-mobile">
                       {t("service_name2")}
                     </div>
-                    <div className="text-description text-gray-400 mobile:text-body-mobile">
+                    <div className="text-body text-gray-400 mobile:text-body-mobile">
                       {currency}{" "}
                       {new Intl.NumberFormat("th-TH", {
                         style: "decimal",
@@ -838,7 +844,7 @@ export default function SummaryCard({
                 bookingDetail.adultNumber + bookingDetail.childrenNumber
               }
             >
-              <div>Confirm</div>
+              <div>{t("confirm")}</div>
             </Button>
           </Link>
         ) : page === "reservation-and-guest-detail" ? (
@@ -852,13 +858,13 @@ export default function SummaryCard({
               style={{ background: "#2A4D69", color: "white" }}
               disabled={isDisabledConfirm || !bookingDetail.isCheckedPDPA}
             >
-              <div>Confirm</div>
+              <div>{t("confirm")}</div>
             </Button>
           </Link>
         ) : page === "summary-booking-detail" ? (
           <Link href={"/booking-confirmation"}>
             <Button style={{ background: "#2A4D69", color: "white" }}>
-              <div>Check Out</div>
+              <div>{t("check_out")}</div>
             </Button>
           </Link>
         ) : null}
