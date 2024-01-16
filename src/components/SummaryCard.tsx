@@ -57,27 +57,60 @@ const RoomNumberInput = ({
 export default function SummaryCard({
   page,
   isDisabledConfirm,
-}: // startDate,
-// endDate,
-// adults,
-// childrens,
-// codePromo,
-{
+  t,
+}: {
   page: string;
   isDisabledConfirm: boolean;
-  // startDate: string;
-  // endDate: string;
-  // adults: number;
-  // childrens: number;
-  // codePromo: string;
+  t: any;
 }) {
   const { bookingDetail, setBookingDetail, exchangeRate, currency } =
     useStore();
 
+  // Assuming startDate and endDate are in the format dd-mm-yyyy
+  const startDateParts = bookingDetail.startDate.split("-");
+  const endDateParts = bookingDetail.endDate.split("-");
+
+  // Creating Date objects with the specified format
+  const startDateFormat = new Date(
+    Date.UTC(
+      parseInt(startDateParts[2]),
+      parseInt(startDateParts[1]) - 1,
+      parseInt(startDateParts[0]),
+      0,
+      0,
+      0
+    )
+  );
+  const endDateFormat = new Date(
+    Date.UTC(
+      parseInt(endDateParts[2]),
+      parseInt(endDateParts[1]) - 1,
+      parseInt(endDateParts[0]),
+      0,
+      0,
+      0
+    )
+  );
+
   // Calculate the difference in milliseconds
-  const startDateFormat = new Date(bookingDetail.startDate);
-  const endDateFormat = new Date(bookingDetail.endDate);
   const timeDifference = endDateFormat.getTime() - startDateFormat.getTime();
+
+  const options: Intl.DateTimeFormatOptions = {
+    weekday: "short", // Short day name (e.g., Sun)
+    month: "short", // Short month name (e.g., Nov)
+    day: "numeric", // Day of the month (e.g., 19)
+    year: "2-digit", // Last two digits of the year (e.g., 23)
+  };
+
+  const formattedStartDateString = startDateFormat.toLocaleDateString(
+    "en-US",
+    options
+  );
+
+  const formattedEndDateString = endDateFormat.toLocaleDateString(
+    "en-US",
+    options
+  );
 
   // Convert the difference to days
   const dayDuration = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
@@ -114,19 +147,19 @@ export default function SummaryCard({
           <div>
             <div className="text-h5 font-medium mobile:text-h5-mobile">
               {/* Sun, 19 Nov 23 – Tue, 21 Nov 23 */}
-              {bookingDetail.startDate} - {bookingDetail.endDate}
+              {formattedStartDateString} - {formattedEndDateString}
             </div>
             <div className="text-body text-slate-400 mobile:text-h5-mobile">
               {/* 2 nights */}
-              {dayDuration} night(s)
+              {dayDuration} {t("night")}
             </div>
           </div>
         </div>
         <div className="flex">
           <UserOutlined style={{ fontSize: "30px", marginRight: "10px" }} />
           <div className="text-h5 font-medium mobile:text-h5-mobile">
-            {bookingDetail.adultNumber} adult(s) {bookingDetail.childrenNumber}{" "}
-            children
+            {bookingDetail.adultNumber} {t("adults")}{" "}
+            {bookingDetail.childrenNumber} {t("children")}
           </div>
         </div>
       </div>
@@ -135,14 +168,14 @@ export default function SummaryCard({
       {page === "search-result" ? (
         <div className="border-b-2">
           <div className="text-body text-slate-400 mobile:text-body-mobile">
-            Edit room(s)
+            {t("edit_room")}
           </div>
 
           {bookingDetail.standardRoomNumber !== 0 ? (
             <div>
               <div className="flex justify-between">
                 <div className="text-h5 font-bold mobile:text-h5-mobile">
-                  Standard Room
+                  {t("std_title")}
                 </div>
                 <RoomNumberInput
                   roomType="Standard"
@@ -167,12 +200,13 @@ export default function SummaryCard({
               >
                 <i className="pi pi-trash text-gray-400 mobile:text-[8px]"></i>
                 <div className="text-description text-gray-400 mobile:text-body-mobile">
-                  remove
+                  {t("remove")}
                 </div>
               </button>
               <div className="flex justify-between">
                 <div className="text-body mobile:text-body-mobile">
-                  Standard Room {bookingDetail.standardRoomNumber} room(s)
+                  {t("std_title")} {bookingDetail.standardRoomNumber}{" "}
+                  {t("room")}
                 </div>
                 <div className="text-body text-slate-400 mobile:text-body-mobile">
                   {currency}{" "}
@@ -194,7 +228,7 @@ export default function SummaryCard({
             <div>
               <div className="flex justify-between">
                 <div className="text-h5 font-bold mobile:text-h5-mobile">
-                  Deluxe Room
+                  {t("dlx_title")}
                 </div>
                 <RoomNumberInput
                   roomType="Deluxe"
@@ -219,12 +253,12 @@ export default function SummaryCard({
               >
                 <i className="pi pi-trash text-gray-400 mobile:text-[8px]"></i>
                 <div className="text-description text-gray-400 mobile:text-body-mobile">
-                  remove
+                  {t("remove")}
                 </div>
               </button>
               <div className="flex justify-between">
                 <div className="text-body mobile:text-body-mobile">
-                  Deluxe Room {bookingDetail.deluxeRoomNumber} room(s)
+                  {t("dlx_title")} {bookingDetail.deluxeRoomNumber} {t("room")}
                 </div>
                 <div className="text-body text-slate-400 mobile:text-body-mobile">
                   {currency}{" "}
@@ -245,7 +279,7 @@ export default function SummaryCard({
           {bookingDetail.familyRoomNumber !== 0 ? (
             <div>
               <div className="flex justify-between">
-                <div className="text-h5 font-bold">Family Room</div>
+                <div className="text-h5 font-bold">{t("fml_title")}</div>
                 <RoomNumberInput
                   roomType="Family"
                   value={bookingDetail.familyRoomNumber}
@@ -268,13 +302,15 @@ export default function SummaryCard({
                 }}
               >
                 <i className="pi pi-trash text-gray-400"></i>
-                <div className="text-gray-400">remove</div>
+                <div className="text-description text-gray-400 mobile:text-body-mobile">
+                  {t("remove")}
+                </div>
               </button>
               <div className="flex justify-between">
                 <div className="text-body">
-                  Family Room {bookingDetail.familyRoomNumber} room(s)
+                  {t("fml_title")} {bookingDetail.familyRoomNumber} {t("room")}
                 </div>
-                <div className="text-body text-slate-400">
+                <div className="text-body text-slate-400 mobile:text-body-mobile">
                   {currency}{" "}
                   {new Intl.NumberFormat("th-TH", {
                     style: "decimal",
@@ -293,7 +329,7 @@ export default function SummaryCard({
           {bookingDetail.suiteRoomNumber !== 0 ? (
             <div>
               <div className="flex justify-between">
-                <div className="text-h5 font-bold">Suite Room</div>
+                <div className="text-h5 font-bold">{t("s_title")}</div>
                 <RoomNumberInput
                   roomType="Suite"
                   value={bookingDetail.suiteRoomNumber}
@@ -316,13 +352,15 @@ export default function SummaryCard({
                 }}
               >
                 <i className="pi pi-trash text-gray-400"></i>
-                <div className="text-gray-400">remove</div>
+                <div className="text-description text-gray-400 mobile:text-body-mobile">
+                  {t("remove")}
+                </div>
               </button>
               <div className="flex justify-between">
                 <div className="text-body">
-                  Suite Room {bookingDetail.suiteRoomNumber} room(s)
+                  {t("s_title")} {bookingDetail.suiteRoomNumber} {t("room")}
                 </div>
-                <div className="text-body text-slate-400">
+                <div className="text-body text-slate-400 mobile:text-body-mobile">
                   {currency}{" "}
                   {new Intl.NumberFormat("th-TH", {
                     style: "decimal",
@@ -341,7 +379,7 @@ export default function SummaryCard({
           {bookingDetail.executiveRoomNumber !== 0 ? (
             <div>
               <div className="flex justify-between">
-                <div className="text-h5 font-bold">Executive Room</div>
+                <div className="text-h5 font-bold">{t("ex_title")}</div>
                 <RoomNumberInput
                   roomType="Executive"
                   value={bookingDetail.executiveRoomNumber}
@@ -364,13 +402,16 @@ export default function SummaryCard({
                 }}
               >
                 <i className="pi pi-trash text-gray-400"></i>
-                <div className="text-gray-400">remove</div>
+                <div className="text-description text-gray-400 mobile:text-body-mobile">
+                  {t("remove")}
+                </div>
               </button>
               <div className="flex justify-between">
                 <div className="text-body">
-                  Executive Room {bookingDetail.executiveRoomNumber} room(s)
+                  {t("ex_title")} {bookingDetail.executiveRoomNumber}{" "}
+                  {t("room")}
                 </div>
-                <div className="text-body text-slate-400">
+                <div className="text-body text-slate-400 mobile:text-body-mobile">
                   {currency}{" "}
                   {new Intl.NumberFormat("th-TH", {
                     style: "decimal",
@@ -393,9 +434,10 @@ export default function SummaryCard({
             {bookingDetail.standardRoomNumber !== 0 ? (
               <div className="flex justify-between">
                 <div className="text-body mobile:text-body-mobile">
-                  Standard Room {bookingDetail.standardRoomNumber} room(s)
+                  {t("std_title")} {bookingDetail.standardRoomNumber}{" "}
+                  {t("room")}
                 </div>
-                <div className="text-body text-slate-400">
+                <div className="text-body text-slate-400 mobile:text-body-mobile">
                   {currency}{" "}
                   {new Intl.NumberFormat("th-TH", {
                     style: "decimal",
@@ -413,9 +455,9 @@ export default function SummaryCard({
             {bookingDetail.deluxeRoomNumber !== 0 ? (
               <div className="flex justify-between">
                 <div className="text-body">
-                  Deluxe Room {bookingDetail.deluxeRoomNumber} room(s)
+                  {t("dlx_title")} {bookingDetail.deluxeRoomNumber} {t("room")}
                 </div>
-                <div className="text-body text-slate-400">
+                <div className="text-body text-slate-400 mobile:text-body-mobile">
                   {currency}{" "}
                   {new Intl.NumberFormat("th-TH", {
                     style: "decimal",
@@ -433,9 +475,9 @@ export default function SummaryCard({
             {bookingDetail.familyRoomNumber !== 0 ? (
               <div className="flex justify-between">
                 <div className="text-body">
-                  Family Room {bookingDetail.familyRoomNumber} room(s)
+                  {t("fml_title")} {bookingDetail.familyRoomNumber} {t("room")}
                 </div>
-                <div className="text-body text-slate-400">
+                <div className="text-body text-slate-400 mobile:text-body-mobile">
                   {currency}{" "}
                   {new Intl.NumberFormat("th-TH", {
                     style: "decimal",
@@ -453,9 +495,9 @@ export default function SummaryCard({
             {bookingDetail.suiteRoomNumber !== 0 ? (
               <div className="flex justify-between">
                 <div className="text-body">
-                  Suite Room {bookingDetail.suiteRoomNumber} room(s)
+                  {t("s_title")} {bookingDetail.suiteRoomNumber} {t("room")}
                 </div>
-                <div className="text-body text-slate-400">
+                <div className="text-body text-slate-400 mobile:text-body-mobile">
                   {currency}{" "}
                   {new Intl.NumberFormat("th-TH", {
                     style: "decimal",
@@ -473,9 +515,10 @@ export default function SummaryCard({
             {bookingDetail.executiveRoomNumber !== 0 ? (
               <div className="flex justify-between">
                 <div className="text-body">
-                  Executive Room {bookingDetail.executiveRoomNumber} room(s)
+                  {t("ex_title")} {bookingDetail.executiveRoomNumber}{" "}
+                  {t("room")}
                 </div>
-                <div className="text-body text-slate-400">
+                <div className="text-body text-slate-400 mobile:text-body-mobile">
                   {currency}{" "}
                   {new Intl.NumberFormat("th-TH", {
                     style: "decimal",
@@ -491,17 +534,17 @@ export default function SummaryCard({
               </div>
             ) : null}
           </div>
-          <div className="border-t-2">
+          <div className="border-b-2 border-t-2">
             <div className="my-2">
-              <div className="text-body text-slate-400">
-                Edit Additional Service(s)
+              <div className="text-body text-slate-400 mobile:text-body-mobile">
+                {t("edit_service")}
               </div>
               {bookingDetail.packageOne ? (
                 <div>
                   <div className="flex justify-between">
                     <div className="flex">
-                      <div className="text-h5">
-                        Transportation [ Package 1 ]
+                      <div className="text-h5 mobile:text-h5-mobile">
+                        {t("service_name1")}
                       </div>
                     </div>
                   </div>
@@ -516,13 +559,15 @@ export default function SummaryCard({
                     }}
                   >
                     <i className="pi pi-trash text-gray-400"></i>
-                    <div className="text-gray-400">remove</div>
+                    <div className="text-description text-gray-400 mobile:text-body-mobile">
+                      {t("remove_service")}
+                    </div>
                   </button>
                   <div className="flex justify-between">
-                    <div className="text-body">
-                      Transportation [ Package 1 ]
+                    <div className="text-body mobile:text-body-mobile">
+                      {t("service_name1")}
                     </div>
-                    <div className="text-body text-slate-400">
+                    <div className="text-description text-gray-400 mobile:text-body-mobile">
                       {currency}{" "}
                       {new Intl.NumberFormat("th-TH", {
                         style: "decimal",
@@ -537,10 +582,9 @@ export default function SummaryCard({
                 <div>
                   <div className="flex justify-between">
                     <div className="flex">
-                      <div className="text-h5">
-                        Transportation [ Package 2 ]
+                      <div className="text-h5 mobile:text-h5-mobile">
+                        {t("service_name2")}
                       </div>
-                      {/* <DeleteForeverIcon/> */}
                     </div>
                   </div>
                   <button
@@ -554,13 +598,15 @@ export default function SummaryCard({
                     }}
                   >
                     <i className="pi pi-trash text-gray-400"></i>
-                    <div className="text-gray-400">remove</div>
+                    <div className="text-description text-gray-400 mobile:text-body-mobile">
+                      {t("remove_service")}
+                    </div>
                   </button>
                   <div className="flex justify-between">
-                    <div className="text-body">
-                      Transportation [ Package 2 ]
+                    <div className="text-body mobile:text-body-mobile">
+                      {t("service_name2")}
                     </div>
-                    <div className="text-body text-slate-400">
+                    <div className="text-description text-gray-400 mobile:text-body-mobile">
                       {currency}{" "}
                       {new Intl.NumberFormat("th-TH", {
                         style: "decimal",
@@ -580,10 +626,11 @@ export default function SummaryCard({
           <div className="my-1">
             {bookingDetail.standardRoomNumber !== 0 ? (
               <div className="flex justify-between">
-                <div className="text-body">
-                  Standard Room {bookingDetail.standardRoomNumber} room(s)
+                <div className="text-body mobile:text-body-mobile">
+                  {t("std_title")} {bookingDetail.standardRoomNumber}{" "}
+                  {t("room")}
                 </div>
-                <div className="text-body text-slate-400">
+                <div className="text-body text-slate-400 mobile:text-body-mobile">
                   {currency}{" "}
                   {new Intl.NumberFormat("th-TH", {
                     style: "decimal",
@@ -600,10 +647,10 @@ export default function SummaryCard({
             ) : null}
             {bookingDetail.deluxeRoomNumber !== 0 ? (
               <div className="flex justify-between">
-                <div className="text-body">
-                  Deluxe Room {bookingDetail.deluxeRoomNumber} room(s)
+                <div className="text-body mobile:text-body-mobile">
+                  {t("dlx_title")} {bookingDetail.deluxeRoomNumber} {t("room")}
                 </div>
-                <div className="text-body text-slate-400">
+                <div className="text-body text-slate-400 mobile:text-body-mobile">
                   {currency}{" "}
                   {new Intl.NumberFormat("th-TH", {
                     style: "decimal",
@@ -620,10 +667,10 @@ export default function SummaryCard({
             ) : null}
             {bookingDetail.familyRoomNumber !== 0 ? (
               <div className="flex justify-between">
-                <div className="text-body text-slate-400">
-                  Family Room {bookingDetail.familyRoomNumber} room(s)
+                <div className="text-body mobile:text-body-mobile">
+                  {t("fml_title")} {bookingDetail.familyRoomNumber} {t("room")}
                 </div>
-                <div className="text-body text-slate-400">
+                <div className="text-body text-slate-400 mobile:text-body-mobile">
                   {currency}{" "}
                   {new Intl.NumberFormat("th-TH", {
                     style: "decimal",
@@ -640,10 +687,10 @@ export default function SummaryCard({
             ) : null}
             {bookingDetail.suiteRoomNumber !== 0 ? (
               <div className="flex justify-between">
-                <div className="text-body">
-                  Suite Room {bookingDetail.suiteRoomNumber} room(s)
+                <div className="text-body  mobile:text-body-mobile">
+                  {t("s_title")} {bookingDetail.suiteRoomNumber} {t("room")}
                 </div>
-                <div className="text-body text-slate-400">
+                <div className="text-body text-slate-400 mobile:text-body-mobile">
                   {currency}{" "}
                   {new Intl.NumberFormat("th-TH", {
                     style: "decimal",
@@ -660,10 +707,11 @@ export default function SummaryCard({
             ) : null}
             {bookingDetail.executiveRoomNumber !== 0 ? (
               <div className="flex justify-between">
-                <div className="text-body">
-                  Executive Room {bookingDetail.executiveRoomNumber} room(s)
+                <div className="text-body mobile:text-body-mobile">
+                  {t("ex_title")} {bookingDetail.executiveRoomNumber}{" "}
+                  {t("room")}
                 </div>
-                <div className="text-body text-slate-400">
+                <div className="text-body text-slate-400 mobile:text-body-mobile">
                   {currency}{" "}
                   {new Intl.NumberFormat("th-TH", {
                     style: "decimal",
@@ -683,8 +731,10 @@ export default function SummaryCard({
             {bookingDetail.packageOne ? (
               <div>
                 <div className="flex justify-between">
-                  <div className="text-body">Transportation [ Package 1 ]</div>
-                  <div className="text-body text-slate-400">
+                  <div className="text-body mobile:text-body-mobile">
+                    {t("service_name1")}
+                  </div>
+                  <div className="text-body text-slate-400 mobile:text-body-mobile">
                     {currency}{" "}
                     {new Intl.NumberFormat("th-TH", {
                       style: "decimal",
@@ -698,8 +748,10 @@ export default function SummaryCard({
             {bookingDetail.packageTwo ? (
               <div>
                 <div className="flex justify-between">
-                  <div className="text-body">Transportation [ Package 2 ]</div>
-                  <div className="text-body text-slate-400">
+                  <div className="text-body mobile:text-body-mobile">
+                    {t("service_name2")}
+                  </div>
+                  <div className="text-body text-slate-400 mobile:text-body-mobile">
                     {currency}{" "}
                     {new Intl.NumberFormat("th-TH", {
                       style: "decimal",
@@ -716,7 +768,7 @@ export default function SummaryCard({
       )}
       <div className="flex justify-between">
         <div className="text-body text-slate-400 mobile:text-body-mobile">
-          Sub total
+          {t("sub_total")}
         </div>
         <div className="text-body text-slate-400 mobile:text-body-mobile">
           {currency}{" "}
@@ -729,7 +781,7 @@ export default function SummaryCard({
       </div>
       <div className="flex justify-between">
         <div className="text-body text-slate-400 mobile:text-body-mobile">
-          Service charge (10%)
+          {t("service_charge")} (10%)
         </div>
         <div className="text-body text-slate-400 mobile:text-body-mobile">
           {currency}{" "}
@@ -742,7 +794,7 @@ export default function SummaryCard({
       </div>
       <div className="flex justify-between">
         <div className="text-body text-slate-400 mobile:text-body-mobile">
-          Taxes + fees (7%)
+          {t("taxes_and_fees")} (7%)
         </div>
         <div className="text-body text-slate-400 mobile:text-body-mobile">
           {currency}{" "}
@@ -753,16 +805,16 @@ export default function SummaryCard({
           }).format(taxesAndFees)}
         </div>
       </div>
-      <div className="text-center text-h2 font-bold mt-[50px] mobile:text-h2-mobile">
+      <div className="text-center text-h2 font-bold mt-[50px] mobile:text-h2-mobile mobile:mt-[10px]">
         {currency}{" "}
         {new Intl.NumberFormat("th-TH", {
           style: "decimal",
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,
-        }).format(subTotal + serviceCharge + taxesAndFees)}
-        Total
+        }).format(subTotal + serviceCharge + taxesAndFees)}{" "}
+        {t("total")}
       </div>
-      <div className="flex justify-center items-center \">
+      <div className="flex justify-center items-center">
         {page === "search-result" ? (
           <Link href={"/reservation-and-guest-detail"}>
             <Button

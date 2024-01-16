@@ -9,29 +9,29 @@ import type { CheckboxValueType } from "antd/es/checkbox/Group";
 import { format } from "date-fns";
 import dayjs, { Dayjs } from "dayjs";
 import Link from "next/link";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 dayjs().format();
 
 import { useRouter } from "next/navigation";
-export default function Filter({}: {}) {
+export default function Filter({
+  t,
+  showStandard,
+  showDeluxe,
+  showFamily,
+  showSuite,
+  showExecutive,
+  setShowStandard,
+}: {
+  t: any;
+  showStandard: boolean;
+  showDeluxe: boolean;
+  showFamily: boolean;
+  showSuite: boolean;
+  showExecutive: boolean;
+  setShowStandard: Dispatch<SetStateAction<boolean>>;
+}) {
   const { RangePicker } = DatePicker;
   const CheckboxGroup = Checkbox.Group;
-
-  // const roomTypeOptions = [
-  //   { label: "Standard", value: "standard" },
-  //   { label: "Deluxe", value: "deluxe" },
-  //   { label: "Family", value: "family" },
-  //   { label: "Executive", value: "executive" },
-  //   { label: "Junior", value: "junior" },
-  // ];
-
-  // const roomFeatureOptions = [
-  //   { label: "City View", value: "city-view" },
-  //   { label: "Adaptable Bathroom", value: "adaptable-bathroom" },
-  //   { label: "Luggage Storage", value: "luggage-storage" },
-  //   { label: "Jacuzzi", value: "jacuzzi" },
-  //   { label: "Balcony", value: "balcony" },
-  // ];
 
   const { bookingDetail, setBookingDetail } = useStore();
 
@@ -41,14 +41,15 @@ export default function Filter({}: {}) {
     <div className="w-full flex-row bg-secondary pt-3 pb-3">
       <div className="my-[20px] ml-10">
         <p className="text-white text-h3 font-bold mobile:text-h3-mobile">
-          Booking Detail
+          {t("booking_detail")}
         </p>
-        <div className="flex justify-around">
+        <div className="flex justify-around mobile:flex-wrap mobile:space-y-3 mobile:space-x-3 mobile:justify-normal">
           <RangePicker
             value={[
-              dayjs(bookingDetail.startDate, "YYYY-MM-DD"),
-              dayjs(bookingDetail.endDate, "YYYY-MM-DD"),
+              dayjs(bookingDetail.startDate, "DD-MM-YYYY"),
+              dayjs(bookingDetail.endDate, "DD-MM-YYYY"),
             ]}
+            format={["DD-MM-YYYY"]}
             style={{ zIndex: 0 }}
             onChange={(RangePicker, dateStrings: [string, string]) => {
               const [startDate, endDate] = dateStrings;
@@ -70,7 +71,7 @@ export default function Filter({}: {}) {
           />
           <div className="flex">
             <p className="ml-2 mr-2 text-white text-h4 font-bold mobile:text-h4-mobile">
-              Adult
+              {t("adults")}
             </p>
             <InputNumber
               style={{ width: "50px" }}
@@ -95,7 +96,7 @@ export default function Filter({}: {}) {
           </div>
           <div className="flex">
             <p className="ml-2 mr-2 text-white text-h4 font-bold mobile:text-h4-mobile">
-              Childern
+              {t("children")}
             </p>
             <InputNumber
               style={{ width: "50px" }}
@@ -120,7 +121,7 @@ export default function Filter({}: {}) {
           </div>
           <div className="flex">
             <p className="ml-2 mr-2 text-white text-h4 font-bold mobile:text-h4-mobile">
-              Code Promotion
+              {t("code")}
             </p>
             <Input
               placeholder="example"
@@ -151,36 +152,55 @@ export default function Filter({}: {}) {
           </div>
         </div>
       </div>
-      <div className="flex justify-between ml-10 mr-10 my-2">
+      <div className="flex justify-between ml-10 mr-10 my-2 mobile:flex-col">
         <div>
           <p className="text-white text-h3 font-bold mobile:text-h3-mobile">
-            Room Type
+            {t("room_type")}
           </p>
           <div className="grid grid-cols-3 gap-2">
-            <Checkbox>
+            <Checkbox
+              checked={showStandard}
+              onClick={(e) => {
+                // console.log(updateValue);
+                setShowStandard(!showStandard);
+                console.log(showStandard);
+              }}
+              // onChange={(e) => {
+              //   const updateValue = !e.target.value;
+              //   console.log(updateValue);
+              //   setShowStandard(false);
+              //   console.log(showStandard);
+              // }}
+            >
               <p className="text-white text-h5 mobile:text-h5-mobile">
-                Standard
+                {t("std_title")}
               </p>
             </Checkbox>
-            <Checkbox>
-              <p className="text-white text-h5 mobile:text-h5-mobile">Deluxe</p>
-            </Checkbox>
-            <Checkbox>
-              <p className="text-white text-h5 mobile:text-h5-mobile">Family</p>
-            </Checkbox>
-            <Checkbox>
-              <p className="text-white text-h5 mobile:text-h5-mobile">Junior</p>
-            </Checkbox>
-            <Checkbox>
+            <Checkbox checked={showDeluxe}>
               <p className="text-white text-h5 mobile:text-h5-mobile">
-                Executive
+                {t("dlx_title")}
+              </p>
+            </Checkbox>
+            <Checkbox checked={showFamily}>
+              <p className="text-white text-h5 mobile:text-h5-mobile">
+                {t("fml_title")}
+              </p>
+            </Checkbox>
+            <Checkbox checked={showSuite}>
+              <p className="text-white text-h5 mobile:text-h5-mobile">
+                {t("s_title")}
+              </p>
+            </Checkbox>
+            <Checkbox checked={showExecutive}>
+              <p className="text-white text-h5 mobile:text-h5-mobile">
+                {t("ex_title")}
               </p>
             </Checkbox>
           </div>
         </div>
         <div>
           <p className="text-white text-h3 font-bold mobile:text-h3-mobile">
-            Room Feature
+            {t("room_feature")}
           </p>
           <div className="grid grid-cols-3 gap-2">
             <Checkbox>
@@ -190,7 +210,7 @@ export default function Filter({}: {}) {
             </Checkbox>
             <Checkbox>
               <p className="text-white text-h5 mobile:text-h5-mobile">
-                Jacuzzi
+                {t("jacuzzi")}
               </p>
             </Checkbox>
             <Checkbox>
@@ -203,11 +223,12 @@ export default function Filter({}: {}) {
 
         <div>
           <p className="text-white text-h3 font-bold mobile:text-h3-mobile">
-            Price
+            {t("price")}
           </p>
           <Select
             defaultValue="Any price is acceptable"
-            style={{ width: 200 }}
+            style={{ width: 220 }}
+            className="price-select"
             options={[
               {
                 value: "Any price is acceptable",

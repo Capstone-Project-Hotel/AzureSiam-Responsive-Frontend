@@ -151,6 +151,7 @@ export default function Topbar({ lng }: { lng: any }) {
       packageOne: false,
       packageTwo: false,
       isCheckedPDPA: false,
+      bookingId: "",
     };
 
     setBookingDetail(emptyBookingDetail);

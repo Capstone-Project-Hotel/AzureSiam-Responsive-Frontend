@@ -8,6 +8,7 @@ export default function AdditionalServiceCard(information: {
   unit: string;
   price: number;
   serviceImage: string;
+  t: any;
 }) {
   const [isAdded, setIsAdded] = useState(false);
 
@@ -56,11 +57,11 @@ export default function AdditionalServiceCard(information: {
           <Button type="primary" size="small" onClick={handleBookNowClick}>
             {information.price === 299
               ? bookingDetail.packageOne
-                ? "Remove"
-                : "Add"
+                ? information.t("remove_service")
+                : information.t("add_service")
               : bookingDetail.packageTwo
-              ? "Remove"
-              : "Add"}
+              ? information.t("remove_service")
+              : information.t("add_service")}
           </Button>
         </div>
       </div>

@@ -7,6 +7,7 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import styled from "styled-components";
 import { useMediaQuery } from "react-responsive";
+import useStore from "@/hooks/useStore";
 
 interface CustomDateRangeProps {
   disabledDates?: Date[];
@@ -26,10 +27,18 @@ const CustomDateRange: React.FC<CustomDateRangeProps> = ({
       key: "selection",
     },
   ]);
+
   const [maxDate, setMaxDate] = useState<Date>(addDays(new Date(), 999999));
   const [myDisabledDates, setMyDisabledDates] = useState<Date[]>(disabledDates);
   const [isEnd, setIsEnd] = useState<boolean>(false);
   const isMobile = useMediaQuery({ query: "(max-width: 394px)" });
+  const { currency, exchangeRate } = useStore();
+
+  const lowestPrice = new Intl.NumberFormat("th-TH", {
+    style: "decimal",
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(1200 * exchangeRate);
 
   const customDayContent = (day: any) => {
     const disabledDatesFormat = disabledDates.map((d) => {
@@ -49,7 +58,7 @@ const CustomDateRange: React.FC<CustomDateRangeProps> = ({
           {!disabledDatesFormat.includes(format(day, "dd/MM/yyyy")) &&
             (day.getTime() >= new Date().getTime() ||
               format(day, "dd/MM/yyyy") == format(new Date(), "dd/MM/yyyy")) &&
-            "THB 1250"}
+            `${currency}${lowestPrice}`}
         </span>
         <span>{format(day, "d")}</span>
       </div>

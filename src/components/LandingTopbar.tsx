@@ -176,6 +176,7 @@ export default function LandingTopbar({
       packageOne: false,
       packageTwo: false,
       isCheckedPDPA: false,
+      bookingId: "",
     };
 
     setBookingDetail(emptyBookingDetail);
