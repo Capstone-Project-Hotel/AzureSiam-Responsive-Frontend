@@ -13,6 +13,7 @@ import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 dayjs().format();
 
 import { useRouter } from "next/navigation";
+import type { CheckboxProps } from "antd";
 export default function Filter({
   t,
   showStandard,
@@ -40,6 +41,11 @@ export default function Filter({
     useStore();
 
   const router = useRouter();
+
+  const onChange: CheckboxProps["onChange"] = (e) => {
+    console.log("checked = ", e.target.checked);
+    setShowStandard(e.target.checked);
+  };
 
   return (
     <div className="w-full flex-row bg-secondary pt-3 pb-3">
@@ -171,11 +177,7 @@ export default function Filter({
           <div className="grid grid-cols-3 gap-2">
             <Checkbox
               checked={showStandard}
-              onClick={(e) => {
-                // console.log(updateValue);
-                setShowStandard(!showStandard);
-                console.log(showStandard);
-              }}
+              onChange={onChange}
               // onChange={(e) => {
               //   const updateValue = !e.target.value;
               //   console.log(updateValue);
