@@ -63,7 +63,7 @@ export default function RoomCard({
         {/* room description */}
         <text className="text-h5 ml-[2vw] mr-[2vw]  mobile:text-h5-mobile">
           {t("maximum_guest")}: {maxGuest} <br />
-          {t("size")}: {roomSize} m2 <br />
+          {t("size")}: {roomSize} m&sup2; <br />
           {t("bed_type")}: {bedType} <br />
           {t("amenities")}: {roomAmenities.map((n) => " • " + n)} <br />
           {isExpanded && (
