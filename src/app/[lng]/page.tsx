@@ -228,7 +228,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                 />
               </div>
               <div className="flex w-1/2 justify-between items-center p-4 gap-2">
-                <div>{t("childrens")}</div>
+                <div>{t("children")}</div>
                 <InputNumber
                   min={0}
                   max={99}
@@ -261,10 +261,10 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
             <Link
               href={`/search-result/startDate=${format(
                 startDate,
-                "yyyy-MM-dd"
+                "dd-MM-yyyy"
               )}&endDate=${format(
                 endDate,
-                "yyyy-MM-dd"
+                "dd-MM-yyyy"
               )}&adults=${adults}&childrens=${childrens}&codePromo=${codePromo}`}
             >
               <Button type="primary">{t("book_now")}</Button>

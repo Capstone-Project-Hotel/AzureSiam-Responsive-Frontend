@@ -204,12 +204,13 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
       </div>
       <div className="flex justify-center mt-[100px]">
         {/* Main Container */}
-        <div className="w-[1440px] mobile:w-[330px] flex flex-wrap ml-20 gap-10 py-10">
+        <div className="w-[1440px] mobile:w-[330px] flex flex-wrap ml-20 gap-10 py-10 mobile:py-1 mobile:gap-1 mobile:ml-10">
           {/* Right Container */}
           <div className="w-[509px] mobile:w-[330px] absolute mobile:right-0 right-[0px] top-[190px] mobile:static">
             <SummaryCard
               page="reservation-and-guest-detail"
               isDisabledConfirm={isDisabledConfirm}
+              t={t}
             />
           </div>
           {/* Left Container */}
@@ -234,29 +235,23 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
               </div>
               <div className="flex gap-5">
                 <AdditionalServiceCard
-                  serviceName="Transportation[Package 1]"
+                  serviceName={t("service_name1")}
                   // serviceName={t("service_name1")}
                   unit=""
                   // unit={t("service_unit1")}
                   price={299}
                   serviceImage="https://via.placeholder.com/240x150"
+                  t={t}
                 />
                 <AdditionalServiceCard
-                  serviceName="Transportation[Package 2]"
+                  serviceName={t("service_name2")}
                   // serviceName={t("service_name2")}
                   unit=""
                   // unit={t("service_unit2")}
                   price={499}
                   serviceImage="https://via.placeholder.com/240x150"
+                  t={t}
                 />
-                {/* <AdditionalServiceCard
-                  serviceName="Transportation[Package 3]"
-                  // serviceName={t("service_name3")}
-                  unit=""
-                  // unit={t("service_unit3")}
-                  price={699}
-                  serviceImage="https://via.placeholder.com/240x150"
-                /> */}
               </div>
             </div>
 
@@ -466,7 +461,9 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
           </div>
         </div>
       </div>
-      <Footer t={t} />
+      <div className="mt-[50px] mobile:mt-[20px]">
+        <Footer t={t} />
+      </div>
     </div>
   );
 };

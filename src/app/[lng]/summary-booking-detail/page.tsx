@@ -66,18 +66,19 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
       <div className="z-50 w-[100vw] fixed top-0">
         <Topbar lng={lng} />
       </div>
-      <div className="flex justify-center mt-[140px]">
+      <div className="flex justify-center mt-[100px]">
         {/* Main Container */}
-        <div className="w-[1440px] mobile:w-[330px] flex flex-wrap ml-20 gap-10 py-10">
+        <div className="w-[1440px] mobile:w-[330px] flex flex-wrap ml-20 gap-10 py-10 mobile:py-1 mobile:gap-1  mobile:ml-10">
           {/* Right Container */}
-          <div className="absolute mobile:right-0 right-[0px] top-[190px] mobile:static">
+          <div className="w-[509px] mobile:w-[330px] absolute mobile:right-0 right-[0px] top-[190px] mobile:static">
             <SummaryCard
               page="summary-booking-detail"
               isDisabledConfirm={true}
+              t={t}
             />
           </div>
           {/* Left Container */}
-          <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10">
+          <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10 mt-10">
             <div className="flex items-center gap-5">
               <Link href="/reservation-and-guest-detail">
                 <LeftOutlined className="text-[36px] mobile:text-[25px]" />
@@ -173,7 +174,7 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
           </div>
         </div>
       </div>
-      <div className="mt-[10px]">
+      <div className="mt-[50px] mobile:mt-[20px]">
         <Footer t={t} />
       </div>
     </div>
@@ -213,7 +214,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         {/* Last Name */}
         <div className="w-[243px]">
           <div className="text-h5 mobile:text-h4-mobile">
-            Last Name : {guest.lastName}
+            {t("last_name")} : {guest.lastName}
           </div>
         </div>
       </div>
@@ -223,14 +224,14 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         {/* Gender */}
         <div className="w-[243px]">
           <div className="text-h5 mobile:text-h4-mobile">
-            Gender : {guest.gender}
+            {t("gender")} : {guest.gender}
           </div>
         </div>
 
         {/* Birth Date */}
         <div className="w-[243px]">
           <div className="text-h5 mobile:text-h4-mobile">
-            Birth Date : {guest.birthDate}
+            {t("birthdate")} : {guest.birthDate}
           </div>
         </div>
       </div>
@@ -240,14 +241,14 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         {/* Email */}
         <div className="w-[243px]">
           <div className="text-h5 mobile:text-h4-mobile">
-            Email : {guest.email}
+            {t("email")} : {guest.email}
           </div>
         </div>
 
         {/* Phone Number */}
         <div className="w-[243px]">
           <div className="text-h5 mobile:text-h4-mobile">
-            Phone Nunber : {guest.phoneNumber}
+            {t("phone_number")} : {guest.phoneNumber}
           </div>
         </div>
       </div>
@@ -257,21 +258,21 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         {/* Country */}
         <div className="w-[243px]">
           <div className="text-h5 mobile:text-h4-mobile">
-            Country : {guest.country}
+            {t("country")} : {guest.country}
           </div>
         </div>
 
         {/* City */}
         <div className="w-[243px]">
           <div className="text-h5 mobile:text-h4-mobile">
-            City : {guest.city}
+            {t("city")} : {guest.city}
           </div>
         </div>
 
         {/* Zip code */}
         <div className="w-[243px]">
           <div className="text-h5 mobile:text-h4-mobile">
-            Zip Code : {guest.zipCode}
+            {t("zip_code")} : {guest.zipCode}
           </div>
         </div>
       </div>
@@ -281,7 +282,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         {/* Address  */}
         <div className="w-full">
           <div className="text-h5 mobile:text-h4-mobile">
-            Address : {guest.address}
+            {t("address")} : {guest.address}
           </div>
         </div>
       </div>

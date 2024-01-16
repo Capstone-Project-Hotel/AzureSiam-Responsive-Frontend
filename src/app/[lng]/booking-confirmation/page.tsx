@@ -9,6 +9,7 @@ import Topbar from "@/components/Topbar";
 import { useTranslation } from "@/app/i18n/client";
 import { CheckCircleFilled, CiCircleFilled } from "@ant-design/icons";
 import { green } from "@mui/material/colors";
+import Footer from "@/components/Footer";
 interface Guest {
   firstName: string;
   middleName: string;
@@ -65,32 +66,49 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
     redirect("/");
   }
 
+  console.log(bookingDetail.bookingId);
+
+  if (bookingDetail.bookingId === "") {
+    const bookingId = Math.floor(100000 + Math.random() * 900000).toString();
+    const updatedBookingDetail = {
+      ...bookingDetail,
+      bookingId: bookingId,
+    };
+    console.log(bookingId);
+
+    setBookingDetail(updatedBookingDetail);
+  }
+
   return (
     // Page Container
     <div>
       <div className="z-30 w-[100vw] fixed top-0">
         <Topbar lng={lng} />
       </div>
-      <div className="mt-[150px] text-center">
+      <div className="mt-[150px] mobile:mt-[80px] text-center">
         <div className="text-h1 flex flex-row gap-2 justify-center mobile:text-h1-mobile">
           <CheckCircleFilled
             style={{ color: "green" }}
             className="mobile:text-lg"
           />
           <div className="font-bold text-primary">
-            Your Booking is successful
+            {t("successful_booking")}
           </div>
         </div>
         <div className="text-h2 font-bold text-primary mobile:text-h2-mobile">
-          Booking Id: {Math.floor(100000 + Math.random() * 900000)}
+          {t("booking_id")}: {bookingDetail.bookingId}
         </div>
       </div>
       <div className="flex justify-start mt-[15px]">
         {/* Main Container */}
-        <div className="w-[1440px] mobile:w-[330px] flex flex-wrap ml-20 gap-10 py-10">
+        <div className="w-[1440px] mobile:w-[330px] flex flex-wrap ml-20 gap-10 py-10 mobile:py-1 mobile:ml-10">
           {/* Right Container */}
-          <div className="w-[509px] mobile:w-[330px] absolute mobile:right-0 right-[0px] top-[300px] mobile:static">
-            <SummaryCard page="booking-confirmation" isDisabledConfirm={true} />
+          <div className="w-[509px] mobile:w-[330px] absolute mobile:right-0 right-[0px] top-[300px] mobile:static ">
+            <SummaryCard
+              page="booking-confirmation"
+              isDisabledConfirm={true}
+              t={t}
+            />
           </div>
           {/* Left Container */}
           <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10">
@@ -98,18 +116,20 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
             <div>
               {/* Guest Detail */}
               <div className="text-h2 mobile:text-h2-mobile font-bold text-primary">
-                Guest Detail
+                {t("guest_detail_label")}
               </div>
               {/* Guest Detail - Input Container */}
               {guests.map((guest, index) => {
-                return <GuestDetailInputContainer key={index} guest={guest} />;
+                return (
+                  <GuestDetailInputContainer key={index} guest={guest} t={t} />
+                );
               })}
             </div>
             {/* Payment Detail Container */}
             <div>
               {/* Payment Detail */}
               <div className="text-h2 mobile:text-h2-mobile font-bold text-primary mb-2">
-                Payment Detail
+                {t("payment_label")}
               </div>
               {/* Payment Detail - Input Container */}
               <div className="flex flex-col gap-2">
@@ -118,14 +138,14 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
                   {/* Card Holder Name */}
                   <div className="w-full">
                     <div className="text-h5 mobile:text-h4-mobile">
-                      Card Holder Name : {paymentDetail.cardHolderName}
+                      {t("card_holder")} : {paymentDetail.cardHolderName}
                     </div>
                   </div>
                   {/* Card Number */}
                   <div className="w-full">
                     <div className="text-description mobile:text-h3-mobile flex gap-2 items-center">
                       <div className="text-h5 mobile:text-h4-mobile">
-                        Card Number : {paymentDetail.cardNumber}
+                        {t("card_number")} : {paymentDetail.cardNumber}
                       </div>
                       <div>
                         {cardType &&
@@ -145,13 +165,13 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
                   {/* Exp Date */}
                   <div className="w-[343px]">
                     <div className="text-h5 mobile:text-h4-mobile">
-                      Exp date : {paymentDetail.expDate}
+                      {t("expiration_date")} : {paymentDetail.expDate}
                     </div>
                   </div>
                   {/* CVV */}
                   <div className="w-[343px]">
                     <div className="text-h5 mobile:text-h4-mobile">
-                      CVV : {paymentDetail.cvv}
+                      {t("cvv")} : {paymentDetail.cvv}
                     </div>
                   </div>
                 </div>
@@ -162,7 +182,7 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
             {/* Special Request Container */}
             <div>
               <div className="text-h2 mobile:text-h2-mobile font-bold text-primary">
-                Special Request
+                {t("special_request")}
               </div>
               <div className="w-full text-h5 mobile:text-h4-mobile">
                 {specialReq === "" ? "-" : specialReq}
@@ -170,6 +190,9 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
             </div>
           </div>
         </div>
+      </div>
+      <div className="mt-[50px] mobile:mt-[20px]">
+        <Footer t={t} />
       </div>
     </div>
   );
@@ -179,10 +202,12 @@ export default BookingConfirmation;
 
 interface GuestDetailInputContainerProps {
   guest: Guest;
+  t: any;
 }
 
 const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
   guest,
+  t,
 }) => {
   return (
     <div className="flex flex-col gap-2 my-2">
@@ -191,21 +216,22 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         {/* First Name */}
         <div className="w-[243px]">
           <div className="text-h5 mobile:text-h4-mobile">
-            First Name : {guest.firstName}
+            {t("first_name")} : {guest.firstName}
           </div>
         </div>
 
         {/* Middle Name */}
         <div className="w-[243px]">
           <div className="text-h5 mobile:text-h4-mobile">
-            Middle Name : {guest.middleName === "" ? "-" : guest.middleName}
+            {t("middle_name")} :{" "}
+            {guest.middleName === "" ? "-" : guest.middleName}
           </div>
         </div>
 
         {/* Last Name */}
         <div className="w-[243px]">
           <div className="text-h5 mobile:text-h4-mobile">
-            Last Name : {guest.lastName}
+            {t("last_name")} : {guest.lastName}
           </div>
         </div>
       </div>
@@ -215,14 +241,14 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         {/* Gender */}
         <div className="w-[243px]">
           <div className="text-h5 mobile:text-h4-mobile">
-            Gender : {guest.gender}
+            {t("gender")} : {guest.gender}
           </div>
         </div>
 
         {/* Birth Date */}
         <div className="w-[243px]">
           <div className="text-h5 mobile:text-h4-mobile">
-            Birth Date : {guest.birthDate}
+            {t("birthdate")} : {guest.birthDate}
           </div>
         </div>
       </div>
@@ -232,14 +258,14 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         {/* Email */}
         <div className="w-[243px]">
           <div className="text-h5 mobile:text-h4-mobile">
-            Email : {guest.email}
+            {t("email")} : {guest.email}
           </div>
         </div>
 
         {/* Phone Number */}
         <div className="w-[243px]">
           <div className="text-h5 mobile:text-h4-mobile">
-            Phone Nunber : {guest.phoneNumber}
+            {t("phone_number")} : {guest.phoneNumber}
           </div>
         </div>
       </div>
@@ -249,21 +275,21 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         {/* Country */}
         <div className="w-[243px]">
           <div className="text-h5 mobile:text-h4-mobile">
-            Country : {guest.country}
+            {t("country")} : {guest.country}
           </div>
         </div>
 
         {/* City */}
         <div className="w-[243px]">
           <div className="text-h5 mobile:text-h4-mobile">
-            City : {guest.city}
+            {t("city")} : {guest.city}
           </div>
         </div>
 
         {/* Zip code */}
         <div className="w-[243px]">
           <div className="text-h5 mobile:text-h4-mobile">
-            Zip Code : {guest.zipCode}
+            {t("zip_code")} : {guest.zipCode}
           </div>
         </div>
       </div>
@@ -273,7 +299,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         {/* Address  */}
         <div className="w-full">
           <div className="text-h5 mobile:text-h4-mobile">
-            Address : {guest.address}
+            {t("address")} : {guest.address}
           </div>
         </div>
       </div>
