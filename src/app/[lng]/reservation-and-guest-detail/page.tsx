@@ -66,11 +66,7 @@ const emptyGuest: Guest = {
   idType: "",
 };
 
-const idTypeToid = {
-  id: "National ID",
-  passportNumber: "Passport Number",
-  drivingLicence: "Driving Licence",
-};
+
 
 const cardTypeToCardImg = {
   amex: "https://cdn.discordapp.com/attachments/457166097230069773/1186233714523512852/vinnytsia-ukraine-september-6-2023-600nw-2358048941.webp?ex=6592813c&is=65800c3c&hm=b37ff0d726d6a4b7c5994550407f23d9a6401cfb3fa44696c5425531b322b02d&",
@@ -487,6 +483,12 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
 }) => {
   const [countryCode, setCountryCode] = useState("");
   const [city, setCity] = useState<any[]>([]);
+
+  const idTypeToid = {
+    id: t("national_id"),
+    passportNumber: t("passport_number"),
+    drivingLicence: t("driving_licence"),
+  };
 
   useEffect(() => {
     const s: any[] = State.getStatesOfCountry(countryCode).map(
