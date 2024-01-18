@@ -163,5 +163,6 @@
   "national_id": "National ID",
   "passport_number": "Passport Number",
   "driving_licence": "Driving Licence",
-  "discount": "Discount"
+  "discount": "Discount",
+  "modify": "Modify your reservation details"
 }

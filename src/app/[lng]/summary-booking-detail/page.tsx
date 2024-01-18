@@ -69,9 +69,7 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
               <Link href="/reservation-and-guest-detail">
                 <LeftOutlined className="text-[36px] mobile:text-[25px]" />
               </Link>
-              <div className="text-h2 mobile:text-h2-mobile">
-                Modify your reservation details
-              </div>
+              <div className="text-h2 mobile:text-h2-mobile">{t("modify")}</div>
             </div>
             {/* Guest Detail Container */}
             <div>
@@ -159,7 +157,7 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
             </div>
           </div>
           {/* Right Container */}
-          <div className="w-[509px] mobile:w-[330px] sticky mobile:right-0 right-[0px] top-[190px] mobile:static">
+          <div className="w-[509px] mobile:w-[330px] sticky mobile:right-0 ml-20 top-[190px] mobile:static mobile:ml-10">
             <SummaryCard
               page="summary-booking-detail"
               isDisabledConfirm={true}
@@ -223,7 +221,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         {/* Gender */}
         <div className="w-[243px]">
           <div className="text-h5 mobile:text-h4-mobile">
-            {t("gender")} : {guest.gender}
+            {t("gender")} : {t(guest.gender)}
           </div>
         </div>
 
