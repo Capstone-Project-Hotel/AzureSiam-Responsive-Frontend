@@ -201,16 +201,8 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
       <div className="flex justify-center mt-[100px]">
         {/* Main Container */}
         <div className="w-[1440px] mobile:w-[330px] flex flex-wrap ml-20 gap-10 py-10 mobile:py-1 mobile:gap-1 mobile:ml-10">
-          {/* Right Container */}
-          <div className="w-[509px] mobile:w-[330px] absolute mobile:right-0 right-[0px] top-[190px] mobile:static">
-            <SummaryCard
-              page="reservation-and-guest-detail"
-              isDisabledConfirm={isDisabledConfirm}
-              t={t}
-            />
-          </div>
           {/* Left Container */}
-          <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10 mt-10">
+          <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10 mt-10 mobile:mt-0">
             {/* Back to search result Container */}
             <div className="flex items-center gap-5">
               <button onClick={handleReselect}>
@@ -415,16 +407,6 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
               </div>
             </div>
 
-            {/* PDPA */}
-            <div className="flex text-description mobile:text-h3-mobile">
-              <Checkbox
-                onChange={onCheckboxChange}
-                checked={bookingDetail.isCheckedPDPA}
-              >
-                {t("terms_condition")}
-              </Checkbox>
-            </div>
-
             {/* Special Request Container */}
             <div>
               <div className="text-h2 mobile:text-h2-mobile font-bold">
@@ -441,6 +423,16 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
               </div>
             </div>
 
+            {/* PDPA */}
+            <div className="flex text-description mobile:text-h3-mobile">
+              <Checkbox
+                onChange={onCheckboxChange}
+                checked={bookingDetail.isCheckedPDPA}
+              >
+                {t("terms_condition")}
+              </Checkbox>
+            </div>
+
             {/* Cancellation Policy Container */}
             <div className="flex flex-col gap-2">
               <div className="text-h2 mobile:text-h2-mobile font-bold">
@@ -454,6 +446,14 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
                 <div>{t("cancel_policy_description3")}</div>
               </div>
             </div>
+          </div>
+          {/* Right Container */}
+          <div className="w-[509px] fixed right-[0px] top-[100px] mobile:w-[330px] mobile:right-0 mobile:static mobile:ml-5 mt-10">
+            <SummaryCard
+              page="reservation-and-guest-detail"
+              isDisabledConfirm={isDisabledConfirm}
+              t={t}
+            />
           </div>
         </div>
       </div>
@@ -582,6 +582,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
             options={[
               { value: "male", label: t("male"), group: "gender" },
               { value: "female", label: t("female"), group: "gender" },
+              { value: "other", label: t("other"), group: "gender" },
             ]}
             onChange={handleChange}
             defaultValue={guest.gender ? guest.gender : undefined}

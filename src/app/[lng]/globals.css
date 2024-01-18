@@ -109,6 +109,12 @@ body {
   }
 }
 
+.ant-select-selection-placeholder {
+  @media screen and (max-width: 394px) {
+    font-size: 8px !important;
+  }
+}
+
 .ant-modal-title {
   font-size: 24px !important;
   font-weight: bold !important;

@@ -216,11 +216,7 @@ export default function SearchResultPage({
         />
       </div>
 
-      <div className="absolute mobile:static right-[30px] top-[375px] mobile:ml-[70px] mobile:mt-10">
-        <SummaryCard page="search-result" isDisabledConfirm={false} t={t} />
-      </div>
-
-      <div className="flex flex-col space-y-10 mt-10 ml-10 mobile:ml-[80px]">
+      <div className="flex flex-col space-y-10 mt-10 ml-10 mobile:ml-0 mobile:items-center">
         {mockRoomInformation.map((room, index) =>
           room.show === true ? (
             <RoomCard
@@ -238,6 +234,10 @@ export default function SearchResultPage({
             />
           ) : null
         )}
+
+        <div className="flex flex-col w-[509px] fixed right-[0px] top-[300px] mobile:w-[330px] mobile:static mobile:items-center mobile:justify-center mt-10">
+          <SummaryCard page="search-result" isDisabledConfirm={false} t={t} />
+        </div>
       </div>
 
       <div className="mt-[200px] mobile:mt-[50px]">

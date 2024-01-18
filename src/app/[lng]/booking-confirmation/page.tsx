@@ -97,17 +97,9 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
           {t("booking_id")}: {bookingDetail.bookingId}
         </div>
       </div>
-      <div className="flex justify-start mt-[15px]">
+      <div className="flex justify-start mt-[15px] mobile:flex-col mobile:items-center overflow-hidden">
         {/* Main Container */}
-        <div className="w-[1440px] mobile:w-[330px] flex flex-wrap ml-20 gap-10 py-10 mobile:py-1 mobile:ml-10">
-          {/* Right Container */}
-          <div className="w-[509px] mobile:w-[330px] absolute mobile:right-0 right-[0px] top-[300px] mobile:static ">
-            <SummaryCard
-              page="booking-confirmation"
-              isDisabledConfirm={true}
-              t={t}
-            />
-          </div>
+        <div className="w-[1440px] mobile:w-[330px] flex flex-wrap ml-20 gap-10 py-10 mobile:py-1">
           {/* Left Container */}
           <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10">
             {/* Guest Detail Container */}
@@ -176,7 +168,7 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
               </div>
             </div>
             {/* HR Line */}
-            <hr className="my-2" />
+            <hr className="my-2 mobile:w-[65vw]" />
             {/* Special Request Container */}
             <div>
               <div className="text-h2 mobile:text-h2-mobile font-bold text-primary">
@@ -187,6 +179,14 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
               </div>
             </div>
           </div>
+        </div>
+        {/* Right Container */}
+        <div className="flex w-[509px] mobile:w-[330px] absolute right-[0px] top-[300px] mobile:static mobile:items-center mobile:ml-[50px]">
+            <SummaryCard
+              page="booking-confirmation"
+              isDisabledConfirm={true}
+              t={t}
+            />
         </div>
       </div>
       <div className="mt-[50px] mobile:mt-[20px]">
@@ -244,7 +244,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         {/* Gender */}
         <div className="w-[243px]">
           <div className="text-h5 mobile:text-h4-mobile">
-            {t("gender")} : {guest.gender}
+            {t("gender")} : {t(guest.gender)}
           </div>
         </div>
 
@@ -318,7 +318,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
       </div>
 
       {/* HR Line */}
-      <hr className="my-2" />
+      <hr className="my-2  mobile:w-[65vw]" />
     </div>
   );
 };

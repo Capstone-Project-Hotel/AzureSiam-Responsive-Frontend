@@ -60,19 +60,11 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
       <div className="z-50 w-[100vw] fixed top-0">
         <Topbar lng={lng} />
       </div>
-      <div className="flex justify-center mt-[100px]">
+      <div className="flex justify-center mt-[100px] overflow-hidden">
         {/* Main Container */}
-        <div className="w-[1440px] mobile:w-[330px] flex flex-wrap ml-20 gap-10 py-10 mobile:py-1 mobile:gap-1  mobile:ml-10">
-          {/* Right Container */}
-          <div className="w-[509px] mobile:w-[330px] absolute mobile:right-0 right-[0px] top-[190px] mobile:static">
-            <SummaryCard
-              page="summary-booking-detail"
-              isDisabledConfirm={true}
-              t={t}
-            />
-          </div>
+        <div className="w-[1440px] mobile:w-[330px] flex flex-wrap ml-20 gap-10 py-10 mobile:py-1 mobile:gap-1">
           {/* Left Container */}
-          <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10 mt-10">
+          <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10 mt-10 mobile:mt-0">
             <div className="flex items-center gap-5">
               <Link href="/reservation-and-guest-detail">
                 <LeftOutlined className="text-[36px] mobile:text-[25px]" />
@@ -154,7 +146,7 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
             </div>
 
             {/* HR Line */}
-            <hr className="my-2" />
+            <hr className="my-2 mobile:w-[60vw]" />
 
             {/* Special Request Container */}
             <div>
@@ -165,6 +157,14 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
                 {specialReq === "" ? "-" : specialReq}
               </div>
             </div>
+          </div>
+          {/* Right Container */}
+          <div className="w-[509px] mobile:w-[330px] absolute mobile:right-0 right-[0px] top-[275px] mobile:static">
+            <SummaryCard
+              page="summary-booking-detail"
+              isDisabledConfirm={true}
+              t={t}
+            />
           </div>
         </div>
       </div>
@@ -298,7 +298,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
       </div>
 
       {/* HR Line */}
-      <hr className="my-2" />
+      <hr className="my-2 mobile:w-[60vw]" />
     </div>
   );
 };
