@@ -66,8 +66,6 @@ const emptyGuest: Guest = {
   idType: "",
 };
 
-
-
 const cardTypeToCardImg = {
   amex: "https://cdn.discordapp.com/attachments/457166097230069773/1186233714523512852/vinnytsia-ukraine-september-6-2023-600nw-2358048941.webp?ex=6592813c&is=65800c3c&hm=b37ff0d726d6a4b7c5994550407f23d9a6401cfb3fa44696c5425531b322b02d&",
   visa: "https://swissuplabs.com/wordpress/wp-content/uploads/2016/04/free-icons-visa.png",
@@ -200,15 +198,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
       </div>
       <div className="flex justify-center mt-[100px]">
         {/* Main Container */}
-        <div className="w-[1440px] mobile:w-[330px] flex flex-wrap ml-20 gap-10 py-10 mobile:py-1 mobile:gap-1 mobile:ml-10">
-          {/* Right Container */}
-          <div className="w-[509px] mobile:w-[330px] absolute mobile:right-0 right-[0px] top-[190px] mobile:static">
-            <SummaryCard
-              page="reservation-and-guest-detail"
-              isDisabledConfirm={isDisabledConfirm}
-              t={t}
-            />
-          </div>
+        <div className="w-[1440px] mobile:w-[330px] flex items-start flex-wrap ml-20 gap-10 py-10 mobile:py-1 mobile:gap-1 mobile:ml-10">
           {/* Left Container */}
           <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10 mt-10">
             {/* Back to search result Container */}
@@ -454,6 +444,14 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
                 <div>{t("cancel_policy_description3")}</div>
               </div>
             </div>
+          </div>
+          {/* Right Container */}
+          <div className="w-[509px] mobile:w-[330px] sticky mobile:right-0 right-[0px] top-[190px] mobile:static">
+            <SummaryCard
+              page="reservation-and-guest-detail"
+              isDisabledConfirm={isDisabledConfirm}
+              t={t}
+            />
           </div>
         </div>
       </div>

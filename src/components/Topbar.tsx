@@ -152,6 +152,17 @@ export default function Topbar({ lng }: { lng: any }) {
       packageTwo: false,
       isCheckedPDPA: false,
       bookingId: "",
+      showStandard: true,
+      showDeluxe: true,
+      showFamily: true,
+      showSuite: true,
+      showExecutive: true,
+      showOnlyBalcony: false,
+      showOnlyDinnerPlan: false,
+      showOnlyJacuzzi: false,
+      showBelowOption1: false,
+      showBelowOption2: false,
+      showBelowOption3: false,
     };
 
     setBookingDetail(emptyBookingDetail);

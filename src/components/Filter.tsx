@@ -16,20 +16,40 @@ import { useRouter } from "next/navigation";
 import type { CheckboxProps } from "antd";
 export default function Filter({
   t,
-  showStandard,
-  showDeluxe,
-  showFamily,
-  showSuite,
-  showExecutive,
-  setShowStandard,
-}: {
+}: // showStandard,
+// showDeluxe,
+// showFamily,
+// showSuite,
+// showExecutive,
+// showOnlyBalcony,
+// showOnlyDinnerPlan,
+// showOnlyJacuzzi,
+// setShowStandard,
+// setShowDeluxe,
+// setShowFamily,
+// setShowSuite,
+// setShowExectutive,
+// setShowOnlyBalcony,
+// setShowOnlyDinnerPlan,
+// setShowOnlyJacuzzi,
+{
   t: any;
-  showStandard: boolean;
-  showDeluxe: boolean;
-  showFamily: boolean;
-  showSuite: boolean;
-  showExecutive: boolean;
-  setShowStandard: Dispatch<SetStateAction<boolean>>;
+  // showStandard: boolean;
+  // showDeluxe: boolean;
+  // showFamily: boolean;
+  // showSuite: boolean;
+  // showExecutive: boolean;
+  // showOnlyBalcony: boolean;
+  // showOnlyDinnerPlan: boolean;
+  // showOnlyJacuzzi: boolean;
+  // setShowStandard: Dispatch<SetStateAction<boolean>>;
+  // setShowDeluxe: Dispatch<SetStateAction<boolean>>;
+  // setShowFamily: Dispatch<SetStateAction<boolean>>;
+  // setShowSuite: Dispatch<SetStateAction<boolean>>;
+  // setShowExectutive: Dispatch<SetStateAction<boolean>>;
+  // setShowOnlyBalcony: Dispatch<SetStateAction<boolean>>;
+  // setShowOnlyDinnerPlan: Dispatch<SetStateAction<boolean>>;
+  // setShowOnlyJacuzzi: Dispatch<SetStateAction<boolean>>;
 }) {
   const { RangePicker } = DatePicker;
   const CheckboxGroup = Checkbox.Group;
@@ -42,9 +62,79 @@ export default function Filter({
 
   const router = useRouter();
 
-  const onChange: CheckboxProps["onChange"] = (e) => {
-    console.log("checked = ", e.target.checked);
-    setShowStandard(e.target.checked);
+  const handlePriceSelectChange = (data: {
+    value: string;
+    label: React.ReactNode;
+  }) => {
+    // console.log(value); // { value: "lucy", key: "lucy", label: "Lucy (101)" }
+    console.log(data);
+    switch (data) {
+      case {
+        value: "Not exceeding THB 1,500",
+        label:
+          t("price_not_exceeding") +
+          " " +
+          currency +
+          " " +
+          (1500 * exchangeRate).toPrecision(4).toString(),
+      }: {
+        setBookingDetail({
+          ...bookingDetail,
+          showBelowOption1: true,
+          showBelowOption2: false,
+          showBelowOption3: false,
+        });
+        console.log("test1");
+      }
+      case {
+        value: "Not exceeding THB 2,000",
+        label:
+          t("price_not_exceeding") +
+          " " +
+          currency +
+          " " +
+          (2000 * exchangeRate).toPrecision(4).toString(),
+      }: {
+        setBookingDetail({
+          ...bookingDetail,
+          showBelowOption1: false,
+          showBelowOption2: true,
+          showBelowOption3: false,
+        });
+        console.log("test2");
+        break;
+      }
+      case {
+        value: "Not exceeding THB 2,500",
+        label:
+          t("price_not_exceeding") +
+          " " +
+          currency +
+          " " +
+          (2500 * exchangeRate).toPrecision(4).toString(),
+      }: {
+        setBookingDetail({
+          ...bookingDetail,
+          showBelowOption1: false,
+          showBelowOption2: false,
+          showBelowOption3: true,
+        });
+        console.log("test3");
+        break;
+      }
+      default: {
+        setBookingDetail({
+          ...bookingDetail,
+          showBelowOption1: false,
+          showBelowOption2: false,
+          showBelowOption3: false,
+        });
+        console.log("default");
+        break;
+
+        // console.log(bookingDetail);
+      }
+    }
   };
 
   return (
@@ -113,17 +203,21 @@ export default function Filter({
               value={bookingDetail.childrenNumber}
               onChange={(e: number | null) => {
                 if (e != null) {
-                  const updatedChidrenNumber = e;
+                  let updatedChildrenNumber = e;
+
+                  if (updatedChildrenNumber < 0) {
+                    updatedChildrenNumber = 0;
+                  }
 
                   const updatedBookingDetail = {
                     ...bookingDetail,
-                    childrenNumber: updatedChidrenNumber,
+                    childrenNumber: updatedChildrenNumber,
                   };
 
                   setBookingDetail(updatedBookingDetail);
 
                   router.replace(
-                    `/search-result/startDate=${bookingDetail.startDate}&endDate=${bookingDetail.endDate}&adults=${bookingDetail.adultNumber}&childrens=${updatedChidrenNumber}&codePromo=${bookingDetail.codePromotion}`
+                    `/search-result/startDate=${bookingDetail.startDate}&endDate=${bookingDetail.endDate}&adults=${bookingDetail.adultNumber}&childrens=${updatedChildrenNumber}&codePromo=${bookingDetail.codePromotion}`
                   );
                 }
               }}
@@ -176,35 +270,73 @@ export default function Filter({
           </p>
           <div className="grid grid-cols-3 gap-2">
             <Checkbox
-              checked={showStandard}
-              onChange={onChange}
-              // onChange={(e) => {
-              //   const updateValue = !e.target.value;
-              //   console.log(updateValue);
-              //   setShowStandard(false);
-              //   console.log(showStandard);
-              // }}
+              defaultChecked={bookingDetail.showStandard}
+              onChange={(e) => {
+                setBookingDetail({
+                  ...bookingDetail,
+                  showStandard: e.target.checked,
+                });
+
+                console.log(bookingDetail.showStandard);
+                // setShowStandard(e.target.checked);
+              }}
             >
               <p className="text-white text-h5 mobile:text-h5-mobile">
                 {t("std_title")}
               </p>
             </Checkbox>
-            <Checkbox checked={showDeluxe}>
+            <Checkbox
+              defaultChecked={bookingDetail.showDeluxe}
+              onChange={(e) => {
+                setBookingDetail({
+                  ...bookingDetail,
+                  showDeluxe: e.target.checked,
+                });
+                // setShowDeluxe(e.target.checked)
+              }}
+            >
               <p className="text-white text-h5 mobile:text-h5-mobile">
                 {t("dlx_title")}
               </p>
             </Checkbox>
-            <Checkbox checked={showFamily}>
+            <Checkbox
+              defaultChecked={bookingDetail.showFamily}
+              onChange={(e) => {
+                // setShowFamily(e.target.checked)
+                setBookingDetail({
+                  ...bookingDetail,
+                  showFamily: e.target.checked,
+                });
+              }}
+            >
               <p className="text-white text-h5 mobile:text-h5-mobile">
                 {t("fml_title")}
               </p>
             </Checkbox>
-            <Checkbox checked={showSuite}>
+            <Checkbox
+              defaultChecked={bookingDetail.showSuite}
+              onChange={(e) => {
+                // setShowSuite(e.target.checked)
+                setBookingDetail({
+                  ...bookingDetail,
+                  showSuite: e.target.checked,
+                });
+              }}
+            >
               <p className="text-white text-h5 mobile:text-h5-mobile">
                 {t("s_title")}
               </p>
             </Checkbox>
-            <Checkbox checked={showExecutive}>
+            <Checkbox
+              defaultChecked={bookingDetail.showExecutive}
+              onChange={(e) => {
+                // setShowExectutive(e.target.checked)
+                setBookingDetail({
+                  ...bookingDetail,
+                  showExecutive: e.target.checked,
+                });
+              }}
+            >
               <p className="text-white text-h5 mobile:text-h5-mobile">
                 {t("ex_title")}
               </p>
@@ -216,17 +348,44 @@ export default function Filter({
             {t("room_feature")}
           </p>
           <div className="grid grid-cols-3 gap-2">
-            <Checkbox>
+            <Checkbox
+              defaultChecked={bookingDetail.showOnlyBalcony}
+              onChange={(e) => {
+                // setShowOnlyBalcony(e.target.checked)
+                setBookingDetail({
+                  ...bookingDetail,
+                  showOnlyBalcony: e.target.checked,
+                });
+              }}
+            >
               <p className="text-white text-h5 mobile:text-h5-mobile">
                 {t("city_view")}
               </p>
             </Checkbox>
-            <Checkbox>
+            <Checkbox
+              defaultChecked={bookingDetail.showOnlyDinnerPlan}
+              onChange={(e) => {
+                // setShowOnlyDinnerPlan(e.target.checked)
+                setBookingDetail({
+                  ...bookingDetail,
+                  showOnlyDinnerPlan: e.target.checked,
+                });
+              }}
+            >
               <p className="text-white text-h5 mobile:text-h5-mobile">
                 {t("dinner")}
               </p>
             </Checkbox>
-            <Checkbox>
+            <Checkbox
+              defaultChecked={bookingDetail.showOnlyJacuzzi}
+              onChange={(e) => {
+                // setShowOnlyJacuzzi(e.target.checked)
+                setBookingDetail({
+                  ...bookingDetail,
+                  showOnlyJacuzzi: e.target.checked,
+                });
+              }}
+            >
               <p className="text-white text-h5 mobile:text-h5-mobile">
                 {t("jacuzzi")}
               </p>
@@ -242,6 +401,7 @@ export default function Filter({
             defaultValue={t("price_default")}
             style={{ width: 220 }}
             className="price-select"
+            onChange={handlePriceSelectChange}
             options={[
               {
                 value: "Any price is acceptable",
