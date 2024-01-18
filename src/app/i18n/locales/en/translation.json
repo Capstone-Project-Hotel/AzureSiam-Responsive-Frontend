@@ -150,8 +150,10 @@
   "gender_default": "Select Gender",
   "male": "Male",
   "female": "Female",
+  "other": "Other",
   "select": "Select",
-  "national_id": "Nation ID",
+  "national_id": "National ID",
   "passport_number": "Passport Number",
-  "driving_licence": "Driving Licence"
+  "driving_licence": "Driving Licence",
+  "discount": "Discount"
 }

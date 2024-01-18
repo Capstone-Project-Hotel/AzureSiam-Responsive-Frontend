@@ -200,7 +200,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
         {/* Main Container */}
         <div className="w-[1440px] mobile:w-[330px] flex items-start flex-wrap ml-20 gap-10 py-10 mobile:py-1 mobile:gap-1 mobile:ml-10">
           {/* Left Container */}
-          <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10 mt-10">
+          <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10 mt-10 mobile:mt-0">
             {/* Back to search result Container */}
             <div className="flex items-center gap-5">
               <button onClick={handleReselect}>
@@ -405,16 +405,6 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
               </div>
             </div>
 
-            {/* PDPA */}
-            <div className="flex text-description mobile:text-h3-mobile">
-              <Checkbox
-                onChange={onCheckboxChange}
-                checked={bookingDetail.isCheckedPDPA}
-              >
-                {t("terms_condition")}
-              </Checkbox>
-            </div>
-
             {/* Special Request Container */}
             <div>
               <div className="text-h2 mobile:text-h2-mobile font-bold">
@@ -429,6 +419,16 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
                   value={specialReq}
                 />
               </div>
+            </div>
+
+            {/* PDPA */}
+            <div className="flex text-description mobile:text-h3-mobile">
+              <Checkbox
+                onChange={onCheckboxChange}
+                checked={bookingDetail.isCheckedPDPA}
+              >
+                {t("terms_condition")}
+              </Checkbox>
             </div>
 
             {/* Cancellation Policy Container */}
@@ -446,7 +446,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
             </div>
           </div>
           {/* Right Container */}
-          <div className="w-[509px] mobile:w-[330px] sticky mobile:right-0 right-[0px] top-[190px] mobile:static">
+          <div className="w-[509px] mobile:w-[330px] sticky mobile:right-0 ml-20 top-[190px] mobile:static mobile:ml-10">
             <SummaryCard
               page="reservation-and-guest-detail"
               isDisabledConfirm={isDisabledConfirm}
@@ -580,6 +580,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
             options={[
               { value: "male", label: t("male"), group: "gender" },
               { value: "female", label: t("female"), group: "gender" },
+              { value: "other", label: t("other"), group: "gender" },
             ]}
             onChange={handleChange}
             defaultValue={guest.gender ? guest.gender : undefined}

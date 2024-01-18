@@ -142,7 +142,7 @@ export default function SummaryCard({
   return (
     <div className="border-solid border-[2px] border-black rounded-md w-[400px] h-auto p-5 bg-background mobile:w-[250px]">
       <div className="border-b-2">
-        <div className="flex mt-[10px]">
+        <div className="flex mt-[10px] m-2">
           <CalendarOutlined style={{ fontSize: "30px", marginRight: "10px" }} />
           <div>
             <div className="text-h5 font-medium mobile:text-h5-mobile">
@@ -155,7 +155,7 @@ export default function SummaryCard({
             </div>
           </div>
         </div>
-        <div className="flex">
+        <div className="flex m-2">
           <UserOutlined style={{ fontSize: "30px", marginRight: "10px" }} />
           <div className="text-h5 font-medium mobile:text-h5-mobile">
             {bookingDetail.adultNumber} {t("adults")}{" "}
@@ -166,8 +166,8 @@ export default function SummaryCard({
       {/* <div className="border-b-2"> */}
       {/* edit room */}
       {page === "search-result" ? (
-        <div className="border-b-2">
-          <div className="text-body text-slate-400 mobile:text-body-mobile">
+        <div className="border-b-2 m-2">
+          <div className="text-body text-slate-400 mobile:text-body-mobile mt-2">
             {t("edit_room")}
           </div>
 
@@ -199,7 +199,7 @@ export default function SummaryCard({
                 }}
               >
                 <i className="pi pi-trash text-gray-400 mobile:text-[8px]"></i>
-                <div className="text-description text-gray-400 mobile:text-body-mobile">
+                <div className="text-description ml-1 text-gray-400 mobile:text-body-mobile">
                   {t("remove")}
                 </div>
               </button>
@@ -252,7 +252,7 @@ export default function SummaryCard({
                 }}
               >
                 <i className="pi pi-trash text-gray-400 mobile:text-[8px]"></i>
-                <div className="text-description text-gray-400 mobile:text-body-mobile">
+                <div className="text-description ml-1 text-gray-400 mobile:text-body-mobile">
                   {t("remove")}
                 </div>
               </button>
@@ -304,7 +304,7 @@ export default function SummaryCard({
                 }}
               >
                 <i className="pi pi-trash text-gray-400 mobile:text-[8px]"></i>
-                <div className="text-description text-gray-400 mobile:text-body-mobile">
+                <div className="text-description ml-1 text-gray-400 mobile:text-body-mobile">
                   {t("remove")}
                 </div>
               </button>
@@ -356,7 +356,7 @@ export default function SummaryCard({
                 }}
               >
                 <i className="pi pi-trash text-gray-400 mobile:text-[8px]"></i>
-                <div className="text-description text-gray-400 mobile:text-body-mobile">
+                <div className="text-description ml-1 text-gray-400 mobile:text-body-mobile">
                   {t("remove")}
                 </div>
               </button>
@@ -408,7 +408,7 @@ export default function SummaryCard({
                 }}
               >
                 <i className="pi pi-trash text-gray-400 mobile:text-[8px]"></i>
-                <div className="text-description text-gray-400 mobile:text-body-mobile">
+                <div className="text-description ml-1 text-gray-400 mobile:text-body-mobile">
                   {t("remove")}
                 </div>
               </button>
@@ -438,7 +438,7 @@ export default function SummaryCard({
         <div>
           <div className="border-t-2">
             {bookingDetail.standardRoomNumber !== 0 ? (
-              <div className="flex justify-between">
+              <div className="flex justify-between ml-2 mt-1">
                 <div className="text-body mobile:text-body-mobile">
                   {t("std_title")} {bookingDetail.standardRoomNumber}{" "}
                   {t("room")}
@@ -459,8 +459,8 @@ export default function SummaryCard({
               </div>
             ) : null}
             {bookingDetail.deluxeRoomNumber !== 0 ? (
-              <div className="flex justify-between">
-                <div className="text-body">
+              <div className="flex justify-between ml-2 mt-1">
+                <div className="text-body mobile:text-body-mobile">
                   {t("dlx_title")} {bookingDetail.deluxeRoomNumber} {t("room")}
                 </div>
                 <div className="text-body text-slate-400 mobile:text-body-mobile">
@@ -479,7 +479,7 @@ export default function SummaryCard({
               </div>
             ) : null}
             {bookingDetail.familyRoomNumber !== 0 ? (
-              <div className="flex justify-between">
+              <div className="flex justify-between ml-2 mt-1">
                 <div className="text-body mobile:text-body-mobile">
                   {t("fml_title")} {bookingDetail.familyRoomNumber} {t("room")}
                 </div>
@@ -499,7 +499,7 @@ export default function SummaryCard({
               </div>
             ) : null}
             {bookingDetail.suiteRoomNumber !== 0 ? (
-              <div className="flex justify-between">
+              <div className="flex justify-between ml-2 mt-1">
                 <div className="text-body mobile:text-body-mobile">
                   {t("s_title")} {bookingDetail.suiteRoomNumber} {t("room")}
                 </div>
@@ -519,7 +519,7 @@ export default function SummaryCard({
               </div>
             ) : null}
             {bookingDetail.executiveRoomNumber !== 0 ? (
-              <div className="flex justify-between">
+              <div className="flex justify-between ml-2 mt-1">
                 <div className="text-body mobile:text-body-mobile">
                   {t("ex_title")} {bookingDetail.executiveRoomNumber}{" "}
                   {t("room")}
@@ -541,12 +541,12 @@ export default function SummaryCard({
             ) : null}
           </div>
           <div className="border-b-2 border-t-2">
-            <div className="my-2">
+            <div className="m-1">
               <div className="text-body text-slate-400 mobile:text-body-mobile">
                 {t("edit_service")}
               </div>
               {bookingDetail.packageOne ? (
-                <div>
+                <div className="mt-1">
                   <div className="flex justify-between">
                     <div className="flex">
                       <div className="text-h5 mobile:text-h5-mobile">
@@ -565,7 +565,7 @@ export default function SummaryCard({
                     }}
                   >
                     <i className="pi pi-trash text-gray-400 mobile:text-[8px]"></i>
-                    <div className="text-description text-gray-400 mobile:text-body-mobile">
+                    <div className="text-description ml-1 text-gray-400 mobile:text-body-mobile">
                       {t("remove_service")}
                     </div>
                   </button>
@@ -585,7 +585,7 @@ export default function SummaryCard({
                 </div>
               ) : null}
               {bookingDetail.packageTwo ? (
-                <div>
+                <div className="mt-1">
                   <div className="flex justify-between">
                     <div className="flex">
                       <div className="text-h5 mobile:text-h5-mobile">
@@ -604,7 +604,7 @@ export default function SummaryCard({
                     }}
                   >
                     <i className="pi pi-trash text-gray-400 mobile:text-[8px]"></i>
-                    <div className="text-description text-gray-400 mobile:text-body-mobile">
+                    <div className="text-description ml-1 text-gray-400 mobile:text-body-mobile">
                       {t("remove_service")}
                     </div>
                   </button>
@@ -772,7 +772,7 @@ export default function SummaryCard({
           {/* </div> */}
         </div>
       )}
-      <div className="flex justify-between">
+      <div className="flex justify-between m-1">
         <div className="text-body text-slate-400 mobile:text-body-mobile">
           {t("sub_total")}
         </div>
@@ -785,7 +785,7 @@ export default function SummaryCard({
           }).format(subTotal)}
         </div>
       </div>
-      <div className="flex justify-between">
+      <div className="flex justify-between m-1">
         <div className="text-body text-slate-400 mobile:text-body-mobile">
           {t("service_charge")} (10%)
         </div>
@@ -798,7 +798,7 @@ export default function SummaryCard({
           }).format(serviceCharge)}
         </div>
       </div>
-      <div className="flex justify-between">
+      <div className="flex justify-between m-1">
         <div className="text-body text-slate-400 mobile:text-body-mobile">
           {t("taxes_and_fees")} (7%)
         </div>
@@ -811,7 +811,7 @@ export default function SummaryCard({
           }).format(taxesAndFees)}
         </div>
       </div>
-      <div className="text-center text-h2 font-bold mt-[50px] mobile:text-h2-mobile mobile:mt-[10px]">
+      <div className="text-center text-h2 font-bold mt-1 mobile:text-h2-mobile mobile:mt-[10px]">
         {currency}{" "}
         {new Intl.NumberFormat("th-TH", {
           style: "decimal",

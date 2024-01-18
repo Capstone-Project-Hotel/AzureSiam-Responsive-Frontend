@@ -40,6 +40,7 @@ import SatelliteAltIcon from "@mui/icons-material/SatelliteAlt";
 import BalconyIcon from "@mui/icons-material/Balcony";
 import ChairIcon from "@mui/icons-material/Chair";
 import DinnerDiningIcon from "@mui/icons-material/DinnerDining";
+import useStore from "@/hooks/useStore";
 
 const { Meta } = Card;
 
@@ -91,6 +92,8 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
   const [childrens, setChildrens] = useState<number | null>(0);
   const [codePromo, setCodePromo] = useState<string>("");
   const isMobile = useMediaQuery({ query: "(max-width: 393px)" });
+
+  const { bookingDetail, setBookingDetail } = useStore();
 
   const showDrawer = () => {
     setOpen(true);
@@ -250,7 +253,14 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                   placeholder="eg. promo001"
                   size="small"
                   style={{ width: "150px" }}
-                  onChange={(e: any) => setCodePromo(e.target.value)}
+                  onChange={(e: any) => {
+                    const updatedBookingDetail = {
+                      ...bookingDetail,
+                      codePromotion: e.target.value,
+                    };
+
+                    setBookingDetail(updatedBookingDetail);
+                  }}
                 />
               </div>
             </div>
@@ -265,7 +275,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
               )}&endDate=${format(
                 endDate,
                 "dd-MM-yyyy"
-              )}&adults=${adults}&childrens=${childrens}&codePromo=${codePromo}`}
+              )}&adults=${adults}&childrens=${childrens}`}
             >
               <Button type="primary">{t("book_now")}</Button>
             </Link>

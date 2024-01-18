@@ -20,6 +20,8 @@ export default function SearchResultPage({
   params: { lng: any };
 }) {
   const { t } = useTranslation(lng);
+  // const history = useHistory();
+
   // const [showStandard, setShowStandard] = useState(true);
   // const [showDeluxe, setShowDeluxe] = useState(true);
   // const [showFamily, setShowFamily] = useState(true);
@@ -80,7 +82,8 @@ export default function SearchResultPage({
     show:
       bookingDetail.showDeluxe &&
       !bookingDetail.showOnlyDinnerPlan &&
-      !bookingDetail.showOnlyJacuzzi,
+      !bookingDetail.showOnlyJacuzzi &&
+      !bookingDetail.showBelowOption1,
   };
 
   const mockFamilyRoomInformation = {
@@ -107,7 +110,9 @@ export default function SearchResultPage({
     show:
       bookingDetail.showFamily &&
       !bookingDetail.showOnlyDinnerPlan &&
-      !bookingDetail.showOnlyJacuzzi,
+      !bookingDetail.showOnlyJacuzzi &&
+      !bookingDetail.showBelowOption1 &&
+      !bookingDetail.showBelowOption2,
   };
 
   const mockSuiteRoomInformation = {
@@ -134,7 +139,10 @@ export default function SearchResultPage({
     ],
     roomDetail: t("suite_room_desc"),
     roomType: "suite",
-    show: bookingDetail.showSuite,
+    show:
+      bookingDetail.showSuite &&
+      !bookingDetail.showBelowOption1 &&
+      !bookingDetail.showBelowOption2,
   };
 
   const mockExecutiveRoomInformation = {
@@ -161,7 +169,11 @@ export default function SearchResultPage({
     ],
     roomDetail: t("executive_room_desc"),
     roomType: "executive",
-    show: bookingDetail.showExecutive,
+    show:
+      bookingDetail.showExecutive &&
+      !bookingDetail.showBelowOption1 &&
+      !bookingDetail.showBelowOption2 &&
+      !bookingDetail.showBelowOption3,
   };
 
   const mockRoomInformation = [
@@ -185,7 +197,7 @@ export default function SearchResultPage({
     paramsObject[key] = value;
   });
 
-  const { startDate, endDate, adults, childrens, codePromo } = paramsObject;
+  const { startDate, endDate, adults, childrens } = paramsObject;
 
   useEffect(() => {
     useStore.persist.rehydrate();
@@ -197,7 +209,7 @@ export default function SearchResultPage({
       endDate: endDate,
       adultNumber: parseInt(adults),
       childrenNumber: parseInt(childrens),
-      codePromotion: codePromo,
+      codePromotion: bookingDetail.codePromotion,
     };
     setBookingDetail(updatedBookingDetail);
     return () => {};
@@ -205,7 +217,7 @@ export default function SearchResultPage({
 
   let reducedRate = 1;
 
-  if (codePromo === "valid001") {
+  if (bookingDetail.codePromotion === "valid001") {
     reducedRate = 0.8;
   }
 
@@ -236,7 +248,7 @@ export default function SearchResultPage({
         />
       </div>
 
-      <div className="flex items-start">
+      <div className="flex items-start mobile:flex-col">
         <div className="flex flex-col space-y-10 mt-10 ml-10 mobile:ml-[80px]">
           {mockRoomInformation.map((room, index) =>
             room.show === true ? (
@@ -256,7 +268,7 @@ export default function SearchResultPage({
             ) : null
           )}
         </div>
-        <div className="sticky mobile:static ml-10 mt-10 mobile:ml-[70px] mobile:mt-10">
+        <div className="sticky mobile:static ml-20 mt-10 mobile:mt-10 mobile:ml-10">
           <SummaryCard page="search-result" isDisabledConfirm={false} t={t} />
         </div>
       </div>

@@ -97,7 +97,7 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
           {t("booking_id")}: {bookingDetail.bookingId}
         </div>
       </div>
-      <div className="flex justify-start mt-[15px]">
+      <div className="flex justify-start mt-[15px] mobile:flex-col mobile:items-center overflow-hidden">
         {/* Main Container */}
         <div className="w-[1440px] mobile:w-[330px] flex items-start flex-wrap ml-20 gap-10 py-10 mobile:py-1 mobile:ml-10">
           {/* Left Container */}
@@ -168,7 +168,7 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
               </div>
             </div>
             {/* HR Line */}
-            <hr className="my-2" />
+            <hr className="my-2 mobile:w-[65vw]" />
             {/* Special Request Container */}
             <div>
               <div className="text-h2 mobile:text-h2-mobile font-bold text-primary">
@@ -180,7 +180,7 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
             </div>
           </div>
           {/* Right Container */}
-          <div className="w-[509px] mobile:w-[330px] sticky mobile:right-0 right-[0px] top-[300px] mobile:static ">
+          <div className="w-[509px] mobile:w-[330px] sticky mobile:right-0 ml-20 top-[50px] mobile:static mobile:ml-10">
             <SummaryCard
               page="booking-confirmation"
               isDisabledConfirm={true}
@@ -244,7 +244,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         {/* Gender */}
         <div className="w-[243px]">
           <div className="text-h5 mobile:text-h4-mobile">
-            {t("gender")} : {guest.gender}
+            {t("gender")} : {t(guest.gender)}
           </div>
         </div>
 
@@ -318,7 +318,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
       </div>
 
       {/* HR Line */}
-      <hr className="my-2" />
+      <hr className="my-2  mobile:w-[65vw]" />
     </div>
   );
 };

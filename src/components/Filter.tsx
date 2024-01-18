@@ -14,6 +14,7 @@ dayjs().format();
 
 import { useRouter } from "next/navigation";
 import type { CheckboxProps } from "antd";
+import { runes } from "runes2";
 export default function Filter({
   t,
 }: // showStandard,
@@ -62,22 +63,12 @@ export default function Filter({
 
   const router = useRouter();
 
-  const handlePriceSelectChange = (data: {
-    value: string;
-    label: React.ReactNode;
-  }) => {
+  const handlePriceSelectChange = (data: string) => {
     // console.log(value); // { value: "lucy", key: "lucy", label: "Lucy (101)" }
     console.log(data);
+    // let info = data.value;
     switch (data) {
-      case {
-        value: "Not exceeding THB 1,500",
-        label:
-          t("price_not_exceeding") +
-          " " +
-          currency +
-          " " +
-          (1500 * exchangeRate).toPrecision(4).toString(),
-      }: {
+      case "Not exceeding THB 1,500": {
         setBookingDetail({
           ...bookingDetail,
           showBelowOption1: true,
@@ -85,16 +76,9 @@ export default function Filter({
           showBelowOption3: false,
         });
         console.log("test1");
+        break;
       }
-      case {
-        value: "Not exceeding THB 2,000",
-        label:
-          t("price_not_exceeding") +
-          " " +
-          currency +
-          " " +
-          (2000 * exchangeRate).toPrecision(4).toString(),
-      }: {
+      case "Not exceeding THB 2,000": {
         setBookingDetail({
           ...bookingDetail,
           showBelowOption1: false,
@@ -104,15 +88,7 @@ export default function Filter({
         console.log("test2");
         break;
       }
-      case {
-        value: "Not exceeding THB 2,500",
-        label:
-          t("price_not_exceeding") +
-          " " +
-          currency +
-          " " +
-          (2500 * exchangeRate).toPrecision(4).toString(),
-      }: {
+      case "Not exceeding THB 2,500": {
         setBookingDetail({
           ...bookingDetail,
           showBelowOption1: false,
@@ -164,7 +140,7 @@ export default function Filter({
                 };
                 setBookingDetail(updatedBookingDetail);
                 router.replace(
-                  `/search-result/startDate=${startDate}&endDate=${endDate}&adults=${bookingDetail.adultNumber}&childrens=${bookingDetail.childrenNumber}&codePromo=${bookingDetail.codePromotion}`
+                  `/search-result/startDate=${startDate}&endDate=${endDate}&adults=${bookingDetail.adultNumber}&childrens=${bookingDetail.childrenNumber}`
                 );
               }
             }}
@@ -188,7 +164,7 @@ export default function Filter({
                   };
                   setBookingDetail(updatedBookingDetail);
                   router.replace(
-                    `/search-result/startDate=${bookingDetail.startDate}&endDate=${bookingDetail.endDate}&adults=${updatedAdultNumber}&childrens=${bookingDetail.childrenNumber}&codePromo=${bookingDetail.codePromotion}`
+                    `/search-result/startDate=${bookingDetail.startDate}&endDate=${bookingDetail.endDate}&adults=${updatedAdultNumber}&childrens=${bookingDetail.childrenNumber}`
                   );
                 }
               }}
@@ -217,7 +193,7 @@ export default function Filter({
                   setBookingDetail(updatedBookingDetail);
 
                   router.replace(
-                    `/search-result/startDate=${bookingDetail.startDate}&endDate=${bookingDetail.endDate}&adults=${bookingDetail.adultNumber}&childrens=${updatedChildrenNumber}&codePromo=${bookingDetail.codePromotion}`
+                    `/search-result/startDate=${bookingDetail.startDate}&endDate=${bookingDetail.endDate}&adults=${bookingDetail.adultNumber}&childrens=${updatedChildrenNumber}`
                   );
                 }
               }}
@@ -229,7 +205,14 @@ export default function Filter({
             </p>
             <Input
               placeholder="example"
-              style={{ width: 100 }}
+              style={{ width: 120 }}
+              count={{
+                show: true,
+                max: 8,
+                strategy: (txt) => runes(txt).length,
+                exceedFormatter: (txt, { max }) =>
+                  runes(txt).slice(0, max).join(""),
+              }}
               value={bookingDetail.codePromotion}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 const updatedCodePromotion = e.target.value;
@@ -243,9 +226,9 @@ export default function Filter({
 
                   setBookingDetail(updatedBookingDetail);
 
-                  router.replace(
-                    `/search-result/startDate=${bookingDetail.startDate}&endDate=${bookingDetail.endDate}&adults=${bookingDetail.adultNumber}&childrens=${bookingDetail.childrenNumber}&codePromo=${updatedCodePromotion}`
-                  );
+                  // router.replace(
+                  //   `/search-result/startDate=${bookingDetail.startDate}&endDate=${bookingDetail.endDate}&adults=${bookingDetail.adultNumber}&childrens=${bookingDetail.childrenNumber}&codePromo=${updatedCodePromotion}`
+                  // );
                 } else {
                   // Prevent the default behavior when character count exceeds
                   e.preventDefault();
@@ -254,9 +237,9 @@ export default function Filter({
             />
             {bookingDetail.codePromotion === "valid001" ? (
               <div className="flex">
-                <i className="pi pi-check text-green-500 text-2xl mobile:text-sm"></i>
-                <p className="ml-2 mr-2 text-white text-h4 font-bold mobile:text-h4-mobile">
-                  Discount 20%
+                <i className="pi pi-check-circle text-white text-xl mobile:text-sm mt-1 ml-1"></i>
+                <p className="ml-2 mr-2 text-white text-body font-bold mobile:text-body-mobile mt-1">
+                  {t("discount")} 20%
                 </p>
               </div>
             ) : null}

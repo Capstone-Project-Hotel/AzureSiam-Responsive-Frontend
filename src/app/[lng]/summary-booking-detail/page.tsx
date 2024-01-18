@@ -60,11 +60,11 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
       <div className="z-50 w-[100vw] fixed top-0">
         <Topbar lng={lng} />
       </div>
-      <div className="flex justify-center mt-[100px]">
+      <div className="flex justify-center mt-[100px] overflow-hidden">
         {/* Main Container */}
         <div className="w-[1440px] mobile:w-[330px] flex items-start flex-wrap ml-20 gap-10 py-10 mobile:py-1 mobile:gap-1  mobile:ml-10">
           {/* Left Container */}
-          <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10 mt-10">
+          <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10 mt-10 mobile:mt-0">
             <div className="flex items-center gap-5">
               <Link href="/reservation-and-guest-detail">
                 <LeftOutlined className="text-[36px] mobile:text-[25px]" />
@@ -108,7 +108,7 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
 
                   {/* Card Number */}
                   <div className="w-full">
-                    <div className="text-description mobile:text-h3-mobile flex gap-2 items-center">
+                    <div className="text-description mobile:text-h3-mobile flex gap-2 items-center mobile:ml-10">
                       <div className="text-h5 mobile:text-h4-mobile">
                         {t("card_number")} : {paymentDetail.cardNumber}
                       </div>
@@ -146,7 +146,7 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
             </div>
 
             {/* HR Line */}
-            <hr className="my-2" />
+            <hr className="my-2 mobile:w-[60vw]" />
 
             {/* Special Request Container */}
             <div>
@@ -298,7 +298,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
       </div>
 
       {/* HR Line */}
-      <hr className="my-2" />
+      <hr className="my-2 mobile:w-[60vw]" />
     </div>
   );
 };
