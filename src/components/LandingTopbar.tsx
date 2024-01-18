@@ -256,6 +256,7 @@ export default function LandingTopbar({
       <div>
         <Button
           style={{
+            color: "#2A4D69",
             marginLeft: "0.75vw",
             backgroundColor: "white",
             borderRadius: "8px",
