@@ -19,7 +19,7 @@ import SummaryCard from "@/components/SummaryCard";
 import Footer from "@/components/Footer";
 import AdditionalServiceCard from "@/components/AdditionalServiceCard";
 import { useTranslation } from "@/app/i18n/client";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import dayjs from "dayjs";
 import { t } from "i18next";
 import { useMediaQuery } from "react-responsive";
@@ -96,6 +96,17 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
     cardType,
     setCardType,
   } = useStore();
+
+  if (
+    bookingDetail.standardRoomNumber == 0 &&
+    bookingDetail.deluxeRoomNumber == 0 &&
+    bookingDetail.familyRoomNumber == 0 &&
+    bookingDetail.suiteRoomNumber == 0 &&
+    bookingDetail.executiveRoomNumber == 0
+  ) {
+    redirect("/");
+  }
+
   const [isCheckedPDPA, setIsCheckedPDPA] = useState<boolean>(false);
   const [isDisabledConfirm, setIsDisabledConfirm] = useState<boolean>(false);
 

@@ -203,12 +203,12 @@ export default function LandingTopbar({
       style={{ backgroundColor: "#2A4D69", color: "white" }}
     >
       <div className="flex flex-row items-center mobile:flex-col">
-        <BlockOutlined style={{ fontSize: "5vw", color: "white" }} />
         <Link
           href="/"
-          className="text-h2 mobile:text-h2-mobile"
+          className="text-h2 mobile:text-h2-mobile flex items-center"
           onClick={handleNewBooking}
         >
+          <BlockOutlined style={{ fontSize: "5vw", color: "white" }} />
           AzureSiam
         </Link>
       </div>
