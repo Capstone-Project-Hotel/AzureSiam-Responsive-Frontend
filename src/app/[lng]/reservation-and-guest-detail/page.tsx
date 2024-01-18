@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useMemo, useState } from "react";
-import { DatePicker, DatePickerProps, Input, Select } from "antd";
+import { DatePicker, DatePickerProps, Input, Modal, Select } from "antd";
 import { LeftOutlined } from "@ant-design/icons";
 import TextArea from "antd/es/input/TextArea";
 import { Checkbox } from "antd";
@@ -22,6 +22,7 @@ import { useTranslation } from "@/app/i18n/client";
 import { useRouter } from "next/navigation";
 import dayjs from "dayjs";
 import { t } from "i18next";
+import { useMediaQuery } from "react-responsive";
 
 const PhoneInput = dynamic(() => import("react-phone-number-input"), {
   ssr: false,
@@ -189,6 +190,22 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
   const onCreditCardTypeChanged = (type: string) => {
     setCardType(type);
   };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  const isMobile = useMediaQuery({ query: "(max-width: 393px)" });
 
   return (
     // Page Container
@@ -421,16 +438,6 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
               </div>
             </div>
 
-            {/* PDPA */}
-            <div className="flex text-description mobile:text-h3-mobile">
-              <Checkbox
-                onChange={onCheckboxChange}
-                checked={bookingDetail.isCheckedPDPA}
-              >
-                {t("terms_condition")}
-              </Checkbox>
-            </div>
-
             {/* Cancellation Policy Container */}
             <div className="flex flex-col gap-2">
               <div className="text-h2 mobile:text-h2-mobile font-bold">
@@ -444,6 +451,43 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
                 <div>{t("cancel_policy_description3")}</div>
               </div>
             </div>
+
+            {/* PDPA */}
+            <div className="flex text-description mobile:text-h3-mobile items-center gap-x-2">
+              <Checkbox
+                onChange={onCheckboxChange}
+                checked={bookingDetail.isCheckedPDPA}
+              />
+              <div>
+                {t("terms_condition")}
+                <span
+                  className="text-primary cursor-pointer underline"
+                  onClick={showModal}
+                >
+                  {t("terms_condition_2")}
+                </span>
+              </div>
+            </div>
+            {/* Modal PDPA */}
+            <Modal
+              title={t("terms_condition_2")}
+              open={isModalOpen}
+              onOk={handleOk}
+              onCancel={handleCancel}
+              footer={null}
+              width={isMobile ? 350 : 800}
+              centered={isMobile ? false : true}
+            >
+              <div className="flex flex-col gap-y-4 py-2 text-h5 mobile:text-h3-mobile mobile:gap-y-2">
+                <div>1) {t("terms_condition_d1")}</div>
+                <div>2) {t("terms_condition_d2")}</div>
+                <div>3) {t("terms_condition_d3")}</div>
+                <div>4) {t("terms_condition_d4")}</div>
+                <div>5) {t("terms_condition_d5")}</div>
+                <div>6) {t("terms_condition_d6")}</div>
+                <div>7) {t("terms_condition_d7")}</div>
+              </div>
+            </Modal>
           </div>
           {/* Right Container */}
           <div className="w-[509px] mobile:w-[330px] sticky mobile:right-0 ml-20 top-[190px] mobile:static mobile:ml-10">
