@@ -38,7 +38,18 @@ const emptyBookingDetail: BookingDetail = {
   packageOne: false,
   packageTwo: false,
   isCheckedPDPA: false,
-  bookingId: ""
+  bookingId: "",
+  showStandard: true,
+  showDeluxe: true,
+  showFamily: true,
+  showSuite: true,
+  showExecutive: true,
+  showOnlyBalcony: false,
+  showOnlyDinnerPlan: false,
+  showOnlyJacuzzi: false,
+  showBelowOption1: false,
+  showBelowOption2: false,
+  showBelowOption3: false,
 };
 
 interface Store {

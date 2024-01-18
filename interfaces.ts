@@ -36,4 +36,15 @@ interface Guest {
     packageTwo: boolean;
     isCheckedPDPA: boolean;
     bookingId: string,
+    showStandard: boolean;
+    showDeluxe: boolean;
+    showFamily: boolean;
+    showSuite: boolean;
+    showExecutive: boolean;
+    showOnlyBalcony: boolean;
+    showOnlyDinnerPlan: boolean;
+    showOnlyJacuzzi: boolean;
+    showBelowOption1: boolean;
+    showBelowOption2: boolean;
+    showBelowOption3: boolean;
   }
