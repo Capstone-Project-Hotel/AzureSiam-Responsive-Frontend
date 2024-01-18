@@ -22,6 +22,7 @@ import { useTranslation } from "@/app/i18n/client";
 import { useRouter } from "next/navigation";
 import dayjs from "dayjs";
 import { t } from "i18next";
+import { useMediaQuery } from "react-responsive";
 
 const PhoneInput = dynamic(() => import("react-phone-number-input"), {
   ssr: false,
@@ -203,6 +204,9 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
+  const isMobile = useMediaQuery({ query: "(max-width: 393px)" });
+
   return (
     // Page Container
     <div>
@@ -471,10 +475,10 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
               onOk={handleOk}
               onCancel={handleCancel}
               footer={null}
-              width={800}
-              centered
+              width={isMobile ? 350 : 800}
+              centered={isMobile ? false : true}
             >
-              <div className="flex flex-col gap-y-4 py-2">
+              <div className="flex flex-col gap-y-4 py-2 text-h5 mobile:text-h3-mobile mobile:gap-y-2">
                 <div>1) {t("terms_condition_d1")}</div>
                 <div>2) {t("terms_condition_d2")}</div>
                 <div>3) {t("terms_condition_d3")}</div>
