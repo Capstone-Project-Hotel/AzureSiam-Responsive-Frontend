@@ -217,7 +217,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
         {/* Main Container */}
         <div className="w-[1440px] mobile:w-[330px] flex items-start flex-wrap gap-10 py-10 mobile:py-1 px-10 mobile:px-0">
           {/* Left Container */}
-          <div className="w-[50vw] mobile:w-[80vw] flex flex-col gap-10 mt-10 mobile:mt-0">
+          <div className="w-[50%] mobile:w-[80vw] flex flex-col gap-10 mt-10 mobile:mt-0">
             {/* Back to search result Container */}
             <div className="flex items-center gap-5">
               <button onClick={handleReselect}>

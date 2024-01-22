@@ -39,9 +39,10 @@ const StyledCard = styled(Card)`
     font-size: 14px;
   }
 
-  @media screen and (max-width: 394px) {
-    max-width: 330px;
-    height: 303px;
+  @media screen and (max-width: 431px) {
+    max-width: 431px;
+    height: 313px;
+    padding-bottom: 10px;
 
     img {
       width: 330px;
@@ -52,7 +53,7 @@ const StyledCard = styled(Card)`
       font-size: 12px;
     }
     .ant-card-meta-description {
-      font-size: 6px;
+      font-size: 8px;
     }
   }
 `;

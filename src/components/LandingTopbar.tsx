@@ -5,7 +5,7 @@ import { Anchor, Menu, Dropdown, Button, Select } from "antd";
 import DownOutlined from "@ant-design/icons/DownOutlined";
 import Link from "next/link";
 import { languages } from "@/app/i18n/settings";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import useStore from "@/hooks/useStore";
 import axios from "axios";
 
@@ -195,6 +195,7 @@ export default function LandingTopbar({
     setSpecialReq("");
 
     console.log("new store");
+    redirect("/");
   };
 
   return (
@@ -203,14 +204,13 @@ export default function LandingTopbar({
       style={{ backgroundColor: "#2A4D69", color: "white" }}
     >
       <div className="flex flex-row items-center mobile:flex-col">
-        <Link
-          href="/"
-          className="text-h2 mobile:text-h2-mobile flex items-center"
+        <div
+          className="text-h2 mobile:text-h2-mobile cursor-pointer flex items-center"
           onClick={handleNewBooking}
         >
           <BlockOutlined style={{ fontSize: "5vw", color: "white" }} />
           AzureSiam
-        </Link>
+        </div>
       </div>
       <div className="flex flex-row flex-wrap items-start gap-x-8 gap-y-1 mobile:flex-col ml-[2vw]">
         <div

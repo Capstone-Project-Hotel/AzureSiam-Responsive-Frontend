@@ -1,22 +1,16 @@
 "use client";
 
-import Image from "next/image";
 import HistoryCard from "@/components/HistoryCard";
 import { addDays, format } from "date-fns";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import OtherCard from "@/components/OtherCard";
 import dynamic from "next/dynamic";
-import { Card, Carousel, Input, Select } from "antd";
+import { Card, Carousel, Input } from "antd";
 import styled from "styled-components";
-import {
-  CalendarOutlined,
-  LeftOutlined,
-  RightOutlined,
-} from "@ant-design/icons";
+import { CalendarOutlined } from "@ant-design/icons";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Topbar from "@/components/Topbar";
 import Footer from "@/components/Footer";
 import LandingTopbar from "@/components/LandingTopbar";
 import { Button, Drawer } from "antd";
@@ -24,13 +18,8 @@ import { InputNumber } from "antd";
 import Link from "next/link";
 import { useMediaQuery } from "react-responsive";
 
-import BedIcon from "@mui/icons-material/Bed";
 import TvIcon from "@mui/icons-material/Tv";
 import BathtubIcon from "@mui/icons-material/Bathtub";
-import LocationCityIcon from "@mui/icons-material/LocationCity";
-import RestaurantIcon from "@mui/icons-material/Restaurant";
-import MoodIcon from "@mui/icons-material/Mood";
-import SpaIcon from "@mui/icons-material/Spa";
 import SmokeFreeIcon from "@mui/icons-material/SmokeFree";
 import KitchenIcon from "@mui/icons-material/Kitchen";
 import AirIcon from "@mui/icons-material/Air";
@@ -55,7 +44,7 @@ const ContentStyle = styled.div<{ src: string }>`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  @media screen and (max-width: 394px) {
+  @media screen and (max-width: 431px) {
     height: 150px;
   }
 `;
@@ -292,7 +281,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
 
       <div className="flex justify-center mt-[110px]">
         {/* Main Container */}
-        <div className="w-[1440px] mobile:w-full flex flex-col gap-10 mobile:gap-10 items-center pb-20">
+        <div className="w-[1440px] mobile:w-full flex flex-col gap-10 mobile:gap-8 items-center pb-20">
           {/* Hotel Name Container */}
           <div
             style={{
@@ -896,7 +885,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
             <div className="text-h1 mobile:text-h2-mobile font-bold mb-5">
               {t("gallery")}
             </div>
-            <div className="w-[1060px] mobile:w-[330px] mx-auto">
+            <div className="w-[100%]">
               <Carousel dotPosition="right" autoplay>
                 <div>
                   <ContentStyle src="https://cdn.discordapp.com/attachments/457166097230069773/1186565137671409726/image_28.jpg?ex=6593b5e6&is=658140e6&hm=c439cc34a78e17e8d3f1c886941ad3dd92f40b5e1a9df0f87aef5dc8b6d49517&" />
@@ -988,9 +977,9 @@ const StyledCard = styled(Card)`
     font-size: 14px;
   }
 
-  @media screen and (max-width: 394px) {
-    max-width: 393px;
-    height: 267px;
+  @media screen and (max-width: 431px) {
+    max-width: 430px;
+    height: 280px;
 
     img {
       width: 393px;
@@ -1000,7 +989,7 @@ const StyledCard = styled(Card)`
       font-size: 12px;
     }
     .ant-card-meta-description {
-      font-size: 6px;
+      font-size: 8px;
     }
   }
 `;

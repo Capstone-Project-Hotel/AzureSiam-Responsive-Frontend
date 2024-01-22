@@ -84,7 +84,7 @@ const StyledCard = styled(Card)`
 
   @media screen and (max-width: 431px) {
     max-width: 150px;
-    height: 230px;
+    height: 250px;
 
     img {
       width: 150px;
@@ -94,7 +94,7 @@ const StyledCard = styled(Card)`
       font-size: 12px;
     }
     .ant-card-meta-description {
-      font-size: 6px;
+      font-size: 8px;
     }
   }
 `;
