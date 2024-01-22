@@ -65,6 +65,12 @@ import { useTranslation } from "../i18n/client";
 const Home = ({ params: { lng } }: { params: { lng: any } }) => {
   const { t } = useTranslation(lng);
 
+  const disabledDates = [
+    new Date("2024-01-25"),
+    new Date("2024-01-26"),
+    new Date("2024-01-28"),
+  ];
+
   const settings = {
     dots: true,
     infinite: false,
@@ -75,7 +81,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
     swipe: false,
     responsive: [
       {
-        breakpoint: 394,
+        breakpoint: 431,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
@@ -91,7 +97,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
   const [adults, setAdults] = useState<number | null>(1);
   const [childrens, setChildrens] = useState<number | null>(0);
   const [codePromo, setCodePromo] = useState<string>("");
-  const isMobile = useMediaQuery({ query: "(max-width: 393px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 431px)" });
 
   const { bookingDetail, setBookingDetail } = useStore();
 
@@ -200,11 +206,12 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                 setStartDate(dates.startDate);
                 setEndDate(dates.endDate);
               }}
-              disabledDates={[
-                addDays(new Date(), 3),
-                addDays(new Date(), 7),
-                addDays(new Date(), 15),
-              ]}
+              // disabledDates={[
+              //   addDays(new Date(), 3),
+              //   addDays(new Date(), 7),
+              //   addDays(new Date(), 15),
+              // ]}
+              disabledDates={disabledDates}
             />
           </div>
 

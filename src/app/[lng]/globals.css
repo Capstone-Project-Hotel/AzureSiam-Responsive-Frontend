@@ -46,7 +46,7 @@ body {
 /* button, */
 [type="button"] {
   background-color: #2a4d69;
-  @media screen and (max-width: 394px) {
+  @media screen and (max-width: 431px) {
     font-size: 8px !important;
     height: 20px !important;
     padding-left: 5px !important;
@@ -58,7 +58,7 @@ body {
 
 .ant-select {
   /* background-color: #2a4d69; */
-  @media screen and (max-width: 394px) {
+  @media screen and (max-width: 431px) {
     width: 80px !important;
     padding-left: 5px !important;
     padding-right: 5px !important;
@@ -68,57 +68,57 @@ body {
 }
 
 .price-select {
-  @media screen and (max-width: 394px) {
+  @media screen and (max-width: 431px) {
     width: 150px !important;
   }
 }
 
 .ant-picker {
-  @media screen and (max-width: 394px) {
+  @media screen and (max-width: 431px) {
     width: 250px !important;
   }
 }
 
 .ant-picker-input input {
-  @media screen and (max-width: 394px) {
-    font-size: 8px !important;
+  @media screen and (max-width: 431px) {
+    font-size: 12px !important;
   }
 }
 
 .ant-input-number-input-wrap input {
-  @media screen and (max-width: 394px) {
-    font-size: 8px !important;
+  @media screen and (max-width: 431px) {
+    font-size: 12px !important;
   }
 }
 
 .ant-input {
-  @media screen and (max-width: 394px) {
-    font-size: 8px !important;
+  @media screen and (max-width: 431px) {
+    font-size: 12px !important;
   }
 }
 
 .ant-select-selection-item {
-  @media screen and (max-width: 394px) {
+  @media screen and (max-width: 431px) {
     font-size: 8px !important;
   }
 }
 
 .ant-select-item-option-content {
-  @media screen and (max-width: 394px) {
+  @media screen and (max-width: 431px) {
     font-size: 8px !important;
   }
 }
 
 .ant-select-selection-placeholder {
-  @media screen and (max-width: 394px) {
-    font-size: 8px !important;
+  @media screen and (max-width: 431px) {
+    font-size: 12px !important;
   }
 }
 
 .ant-modal-title {
   font-size: 24px !important;
   font-weight: bold !important;
-  @media screen and (max-width: 394px) {
+  @media screen and (max-width: 431px) {
     font-size: 16px !important;
   }
 }
@@ -132,7 +132,7 @@ li {
 .ant-drawer-title {
   font-size: 24px !important;
   padding-left: 1rem !important;
-  @media screen and (max-width: 394px) {
+  @media screen and (max-width: 431px) {
     font-size: 20px !important;
   }
 }
@@ -146,13 +146,13 @@ li {
 }
 
 .anticon-calendar svg {
-  @media screen and (max-width: 394px) {
+  @media screen and (max-width: 431px) {
     font-size: 18px !important;
   }
 }
 
 .anticon-user svg {
-  @media screen and (max-width: 394px) {
+  @media screen and (max-width: 431px) {
     font-size: 18px !important;
   }
 }
