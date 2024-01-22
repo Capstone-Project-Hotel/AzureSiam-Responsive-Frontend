@@ -1,4 +1,3 @@
-import Styles from "@/app/examples/styles/page";
 import { Button, Card, Modal } from "antd";
 import React, { Children, useState } from "react";
 import styled from "styled-components";
@@ -83,7 +82,7 @@ const StyledCard = styled(Card)`
     font-size: 14px;
   }
 
-  @media screen and (max-width: 394px) {
+  @media screen and (max-width: 431px) {
     max-width: 150px;
     height: 230px;
 
