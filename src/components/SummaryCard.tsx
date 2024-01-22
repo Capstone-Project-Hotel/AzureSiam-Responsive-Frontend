@@ -140,7 +140,7 @@ export default function SummaryCard({
   const taxesAndFees = (subTotal / 100) * 7;
 
   return (
-    <div className="border-solid border-[2px] border-black rounded-md w-[400px] h-auto p-5 bg-background mobile:w-[250px]">
+    <div className="border-solid border-[2px] border-black rounded-md w-[400px] h-auto p-5 bg-background mobile:w-[80vw]">
       <div className="border-b-2">
         <div className="flex mt-[10px] m-2">
           <CalendarOutlined style={{ fontSize: "30px", marginRight: "10px" }} />
@@ -199,7 +199,7 @@ export default function SummaryCard({
                 }}
               >
                 <i className="pi pi-trash text-gray-400 mobile:text-[8px]"></i>
-                <div className="text-description ml-1 text-gray-400 mobile:text-body-mobile">
+                <div className="text-description ml-1 text-gray-400 mobile:text-h5-mobile">
                   {t("remove")}
                 </div>
               </button>

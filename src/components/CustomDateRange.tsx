@@ -31,7 +31,7 @@ const CustomDateRange: React.FC<CustomDateRangeProps> = ({
   const [maxDate, setMaxDate] = useState<Date>(addDays(new Date(), 999999));
   const [myDisabledDates, setMyDisabledDates] = useState<Date[]>(disabledDates);
   const [isEnd, setIsEnd] = useState<boolean>(false);
-  const isMobile = useMediaQuery({ query: "(max-width: 394px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 431px)" });
   const { currency, exchangeRate } = useStore();
 
   const lowestPrice = new Intl.NumberFormat("th-TH", {
@@ -192,7 +192,7 @@ const StyledDateRangeLarge = styled(DateRange)`
     width: 700px !important;
   }
 
-  @media screen and (max-width: 394px) {
+  @media screen and (max-width: 431px) {
     /* Change Height of Day Box */
     .rdrDay {
       height: 55px !important;
@@ -265,7 +265,7 @@ const StyledDateRangeSmall = styled(DateRange)`
     width: 540px !important;
   }
 
-  @media screen and (max-width: 394px) {
+  @media screen and (max-width: 431px) {
     /* Change Height of Day Box */
     .rdrDay {
       height: 55px !important;

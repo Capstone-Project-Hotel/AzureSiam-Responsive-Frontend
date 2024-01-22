@@ -115,18 +115,18 @@ export default function Filter({
 
   return (
     <div className="w-full flex-row bg-secondary pt-3 pb-3">
-      <div className="my-[20px] ml-10">
+      <div className="my-[20px] mx-10">
         <p className="text-white text-h3 font-bold mobile:text-h3-mobile">
           {t("booking_detail")}
         </p>
-        <div className="flex justify-around mobile:flex-wrap mobile:space-y-3 mobile:space-x-3 mobile:justify-normal">
+        <div className="flex justify-between mobile:flex-wrap mobile:space-y-3 mobile:space-x-0 mobile:justify-start">
           <RangePicker
             value={[
               dayjs(bookingDetail.startDate, "DD-MM-YYYY"),
               dayjs(bookingDetail.endDate, "DD-MM-YYYY"),
             ]}
             format={["DD-MM-YYYY"]}
-            style={{ zIndex: 0 }}
+            style={{ width: "300px", height: "30px" }}
             onChange={(RangePicker, dateStrings: [string, string]) => {
               const [startDate, endDate] = dateStrings;
 
@@ -145,100 +145,101 @@ export default function Filter({
               }
             }}
           />
-          <div className="flex">
-            <p className="ml-2 mr-2 text-white text-h4 font-bold mobile:text-h4-mobile">
-              {t("adults")}
-            </p>
-            <InputNumber
-              style={{ width: "50px" }}
-              value={bookingDetail.adultNumber}
-              onChange={(e: number | null) => {
-                if (e != null) {
-                  let updatedAdultNumber = e;
-                  if (updatedAdultNumber < 1) {
-                    updatedAdultNumber = 1;
+          <div className="flex gap-x-10">
+            <div className="flex">
+              <div className="mr-2 text-white text-h4 mobile:text-h4-mobile">
+                {t("adults")}
+              </div>
+              <InputNumber
+                style={{ width: "50px", height: "30px" }}
+                value={bookingDetail.adultNumber}
+                onChange={(e: number | null) => {
+                  if (e != null) {
+                    let updatedAdultNumber = e;
+                    if (updatedAdultNumber < 1) {
+                      updatedAdultNumber = 1;
+                    }
+                    const updatedBookingDetail = {
+                      ...bookingDetail,
+                      adultNumber: updatedAdultNumber,
+                    };
+                    setBookingDetail(updatedBookingDetail);
+                    router.replace(
+                      `/search-result/startDate=${bookingDetail.startDate}&endDate=${bookingDetail.endDate}&adults=${updatedAdultNumber}&childrens=${bookingDetail.childrenNumber}`
+                    );
                   }
-                  const updatedBookingDetail = {
-                    ...bookingDetail,
-                    adultNumber: updatedAdultNumber,
-                  };
-                  setBookingDetail(updatedBookingDetail);
-                  router.replace(
-                    `/search-result/startDate=${bookingDetail.startDate}&endDate=${bookingDetail.endDate}&adults=${updatedAdultNumber}&childrens=${bookingDetail.childrenNumber}`
-                  );
-                }
-              }}
-            />
-          </div>
-          <div className="flex">
-            <p className="ml-2 mr-2 text-white text-h4 font-bold mobile:text-h4-mobile">
-              {t("children")}
-            </p>
-            <InputNumber
-              style={{ width: "50px" }}
-              value={bookingDetail.childrenNumber}
-              onChange={(e: number | null) => {
-                if (e != null) {
-                  let updatedChildrenNumber = e;
+                }}
+              />
+            </div>
+            <div className="flex">
+              <p className=" mr-2 text-white text-h4 mobile:text-h4-mobile">
+                {t("children")}
+              </p>
+              <InputNumber
+                style={{ width: "50px", height: "30px" }}
+                value={bookingDetail.childrenNumber}
+                onChange={(e: number | null) => {
+                  if (e != null) {
+                    let updatedChildrenNumber = e;
 
-                  if (updatedChildrenNumber < 0) {
-                    updatedChildrenNumber = 0;
+                    if (updatedChildrenNumber < 0) {
+                      updatedChildrenNumber = 0;
+                    }
+
+                    const updatedBookingDetail = {
+                      ...bookingDetail,
+                      childrenNumber: updatedChildrenNumber,
+                    };
+
+                    setBookingDetail(updatedBookingDetail);
+
+                    router.replace(
+                      `/search-result/startDate=${bookingDetail.startDate}&endDate=${bookingDetail.endDate}&adults=${bookingDetail.adultNumber}&childrens=${updatedChildrenNumber}`
+                    );
                   }
-
-                  const updatedBookingDetail = {
-                    ...bookingDetail,
-                    childrenNumber: updatedChildrenNumber,
-                  };
-
-                  setBookingDetail(updatedBookingDetail);
-
-                  router.replace(
-                    `/search-result/startDate=${bookingDetail.startDate}&endDate=${bookingDetail.endDate}&adults=${bookingDetail.adultNumber}&childrens=${updatedChildrenNumber}`
-                  );
-                }
-              }}
-            />
+                }}
+              />
+            </div>
           </div>
-          <div className="flex">
-            <p className="ml-2 mr-2 text-white text-h4 font-bold mobile:text-h4-mobile">
-              {t("code")}
-            </p>
-            <Input
-              placeholder="example"
-              style={{ width: 120 }}
-              count={{
-                show: true,
-                max: 8,
-                strategy: (txt) => runes(txt).length,
-                exceedFormatter: (txt, { max }) =>
-                  runes(txt).slice(0, max).join(""),
-              }}
-              value={bookingDetail.codePromotion}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                const updatedCodePromotion = e.target.value;
-                console.log(updatedCodePromotion.length);
-
-                if (updatedCodePromotion.length <= 8) {
-                  const updatedBookingDetail = {
-                    ...bookingDetail,
-                    codePromotion: updatedCodePromotion,
-                  };
-
-                  setBookingDetail(updatedBookingDetail);
-
-                  // router.replace(
-                  //   `/search-result/startDate=${bookingDetail.startDate}&endDate=${bookingDetail.endDate}&adults=${bookingDetail.adultNumber}&childrens=${bookingDetail.childrenNumber}&codePromo=${updatedCodePromotion}`
-                  // );
-                } else {
-                  // Prevent the default behavior when character count exceeds
-                  e.preventDefault();
-                }
-              }}
-            />
+          <div className="flex flex-col">
+            <div className="flex">
+              <p className=" mr-2 text-white text-h4 mobile:text-h4-mobile">
+                {t("code")}
+              </p>
+              <Input
+                placeholder="example"
+                style={{ width: "120px", height: "30px" }}
+                count={{
+                  show: true,
+                  max: 8,
+                  strategy: (txt) => runes(txt).length,
+                  exceedFormatter: (txt, { max }) =>
+                    runes(txt).slice(0, max).join(""),
+                }}
+                value={bookingDetail.codePromotion}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  const updatedCodePromotion = e.target.value;
+                  console.log(updatedCodePromotion.length);
+                  if (updatedCodePromotion.length <= 8) {
+                    const updatedBookingDetail = {
+                      ...bookingDetail,
+                      codePromotion: updatedCodePromotion,
+                    };
+                    setBookingDetail(updatedBookingDetail);
+                    // router.replace(
+                    //   `/search-result/startDate=${bookingDetail.startDate}&endDate=${bookingDetail.endDate}&adults=${bookingDetail.adultNumber}&childrens=${bookingDetail.childrenNumber}&codePromo=${updatedCodePromotion}`
+                    // );
+                  } else {
+                    // Prevent the default behavior when character count exceeds
+                    e.preventDefault();
+                  }
+                }}
+              />
+            </div>
             {bookingDetail.codePromotion === "valid001" ? (
-              <div className="flex">
+              <div className="flex justify-end">
                 <i className="pi pi-check-circle text-white text-xl mobile:text-sm mt-1 ml-1"></i>
-                <p className="ml-2 mr-2 text-white text-body font-bold mobile:text-body-mobile mt-1">
+                <p className="ml-2 mr-2 text-white text-body mobile:text-body-mobile mt-1">
                   {t("discount")} 20%
                 </p>
               </div>

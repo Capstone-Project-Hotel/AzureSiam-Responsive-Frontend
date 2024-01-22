@@ -50,11 +50,11 @@ export default function RoomCard({
 
   return (
     <div
-      className={`flex flex-col w-[58vw] rounded-lg outline outline-1 outline-gray-450 
+      className={`flex flex-col w-[58vw] rounded-lg outline outline-1 outline-gray-450 mobile:w-[80vw]
       `}
       style={{ backgroundColor: "#E7EFF6", color: "black" }}
     >
-      <p className="text-h4 font-bold m-[2vw] w-[100vw] mobile:text-h4-mobile">
+      <p className="text-h4 font-bold m-[2vw] mobile:text-h4-mobile">
         {roomName}
       </p>
       <div className="flex flex-row ml-[2vw] mb-[2vw]">
