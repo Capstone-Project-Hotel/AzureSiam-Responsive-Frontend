@@ -2,7 +2,7 @@
 
 import HistoryCard from "@/components/HistoryCard";
 import { addDays, format } from "date-fns";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import OtherCard from "@/components/OtherCard";
 import dynamic from "next/dynamic";
 import { Card, Carousel, Input } from "antd";
@@ -88,7 +88,18 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
   const [codePromo, setCodePromo] = useState<string>("");
   const isMobile = useMediaQuery({ query: "(max-width: 431px)" });
 
-  const { bookingDetail, setBookingDetail } = useStore();
+  const {
+    bookingDetail,
+    setBookingDetail,
+    exchangeRate,
+    setExchangeRate,
+    currency,
+    setCurrency,
+    setCardType,
+    setGuests,
+    setPaymentDetail,
+    setSpecialReq,
+  } = useStore();
 
   const showDrawer = () => {
     setOpen(true);
@@ -160,6 +171,71 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
       inline: "nearest",
     });
   };
+
+  useEffect(() => {
+    const handleNewBooking = () => {
+      const emptyGuest: Guest = {
+        firstName: "",
+        middleName: "",
+        lastName: "",
+        gender: "",
+        birthDate: "",
+        email: "",
+        phoneNumber: "",
+        country: "",
+        city: "",
+        zipCode: "",
+        address: "",
+        id: "",
+        idType: "",
+      };
+
+      setGuests([emptyGuest]);
+
+      const emptyPaymentDetail: PaymentDetail = {
+        cardHolderName: "",
+        cardNumber: "",
+        expDate: "",
+        cvv: "",
+      };
+
+      setPaymentDetail(emptyPaymentDetail);
+
+      const emptyBookingDetail: BookingDetail = {
+        startDate: "",
+        endDate: "",
+        adultNumber: 0,
+        childrenNumber: 0,
+        codePromotion: "",
+        standardRoomNumber: 0,
+        deluxeRoomNumber: 0,
+        familyRoomNumber: 0,
+        suiteRoomNumber: 0,
+        executiveRoomNumber: 0,
+        packageOne: false,
+        packageTwo: false,
+        isCheckedPDPA: false,
+        bookingId: "",
+        showStandard: true,
+        showDeluxe: true,
+        showFamily: true,
+        showSuite: true,
+        showExecutive: true,
+        showOnlyBalcony: false,
+        showOnlyDinnerPlan: false,
+        showOnlyJacuzzi: false,
+        showBelowOption1: false,
+        showBelowOption2: false,
+        showBelowOption3: false,
+      };
+
+      setBookingDetail(emptyBookingDetail);
+      setCardType("");
+      setSpecialReq("");
+      console.log("new store");
+    };
+    handleNewBooking();
+  }, []);
 
   return (
     // Page Container

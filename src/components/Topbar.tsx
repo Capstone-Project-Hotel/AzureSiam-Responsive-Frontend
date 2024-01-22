@@ -109,83 +109,19 @@ export default function Topbar({ lng }: { lng: any }) {
     console.log("Currency changed to", currency);
   };
 
-  const handleNewBooking = () => {
-    const emptyGuest: Guest = {
-      firstName: "",
-      middleName: "",
-      lastName: "",
-      gender: "",
-      birthDate: "",
-      email: "",
-      phoneNumber: "",
-      country: "",
-      city: "",
-      zipCode: "",
-      address: "",
-      id: "",
-      idType: "",
-    };
-
-    setGuests([emptyGuest]);
-
-    const emptyPaymentDetail: PaymentDetail = {
-      cardHolderName: "",
-      cardNumber: "",
-      expDate: "",
-      cvv: "",
-    };
-
-    setPaymentDetail(emptyPaymentDetail);
-
-    const emptyBookingDetail: BookingDetail = {
-      startDate: "",
-      endDate: "",
-      adultNumber: 0,
-      childrenNumber: 0,
-      codePromotion: "",
-      standardRoomNumber: 0,
-      deluxeRoomNumber: 0,
-      familyRoomNumber: 0,
-      suiteRoomNumber: 0,
-      executiveRoomNumber: 0,
-      packageOne: false,
-      packageTwo: false,
-      isCheckedPDPA: false,
-      bookingId: "",
-      showStandard: true,
-      showDeluxe: true,
-      showFamily: true,
-      showSuite: true,
-      showExecutive: true,
-      showOnlyBalcony: false,
-      showOnlyDinnerPlan: false,
-      showOnlyJacuzzi: false,
-      showBelowOption1: false,
-      showBelowOption2: false,
-      showBelowOption3: false,
-    };
-
-    setBookingDetail(emptyBookingDetail);
-    setCardType("");
-    setSpecialReq("");
-
-    console.log("new store");
-    redirect("/");
-  };
-
   return (
     <div
       className="sticky top-0 flex flex-row h-[110px] w-full px-[4.16vw] items-center justify-between mobile:h-[50px]"
       style={{ backgroundColor: "#2A4D69", color: "white" }}
     >
       <div className="flex flex-row items-center">
-        <div
+        <Link
+          href={"/"}
           className="text-h2 mobile:text-h2-mobile cursor-pointer flex items-center"
-          onClick={handleNewBooking}
         >
           <BlockOutlined style={{ fontSize: "5vw", color: "white" }} />
           AzureSiam
-        </div>
+        </Link>
       </div>
       <div className="flex flex-row items-center">
         <div className="flex flex-row gap-4">
