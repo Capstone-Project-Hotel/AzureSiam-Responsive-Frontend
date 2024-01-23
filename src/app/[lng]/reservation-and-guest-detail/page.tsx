@@ -380,7 +380,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
                       name="cardNumber"
                       value={paymentDetail.cardNumber}
                       onChange={handlePaymentInputChange}
-                      className="ant-input css-dev-only-do-not-override-19hk5md w-full css-dev-only-do-not-override-19hk5md"
+                      className="input-n"
                     />
                   </div>
                 </div>
@@ -677,7 +677,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
               onChange={(value) => {
                 if (value) handleInputChange(index, value, "phoneNumber");
               }}
-              className="ant-input css-dev-only-do-not-override-19hk5md w-full css-dev-only-do-not-override-19hk5md"
+              className="input-n"
               placeholder={t("phone_number")}
             />
           </div>
