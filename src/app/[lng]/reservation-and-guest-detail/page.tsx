@@ -242,7 +242,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
                   unit=""
                   // unit={t("service_unit1")}
                   price={299}
-                  serviceImage="https://via.placeholder.com/240x150"
+                  serviceImage="https://cdn.discordapp.com/attachments/863762167340990494/1199360857935720530/image_32.png?ex=65c242d7&is=65afcdd7&hm=5fa7797322db7c00c453a1a1c6693ee3c5435fc146a53c4714ad50af0ca89006&"
                   t={t}
                 />
                 <AdditionalServiceCard
@@ -251,7 +251,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
                   unit=""
                   // unit={t("service_unit2")}
                   price={499}
-                  serviceImage="https://via.placeholder.com/240x150"
+                  serviceImage="https://cdn.discordapp.com/attachments/863762167340990494/1199360857692446740/cover.png?ex=65c242d7&is=65afcdd7&hm=b785dd4d923b8f7552f094c8abf6df8bb5f59e891d2b69d4afd479b2289a74be&"
                   t={t}
                 />
               </div>
@@ -638,6 +638,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
           </div>
           <DatePicker
             className="w-full"
+            format={"DD-MM-YYYY"}
             placeholder={t("birthdate_default")}
             onChange={handleBirthDateChange}
             defaultValue={guest.birthDate ? dayjs(guest.birthDate) : undefined}
