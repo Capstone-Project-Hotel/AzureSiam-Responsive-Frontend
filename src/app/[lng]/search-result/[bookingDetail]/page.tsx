@@ -14,6 +14,9 @@ import useStore from "@/hooks/useStore";
 import { useEffect, useState } from "react";
 import { useTranslation } from "@/app/i18n/client";
 
+import type { DatePicker, DatePickerProps } from "antd";
+// type RangePickerProps = GetProps<typeof DatePicker.RangePicker>;
+
 export default function SearchResultPage({
   params: { lng },
 }: {
@@ -85,7 +88,6 @@ export default function SearchResultPage({
       0
     )
   );
-  // console.log(startDateFormat);
 
   const generateDateList = (start: Date, end: Date): string[] => {
     let dateList: string[] = [];
@@ -97,10 +99,16 @@ export default function SearchResultPage({
     return dateList;
   };
 
-  // const [dateList, setDateList] = useState<string[]>([]);
   const generatedDates = generateDateList(startDateFormat, endDateFormat);
 
-  console.log(generatedDates);
+  // eslint-disable-next-line arrow-body-style
+  const disabledDate: DatePickerProps["disabledDate"] = (current) => {
+    const disabledDate = dayjs("25/01/2024", "DD/MM/YYYY");
+    return (
+      current &&
+      (current < dayjs().endOf("day") || current.isSame(disabledDate, "day"))
+    );
+  };
 
   const standardUnavailableDateList = [
     "25/01/2024",
@@ -114,6 +122,7 @@ export default function SearchResultPage({
     "29/01/2024",
   ];
   const familyUnavailableDateList = ["25/01/2024", "26/01/2024", "28/01/2024"];
+
   const suiteUnavailableDateList = ["25/01/2024", "26/01/2024", "28/01/2024"];
   const executiveUnavailableDateList = [
     "25/01/2024",
@@ -149,6 +158,7 @@ export default function SearchResultPage({
     isAvailable: generatedDates.every(
       (date) => !standardUnavailableDateList.includes(date)
     ),
+    disabledDate: disabledDate,
   };
 
   const mockDeluxeRoomInformation = {
@@ -180,6 +190,7 @@ export default function SearchResultPage({
     isAvailable: generatedDates.every(
       (date) => !deluxeUnavailableDateList.includes(date)
     ),
+    disabledDate: disabledDate,
   };
 
   const mockFamilyRoomInformation = {
@@ -212,6 +223,7 @@ export default function SearchResultPage({
     isAvailable: generatedDates.every(
       (date) => !familyUnavailableDateList.includes(date)
     ),
+    disabledDate: disabledDate,
   };
 
   const mockSuiteRoomInformation = {
@@ -245,6 +257,7 @@ export default function SearchResultPage({
     isAvailable: generatedDates.every(
       (date) => !suiteUnavailableDateList.includes(date)
     ),
+    disabledDate: disabledDate,
   };
 
   const mockExecutiveRoomInformation = {
@@ -279,6 +292,7 @@ export default function SearchResultPage({
     isAvailable: generatedDates.every(
       (date) => !executiveUnavailableDateList.includes(date)
     ),
+    disabledDate: disabledDate,
   };
 
   const mockRoomInformation = [
@@ -294,7 +308,7 @@ export default function SearchResultPage({
       <div className="z-50 w-[100vw] fixed top-0">
         <Topbar lng={lng} />
       </div>
-      <div className="mt-[10vh] mobile:mt-[50px]">
+      <div className="mt-[110px] mobile:mt-[50px]">
         <Filter t={t} />
       </div>
 
@@ -315,6 +329,7 @@ export default function SearchResultPage({
                 roomType={room.roomType}
                 t={t}
                 isAvailable={room.isAvailable}
+                disabledDate={room.disabledDate}
               />
             ) : null
           )}

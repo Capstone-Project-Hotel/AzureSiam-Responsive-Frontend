@@ -50,7 +50,7 @@ export default function AdditionalServiceCard(information: {
           {/* <span className="mobile:hidden">1 Meal / Day / Person</span> */}
         </p>
         <div className="flex flex-row w-full items-end justify-between mt-[1vw]">
-          <p className="text-body mobile:text-body-mobile">
+          <p className="text-body mobile:text-h4-mobile">
             THB {information.price}
             {/* THB 200 */}
           </p>
