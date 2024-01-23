@@ -308,7 +308,7 @@ export default function SearchResultPage({
       <div className="z-50 w-[100vw] fixed top-0">
         <Topbar lng={lng} />
       </div>
-      <div className="mt-[10vh] mobile:mt-[50px]">
+      <div className="mt-[110px] mobile:mt-[50px]">
         <Filter t={t} />
       </div>
 
