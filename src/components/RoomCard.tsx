@@ -73,7 +73,7 @@ export default function RoomCard({
 
   return (
     <div
-      className={`flex flex-col w-[58vw] rounded-lg [box-shadow:rgba(9,_30,_66,_0.25)_0px_4px_8px_-2px,_rgba(9,_30,_66,_0.08)_0px_0px_0px_1px] mobile:w-[80vw]
+      className={`flex flex-col w-[58vw] rounded-lg [box-shadow:0px_4px_4px_rgba(0,_0,_0,_0.25)] mobile:w-[80vw]
       `}
       style={{ backgroundColor: "#E7EFF6", color: "black" }}
     >
