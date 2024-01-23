@@ -40,10 +40,45 @@ const CustomDateRange: React.FC<CustomDateRangeProps> = ({
     maximumFractionDigits: 2,
   }).format(1200 * exchangeRate);
 
+  // Change Popular Dates Here
+  const popularDates = [
+    format(addDays(new Date(), 4), "dd/MM/yyyy"),
+    format(addDays(new Date(), 7), "dd/MM/yyyy"),
+    format(addDays(new Date(), 14), "dd/MM/yyyy"),
+  ];
+
   const customDayContent = (day: any) => {
     const disabledDatesFormat = disabledDates.map((d) => {
       return format(d, "dd/MM/yyyy");
     });
+
+    if (popularDates.includes(format(day, "dd/MM/yyyy"))) {
+      const lowestPrice = new Intl.NumberFormat("th-TH", {
+        style: "decimal",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(200 * exchangeRate);
+
+      return (
+        <div>
+          <span
+            className="cell-day"
+            style={{
+              position: "absolute",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+            }}
+          >
+            {!disabledDatesFormat.includes(format(day, "dd/MM/yyyy")) &&
+              (day.getTime() >= new Date().getTime() ||
+                format(day, "dd/MM/yyyy") ==
+                  format(new Date(), "dd/MM/yyyy")) &&
+              `${currency}${lowestPrice}`}
+          </span>
+          <span>{format(day, "d")}</span>
+        </div>
+      );
+    }
 
     return (
       <div>
