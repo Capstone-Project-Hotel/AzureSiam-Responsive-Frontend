@@ -122,7 +122,6 @@ export default function SearchResultPage({
     "29/01/2024",
   ];
   const familyUnavailableDateList = ["25/01/2024", "26/01/2024", "28/01/2024"];
-
   const suiteUnavailableDateList = ["25/01/2024", "26/01/2024", "28/01/2024"];
   const executiveUnavailableDateList = [
     "25/01/2024",
