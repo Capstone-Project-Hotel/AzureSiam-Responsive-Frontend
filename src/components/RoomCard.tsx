@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Divider, Button, DatePicker } from "antd";
+import { Divider, Button, DatePicker, DatePickerProps } from "antd";
 import useStore from "@/hooks/useStore";
 
 // import React from 'react';
@@ -25,6 +25,7 @@ export default function RoomCard({
   roomDetail,
   roomType,
   isAvailable,
+  disabledDate,
   t,
 }: {
   roomName: string;
@@ -37,6 +38,7 @@ export default function RoomCard({
   roomDetail: string;
   roomType: string;
   isAvailable: boolean;
+  disabledDate: DatePickerProps["disabledDate"];
   t: any;
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -113,7 +115,7 @@ export default function RoomCard({
       <Divider className="my-[2vh]" />
 
       {isAvailable ? (
-        <div className="flex justify-end mr-[2vw] mb-[2vh]">
+        <div className="flex justify-end mr-[2vw] mb-[2vh] items-center">
           <text className="text-h5 mr-[2vw] font-bold mobile:text-h5-mobile">
             {currency}{" "}
             {new Intl.NumberFormat("th-TH", {
@@ -143,6 +145,7 @@ export default function RoomCard({
                     dayjs(endDate, "DD-MM-YYYY"),
                   ]}
                   format={["DD-MM-YYYY"]}
+                  disabledDate={disabledDate}
                   style={{ width: "300px", height: "30px" }}
                   onChange={(RangePicker, dateStrings: [string, string]) => {
                     const [startDate, endDate] = dateStrings;

@@ -171,7 +171,7 @@ export default function Filter({ t }: { t: any }) {
                 {t("code")}
               </p>
               <Input
-                placeholder="example"
+                placeholder="eg. promo001"
                 style={{ width: "120px", height: "30px" }}
                 count={{
                   show: true,
