@@ -436,7 +436,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                       </li>
                       <li>
                         <AirIcon fontSize={isMobile ? "small" : "medium"} />
-                        {t("air_conditioned")}
+                        {t("air_conditioner")}
                       </li>
                       <li>
                         <WifiIcon fontSize={isMobile ? "small" : "medium"} />
@@ -522,7 +522,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                       </li>
                       <li>
                         <AirIcon fontSize={isMobile ? "small" : "medium"} />
-                        {t("air_conditioned")}
+                        {t("air_conditioner")}
                       </li>
                       <li>
                         <WifiIcon fontSize={isMobile ? "small" : "medium"} />
@@ -614,7 +614,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                       </li>
                       <li>
                         <AirIcon fontSize={isMobile ? "small" : "medium"} />
-                        {t("air_conditioned")}
+                        {t("air_conditioner")}
                       </li>
                       <li>
                         <WifiIcon fontSize={isMobile ? "small" : "medium"} />
@@ -706,7 +706,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                       </li>
                       <li>
                         <AirIcon fontSize={isMobile ? "small" : "medium"} />
-                        {t("air_conditioned")}
+                        {t("air_conditioner")}
                       </li>
                       <li>
                         <WifiIcon fontSize={isMobile ? "small" : "medium"} />
@@ -808,7 +808,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                       </li>
                       <li>
                         <AirIcon fontSize={isMobile ? "small" : "medium"} />
-                        {t("air_conditioned")}
+                        {t("air_conditioner")}
                       </li>
                       <li>
                         <WifiIcon fontSize={isMobile ? "small" : "medium"} />

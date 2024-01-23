@@ -140,7 +140,7 @@ export default function SummaryCard({
   const taxesAndFees = (subTotal / 100) * 7;
 
   return (
-    <div className="border-solid border-[2px] border-black rounded-md w-[400px] h-auto p-5 bg-background mobile:w-[80vw]">
+    <div className="[box-shadow:rgba(9,_30,_66,_0.25)_0px_4px_8px_-2px,_rgba(9,_30,_66,_0.08)_0px_0px_0px_1px] rounded-md w-[400px] h-auto p-5 bg-background mobile:w-[80vw]">
       <div className="border-b-2">
         <div className="flex mt-[10px] m-2">
           <CalendarOutlined style={{ fontSize: "30px", marginRight: "10px" }} />
