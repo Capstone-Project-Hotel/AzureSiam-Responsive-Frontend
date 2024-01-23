@@ -397,6 +397,8 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
                       className="w-full"
                       placeholder={t("expiration_date_default")}
                       onChange={handleExpDateChange}
+                      format={"MM/YYYY"}
+                      picker="month"
                       defaultValue={
                         paymentDetail.expDate
                           ? dayjs(paymentDetail.expDate)
@@ -410,7 +412,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
                     <div className="text-description mobile:text-h3-mobile">
                       {t("CVV")} <span className="text-red-600">*</span>
                     </div>
-                    <Input
+                    <Input.Password
                       className="w-full"
                       placeholder="CVV"
                       name="cvv"
@@ -544,7 +546,6 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
     );
     setCity(s);
   }, [countryCode]);
-  const [value, setValue] = useState();
 
   const handleChange = (e: any, fieldNames?: any) => {
     if (fieldNames) {

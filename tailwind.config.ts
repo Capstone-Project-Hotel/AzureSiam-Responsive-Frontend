@@ -31,8 +31,6 @@ const config: Config = {
         "h3-mobile": "12px",
         "h4-mobile": "10px",
         "h5-mobile": "8px",
-        "body-mobile": "6px",
-        "description-mobile": "4px",
       },
       screens: {
         mobile: { max: "431px" },
