@@ -40,58 +40,44 @@ const CustomDateRange: React.FC<CustomDateRangeProps> = ({
     maximumFractionDigits: 2,
   }).format(1200 * exchangeRate);
 
-  // Change Popular Dates Here
-  const popularDates = [
-    "02/02/2024",
-    "03/02/2024",
-    "09/02/2024",
-    "10/02/2024",
-    "16/02/2024",
-    "17/02/2024",
-    "23/02/2024",
-    "24/02/2024",
-    "01/03/2024",
-    "02/03/2024",
-    "08/03/2024",
-    "09/03/2024",
-    "15/03/2024",
-    "16/03/2024",
-    "22/03/2024",
-    "23/03/2024",
-    "29/03/2024",
-    "30/03/2024",
-    "05/04/2024",
-    "06/04/2024",
-    "12/04/2024",
-    "13/04/2024",
-    "19/04/2024",
-    "20/04/2024",
-    "26/04/2024",
-    "27/04/2024",
-    "03/05/2024",
-    "04/05/2024",
-    "10/05/2024",
-    "11/05/2024",
-    "17/05/2024",
-    "18/05/2024",
-    "24/05/2024",
-    "25/05/2024",
-    "31/05/2024",
-    "01/06/2024",
-  ];
-
   const customDayContent = (day: any) => {
     const disabledDatesFormat = disabledDates.map((d) => {
       return format(d, "dd/MM/yyyy");
     });
 
-    if (popularDates.includes(format(day, "dd/MM/yyyy"))) {
+    if (day.getDay() == 1 || day.getDay() == 5) {
+      const lowestPrice = new Intl.NumberFormat("th-TH", {
+        style: "decimal",
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(1000 * exchangeRate);
+      return (
+        <div>
+          <span
+            className="cell-day"
+            style={{
+              position: "absolute",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+            }}
+          >
+            {!disabledDatesFormat.includes(format(day, "dd/MM/yyyy")) &&
+              (day.getTime() >= new Date().getTime() ||
+                format(day, "dd/MM/yyyy") ==
+                  format(new Date(), "dd/MM/yyyy")) &&
+              `${currency}${lowestPrice}`}
+          </span>
+          <span>{format(day, "d")}</span>
+        </div>
+      );
+    }
+
+    if (day.getDay() == 6) {
       const lowestPrice = new Intl.NumberFormat("th-TH", {
         style: "decimal",
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
       }).format(1400 * exchangeRate);
-
       return (
         <div>
           <span
