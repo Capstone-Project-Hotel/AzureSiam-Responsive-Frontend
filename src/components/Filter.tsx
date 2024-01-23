@@ -15,43 +15,7 @@ dayjs().format();
 import { useRouter } from "next/navigation";
 import type { CheckboxProps } from "antd";
 import { runes } from "runes2";
-export default function Filter({
-  t,
-}: // showStandard,
-// showDeluxe,
-// showFamily,
-// showSuite,
-// showExecutive,
-// showOnlyBalcony,
-// showOnlyDinnerPlan,
-// showOnlyJacuzzi,
-// setShowStandard,
-// setShowDeluxe,
-// setShowFamily,
-// setShowSuite,
-// setShowExectutive,
-// setShowOnlyBalcony,
-// setShowOnlyDinnerPlan,
-// setShowOnlyJacuzzi,
-{
-  t: any;
-  // showStandard: boolean;
-  // showDeluxe: boolean;
-  // showFamily: boolean;
-  // showSuite: boolean;
-  // showExecutive: boolean;
-  // showOnlyBalcony: boolean;
-  // showOnlyDinnerPlan: boolean;
-  // showOnlyJacuzzi: boolean;
-  // setShowStandard: Dispatch<SetStateAction<boolean>>;
-  // setShowDeluxe: Dispatch<SetStateAction<boolean>>;
-  // setShowFamily: Dispatch<SetStateAction<boolean>>;
-  // setShowSuite: Dispatch<SetStateAction<boolean>>;
-  // setShowExectutive: Dispatch<SetStateAction<boolean>>;
-  // setShowOnlyBalcony: Dispatch<SetStateAction<boolean>>;
-  // setShowOnlyDinnerPlan: Dispatch<SetStateAction<boolean>>;
-  // setShowOnlyJacuzzi: Dispatch<SetStateAction<boolean>>;
-}) {
+export default function Filter({ t }: { t: any }) {
   const { RangePicker } = DatePicker;
   const CheckboxGroup = Checkbox.Group;
 

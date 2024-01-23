@@ -1,7 +1,18 @@
 "use client";
-import React, { useState } from "react";
-import { Divider, Button } from "antd";
+import React from "react";
+import { Divider, Button, DatePicker } from "antd";
 import useStore from "@/hooks/useStore";
+
+// import React from 'react';
+type RangeValue = Parameters<
+  NonNullable<React.ComponentProps<typeof DatePicker.RangePicker>["onChange"]>
+>[0];
+
+import dayjs, { Dayjs } from "dayjs";
+import { useState } from "react";
+dayjs().format();
+
+import { useRouter } from "next/navigation";
 
 export default function RoomCard({
   roomName,
@@ -13,6 +24,7 @@ export default function RoomCard({
   roomAmenities,
   roomDetail,
   roomType,
+  isAvailable,
   t,
 }: {
   roomName: string;
@@ -24,12 +36,19 @@ export default function RoomCard({
   roomAmenities: string[];
   roomDetail: string;
   roomType: string;
+  isAvailable: boolean;
   t: any;
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [openCalendar, setOpenCalendar] = useState(false);
+
+  const { RangePicker } = DatePicker;
+  const router = useRouter();
 
   const { bookingDetail, setBookingDetail, exchangeRate, currency } =
     useStore();
+  const [startDate, setStartDate] = useState(bookingDetail.startDate);
+  const [endDate, setEndDate] = useState(bookingDetail.endDate);
 
   const toggleExpansion = () => {
     setIsExpanded(!isExpanded);
@@ -46,6 +65,10 @@ export default function RoomCard({
 
     // Set the updated bookingDetail
     setBookingDetail(updatedBookingDetail);
+  };
+
+  const handleFindAvailableDate = (roomType: string) => {
+    throw new Error("Function not implemented.");
   };
 
   return (
@@ -65,11 +88,14 @@ export default function RoomCard({
           {t("maximum_guest")}: {maxGuest} <br />
           {t("size")}: {roomSize} m&sup2; <br />
           {t("bed_type")}: {bedType} <br />
-          {t("amenities")}: {roomAmenities.map((n) => " • " + n)} <br />
+          <div className="text-body mt-[1vh] mobile:text-h5-mobile">
+            {t("amenities")}: {roomAmenities.map((n) => " • " + n)}
+          </div>{" "}
+          <br />
           {isExpanded && (
-            <div className="mt-[1vw]">
+            <div className="mt-[1vh]">
               {/* More detailed information */}
-              <text className="text-h5 ml-[2vw] mr-[2vw]  mobile:text-h5-mobile">
+              <text className="text-body ml-[2vw] mr-[2vw]  mobile:text-h5-mobile">
                 {roomDetail}
               </text>
             </div>
@@ -82,22 +108,86 @@ export default function RoomCard({
           >
             {isExpanded ? t("show_less") : t("show_more")}
           </button>
-          <Divider />
-          <div className="float-right">
-            <text className="text-h5 mr-[2vw] font-bold mobile:text-h5-mobile">
-              {currency}{" "}
-              {new Intl.NumberFormat("th-TH", {
-                style: "decimal",
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              }).format(roomPrice * exchangeRate)}
-            </text>
-            <Button type="primary" onClick={() => handleBookNowClick(roomType)}>
-              {t("book_now")}
-            </Button>
-          </div>
         </text>
       </div>
+      <Divider className="my-[2vh]" />
+
+      {isAvailable ? (
+        <div className="flex justify-end mr-[2vw] mb-[2vh]">
+          <text className="text-h5 mr-[2vw] font-bold mobile:text-h5-mobile">
+            {currency}{" "}
+            {new Intl.NumberFormat("th-TH", {
+              style: "decimal",
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            }).format(roomPrice * exchangeRate)}
+          </text>
+          <Button type="primary" onClick={() => handleBookNowClick(roomType)}>
+            {t("book_now")}
+          </Button>
+        </div>
+      ) : (
+        <div className="flex flex-col items-center gap-y-[1vh] mb-[2vh]">
+          <div className="text-body mobile:text-h5-mobile">
+            <b>
+              {bookingDetail.startDate} - {bookingDetail.endDate}
+            </b>{" "}
+            are unavailable
+          </div>
+          {openCalendar ? (
+            <div>
+              <div className="w-[50vw] flex flex-col items-center">
+                <RangePicker
+                  value={[
+                    dayjs(startDate, "DD-MM-YYYY"),
+                    dayjs(endDate, "DD-MM-YYYY"),
+                  ]}
+                  format={["DD-MM-YYYY"]}
+                  style={{ width: "300px", height: "30px" }}
+                  onChange={(RangePicker, dateStrings: [string, string]) => {
+                    const [startDate, endDate] = dateStrings;
+                    if (startDate === "" && endDate === "") {
+                      console.log("keep the same");
+                    } else {
+                      setStartDate(startDate);
+                      setEndDate(endDate);
+                    }
+                  }}
+                />
+                <Divider className="my-[2vh]" />
+              </div>
+              <Button
+                type="primary"
+                style={{ width: "100px", height: "30px" }}
+                onClick={() => {
+                  if (!(startDate === "") || !(endDate === "")) {
+                    const updatedBookingDetail = {
+                      ...bookingDetail,
+                      startDate,
+                      endDate,
+                    };
+                    setBookingDetail(updatedBookingDetail);
+                    router.replace(
+                      `/search-result/startDate=${startDate}&endDate=${endDate}&adults=${bookingDetail.adultNumber}&childrens=${bookingDetail.childrenNumber}`
+                    );
+                  }
+                }}
+                className="float-right"
+              >
+                Modify
+              </Button>
+            </div>
+          ) : (
+            <Button
+              type="primary"
+              style={{ width: "200px", height: "30px" }}
+              onClick={() => setOpenCalendar(true)}
+            >
+              Find Available Date
+            </Button>
+          )}
+        </div>
+      )}
     </div>
   );
 }
