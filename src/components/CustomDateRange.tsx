@@ -42,9 +42,42 @@ const CustomDateRange: React.FC<CustomDateRangeProps> = ({
 
   // Change Popular Dates Here
   const popularDates = [
-    format(addDays(new Date(), 4), "dd/MM/yyyy"),
-    format(addDays(new Date(), 7), "dd/MM/yyyy"),
-    format(addDays(new Date(), 14), "dd/MM/yyyy"),
+    "02/02/2024",
+    "03/02/2024",
+    "09/02/2024",
+    "10/02/2024",
+    "16/02/2024",
+    "17/02/2024",
+    "23/02/2024",
+    "24/02/2024",
+    "01/03/2024",
+    "02/03/2024",
+    "08/03/2024",
+    "09/03/2024",
+    "15/03/2024",
+    "16/03/2024",
+    "22/03/2024",
+    "23/03/2024",
+    "29/03/2024",
+    "30/03/2024",
+    "05/04/2024",
+    "06/04/2024",
+    "12/04/2024",
+    "13/04/2024",
+    "19/04/2024",
+    "20/04/2024",
+    "26/04/2024",
+    "27/04/2024",
+    "03/05/2024",
+    "04/05/2024",
+    "10/05/2024",
+    "11/05/2024",
+    "17/05/2024",
+    "18/05/2024",
+    "24/05/2024",
+    "25/05/2024",
+    "31/05/2024",
+    "01/06/2024",
   ];
 
   const customDayContent = (day: any) => {
@@ -57,7 +90,7 @@ const CustomDateRange: React.FC<CustomDateRangeProps> = ({
         style: "decimal",
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
-      }).format(200 * exchangeRate);
+      }).format(1400 * exchangeRate);
 
       return (
         <div>
