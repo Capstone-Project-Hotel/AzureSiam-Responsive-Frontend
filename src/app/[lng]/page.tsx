@@ -67,7 +67,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
     slidesToShow: 3,
     slidesToScroll: 3,
     arrows: true,
-    swipe: false,
+    swipe: true,
     responsive: [
       {
         breakpoint: 431,
@@ -957,7 +957,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
               {t("gallery")}
             </div>
             <div className="w-[100%]">
-              <Carousel dotPosition="right" autoplay>
+              <Carousel dotPosition="bottom" autoplay>
                 <div>
                   <ContentStyle src="https://cdn.discordapp.com/attachments/457166097230069773/1186565137671409726/image_28.jpg?ex=6593b5e6&is=658140e6&hm=c439cc34a78e17e8d3f1c886941ad3dd92f40b5e1a9df0f87aef5dc8b6d49517&" />
                 </div>

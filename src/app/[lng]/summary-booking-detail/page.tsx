@@ -69,7 +69,7 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
               <Link href="/reservation-and-guest-detail">
                 <LeftOutlined className="text-[36px] mobile:text-[25px]" />
               </Link>
-              <div className="text-h2 mobile:text-h2-mobile">{t("modify")}</div>
+              <div className="text-h4 mobile:text-h4-mobile">{t("modify")}</div>
             </div>
             {/* Guest Detail Container */}
             <div>

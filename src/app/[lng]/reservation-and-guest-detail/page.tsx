@@ -223,7 +223,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
                 <LeftOutlined className="text-[36px] mobile:text-[25px]" />
               </button>
 
-              <div className="text-h2 mobile:text-h2-mobile">
+              <div className="text-h4 mobile:text-h4-mobile">
                 {/* Re-select your room for booking */}
                 {t("reselect_label")}
               </div>
@@ -231,6 +231,9 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
 
             {/* Additional Services Container */}
             <div>
+              {/* <div className="text-h1 mobile:text-h1-mobile font-bold">
+                Fill Your Reservation Detail
+              </div> */}
               <div className="text-h2 mobile:text-h2-mobile font-bold">
                 {/* Additional Services */}
                 {t("additional_label")}
