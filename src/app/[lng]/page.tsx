@@ -271,11 +271,6 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                 setStartDate(dates.startDate);
                 setEndDate(dates.endDate);
               }}
-              // disabledDates={[
-              //   addDays(new Date(), 3),
-              //   addDays(new Date(), 7),
-              //   addDays(new Date(), 15),
-              // ]}
               disabledDates={disabledDates}
             />
           </div>

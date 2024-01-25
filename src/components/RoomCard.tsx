@@ -134,7 +134,7 @@ export default function RoomCard({
             <b>
               {bookingDetail.startDate} - {bookingDetail.endDate}
             </b>{" "}
-            are unavailable
+            {t("are_unavailable")}
           </div>
           {openCalendar ? (
             <div>
@@ -177,7 +177,7 @@ export default function RoomCard({
                 }}
                 className="float-right"
               >
-                Modify
+                {t("modify2")}
               </Button>
             </div>
           ) : (
@@ -186,7 +186,7 @@ export default function RoomCard({
               style={{ width: "200px", height: "30px" }}
               onClick={() => setOpenCalendar(true)}
             >
-              Find Available Date
+              {t("find_available_date")}
             </Button>
           )}
         </div>

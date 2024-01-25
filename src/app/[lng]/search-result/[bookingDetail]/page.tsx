@@ -101,15 +101,6 @@ export default function SearchResultPage({
 
   const generatedDates = generateDateList(startDateFormat, endDateFormat);
 
-  // eslint-disable-next-line arrow-body-style
-  const disabledDate: DatePickerProps["disabledDate"] = (current) => {
-    const disabledDate = dayjs("25/01/2024", "DD/MM/YYYY");
-    return (
-      current &&
-      (current < dayjs().endOf("day") || current.isSame(disabledDate, "day"))
-    );
-  };
-
   const standardUnavailableDateList = [
     "25/01/2024",
     "26/01/2024",
@@ -128,6 +119,62 @@ export default function SearchResultPage({
     "26/01/2024",
     "28/01/2024",
   ];
+
+  // eslint-disable-next-line arrow-body-style
+  const standardDisabledDate: DatePickerProps["disabledDate"] = (current) => {
+    const disabledDates = standardUnavailableDateList.map((dateString) =>
+      dayjs(dateString, "DD/MM/YYYY")
+    );
+    return (
+      current &&
+      (current < dayjs().endOf("day") ||
+        disabledDates.some((date) => current.isSame(date, "day")))
+    );
+  };
+
+  const deluxeDisabledDate: DatePickerProps["disabledDate"] = (current) => {
+    const disabledDates = deluxeUnavailableDateList.map((dateString) =>
+      dayjs(dateString, "DD/MM/YYYY")
+    );
+    return (
+      current &&
+      (current < dayjs().endOf("day") ||
+        disabledDates.some((date) => current.isSame(date, "day")))
+    );
+  };
+
+  const familyDisabledDate: DatePickerProps["disabledDate"] = (current) => {
+    const disabledDates = familyUnavailableDateList.map((dateString) =>
+      dayjs(dateString, "DD/MM/YYYY")
+    );
+    return (
+      current &&
+      (current < dayjs().endOf("day") ||
+        disabledDates.some((date) => current.isSame(date, "day")))
+    );
+  };
+
+  const suiteDisabledDate: DatePickerProps["disabledDate"] = (current) => {
+    const disabledDates = suiteUnavailableDateList.map((dateString) =>
+      dayjs(dateString, "DD/MM/YYYY")
+    );
+    return (
+      current &&
+      (current < dayjs().endOf("day") ||
+        disabledDates.some((date) => current.isSame(date, "day")))
+    );
+  };
+
+  const executiveDisabledDate: DatePickerProps["disabledDate"] = (current) => {
+    const disabledDates = executiveUnavailableDateList.map((dateString) =>
+      dayjs(dateString, "DD/MM/YYYY")
+    );
+    return (
+      current &&
+      (current < dayjs().endOf("day") ||
+        disabledDates.some((date) => current.isSame(date, "day")))
+    );
+  };
 
   const mockStandardRoomInformation = {
     roomName: t("std_title"),
@@ -157,7 +204,7 @@ export default function SearchResultPage({
     isAvailable: generatedDates.every(
       (date) => !standardUnavailableDateList.includes(date)
     ),
-    disabledDate: disabledDate,
+    disabledDate: standardDisabledDate,
   };
 
   const mockDeluxeRoomInformation = {
@@ -189,7 +236,7 @@ export default function SearchResultPage({
     isAvailable: generatedDates.every(
       (date) => !deluxeUnavailableDateList.includes(date)
     ),
-    disabledDate: disabledDate,
+    disabledDate: deluxeDisabledDate,
   };
 
   const mockFamilyRoomInformation = {
@@ -222,7 +269,7 @@ export default function SearchResultPage({
     isAvailable: generatedDates.every(
       (date) => !familyUnavailableDateList.includes(date)
     ),
-    disabledDate: disabledDate,
+    disabledDate: familyDisabledDate,
   };
 
   const mockSuiteRoomInformation = {
@@ -256,7 +303,7 @@ export default function SearchResultPage({
     isAvailable: generatedDates.every(
       (date) => !suiteUnavailableDateList.includes(date)
     ),
-    disabledDate: disabledDate,
+    disabledDate: suiteDisabledDate,
   };
 
   const mockExecutiveRoomInformation = {
@@ -291,7 +338,7 @@ export default function SearchResultPage({
     isAvailable: generatedDates.every(
       (date) => !executiveUnavailableDateList.includes(date)
     ),
-    disabledDate: disabledDate,
+    disabledDate: executiveDisabledDate,
   };
 
   const mockRoomInformation = [
