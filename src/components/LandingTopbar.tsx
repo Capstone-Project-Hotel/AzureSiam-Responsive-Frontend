@@ -206,7 +206,7 @@ export default function LandingTopbar({
             color: "#2A4D69",
             marginLeft: "0.75vw",
             backgroundColor: "white",
-            borderRadius: "8px",
+            borderRadius: "0.65vw",
           }}
           onClick={handleBookNowClick}
         >
