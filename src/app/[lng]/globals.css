@@ -181,3 +181,7 @@ li {
 .input-n::placeholder {
   text-overflow: ellipsis;
 }
+
+.ant-picker-time-panel {
+  display: none !important;
+}
