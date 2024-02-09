@@ -1,3 +1,4 @@
+"use client";
 import { BlockOutlined } from "@ant-design/icons";
 import Link from "next/link";
 
@@ -27,13 +28,13 @@ export default function Footer({ t }: { t: any }) {
           </p>
         </div>
       </div>
-      <Link href="/contact-us">
-        <p className="text-h5  font-regular ml-[2.08vw] mobile:text-h3-mobile">
+      <Link href={"/contact-us"}>
+        <div className="text-h5  font-regular ml-[2.08vw] mobile:text-h3-mobile">
           <br />
           <br />
           <br />
           {t("contact_us_label")}
-        </p>
+        </div>
       </Link>
     </div>
   );
