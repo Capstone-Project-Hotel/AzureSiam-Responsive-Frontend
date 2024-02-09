@@ -28,13 +28,11 @@ const Footer = ({ t }: { t: any }) => {
           </p>
         </div>
       </div>
-      <Link href={"/contact-us"}>
-        <div className="text-h5  font-regular ml-[2.08vw] mobile:text-h3-mobile">
-          <br />
-          <br />
-          <br />
-          {t("contact_us_label")}
-        </div>
+      <Link
+        href={"/contact-us"}
+        className="text-h5  font-regular ml-[2.08vw] mobile:text-h3-mobile"
+      >
+        {t("contact_us_label")}
       </Link>
     </div>
   );
