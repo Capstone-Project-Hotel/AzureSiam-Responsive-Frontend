@@ -30,13 +30,14 @@ const Footer = ({ t }: { t: any }) => {
           </p>
         </div>
       </div>
-      <Link href={"/contact-us"} prefetch={false}>
-        <div className="text-h5  font-regular ml-[2.08vw] mobile:text-h3-mobile">
+
+      <Link href={"/contact-us"} passHref legacyBehavior>
+        <button className="text-h5  font-regular ml-[2.08vw] mobile:text-h3-mobile">
           <br />
           <br />
           <br />
           {t("contact_us_label")}
-        </div>
+        </button>
       </Link>
     </div>
   );
