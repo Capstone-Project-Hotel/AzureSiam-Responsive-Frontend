@@ -32,9 +32,6 @@ const Footer = ({ t }: { t: any }) => {
       </div>
       <button onClick={() => router.push("/contact-us")}>
         <div className="text-h5  font-regular ml-[2.08vw] mobile:text-h3-mobile">
-          <br />
-          <br />
-          <br />
           {t("contact_us_label")}
         </div>
       </button>
