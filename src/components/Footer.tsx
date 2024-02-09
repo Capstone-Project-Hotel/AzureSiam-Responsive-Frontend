@@ -2,7 +2,7 @@
 import { BlockOutlined } from "@ant-design/icons";
 import Link from "next/link";
 
-export default function Footer({ t }: { t: any }) {
+const Footer = ({ t }: { t: any }) => {
   return (
     <div
       className="flex flex-row w-full h-[170px] px-[4.16vw] items-center justify-between"
@@ -38,4 +38,6 @@ export default function Footer({ t }: { t: any }) {
       </Link>
     </div>
   );
-}
+};
+
+export default Footer;

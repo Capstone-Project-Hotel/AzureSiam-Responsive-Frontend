@@ -1,16 +1,17 @@
+"use client";
 import Image from "next/image";
 import Topbar from "@/components/Topbar";
 import Footer from "@/components/Footer";
 import { PhoneOutlined, MailOutlined } from "@ant-design/icons";
 import LandingTopbar from "@/components/LandingTopbar";
-import { useTranslation } from "@/app/i18n";
+import { useTranslation } from "@/app/i18n/client";
 
-export default async function Home({
+export default function ContactUs({
   params: { lng },
 }: {
   params: { lng: any };
 }) {
-  const { t } = await useTranslation(lng);
+  const { t } = useTranslation(lng);
 
   const iconStyle = { color: "#2A4D69" };
 
@@ -34,7 +35,9 @@ export default async function Home({
           <div className="flex flex-row items-center mr-[2vw]">
             <PhoneOutlined style={iconStyle} />
             <div className="ml-[1vw]">
-              <p className="text-h4 mobile:text-h4-mobile">{t("hotel_phone")}</p>
+              <p className="text-h4 mobile:text-h4-mobile">
+                {t("hotel_phone")}
+              </p>
             </div>
           </div>
           <div className="flex flex-row items-center">
@@ -54,7 +57,7 @@ export default async function Home({
           />
         </div>
       </div>
-      <Footer t={t}/>
+      <Footer t={t} />
     </main>
   );
 }
