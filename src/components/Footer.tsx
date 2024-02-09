@@ -1,8 +1,10 @@
 "use client";
 import { BlockOutlined } from "@ant-design/icons";
-import Link from "next/link";
+// import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const Footer = ({ t }: { t: any }) => {
+  const router = useRouter();
   return (
     <div
       className="flex flex-row w-full h-[170px] px-[4.16vw] items-center justify-between"
@@ -28,14 +30,14 @@ const Footer = ({ t }: { t: any }) => {
           </p>
         </div>
       </div>
-      <Link href={"/contact-us"}>
+      <button onClick={() => router.push("/contact-us")}>
         <div className="text-h5  font-regular ml-[2.08vw] mobile:text-h3-mobile">
           <br />
           <br />
           <br />
           {t("contact_us_label")}
         </div>
-      </Link>
+      </button>
     </div>
   );
 };
