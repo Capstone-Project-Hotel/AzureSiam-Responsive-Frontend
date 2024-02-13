@@ -151,7 +151,6 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
       "email",
       "phoneNumber",
       "country",
-      "city",
       "zipCode",
       "address",
       "id",
