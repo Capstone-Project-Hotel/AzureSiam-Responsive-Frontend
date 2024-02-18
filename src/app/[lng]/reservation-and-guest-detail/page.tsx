@@ -711,7 +711,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         {/* City */}
         <div className="w-[212px]">
           <div className="text-description mobile:text-h3-mobile">
-            {t("city")} <span className="text-red-600">*</span>
+            {t("city")}
           </div>
           <Select
             className="w-full"
