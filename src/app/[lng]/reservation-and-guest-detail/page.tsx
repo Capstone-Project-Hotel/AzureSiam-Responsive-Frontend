@@ -113,7 +113,9 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
   const router = useRouter();
 
   const handleReselect = () => {
-    router.back();
+    router.replace(
+      `/${lng}/search-result/startDate=${bookingDetail.startDate}&endDate=${bookingDetail.endDate}&adults=${bookingDetail.adultNumber}&childrens=${bookingDetail.childrenNumber}`
+    );
   };
 
   const handleInputChange = (index: number, value: string, name: string) => {
@@ -506,6 +508,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
               page="reservation-and-guest-detail"
               isDisabledConfirm={isDisabledConfirm}
               t={t}
+              lng={lng}
             />
           </div>
         </div>

@@ -223,10 +223,10 @@ export default function SearchResultPage({
 
   return (
     <div>
-      <div className="z-50 w-[100vw] fixed top-0">
+      <div className="z-50 w-[100vw] sticky top-0">
         <Topbar lng={lng} />
       </div>
-      <div className="mt-[10vh] mobile:mt-[50px]">
+      <div>
         <Filter
           t={t}
           // showStandard
@@ -269,7 +269,12 @@ export default function SearchResultPage({
           )}
         </div>
         <div className="sticky mobile:static ml-20 mt-10 mobile:mt-10 mobile:ml-10">
-          <SummaryCard page="search-result" isDisabledConfirm={false} t={t} />
+          <SummaryCard
+            page="search-result"
+            isDisabledConfirm={false}
+            t={t}
+            lng={lng}
+          />
         </div>
       </div>
 
