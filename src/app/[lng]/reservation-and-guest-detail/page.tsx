@@ -495,7 +495,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
             </Modal>
           </div>
           {/* Right Container */}
-          <div className="flex flex-col w-[509px] mobile:w-[330px] sticky mobile:right-0 top-[190px] mobile:static items-center">
+          <div className="flex flex-col w-[509px] mobile:w-[330px] sticky mobile:right-0 top-[20vh] mobile:static items-center">
             <SummaryCard
               page="reservation-and-guest-detail"
               isDisabledConfirm={isDisabledConfirm}

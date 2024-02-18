@@ -351,7 +351,7 @@ export default function SearchResultPage({
 
   return (
     <div>
-      <div className="z-50 w-[100vw] sticky top-0">
+      <div className="z-50 sticky top-0">
         <Topbar lng={lng} />
       </div>
       <div>
@@ -359,7 +359,7 @@ export default function SearchResultPage({
       </div>
 
       <div className="flex items-start mobile:flex-col">
-        <div className="flex flex-col space-y-10 mt-[5vh] w-[100vw] px-[4vw] items-center">
+        <div className="flex flex-col space-y-10 pt-[5vh] w-[65vw] px-[4vw] items-center">
           {mockRoomInformation.map((room, index) =>
             room.show === true ? (
               <RoomCard
@@ -380,7 +380,7 @@ export default function SearchResultPage({
             ) : null
           )}
         </div>
-        <div className="sticky mobile:static ml-20 mt-10 mobile:mt-10 mobile:ml-10">
+        <div className="flex justify-center sticky top-[15vh] mobile:static pt-[5vh] w-[35vw] mobile:mt-10 mobile:ml-10">
           <SummaryCard
             page="search-result"
             isDisabledConfirm={false}
@@ -390,7 +390,7 @@ export default function SearchResultPage({
         </div>
       </div>
 
-      <div className="mt-[10vh]">
+      <div className="pt-[10vh]">
         <Footer t={t} />
       </div>
     </div>
