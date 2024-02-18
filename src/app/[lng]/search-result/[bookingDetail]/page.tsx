@@ -359,7 +359,7 @@ export default function SearchResultPage({
       </div>
 
       <div className="flex items-start mobile:flex-col">
-        <div className="flex flex-col space-y-10 pt-[5vh] w-[65vw] px-[4vw] items-center">
+        <div className="flex flex-col space-y-10 pt-[5vh] w-[65vw] mobile:w-[100vw] px-[4vw] items-center">
           {mockRoomInformation.map((room, index) =>
             room.show === true ? (
               <RoomCard
@@ -380,7 +380,7 @@ export default function SearchResultPage({
             ) : null
           )}
         </div>
-        <div className="flex justify-center sticky top-[15vh] mobile:static pt-[5vh] w-[35vw] mobile:mt-10 mobile:ml-10">
+        <div className="flex justify-center sticky top-[15vh] mobile:static pt-[5vh] w-[35vw] mobile:w-[100vw]">
           <SummaryCard
             page="search-result"
             isDisabledConfirm={false}
