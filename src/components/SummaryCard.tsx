@@ -10,6 +10,7 @@ import "primeicons/primeicons.css";
 import useStore from "@/hooks/useStore";
 import { InputNumber, Button } from "antd";
 import Link from "next/link";
+import { AntAnchor } from "antd/es/anchor/Anchor";
 
 const RoomNumberInput = ({
   roomType,
@@ -59,10 +60,12 @@ export default function SummaryCard({
   page,
   isDisabledConfirm,
   t,
+  lng,
 }: {
   page: string;
   isDisabledConfirm: boolean;
   t: any;
+  lng: any;
 }) {
   const { bookingDetail, setBookingDetail, exchangeRate, currency } =
     useStore();
@@ -909,7 +912,7 @@ export default function SummaryCard({
       </div>
       <div className="flex justify-center items-center">
         {page === "search-result" ? (
-          <Link href={"/reservation-and-guest-detail"}>
+          <Link href={`/${lng}/reservation-and-guest-detail`}>
             <Button
               className={` ${
                 bookingDetail.standardRoomNumber +
@@ -935,7 +938,7 @@ export default function SummaryCard({
             </Button>
           </Link>
         ) : page === "reservation-and-guest-detail" ? (
-          <Link href={"/summary-booking-detail"}>
+          <Link href={`/${lng}/summary-booking-detail`}>
             <Button
               className={` ${
                 isDisabledConfirm || !bookingDetail.isCheckedPDPA
@@ -949,7 +952,7 @@ export default function SummaryCard({
             </Button>
           </Link>
         ) : page === "summary-booking-detail" ? (
-          <Link href={"/booking-confirmation"}>
+          <Link href={`/${lng}/booking-confirmation`}>
             <Button style={{ background: "#2A4D69", color: "white" }}>
               <div>{t("check_out")}</div>
             </Button>

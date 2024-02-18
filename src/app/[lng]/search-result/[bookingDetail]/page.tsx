@@ -351,7 +351,7 @@ export default function SearchResultPage({
 
   return (
     <div>
-      <div className="z-50 w-[100vw] fixed top-0">
+      <div className="z-50 w-[100vw] sticky top-0">
         <Topbar lng={lng} />
       </div>
       <div className="mt-[110px] mobile:mt-[50px]">
@@ -380,8 +380,13 @@ export default function SearchResultPage({
             ) : null
           )}
         </div>
-        <div className="flex sticky mobile:static mt-[5vh] w-[100vw] justify-center">
-          <SummaryCard page="search-result" isDisabledConfirm={false} t={t} />
+        <div className="sticky mobile:static ml-20 mt-10 mobile:mt-10 mobile:ml-10">
+          <SummaryCard
+            page="search-result"
+            isDisabledConfirm={false}
+            t={t}
+            lng={lng}
+          />
         </div>
       </div>
 
