@@ -421,6 +421,7 @@ const ReservationAndGuestDetail: React.FC<ReservationAndGuestDetailProps> = ({
                       name="cvv"
                       value={paymentDetail.cvv}
                       onChange={handlePaymentInputChange}
+                      maxLength={3}
                     />
                   </div>
                 </div>
