@@ -901,7 +901,7 @@ export default function SummaryCard({
           </div>
         </div>
       </div>
-      <div className="text-center text-h2 font-bold my-[20px] mobile:text-h2-mobile mobile:mt-[10px]">
+      <div className="text-center text-h2 font-bold py-5 mobile:text-h2-mobile mobile:mt-[20px] mobile:py-2">
         {currency}{" "}
         {new Intl.NumberFormat("th-TH", {
           style: "decimal",

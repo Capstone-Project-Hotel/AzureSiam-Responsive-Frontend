@@ -62,7 +62,7 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
       </div>
       <div className="flex justify-center mt-[100px]">
         {/* Main Container */}
-        <div className="w-[1440px] mobile:w-[330px] flex items-start flex-wrap gap-10 py-10 mobile:py-1 px-10 mobile:px-0">
+        <div className="w-[1440px] mobile:w-[330px] flex items-start flex-wrap gap-5 py-10 mobile:py-1 px-10 mobile:px-0">
           {/* Left Container */}
           <div className="w-[729px] mobile:w-[330px] flex flex-col gap-10 mt-10 mobile:mt-0">
             <div className="flex items-center gap-5">
@@ -237,7 +237,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
       {/* Row 3 */}
       <div className="flex flex-wrap mobile:gap-2">
         {/* Email */}
-        <div className="w-[243px]">
+        <div className="w-[486px]">
           <div className="text-h5 mobile:text-h4-mobile">
             {t("email")} : {guest.email}
           </div>
