@@ -369,11 +369,12 @@ export default function SearchResultPage({
                 maxGuest={room.maxGuest}
                 bedType={room.bedType}
                 roomSize={room.roomSize}
-                roomPrice={room.roomPrice * reducedRate}
+                roomPrice={room.roomPrice}
                 roomImage={room.roomImage}
                 roomAmenities={room.roomAmenities}
                 roomDetail={room.roomDetail}
                 roomType={room.roomType}
+                reducedRate={reducedRate}
                 t={t}
                 isAvailable={room.isAvailable}
                 disabledDate={room.disabledDate}
