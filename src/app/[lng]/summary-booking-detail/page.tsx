@@ -130,11 +130,6 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
                 {/* Row 2 */}
                 <div className="flex flex-wrap justify-between">
                   {/* Exp Date */}
-                  {/* <div className="w-[343px]">
-                    <div className="text-h5 mobile:text-h4-mobile">
-                      {t("expiration_date")} : {paymentDetail.expDate}
-                    </div>
-                  </div> */}
                   <Field
                     fieldName={t("expiration_date")}
                     value={paymentDetail.expDate}
@@ -213,19 +208,9 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
       {/* Row 2 */}
       <div className="flex flex-wrap">
         {/* Gender */}
-        {/* <div className="w-[243px] flex-1">
-          <div className="text-h5 mobile:text-h4-mobile">
-            {t("gender")} : {t(guest.gender)}
-          </div>
-        </div> */}
         <Field fieldName={t("gender")} value={guest.gender} />
 
         {/* Birth Date */}
-        {/* <div className="w-[243px] flex-1">
-          <div className="text-h5 mobile:text-h4-mobile">
-            {t("birthdate")} : {guest.birthDate}
-          </div>
-        </div> */}
         <Field fieldName={t("birthdate")} value={guest.birthDate} />
       </div>
 
@@ -253,11 +238,6 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
       {/* Row 5 */}
       <div className="flex flex-wrap justify-between">
         {/* Address  */}
-        {/* <div className="w-full flex-1">
-          <div className="text-h5 mobile:text-h4-mobile">
-            {t("address")} : {guest.address}
-          </div>
-        </div> */}
         <Field fieldName={t("address")} value={guest.address} />
       </div>
 
