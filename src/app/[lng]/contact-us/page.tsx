@@ -16,9 +16,11 @@ export default function ContactUs({
   const iconStyle = { color: "#2A4D69" };
 
   return (
-    <main>
-      <Topbar lng={lng} />
-      <div className="flex flex-col bg-white h-[72vh] text-center">
+    <div className="flex flex-col h-[100vh] w-[100vw]">
+      <div className="sticky top-0 w-[100vw]">
+        <Topbar lng={lng} />
+      </div>
+      <div className="flex flex-col bg-white flex-1 text-center">
         <p
           className="text-h1 mt-[1vw] mb-[1vw] w-[100vw] mobile:text-h1-mobile"
           style={{ color: "#2A4D69" }}
@@ -73,7 +75,9 @@ export default function ContactUs({
           )}
         </div>
       </div>
-      <Footer t={t} />
-    </main>
+      <div className="sticky bottom-0 w-[100vw]">
+        <Footer t={t} />
+      </div>
+    </div>
   );
 }
