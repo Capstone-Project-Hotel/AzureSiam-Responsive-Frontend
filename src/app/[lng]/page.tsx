@@ -332,6 +332,14 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
             />
           </div>
 
+          {/* Lowest Price Remark */}
+          <div>
+            <div className="text-right test-description font-thin  mobile:text-h5-mobile">
+              <span className="text-red-600">*</span>
+              <span> {t("lowest_price_remark")} </span>
+            </div>
+          </div>
+
           {/* Select Date */}
           <div className="flex justify-center gap-4">
             <CalendarOutlined />
@@ -512,23 +520,17 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                     </ul>
                   </div>
                 </div>
-                <div className="flex gap-2 flex-wrap">
-                  <img
-                    src={stdroom.src}
-                    alt=""
-                    className="w-[150px] aspect-[3/2] mobile:w-[80px]"
-                  />
-                  <img
-                    src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTrmFKkPaYE9q1hzcjDppcp_QYSJlZG8JnSF0_FUOtTT2loh4kA"
-                    alt=""
-                    className="w-[150px] aspect-[3/2] mobile:w-[80px]"
-                  />
-                  <img
-                    src="https://image-tc.galaxy.tf/wijpeg-4xrh8wkeksa0lb2jjhjyb6bxk/sandman-signature-saskatoon-south-hotel-corp-king-sofa-bed-w-euro-shower-bath-2_wide.jpg?crop=0%2C84%2C1600%2C900&width=1140"
-                    alt=""
-                    className="w-[150px] aspect-[3/2] mobile:w-[80px]"
-                  />
-                </div>
+                <Carousel dotPosition="bottom" autoplay>
+                  <div>
+                    <ContentStyle src={stdroom.src} />
+                  </div>
+                  <div>
+                    <ContentStyle src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTrmFKkPaYE9q1hzcjDppcp_QYSJlZG8JnSF0_FUOtTT2loh4kA" />
+                  </div>
+                  <div>
+                    <ContentStyle src="https://image-tc.galaxy.tf/wijpeg-4xrh8wkeksa0lb2jjhjyb6bxk/sandman-signature-saskatoon-south-hotel-corp-king-sofa-bed-w-euro-shower-bath-2_wide.jpg?crop=0%2C84%2C1600%2C900&width=1140" />
+                  </div>
+                </Carousel>
               </OtherCard>
 
               {/* Deluxe Room */}
@@ -602,23 +604,17 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                     </ul>
                   </div>
                 </div>
-                <div className="flex gap-2 flex-wrap">
-                  <img
-                    src={dlxroom.src}
-                    alt=""
-                    className="w-[150px] aspect-[3/2] mobile:w-[80px]"
-                  />
-                  <img
-                    src="https://www.botanicserviceroom.com/uploads/images/rooms/1580916590qf79ctC5yT.jpeg"
-                    alt=""
-                    className="w-[150px] aspect-[3/2] mobile:w-[80px]"
-                  />
-                  <img
-                    src="https://lebua.com/wp-content/uploads/2019/07/02.-LST_-Suites-City-View.jpg"
-                    alt=""
-                    className="w-[150px] aspect-[3/2] mobile:w-[80px]"
-                  />
-                </div>
+                <Carousel dotPosition="bottom" autoplay>
+                  <div>
+                    <ContentStyle src={dlxroom.src} />
+                  </div>
+                  <div>
+                    <ContentStyle src="https://www.botanicserviceroom.com/uploads/images/rooms/1580916590qf79ctC5yT.jpeg" />
+                  </div>
+                  <div>
+                    <ContentStyle src="https://lebua.com/wp-content/uploads/2019/07/02.-LST_-Suites-City-View.jpg" />
+                  </div>
+                </Carousel>
               </OtherCard>
 
               {/* Family Room */}
@@ -694,23 +690,17 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                     </ul>
                   </div>
                 </div>
-                <div className="flex gap-2 flex-wrap">
-                  <img
-                    src={famroom.src}
-                    alt=""
-                    className="w-[150px] aspect-[3/2] mobile:w-[80px]"
-                  />
-                  <img
-                    src="https://media-cdn.tripadvisor.com/media/photo-s/0b/16/99/02/bathroom-of-the-family.jpg"
-                    alt=""
-                    className="w-[150px] aspect-[3/2] mobile:w-[80px]"
-                  />
-                  <img
-                    src="https://1.bp.blogspot.com/-QC4aWXP3BJw/VNnTWYJ9LgI/AAAAAAAAg9A/9S6vPwcsaOQ/s1600/1.jpg"
-                    alt=""
-                    className="w-[150px] aspect-[3/2] mobile:w-[80px]"
-                  />
-                </div>
+                <Carousel dotPosition="bottom" autoplay>
+                  <div>
+                    <ContentStyle src={famroom.src} />
+                  </div>
+                  <div>
+                    <ContentStyle src="https://media-cdn.tripadvisor.com/media/photo-s/0b/16/99/02/bathroom-of-the-family.jpg" />
+                  </div>
+                  <div>
+                    <ContentStyle src="https://1.bp.blogspot.com/-QC4aWXP3BJw/VNnTWYJ9LgI/AAAAAAAAg9A/9S6vPwcsaOQ/s1600/1.jpg" />
+                  </div>
+                </Carousel>
               </OtherCard>
 
               {/* Suite Room */}
@@ -796,23 +786,17 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                     </ul>
                   </div>
                 </div>
-                <div className="flex gap-2 flex-wrap">
-                  <img
-                    src={suiteroom.src}
-                    alt=""
-                    className="w-[150px] aspect-[3/2] mobile:w-[80px]"
-                  />
-                  <img
-                    src="https://d2e5ushqwiltxm.cloudfront.net/wp-content/uploads/sites/219/2020/02/11095044/3.-Rooms-Suites-details-1.-Superior-Room.jpg"
-                    alt=""
-                    className="w-[150px] aspect-[3/2] mobile:w-[80px]"
-                  />
-                  <img
-                    src="https://d2e5ushqwiltxm.cloudfront.net/wp-content/uploads/sites/219/2020/03/31105553/26.jpg"
-                    alt=""
-                    className="w-[150px] aspect-[3/2] mobile:w-[80px]"
-                  />
-                </div>
+                <Carousel dotPosition="bottom" autoplay>
+                  <div>
+                    <ContentStyle src={suiteroom.src} />
+                  </div>
+                  <div>
+                    <ContentStyle src="https://www.thesuitesatfallcreek.com/wp-content/uploads/2019/05/1-Bedroom-Suite-1.jpg" />
+                  </div>
+                  <div>
+                    <ContentStyle src="https://www.thesuitesatfallcreek.com/wp-content/uploads/2019/05/1-Bedroom-Suite-1.jpg" />
+                  </div>
+                </Carousel>
               </OtherCard>
 
               {/* Executive Room */}
@@ -898,23 +882,17 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                     </ul>
                   </div>
                 </div>
-                <div className="flex gap-2 flex-wrap">
-                  <img
-                    src={exroom.src}
-                    alt=""
-                    className="w-[150px] aspect-[3/2] mobile:w-[80px]"
-                  />
-                  <img
-                    src={exroom2.src}
-                    alt=""
-                    className="w-[150px] aspect-[3/2] mobile:w-[80px]"
-                  />
-                  <img
-                    src="https://discoveryprimeademo.hotelpropeller.com/files/2017/02/Executive_Suite_2.jpg"
-                    alt=""
-                    className="w-[150px] aspect-[3/2] mobile:w-[80px]"
-                  />
-                </div>
+                <Carousel dotPosition="bottom" autoplay>
+                  <div>
+                    <ContentStyle src={exroom.src} />
+                  </div>
+                  <div>
+                    <ContentStyle src="https://www.botanicserviceroom.com/uploads/images/rooms/1580917027SYoMNr02iB.jpeg" />
+                  </div>
+                  <div>
+                    <ContentStyle src="https://www.botanicserviceroom.com/uploads/images/rooms/1580916883LfnEwUK4s4.jpeg" />
+                  </div>
+                </Carousel>
               </OtherCard>
             </Slider>
           </div>
