@@ -135,7 +135,7 @@
   
   "terms_condition_label": "Terms and Conditions",
   "privacy_policy_label": "Privacy Policy",
-  
+
   "terms_condition": "I have read and agree to the ",
   "terms_condition_2": "Terms and Conditions and Privacy Policy",
   "terms_condition_d1": "Advanced deposit payment will be charged at time of reservation.",
@@ -186,5 +186,6 @@
   "booking_detail_label": "Booking Detail",
   "booking_summary": "Booking Summary",
 
-  "lowest_price_remark": "The calendar price represents the lowest available rate for that day"
+  "lowest_price_remark": "The calendar price represents the lowest available rate for that day",
+  "promo_placeholder": "e.g. promo001"
 }
