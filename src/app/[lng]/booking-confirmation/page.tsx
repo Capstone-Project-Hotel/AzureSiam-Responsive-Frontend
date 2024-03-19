@@ -26,12 +26,6 @@ interface Guest {
   idType: string;
 }
 
-// const idTypeToid = {
-//   id: "National ID",
-//   passportNumber: "Passport Number",
-//   drivingLicence: "Driving Licence",
-// };
-
 const cardTypeToCardImg = {
   amex: "https://venturebeat.com/wp-content/uploads/2023/05/blue.jpg?fit=750%2C422&strip=all",
   visa: "https://swissuplabs.com/wordpress/wp-content/uploads/2016/04/free-icons-visa.png",
