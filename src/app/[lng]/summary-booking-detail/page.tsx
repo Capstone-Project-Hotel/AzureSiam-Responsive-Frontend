@@ -229,7 +229,7 @@ const GuestDetailInputContainer: React.FC<GuestDetailInputContainerProps> = ({
         <Field fieldName={t("country")} value={guest.country} />
 
         {/* City */}
-        <Field fieldName={t("city")} value={guest.city} />
+        <Field fieldName={t("city_state")} value={guest.city} />
 
         {/* Zip code */}
         <Field fieldName={t("zip_code")} value={guest.zipCode} />
