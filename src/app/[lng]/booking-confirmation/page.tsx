@@ -188,7 +188,7 @@ const BookingConfirmation: React.FC<ReservationAndGuestDetailProps> = ({
           {/* Right Container */}
           <div className="flex flex-col w-[30%] mobile:w-[330px] sticky mobile:right-0 top-[20vh] mobile:static items-center">
             <SummaryCard
-              page="summary-booking-detail"
+              page="booking-confirmation"
               isDisabledConfirm={true}
               t={t}
               lng={lng}
