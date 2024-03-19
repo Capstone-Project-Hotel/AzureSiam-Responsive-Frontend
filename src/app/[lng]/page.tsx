@@ -29,6 +29,7 @@ import SatelliteAltIcon from "@mui/icons-material/SatelliteAlt";
 import BalconyIcon from "@mui/icons-material/Balcony";
 import ChairIcon from "@mui/icons-material/Chair";
 import DinnerDiningIcon from "@mui/icons-material/DinnerDining";
+import InventoryIcon from "@mui/icons-material/Inventory";
 import useStore from "@/hooks/useStore";
 
 import landing from "../../../public/landing.png";
@@ -517,13 +518,19 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                       </li>
                       <li>
                         <BathtubIcon fontSize={isMobile ? "small" : "medium"} />
-                        {t("bath")}
+                        {t("private_bath")}
                       </li>
                       <li>
                         <SatelliteAltIcon
                           fontSize={isMobile ? "small" : "medium"}
                         />
                         {t("cable")}
+                      </li>
+                      <li>
+                        <InventoryIcon
+                          fontSize={isMobile ? "small" : "medium"}
+                        />
+                        {t("safe")}
                       </li>
                     </ul>
                   </div>
@@ -612,6 +619,12 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                         {t("cable")}
                       </li>
                       <li>
+                        <InventoryIcon
+                          fontSize={isMobile ? "small" : "medium"}
+                        />
+                        {t("safe")}
+                      </li>
+                      <li>
                         <BalconyIcon fontSize={isMobile ? "small" : "medium"} />
                         {t("balcony")}
                       </li>
@@ -659,7 +672,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                       </li>
                       <li>
                         <KitchenIcon fontSize={isMobile ? "small" : "medium"} />
-                        {t("compact_fridge")}
+                        {t("fridge")}
                       </li>
                       <li className="flex gap-4">
                         <div>
@@ -695,13 +708,19 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                       </li>
                       <li>
                         <BathtubIcon fontSize={isMobile ? "small" : "medium"} />
-                        {t("bath")}
+                        {t("private_bath")}
                       </li>
                       <li>
                         <SatelliteAltIcon
                           fontSize={isMobile ? "small" : "medium"}
                         />
                         {t("cable")}
+                      </li>
+                      <li>
+                        <InventoryIcon
+                          fontSize={isMobile ? "small" : "medium"}
+                        />
+                        {t("safe")}
                       </li>
                       <li>
                         <BalconyIcon fontSize={isMobile ? "small" : "medium"} />
@@ -796,6 +815,12 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                         {t("cable")}
                       </li>
                       <li>
+                        <InventoryIcon
+                          fontSize={isMobile ? "small" : "medium"}
+                        />
+                        {t("safe")}
+                      </li>
+                      <li>
                         <BalconyIcon fontSize={isMobile ? "small" : "medium"} />
                         {t("balcony")}
                       </li>
@@ -853,7 +878,7 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                       </li>
                       <li>
                         <KitchenIcon fontSize={isMobile ? "small" : "medium"} />
-                        {t("mini_fridge")}
+                        {t("fridge")}
                       </li>
                       <li className="flex gap-4">
                         <div>
@@ -896,6 +921,12 @@ const Home = ({ params: { lng } }: { params: { lng: any } }) => {
                           fontSize={isMobile ? "small" : "medium"}
                         />
                         {t("cable")}
+                      </li>
+                      <li>
+                        <InventoryIcon
+                          fontSize={isMobile ? "small" : "medium"}
+                        />
+                        {t("safe")}
                       </li>
                       <li>
                         <BalconyIcon fontSize={isMobile ? "small" : "medium"} />
