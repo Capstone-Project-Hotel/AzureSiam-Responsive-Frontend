@@ -2,13 +2,11 @@
 
 import React from "react";
 import useStore from "@/hooks/useStore";
-import { gu } from "date-fns/locale";
 import { redirect } from "next/navigation";
 import SummaryCard from "@/components/SummaryCard";
 import Topbar from "@/components/Topbar";
 import { useTranslation } from "@/app/i18n/client";
 import { CheckCircleFilled, CiCircleFilled } from "@ant-design/icons";
-import { green } from "@mui/material/colors";
 import Footer from "@/components/Footer";
 interface Guest {
   firstName: string;
